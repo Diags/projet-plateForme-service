@@ -1,0 +1,26 @@
+<div class="col-sm-2 sidenav usersPanel" *ngIf="categories">
+    <ul class="list-group"    *ngFor="let c of categories._embedded.categories">
+      <li class="list-group-item clikable " [routerLink]="['/catalogue-details/',c.id]">{{c.name}}</li>
+    </ul>
+    </div>
+    <div class="col-sm-8 text-left usersPanel" *ngIf="categories"> 
+      <div class="col-md-4" *ngFor="let c of categories._embedded.categories">
+       
+        <div class="panel panel-default" style="width:230px;"  [routerLink]="['/catalogue-details/',c.id]">
+          <div class="panel-heading">
+                 
+            <img class="card-img-top" alt="Cinque Terre" height="200" width="200" src="{{this.catelogService.host+'/photocategory/'+c.id}}" />
+          </div>
+          <div class="panel-body">
+            <!--header -->
+            <table>
+                <tr>
+                  <td><Strong>{{c.name}}</Strong></td>
+                </tr>
+                <tr>
+                  <td>{{c.description}}</td>
+                </tr>
+            </table>
+          </div>
+        </div>
+      </div>

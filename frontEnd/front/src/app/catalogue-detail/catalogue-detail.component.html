@@ -1,0 +1,36 @@
+<div class="container usersPanel" *ngIf="users">
+  <div *ngFor="let user of users._embedded.users">
+    <div class="col-md-4">
+      <div class="panel panel-default" [routerLink]="['/artisant-details/',user.id]">
+        <div class="panel-heading">
+          <img class="img-circle" alt="Cinque Terre" height="200" width="200" src="{{this.catalogueService.host+'/photouser/'
+        +user.id}}" />
+        </div>
+        <div class="panel-body">
+          <table>
+            <tr>
+              <td>
+                {{user.nom}}
+              </td>
+            </tr>
+            <tr>
+              <td>
+                {{user.prenom}}
+              </td>
+            </tr>
+            <tr>
+              <td>
+                {{user.numeroSiret}}
+              </td>
+            </tr>
+            <tr>
+              <td>
+                {{user.recommanderBy}}
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

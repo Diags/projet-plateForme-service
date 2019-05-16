@@ -1,0 +1,205 @@
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Logo</a>
+    </div>
+    <div class="collapse navbar-collapse " id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#" [routerLink]="['/catalogue/1/0']">Home</a></li>
+        <li><a href="#" [routerLink]="['/catalogue/1/0']">Catalogue</a></li>
+        <li><a href="#" [routerLink]="['/catalogue/1/0']">Devis</a></li>
+        <li><a href="#" [routerLink]="['/catalogue/1/0']">Contact</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right ">
+        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="row content back">
+  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+      <div class="item active">
+        <img src="http://cdn.wonderfulengineering.com/wp-content/uploads/2014/07/background-wallpapers-7.jpg"
+          alt="First slide">
+      </div>
+      <div class="item">
+        <img src="http://www.disputescentre.com.au/assets/media/images/background.jpg" alt="Second slide">
+      </div>
+      <div class="item">
+        <img
+          src="http://www.dream-wallpaper.com/free-wallpaper/art-wallpaper/background-color-2-wallpaper/1920x1200/free-wallpaper-9.jpg"
+          alt="Third slide">
+      </div>
+    </div>
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span
+        class="glyphicon glyphicon-chevron-left"></span></a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next"><span
+        class="glyphicon glyphicon-chevron-right"></span></a>
+  </div>
+  <div class="search">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-1">
+          <div class="form-section">
+            <div class="row">
+              <form role="form-inline">
+                <div class="col-xs-4 ">
+                  <div class="form-group">
+                    <label class="sr-only" for="location">Location</label>
+                    <input type="search" class="form-control" id="location" placeholder="Where ?">
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="form-group">
+                    <label class="sr-only" for="code">CodePostal</label>
+                    <input type="search" class="form-control" id="code" placeholder="Where ?">
+                  </div>
+                </div>
+
+                <div class="col-md-2">
+                  <button type="submit" class="btn btn-default btn-primary">Search</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <router-outlet></router-outlet>
+</div>
+
+
+<!-- Footer -->
+<footer class="page-footer font-small row">
+
+    <!-- Footer Links -->
+    <div class="container text-center text-md-left">
+  
+      <!-- Grid row -->
+      <div class="row">
+  
+        <!-- Grid column -->
+        <div class="col-md-3 mx-auto">
+  
+          <!-- Links -->
+          <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Links</h5>
+  
+          <ul class="list-unstyled">
+            <li>
+              <a href="#!">Very long link 1</a>
+            </li>
+            <li>
+              <a href="#!">Very long link 2</a>
+            </li>
+            <li>
+              <a href="#!">Very long link 3</a>
+            </li>
+            <li>
+              <a href="#!">Very long link 4</a>
+            </li>
+          </ul>
+  
+        </div>
+        <!-- Grid column -->
+  
+        <hr class="clearfix w-100 d-md-none">
+  
+        <!-- Grid column -->
+        <div class="col-md-3 mx-auto">
+  
+          <!-- Links -->
+          <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Links</h5>
+  
+          <ul class="list-unstyled">
+            <li>
+              <a href="#!">Link 1</a>
+            </li>
+            <li>
+              <a href="#!">Link 2</a>
+            </li>
+            <li>
+              <a href="#!">Link 3</a>
+            </li>
+            <li>
+              <a href="#!">Link 4</a>
+            </li>
+          </ul>
+  
+        </div>
+        <!-- Grid column -->
+  
+        <hr class="clearfix w-100 d-md-none">
+  
+        <!-- Grid column -->
+        <div class="col-md-3 mx-auto">
+  
+          <!-- Links -->
+          <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Links</h5>
+  
+          <ul class="list-unstyled">
+            <li>
+              <a href="#!">Link 1</a>
+            </li>
+            <li>
+              <a href="#!">Link 2</a>
+            </li>
+            <li>
+              <a href="#!">Link 3</a>
+            </li>
+            <li>
+              <a href="#!">Link 4</a>
+            </li>
+          </ul>
+  
+        </div>
+        <!-- Grid column -->
+  
+        <hr class="clearfix w-100 d-md-none">
+  
+        <!-- Grid column -->
+        <div class="col-md-3 mx-auto">
+  
+          <!-- Links -->
+          <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Links</h5>
+  
+          <ul class="list-unstyled">
+            <li>
+              <a href="#!">Link 1</a>
+            </li>
+            <li>
+              <a href="#!">Link 2</a>
+            </li>
+            <li>
+              <a href="#!">Link 3</a>
+            </li>
+            <li>
+              <a href="#!">Link 4</a>
+            </li>
+          </ul>
+  
+        </div>
+        <!-- Grid column -->
+  
+      </div>
+      <!-- Grid row -->
+  
+    </div>
+    <!-- Footer Links -->
+  
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© 2018 Copyright:
+      <a href="https://mdbootstrap.com/education/bootstrap/"> MDBootstrap.com</a>
+    </div>
+    <!-- Copyright -->
+  
+
+  </footer>
+  <!-- Footer -->

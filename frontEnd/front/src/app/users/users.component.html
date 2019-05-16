@@ -1,0 +1,21 @@
+<div *ngIf="users">
+  <div *ngFor="let item of categories._embedded.categories.users">
+    <div class="col-xs-3">
+      <div class="panel panel-default" [routerLink]="['/artisant-details/',item.id]">
+        <div class="panel-heading"><img class="img-circle" alt="Cinque Terre" height="200" width="200" src="{{this.cat.host+'/photouser/'
+          +item.id}}" /></div>
+        <div class="panel-body">
+          <!--header -->
+          <table>
+              <tr>
+                <td>{{item.nom}}</td>
+              </tr>
+              <tr>
+                <td>{{item.prenom}}</td>
+              </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
