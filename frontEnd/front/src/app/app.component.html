@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse navbar-fixed-top" id="mNavbar">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -22,16 +22,19 @@
   </div>
 </nav>
 
-<div class="row content back">
-  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+<section class="row content back">
+     <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
       <div class="item active">
         <img src="http://cdn.wonderfulengineering.com/wp-content/uploads/2014/07/background-wallpapers-7.jpg"
           alt="First slide">
       </div>
       <div class="item">
-        <img src="http://www.disputescentre.com.au/assets/media/images/background.jpg" alt="Second slide">
+        <img src="./header-background.png" alt="Second slide">
       </div>
+      <div class="item">
+          <img src="header-background.png" alt="Second">
+        </div>
       <div class="item">
         <img
           src="http://www.dream-wallpaper.com/free-wallpaper/art-wallpaper/background-color-2-wallpaper/1920x1200/free-wallpaper-9.jpg"
@@ -50,7 +53,7 @@
           <div class="form-section">
             <div class="row">
               <form role="form-inline">
-                <div class="col-xs-4 ">
+                <div class="col-xs-5">
                   <div class="form-group">
                     <label class="sr-only" for="location">Location</label>
                     <input type="search" class="form-control" id="location" placeholder="Where ?">
@@ -62,7 +65,20 @@
                     <input type="search" class="form-control" id="code" placeholder="Where ?">
                   </div>
                 </div>
-
+                <div class="col-md-3">
+                <div class="select-wrap">
+                    <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
+                    <select class="form-control rounded" name="" id="">
+                      <option value="">All Categories</option>
+                      <option value="">Real Estate</option>
+                      <option value="">Books &amp;  Magazines</option>
+                      <option value="">Furniture</option>
+                      <option value="">Electronics</option>
+                      <option value="">Cars &amp; Vehicles</option>
+                      <option value="">Others</option>
+                    </select>
+                  </div>
+                </div>
                 <div class="col-md-2">
                   <button type="submit" class="btn btn-default btn-primary">Search</button>
                 </div>
@@ -73,8 +89,9 @@
       </div>
     </div>
   </div>
-  <router-outlet></router-outlet>
-</div>
+ </section>
+<section class="row">  <router-outlet></router-outlet></section>
+
 
 
 <!-- Footer -->
@@ -202,4 +219,3 @@
   
 
   </footer>
-  <!-- Footer -->
