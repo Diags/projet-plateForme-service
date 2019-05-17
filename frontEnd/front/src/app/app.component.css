@@ -1,12 +1,13 @@
 body {
     padding-top: 40px;
-    padding-bottom: 40px;
+    padding-bottom: 5px;
     background-color: #e3e3e3;
   }
   
   .carousel {
     height: 500px;
-    margin-bottom: 60px;
+    margin-bottom: 5px;
+    width: 100%
   }
   .carousel .item {
     height: 500px;
@@ -20,7 +21,9 @@ body {
     height: 100%;
   }
   .search {
-      margin-top: -25%;
+      margin-top: -10%;
+      margin-left:1%;
+      
   }
   .search .form-section{
       background:rgba(0,0,0,0.6);
@@ -29,21 +32,18 @@ body {
       padding: 10px;
   }
   .usersPanel{
-      margin-top: 18%;
+      margin-top: 5%;
       padding: 2%;
   }
   footer{
       background-color:#2a2a2c;
 color : white   ;
   }
-  .active{
+ a .active{
       background-color: rgb(104, 104, 236);
       border-color:  rgb(104, 104, 236);
       color: blue;
   }
-  .back{
-      background-color:#C6DF51;
-  }
-  .pad{
-      padding: 2%
+  .sidenav{
+    overflow-x: hidden;
   }

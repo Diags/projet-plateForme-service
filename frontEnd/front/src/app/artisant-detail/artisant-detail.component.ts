@@ -22,4 +22,8 @@ private artisantDetail ;
       console.log(error);
     })
   }
+
+  getDevis(){
+    this.router.navigateByUrl('/devis')
+  }
   }

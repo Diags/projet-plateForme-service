@@ -1,12 +1,12 @@
 body {
   padding-top: 40px;
-  padding-bottom: 40px;
+  padding-bottom: 5px;
   background-color: #e3e3e3;
 }
 
 .carousel {
   height: 500px;
-  margin-bottom: 60px;
+  margin-bottom: 5px;
 }
 .carousel .item {
   height: 500px;
@@ -29,6 +29,6 @@ body {
 	padding: 10px;
 }
 .usersPanel{
-    margin-top: 18%;
+    margin-top: 3.5%;
     padding: 2%;
 }

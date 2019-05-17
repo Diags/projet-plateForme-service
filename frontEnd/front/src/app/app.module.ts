@@ -9,13 +9,15 @@ import { ArtisantDetailComponent } from './artisant-detail/artisant-detail.compo
 import {Route, RouterModule, Routes} from "@angular/router";
 import { CatalogueComponent } from './catalogue/catalogue.component';
 import { CatalogueDetailComponent } from './catalogue-detail/catalogue-detail.component';
+import { DevisFormComponent } from './devis-form/devis-form.component';
 @NgModule({
   declarations: [
     AppComponent,
     UsersComponent,
     ArtisantDetailComponent,
     CatalogueComponent,
-    CatalogueDetailComponent
+    CatalogueDetailComponent,
+    DevisFormComponent
   ],
   imports: [
     BrowserModule,
