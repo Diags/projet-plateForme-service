@@ -39,7 +39,10 @@ public class ProjetArtisantApplication implements CommandLineRunner {
         categoryRepository.save(new Category(null, "BATIMENT", RandomString.make(12), "batima", null));
         categoryRepository.save(new Category(null, "FABRICATION", RandomString.make(12), "meunuisier", null));
         categoryRepository.save(new Category(null, "ALIMENTATION", RandomString.make(12), "restau", null));
-        categoryRepository.save(new Category(null, "TRANSPORT", RandomString.make(12), "transport", null));
+        categoryRepository.save(new Category(null, "TRANSPORT", RandomString.make(12), "tran1", null));
+        categoryRepository.save(new Category(null, "EDUCATION", RandomString.make(12), "education", null));
+        categoryRepository.save(new Category(null, "HAUTE COUTURE", RandomString.make(12), "couturier", null));
+
         categoryRepository.save(new Category(null, "SERVICES", RandomString.make(12), "doctor", null));
         ArrayList<String> mylist = new ArrayList<String>();
         mylist.add("barack");

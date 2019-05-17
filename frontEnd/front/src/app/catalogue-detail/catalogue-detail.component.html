@@ -1,16 +1,16 @@
 <div class="container usersPanel" *ngIf="users">
   <div *ngFor="let user of users._embedded.users">
     <div class="col-md-4">
-      <div class="panel panel-default" [routerLink]="['/artisant-details/',user.id]">
+      <div class="panel panel-default" [routerLink]="['/artisant-details/', user.id]">
         <div class="panel-heading">
-          <img class="img-circle" alt="Cinque Terre" height="200" width="200" src="{{this.catalogueService.host+'/photouser/'
+          <img class="card" alt="Cinque Terre" height="200" style="width:100%;" src="{{this.catalogueService.host+'/photouser/'
         +user.id}}" />
         </div>
         <div class="panel-body">
           <table>
             <tr>
               <td>
-                {{user.nom}}
+                <strong> {{user.nom}} </strong>
               </td>
             </tr>
             <tr>
@@ -20,7 +20,7 @@
             </tr>
             <tr>
               <td>
-                {{user.numeroSiret}}
+                <i> Numero de siret: </i> {{user.numeroSiret}}
               </td>
             </tr>
             <tr>
@@ -28,7 +28,16 @@
                 {{user.recommanderBy}}
               </td>
             </tr>
+            <tr>
+              <td>
+                {{user.adresse}}
+              </td>
+            </tr>
+        
           </table>
+        </div>
+        <div class="panel-footer">
+            <button>Contact</button>
         </div>
       </div>
     </div>
