@@ -19,7 +19,8 @@ public class CategoryController {
     public byte[] getCategoryPhoto(@PathVariable("id") Long id) throws Exception {
        Category category = categoryRepository.findById(id).get();
        System.out.append(category.getPhoto());
-        return Files.readAllBytes(Paths.get(System.getProperty("user.home")+"/Desktop/imageDiaguily/catalogue/"+category.getPhoto()+".png"));
+        return Files.readAllBytes( Paths.get(this.getClass().getClassLoader().getResource("imageDiaguily/catalogue/"+category.getPhoto()+".png").toURI()));
+       // return Files.readAllBytes(Paths.get(System.getProperty("user.home")+"/Desktop/imageDiaguily/catalogue/"+category.getPhoto()+".png"));
 
     }
 }
