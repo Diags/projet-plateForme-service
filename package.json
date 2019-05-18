@@ -9,6 +9,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bootstrap": "^3.4.1"
+    "bootstrap": "^3.4.1",
+    "express": "^4.17.0",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "enhanced-resolve": "^4.1.0"
   }
 }

@@ -47,6 +47,15 @@ public class ProjetArtisantApplication implements CommandLineRunner {
         ArrayList<String> mylist = new ArrayList<String>();
         mylist.add("barack");
         mylist.add("ba");
+        ArrayList<String> mylist1 = new ArrayList<String>();
+        mylist1.add("Lyon");
+        mylist1.add("Dijon");
+        mylist1.add("Paris");
+        mylist1.add("Marseil");
+        mylist1.add("Bordeau");
+        mylist1.add("Nante");
+        mylist1.add("Stranbourgue");
+        mylist1.add("Toulouse");
         categoryRepository.findAll().forEach(c -> {
             for (int i = 0; i < 10; i++) {
                 User user = new User();
@@ -55,8 +64,8 @@ public class ProjetArtisantApplication implements CommandLineRunner {
                 adresse.setRue("rue");
                 adresse.setName("emeraude");
                 adresse.setCodePostal(10 + rd.nextInt(20018));
-                adresse.setVille("lyon");
-
+                Collections.shuffle(mylist1, new Random());
+                adresse.setVille(mylist1.get(0));
                 user.setNom(RandomString.make(8));
                 user.setPrenom(RandomString.make(9));
                 user.setAge(1988 + rd.nextInt(20018));
