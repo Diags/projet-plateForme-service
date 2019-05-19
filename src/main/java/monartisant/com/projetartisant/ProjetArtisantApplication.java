@@ -9,9 +9,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 
-
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
-import java.util.stream.Stream;
 
 @SpringBootApplication
 public class ProjetArtisantApplication implements CommandLineRunner {
@@ -25,6 +25,8 @@ public class ProjetArtisantApplication implements CommandLineRunner {
     private AdresRepository adresRepository;
     @Autowired
     private RepositoryRestConfiguration repositoryRestConfiguration;
+    @Autowired
+    private ImageRepository imageRepository;
 
 
     public static void main(String[] args) {
@@ -42,7 +44,6 @@ public class ProjetArtisantApplication implements CommandLineRunner {
         categoryRepository.save(new Category(null, "TRANSPORT", RandomString.make(12), "tran1", null));
         categoryRepository.save(new Category(null, "EDUCATION", RandomString.make(12), "education", null));
         categoryRepository.save(new Category(null, "HAUTE COUTURE", RandomString.make(12), "couturier", null));
-
         categoryRepository.save(new Category(null, "SERVICES", RandomString.make(12), "doctor", null));
         ArrayList<String> mylist = new ArrayList<String>();
         mylist.add("barack");
@@ -79,7 +80,6 @@ public class ProjetArtisantApplication implements CommandLineRunner {
 
                 userRepository.save(user);
             }
-
         });
     }
 

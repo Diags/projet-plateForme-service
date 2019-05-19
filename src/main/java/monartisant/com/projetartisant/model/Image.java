@@ -5,17 +5,17 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
+
 @Entity
 @Data @AllArgsConstructor @NoArgsConstructor
-public class Adresse {
+public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private int numeroRue;
-    private String rue;
-    private String name;
-    private int codePostal;
-    private String ville;
-    @OneToOne(mappedBy = "adresse")
+    @Lob
+    @Column
+    private String image;
+    @ManyToOne
     private User user;
 }
