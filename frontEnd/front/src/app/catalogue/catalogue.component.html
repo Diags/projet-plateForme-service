@@ -1,8 +1,9 @@
-<div class="col-sm-2 sidenav usersPanel" *ngIf="categories">
+<!--<div class="col-sm-2 sidenav usersPanel" *ngIf="categories">
     <ul class="list-group"    *ngFor="let c of categories._embedded.categories">
       <li class="list-group-item clikable " [routerLink]="['/catalogue-details/',c.id]">{{c.name}}</li>
     </ul>
   </div>
+ -->
     <div class=" col-md-8 usersPanel" *ngIf="categories"> 
       <div  *ngFor="let c of categories._embedded.categories">
           <div class="col-md-4">

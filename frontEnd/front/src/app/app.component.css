@@ -23,6 +23,7 @@ body {
   .search {
       margin-top: -10%;
       margin-left:1%;
+      width: 20%;
       
   }
   .search .form-section{
@@ -31,6 +32,7 @@ body {
       border-radius: 5px;
       padding: 10px;
   }
+
   .usersPanel{
       margin-top: 5%;
       padding: 2%;

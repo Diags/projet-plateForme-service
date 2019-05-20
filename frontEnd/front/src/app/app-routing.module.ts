@@ -14,7 +14,7 @@ const routes: Routes = [
   {path:"catalogue-details/:id",canActivate: [CatalogDetailGuard], component:CatalogueDetailComponent},
   {path:"artisants",component:UsersComponent},
   {path:"artisant-details/:id", canActivate: [ArtisantDetailGuard], component: ArtisantDetailComponent},
-  {path:"",redirectTo:'/catalogue/1/0',pathMatch:'full'}
+  {path:"",redirectTo:'',pathMatch:'full'}
 
 ];
 
