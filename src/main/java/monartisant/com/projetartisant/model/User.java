@@ -26,4 +26,5 @@ public class User {
     private String recommanderBy;
     @ManyToOne
     private Category category;
+    private Double  note ;
 }

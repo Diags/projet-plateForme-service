@@ -10,6 +10,7 @@ import {Route, RouterModule, Routes} from "@angular/router";
 import { CatalogueComponent } from './catalogue/catalogue.component';
 import { CatalogueDetailComponent } from './catalogue-detail/catalogue-detail.component';
 import { DevisFormComponent } from './devis-form/devis-form.component';
+import { StarsComponent } from './stars/stars.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,7 +18,8 @@ import { DevisFormComponent } from './devis-form/devis-form.component';
     ArtisantDetailComponent,
     CatalogueComponent,
     CatalogueDetailComponent,
-    DevisFormComponent
+    DevisFormComponent,
+    StarsComponent
   ],
   imports: [
     BrowserModule,

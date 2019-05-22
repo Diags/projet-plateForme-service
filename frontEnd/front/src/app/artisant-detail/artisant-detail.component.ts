@@ -8,7 +8,8 @@ import { CatalogueService } from '../catalogue.service';
 })
 export class ArtisantDetailComponent implements OnInit {
 private artisantDetail ;
-  constructor( private catalogueService: CatalogueService, private routerActivated: ActivatedRoute, private router : Router) { 
+  private message: number;
+  constructor( private catalogueService: CatalogueService, private routerActivated: ActivatedRoute, private router : Router) {
    // this.router.params.subscribe(params => this.artisantDetail = params.id)
   //   console.log(this.router.snapshot.paramMap.get('id'))
   }
@@ -26,4 +27,10 @@ private artisantDetail ;
   getDevis(){
     this.router.navigateByUrl('/devis')
   }
+  onRatingClicked(message:number
+  ):void{
+    this.message = message;
+    console.log(this.message, "tessssssss");
+  }
+
   }

@@ -9,7 +9,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class CatalogueDetailComponent implements OnInit {
   private users;
-  constructor( private catalogueService: CatalogueService, private routerActivated: ActivatedRoute, private router : Router) { 
+  private message: number;
+  constructor( private catalogueService: CatalogueService, private routerActivated: ActivatedRoute, private router : Router) {
    // this.router.params.subscribe(params => this.artisantDetail = params.id)
   //   console.log(this.router.snapshot.paramMap.get('id'))
   }
@@ -22,5 +23,10 @@ export class CatalogueDetailComponent implements OnInit {
     }, error =>{
       console.log(error);
     });
+  }
+  onRatingClicked(message:number
+  ):void{
+this.message = message;
+console.log(this.message, "tessssssss");
   }
   }

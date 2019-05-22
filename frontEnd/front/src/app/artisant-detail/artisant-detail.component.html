@@ -11,7 +11,7 @@
           <table>
             <tr>
               <td>
-             <strong>  {{artisantDetail.nom}}  </strong> 
+             <strong>  {{artisantDetail.nom}}  </strong>
               </td>
             </tr>
             <tr>
@@ -34,28 +34,13 @@
       </div>
       <div class="panel-footer">
           <button class="button">Contact</button>
-  
-    
+
+
           <div class="rating-inline">
               <h4>Average user rating</h4>
-              <h2 class="bold padding-bottom-7">4.3 <small>/ 5</small></h2>
-              <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
-                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-              </button>
-              <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
-                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-              </button>
-              <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
-                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-              </button>
-              <button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
-                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-              </button>
-              <button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
-                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-              </button>
-  
-            
+
+              <h2 class="bold padding-bottom-7">{{this.message == null ?  artisantDetail.note :this.message }}<small>/ 5</small></h2>
+            <app-stars [rating]='artisantDetail.note | number' (ratingClicked)='onRatingClicked($event)'></app-stars>
       </div>
       </div>
     </div>
@@ -116,4 +101,3 @@
       <button type="button" class="btn btn-lg btn-primary button" (click)="getDevis()"> Devis </button>
     </div>
   </div>
-  		

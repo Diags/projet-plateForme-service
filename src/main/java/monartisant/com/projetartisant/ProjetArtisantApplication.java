@@ -77,7 +77,7 @@ public class ProjetArtisantApplication implements CommandLineRunner {
                 user.setPhotoName(mylist.get(0));
                 user.setAdresse(adresse);
                 user.setCategory(c);
-
+                user.setNote(3.5);
                 userRepository.save(user);
             }
         });

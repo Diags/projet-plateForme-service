@@ -1,8 +1,8 @@
 <div class="container usersPanel" *ngIf="users">
   <div *ngFor="let user of users._embedded.users">
     <div class="col-md-4">
-      <div class="panel panel-default" [routerLink]="['/artisant-details/', user.id]">
-        <div class="panel-heading">
+      <div class="panel panel-default">
+        <div class="panel-heading"  [routerLink]="['/artisant-details/', user.id]">
           <img class="card" alt="Cinque Terre" height="200" style="width:100%;" src="{{this.catalogueService.host+'/photouser/'
         +user.id}}" />
         </div>
@@ -33,11 +33,18 @@
                 {{user.adresse}}
               </td>
             </tr>
-        
+
           </table>
         </div>
         <div class="panel-footer">
-            <button>Contact</button>
+          <button class="button">Contact</button>
+
+          <div class="rating-inline">
+            <h4>Average user rating</h4>
+            <h2 class="bold padding-bottom-7"> {{this.message == null ?  user.note :this.message }} <small>/ 5</small></h2>
+            <app-stars  [rating]='user.note | number' ></app-stars>
+
+          </div>
         </div>
       </div>
     </div>
