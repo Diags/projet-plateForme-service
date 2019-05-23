@@ -5,9 +5,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data @AllArgsConstructor @NoArgsConstructor
-public class SearchParam {
-private String ville;
-private int codePostale ;
-private String categoryName;
+public class SendUserInfosToPro {
+private String nom;
+private String prenom ;
+private String ville ;
+private String codePostal;
+private String description;
 
 }

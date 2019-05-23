@@ -16,6 +16,5 @@ public interface UserRepository extends JpaRepository<User,Long> {
     @Modifying(clearAutomatically = true)
     @Query("update  User u   set u.note =: note  where  c.id =: id")
     default void updateNote(@Param("note") Double note, Long id) {
-
     }
 }

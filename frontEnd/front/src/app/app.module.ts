@@ -11,6 +11,8 @@ import { CatalogueComponent } from './catalogue/catalogue.component';
 import { CatalogueDetailComponent } from './catalogue-detail/catalogue-detail.component';
 import { DevisFormComponent } from './devis-form/devis-form.component';
 import { StarsComponent } from './stars/stars.component';
+import { ContactComponent } from './contact/contact.component';
+import {FormsModule} from "@angular/forms";
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,12 +21,14 @@ import { StarsComponent } from './stars/stars.component';
     CatalogueComponent,
     CatalogueDetailComponent,
     DevisFormComponent,
-    StarsComponent
+    StarsComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [CatalogueService],
   bootstrap: [AppComponent]

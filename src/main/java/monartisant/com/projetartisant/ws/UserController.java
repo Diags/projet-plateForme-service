@@ -35,4 +35,9 @@ public class UserController {
     public void update(@RequestBody SearchParamNote param, Long id){
          userRepository.updateNote(param.getNote(), param.getId());
     }
+    @PutMapping("search")
+    public void search(@RequestBody SendUserInfosToPro param, Long id){
+
+    }
+
 }
