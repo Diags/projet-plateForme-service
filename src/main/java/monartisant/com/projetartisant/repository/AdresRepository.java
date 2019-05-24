@@ -11,7 +11,7 @@ import java.util.List;
 @CrossOrigin("*")
 @RepositoryRestResource
 public interface AdresRepository extends JpaRepository<Adresse,Long> {
-List<User> findByAndVilleContainsAndCodePostalContains(String ville, int codePostal);
+List<User> findByUser_Profession_nameAndVilleContainsAndCodePostalContains(String professionName, String ville, int codePostal);
 }
 
 

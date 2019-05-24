@@ -27,16 +27,16 @@ public class UserController {
          User user = userRepository.findById(id).get();
        return Files.readAllBytes( Paths.get(this.getClass().getClassLoader().getResource("imageDiaguily/image/"+user.getPhotoName()+".png").toURI()));
     }
-    @GetMapping("/usersbyville")
-    public List<User> getUserByVille(@RequestBody SearchParam param){
-        return adresRepository.findByAndVilleContainsAndCodePostalContains(param.getVille(), param.getCodePostale());
-    }
+//    @GetMapping("/usersbyville")
+//    public List<User> getUserByVille(@RequestBody SearchParam param){
+//   //   return userRepository.findByProfession_nameContainsAndAdresse_villeContainsAndProfession_Category_name(param.getProfessionName(),param.getVille(), param.getCategoryName());
+//    }
     @PutMapping("user/{rating}")
     public void update(@RequestBody SearchParamNote param, Long id){
          userRepository.updateNote(param.getNote(), param.getId());
     }
     @PutMapping("search")
-    public void search(@RequestBody SendUserInfosToPro param, Long id){
+    public void search(@RequestBody SendUserInfosToPro param){
 
     }
 

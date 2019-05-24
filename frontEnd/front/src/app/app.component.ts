@@ -38,6 +38,7 @@ export class AppComponent implements OnInit {
   }
 
   getcatalogueByAdresse(dataForm: any) {
+    console.log("formData==>  ",dataForm);
     this.catelogService.Search(dataForm).subscribe(data => {
       this.categories =data;
     })

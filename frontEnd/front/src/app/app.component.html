@@ -54,22 +54,28 @@
         <div class="col-md-11 col-md-offset-1">
           <div class="form-section">
             <div class="row">
-              <form role="form-inline"  #f="ngForm" (ngSubmit)="getcatalogueByAdresse(f.value)">
+              <form  #f="ngForm"(ngSubmit)="getcatalogueByAdresse(f.value)" role="form-inline"  >
                 <div class="col-md-4">
                   <div class="form-group">
                     <label class="sr-only" for="location">Location</label>
-                    <input type="search" class="form-control" id="location" placeholder="specialiste ex: dentiste ?">
+                    <input type="search"  [(ngModel)]="professionName" name="professionName" class="form-control" id="location" placeholder="specialiste ex: dentiste ?">
                   </div>
                 </div>
                 <div class="col-md-3">
                   <div class="form-group">
-                    <label class="sr-only" for="code">CodePostal</label>
-                    <input type="search" class="form-control" id="code" placeholder="Code postal ex:69006">
+                    <label class="sr-only" for="code">Ville</label>
+                    <input type="search"  [(ngModel)]="ville" name="ville" class="form-control" id="ville" placeholder="ville ex:Lyon">
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label class="sr-only" for="code">codePostale</label>
+                    <input type="search"  [(ngModel)]="codePostale" name="ville" class="form-control" id="codePostale" placeholder="Code postal ex:69006">
                   </div>
                 </div>
                 <div class="col-md-3" *ngIf="categories">
                   <div  >
-                    <select  class="form-control" searchable="Search here..">
+                    <select  class="form-control" [(ngModel)]="categoryName" name="categoryName"  searchable="Search here..">
                         <option disabled selected>Choose your categorie</option>
                         <option  *ngFor="let c of categories._embedded.categories">{{c.name}}</option>
 

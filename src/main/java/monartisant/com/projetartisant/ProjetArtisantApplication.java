@@ -9,9 +9,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Random;
 
 @SpringBootApplication
 public class ProjetArtisantApplication implements CommandLineRunner {
@@ -27,7 +27,8 @@ public class ProjetArtisantApplication implements CommandLineRunner {
     private RepositoryRestConfiguration repositoryRestConfiguration;
     @Autowired
     private ImageRepository imageRepository;
-
+    @Autowired
+    private ProfessionRepository professionRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(ProjetArtisantApplication.class, args);
@@ -36,15 +37,31 @@ public class ProjetArtisantApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         repositoryRestConfiguration.exposeIdsFor(User.class, Category.class, Adresse.class, Token.class);
-      //  Adresse a = new Adresse(null, 12, "rue", "emeraude", 69006, "lyon");
+        //  Adresse a = new Adresse(null, 12, "rue", "emeraude", 69006, "lyon");
         Random rd = new Random();
-        categoryRepository.save(new Category(null, "BATIMENT", RandomString.make(12), "batima", null));
+        categoryRepository.save(new Category(null, "IMMOBILIER", RandomString.make(12), "batima", null));
         categoryRepository.save(new Category(null, "FABRICATION", RandomString.make(12), "meunuisier", null));
         categoryRepository.save(new Category(null, "ALIMENTATION", RandomString.make(12), "restau", null));
         categoryRepository.save(new Category(null, "TRANSPORT", RandomString.make(12), "tran1", null));
         categoryRepository.save(new Category(null, "EDUCATION", RandomString.make(12), "education", null));
         categoryRepository.save(new Category(null, "HAUTE COUTURE", RandomString.make(12), "couturier", null));
-        categoryRepository.save(new Category(null, "SERVICES", RandomString.make(12), "doctor", null));
+        categoryRepository.save(new Category(null, "SANTE", RandomString.make(12), "doctor", null));
+        categoryRepository.save(new Category(null, "SERVICE", RandomString.make(12), "doctor", null));
+        categoryRepository.save(new Category(null, "AERONAUTIQUE", RandomString.make(12), "doctor", null));
+        categoryRepository.save(new Category(null, "AGRICULTURE", RandomString.make(12), "doctor", null));
+        categoryRepository.save(new Category(null, "AGROALIMENTAIRE", RandomString.make(12), "doctor", null));
+        categoryRepository.save(new Category(null, "COMMUNICATION", RandomString.make(12), "doctor", null));
+        categoryRepository.save(new Category(null, "ASSURANCE", RandomString.make(12), "doctor", null));
+        categoryRepository.save(new Category(null, "ART", RandomString.make(12), "doctor", null));
+        categoryRepository.save(new Category(null, "AUDIOVISUEL", RandomString.make(12), "doctor", null));
+        categoryRepository.save(new Category(null, "AUTOMOBIL", RandomString.make(12), "doctor", null));
+        categoryRepository.save(new Category(null, "BANQUE-FINANCE", RandomString.make(12), "doctor", null));
+        categoryRepository.save(new Category(null, "ESTHETIQUE", RandomString.make(12), "doctor", null));
+        categoryRepository.save(new Category(null, "SOCIAL", RandomString.make(12), "doctor", null));
+        categoryRepository.save(new Category(null, "SPORT", RandomString.make(12), "doctor", null));
+        categoryRepository.save(new Category(null, "EVENEMENTIEL", RandomString.make(12), "doctor", null));
+        categoryRepository.save(new Category(null, "CULTURE", RandomString.make(12), "doctor", null));
+
         ArrayList<String> mylist = new ArrayList<String>();
         mylist.add("barack");
         mylist.add("ba");
@@ -57,7 +74,246 @@ public class ProjetArtisantApplication implements CommandLineRunner {
         mylist1.add("Nante");
         mylist1.add("Stranbourgue");
         mylist1.add("Toulouse");
+        ArrayList<String> professions = new ArrayList<String>();
+        //---Santé---
+        professions.add("Medecin Generalist");
+        professions.add("chirurgien-dentiste");
+        professions.add("sage-femme");
+        professions.add("biologiste médical");
+        professions.add("manipulateur d’électroradiologie médicale");
+        professions.add("chirurgien");
+        professions.add("gynécologue-obstétricien");
+        professions.add("cardiologue");
+        professions.add("psychiatre");
+        professions.add("pédiatre");
+        professions.add("dermatologue");
+        professions.add(" médecin légiste");
+        professions.add("nutritionniste");
+        professions.add("chirurgien esthétique");
+        ArrayList<String> Admistratif = new ArrayList<String>();
+        //-- Admistratif---
+        Admistratif.add("attaché d’administration scolaire et universitaire");
+        Admistratif.add("chargé de mission");
+        Admistratif.add("responsable de l’administration personnel");
+        Admistratif.add("directeur des ressources humaines.");
+        //--Aeronautique---
+        ArrayList<String> aeronautique = new ArrayList<String>();
+        aeronautique.add("ingénieur en aéronautique");
+        aeronautique.add(" ingénieur en systèmes embarqués");
+        aeronautique.add("technicien supérieur en électronique");
+        aeronautique.add("technicien d’essai dessinateur");
+        aeronautique.add("ingénieur d’affaires");
+        aeronautique.add("technicien support clients");
+        aeronautique.add("mécanicien moteur");
+        aeronautique.add("Pilote");
+        //----Agriculture--
+        ArrayList<String> agriculture = new ArrayList<String>();
+        agriculture.add("aquaculteur");
+        agriculture.add("bûcheron");
+        agriculture.add("élagueur");
+        agriculture.add("caviste");
+        agriculture.add(" horticulteur");
+        agriculture.add("maître de chai");
+        agriculture.add("ouvrier sylviculteur");
+        agriculture.add("pépiniériste");
+        agriculture.add(" jardinier paysagiste");
+        agriculture.add("maraîcher");
+        agriculture.add("responsable d’élevage");
+        agriculture.add("céréalier");
+        agriculture.add("vigneron");
+        // ---Agroalimentaire
+        ArrayList<String> agroalimentaire = new ArrayList<String>();
+        agroalimentaire.add("conducteur de ligne de fabrication et de conditionnement");
+        agroalimentaire.add("ingénieur nutritionniste");
+        agroalimentaire.add("chargé de packaging");
+        agroalimentaire.add("responsable d’atelier de fabrication");
+        agroalimentaire.add(" responsable de logistique");
+        agroalimentaire.add("attaché(e) commercial merchandising");
+        //--Architecte - BTP - Urbanisme
+        ArrayList<String> immobilier= new ArrayList<String>();
+        immobilier.add("architecte");
+        immobilier.add("architecte d’intérieur");
+        immobilier.add("géomètre topographe");
+        immobilier.add("géomètre expert");
+        immobilier.add("paysagiste");
+        immobilier.add("urbaniste");
+        immobilier.add("technicien d’études");
+        immobilier.add("ingénieur du BTP");
+        immobilier.add("technicien d’études");
+        immobilier.add("démolisseur");
+        immobilier.add(" monteur en isolation thermique (calorifugeur)");
+        immobilier.add("carreleur");
+        immobilier.add("terrassier");
+        immobilier.add("géomaticien");
+        immobilier.add("terrassier");
+        immobilier.add("charpentier bois");
+        immobilier.add("chaudronnier et tuyauteur");
+        immobilier.add("coffreur-boiseur");
+        immobilier.add("couvreur");
+        immobilier.add("domoticien");
+        immobilier.add("échafaudeur)");
+        immobilier.add("électricien d’équipement");
+        immobilier.add("maçon");
+        immobilier.add("mécanicien robinetier");
+        immobilier.add("menuisier");
+        immobilier.add("métallier");
+        immobilier.add("peintre en bâtiments");
+        immobilier.add("peintre en lettres");
+        immobilier.add("peintre solier");
+        immobilier.add("plâtrier");
+        immobilier.add("plombier");
+        immobilier.add("solier-moquettiste");
+        immobilier.add("serrurier métallier");
+        immobilier.add("chauffagiste");
+        immobilier.add("aménageur lotisseur");
+        immobilier.add("aménageur lotisseur");
+        immobilier.add(" architecte");
+        immobilier.add("promoteur immobilier");
+        //---Communication---
+        ArrayList<String> comm= new ArrayList<String>();
+        comm.add("acheteur d’art et TV producer)");
+        comm.add("directeur artistique");
+        comm.add("infographiste");
+        comm.add("graphiste");
+        comm.add("wedding planner");
+        comm.add("attaché de presse dans le sport");
+        comm.add("directeur de communication");
+        comm.add("attaché de presse");
+        comm.add("chargé de communication en collectivité");
+        comm.add("Griot");
+        //Art
+        ArrayList<String> art= new ArrayList<String>();
+        art.add(" architecte d’intérieur");
+        art.add(" décorateur d’intérieur");
+        art.add("artiste peintre");
+        art.add("graphiste");
+        art.add("designer graphique");
+        art.add("designer produit");
+        art.add("céramiste");
+        art.add("aphotographe");
+        art.add("chargé de communication en collectivité");
+        art.add("Griot");
+        //--Assurance
+        ArrayList<String> assurance= new ArrayList<String>();
+        assurance.add(" agent général d’assurances");
+        assurance.add(" conseiller en assurances");
+        assurance.add("courtier");
+        assurance.add("chargé de clientèle");
+        assurance.add("Les gestionnaires");
+        assurance.add("risk-manager");
+        assurance.add("actuaires");
+        assurance.add("gestionnaire actifs-passifs");
+        assurance.add("chargé de communication en collectivité");
+        assurance.add("contrôleur sinistres");
+        //--Audiovisuel - Cinéma
+        ArrayList<String> audiovisuel= new ArrayList<String>();
+        audiovisuel.add(" comédien");
+        audiovisuel.add("cascadeur");
+        audiovisuel.add(" professionnels du dessin animé");
+        audiovisuel.add("scénariste");
+        audiovisuel.add("infographiste");
+        audiovisuel.add("maquilleur");
+        audiovisuel.add("chef décorateur");
+        audiovisuel.add("assistant réalisateur");
+        audiovisuel.add("costumier");
+        audiovisuel.add("accessoiriste");
+        //Automobile
+        ArrayList<String> automobile= new ArrayList<String>();
+        automobile.add(" carrossier-peintre");
+        automobile.add("technicien plasturgiste");
+        automobile.add("électronicien automobile");
+        automobile.add("designer industriel");
+        automobile.add("maquettiste automobile");
+        automobile.add("ingénieur calcul");
+        automobile.add("vendeur automobile");
+        automobile.add("dépanneur-remorqueur");
+        automobile.add("carrossier réparateur");
+        automobile.add("mécanicien réparateur");
+        //Banque - Finance
+        ArrayList<String> banque= new ArrayList<String>();
+        banque.add("chargé d’accueil");
+        banque.add("chargé d’affaires");
+        banque.add(" chargé d’affaires agricoles");
+        banque.add("chargé d’études commerciales");
+        banque.add("chargé de clientèle de particuliers");
+        banque.add("chargé de clientèle de professionnels");
+        banque.add("analyste-financier");
+        banque.add("gestionnaire d’actifs");
+        banque.add("directeur d’investissement");
+        banque.add("mécanicien réparateur");
+        //Commerce - Vente - Distribution
+        ArrayList<String> CommVentedistri= new ArrayList<String>();
+        CommVentedistri.add("acheteur");
+        CommVentedistri.add("marketeur");
+        CommVentedistri.add(" conseiller en vente directe");
+        CommVentedistri.add("attaché commercial");
+        CommVentedistri.add("ingénieur commercial");
+        CommVentedistri.add("télévendeur");
+        CommVentedistri.add("vendeur en magasin");
+        CommVentedistri.add("vendeur export");
+        //Esthétique - Beauté - Coiffure
+        ArrayList<String> esthetique= new ArrayList<String>();
+        esthetique.add("coiffeur");
+        esthetique.add("barbier");
+        esthetique.add(" conseiller en image");
+        esthetique.add("maquilleur");
+        esthetique.add("coiffeur");
+        esthetique.add("esthéticienne");
+        esthetique.add(" hydrothérapeute");
+        esthetique.add(" styliste ongulaire");
+        esthetique.add("diététicien");
+        esthetique.add("esthéticienne");
+        esthetique.add(" hydrothérapeute");
+        esthetique.add("tatoueur");
+        //Social
+        ArrayList<String> social= new ArrayList<String>();
+        social.add("agent de développement local");
+        social.add("aide médico-psychologique");
+        social.add(" conseillère conjugale et familiale");
+        social.add("conseiller pénitentiaire d’insertion et probation");
+        social.add("conseiller en insertion sociale et professionnelle");
+        social.add("conseiller en économie sociale et familiale");
+        social.add(" coordinateur social");
+        social.add("délégué à la tutelle");
+        social.add("directeur d’une maison de retraite");
+        social.add("directeur d’une structure d’insertion");
+        social.add(" Association");
+        //Sport
+        ArrayList<String> sport= new ArrayList<String>();
+        sport.add("éducateur sportif");
+        sport.add("éducateur sportif des métiers de la forme");
+        sport.add(" entraîneur");
+        sport.add("guide de haute montagne");
+        sport.add("maître nageur sauveteur");
+        sport.add("arbitre");
+        sport.add(" animateur/responsable d’animation");
+        sport.add("Lutteur");
+        //Événementiel
+        ArrayList<String> evenement= new ArrayList<String>();
+        evenement.add("chef de projet événementiel");
+        evenement.add(" animateur/responsable d’animation");
+        evenement.add(" wedding planner");
+        evenement.add(" organisateur d’événements");
+        evenement.add(" animateur/responsable d’animation");
+        evenement.add("Agences evenement");
+        //Culture
+        ArrayList<String> culture= new ArrayList<String>();
+        culture.add("administrateur des monuments historiques");
+        culture.add("archéologue");
+        culture.add("chargé d’études documentaires");
+        culture.add("conservateur des archives");
+        culture.add("régisseur d’œuvre d’art");
         categoryRepository.findAll().forEach(c -> {
+            for (int i = 0; i < 10; i++) {
+                Profession profession = new Profession();
+                profession.setName(RandomString.make(8));
+                profession.setPhoto(RandomString.make(9));
+                profession.setDescription(RandomString.make(25));
+                profession.setCategory(c);
+                professionRepository.save(profession);
+            }
+        });
+        professionRepository.findAll().forEach(profession -> {
             for (int i = 0; i < 10; i++) {
                 User user = new User();
                 Adresse adresse = new Adresse();
@@ -72,15 +328,39 @@ public class ProjetArtisantApplication implements CommandLineRunner {
                 user.setAge(1988 + rd.nextInt(20018));
                 user.isBanned();
                 user.setNumeroSiret(100001988 + rd.nextInt(1000020018));
-             //   user.setAdresse(new Adresse(null, 1 + rd.nextInt(100), "rue", "emeraude", 10 + rd.nextInt(20018), "lyon"));
+                //   user.setAdresse(new Adresse(null, 1 + rd.nextInt(100), "rue", "emeraude", 10 + rd.nextInt(20018), "lyon"));
                 Collections.shuffle(mylist, new Random());
                 user.setPhotoName(mylist.get(0));
                 user.setAdresse(adresse);
-                user.setCategory(c);
                 user.setNote(3.5);
+                user.setProfession(profession);
                 userRepository.save(user);
             }
         });
+
+//        categoryRepository.findAll().forEach(c -> {
+//            for (int i = 0; i < 10; i++) {
+//                User user = new User();
+//                Adresse adresse = new Adresse();
+//                adresse.setNumeroRue(1 + rd.nextInt(100));
+//                adresse.setRue("rue");
+//                adresse.setName("emeraude");
+//                adresse.setCodePostal(10 + rd.nextInt(20018));
+//                Collections.shuffle(mylist1, new Random());
+//                adresse.setVille(mylist1.get(0));
+//                user.setNom(RandomString.make(8));
+//                user.setPrenom(RandomString.make(9));
+//                user.setAge(1988 + rd.nextInt(20018));
+//                user.isBanned();
+//                user.setNumeroSiret(100001988 + rd.nextInt(1000020018));
+//                //   user.setAdresse(new Adresse(null, 1 + rd.nextInt(100), "rue", "emeraude", 10 + rd.nextInt(20018), "lyon"));
+//                Collections.shuffle(mylist, new Random());
+//                user.setPhotoName(mylist.get(0));
+//                user.setAdresse(adresse);
+//                user.setNote(3.5);
+//                userRepository.save(user);
+//            }
+//        });
     }
 
 }

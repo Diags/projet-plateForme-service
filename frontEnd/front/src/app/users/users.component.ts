@@ -20,7 +20,4 @@ private getUsers(){
     console.log(err);
   })
 }
-getCategoryById(id){
-  
-}
 }

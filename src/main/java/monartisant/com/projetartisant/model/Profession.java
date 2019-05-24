@@ -5,16 +5,20 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Collection;
+import java.util.List;
+
 @Entity
 @Data @AllArgsConstructor @NoArgsConstructor
-public class Category {
+public class Profession {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id ;
     private String name;
-    private String description;
     private String photo;
-    @OneToMany(mappedBy = "category")
-    private Collection<Profession> professions;
+    private String description;
+    @OneToMany(mappedBy = "profession")
+    private List<User> users;
+    @ManyToOne
+    private Category category;
+
 }

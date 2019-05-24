@@ -25,6 +25,6 @@ public class User {
     private String photoName;
     private String recommanderBy;
     @ManyToOne
-    private Category category;
+    private Profession profession;
     private Double  note ;
 }

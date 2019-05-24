@@ -1,5 +1,5 @@
-<div class="container usersPanel" *ngIf="users">
-  <div *ngFor="let user of users._embedded.users">
+<div class="container usersPanel" *ngIf="professions">
+  <div *ngFor="let user of professions._embedded.professions">
     <div class="col-md-4">
       <div class="panel panel-default">
         <div class="panel-heading"  [routerLink]="['/artisant-details/', user.id]">

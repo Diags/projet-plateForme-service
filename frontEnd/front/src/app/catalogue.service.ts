@@ -12,7 +12,7 @@ public host = "http://localhost:8080";
   return this.http.get(this.host+url);
 }
 getCatelogById(id){
-  return this.http.get(this.host+'/categories/'+id+'/users/');
+  return this.http.get(this.host+'/categories/'+id+'/professions/');
 }
 getCatalogue(url){
   return this.http.get(this.host+url);
@@ -28,6 +28,6 @@ getAllUserbyMetier(url){
     return  this.http.put(this.host+'/users/',rating, id);
   }
   Search(formData) {
-    return this.http.post(this.host + "/search", formData, {observe: 'response'})
+    return this.http.post(this.host + "/usersbyville", formData)
   }
 }

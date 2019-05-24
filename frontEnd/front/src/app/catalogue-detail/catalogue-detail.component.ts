@@ -8,7 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./catalogue-detail.component.css']
 })
 export class CatalogueDetailComponent implements OnInit {
-  private users;
+  private professions;
   private message: number;
   constructor( private catalogueService: CatalogueService, private routerActivated: ActivatedRoute, private router : Router) {
    // this.router.params.subscribe(params => this.artisantDetail = params.id)
@@ -19,7 +19,7 @@ export class CatalogueDetailComponent implements OnInit {
     let id = +this.routerActivated.snapshot.paramMap.get('id');
     this.catalogueService.getCatelogById(id).subscribe(resp => {
       console.log("cat details",resp);
-      this.users = resp;
+      this.professions = resp;
     }, error =>{
       console.log(error);
     });
