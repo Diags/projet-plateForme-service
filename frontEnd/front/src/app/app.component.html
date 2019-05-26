@@ -57,14 +57,14 @@
               <form  #f="ngForm"(ngSubmit)="getcatalogueByAdresse(f.value)" role="form-inline"  >
                 <div class="col-md-3">
                   <div class="form-group">
-                    <label class="sr-only" for="location">Location</label>
-                    <input type="text"  [(ngModel)]="professionName" name="professionName" class="form-control" id="location" placeholder="specialiste ex:dentiste ?">
+                    <label class="control-label">Location</label>
+                    <input type="text"  name="professionName" class="form-control" id="location" placeholder="specialiste ex:dentiste ?">
                   </div>
                 </div>
                 <div class="col-md-3">
                   <div class="form-group">
-                    <label class="sr-only" for="ville">Ville</label>
-                    <input type="text"  [(ngModel)]="ville" name="ville" class="form-control" id="ville" placeholder="ville ex:Lyon">
+                    <label class="control-label">Ville</label>
+                    <input type="text"  name="ville" class="form-control" id="ville" placeholder="ville ex:Lyon">
                   </div>
                 </div>
                 <!--<div class="col-md-3">-->
@@ -75,7 +75,7 @@
                 <!--</div>-->
                 <div class="col-md-3" *ngIf="categories">
                   <div  >
-                    <select  class="form-control" [(ngModel)]="categoryName" name="categoryName"  searchable="Search here..">
+                    <select  class="form-control" name="categoryName"  searchable="Search here..">
                         <option disabled selected>Choose your categorie</option>
                         <option  *ngFor="let c of categories._embedded.categories">{{c.name}}</option>
 

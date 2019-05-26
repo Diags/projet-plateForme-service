@@ -7,7 +7,7 @@ import { CatalogueService } from '../catalogue.service';
   styleUrls: ['./professions-detail.component.css']
 })
 export class ProfessionsDetailComponent implements OnInit {
-private artisantDetail ;
+ artisantDetail ;
    message: number;
   private iscontactChecked= false;
   constructor( private catalogueService: CatalogueService, private routerActivated: ActivatedRoute, private router : Router) {
