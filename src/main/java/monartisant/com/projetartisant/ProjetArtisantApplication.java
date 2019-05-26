@@ -36,7 +36,7 @@ public class ProjetArtisantApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        repositoryRestConfiguration.exposeIdsFor(User.class, Category.class, Adresse.class, Token.class);
+        repositoryRestConfiguration.exposeIdsFor(User.class, Category.class, Adresse.class,Profession.class, Token.class);
         //  Adresse a = new Adresse(null, 12, "rue", "emeraude", 69006, "lyon");
         Random rd = new Random();
         categoryRepository.save(new Category(null, "IMMOBILIER", RandomString.make(12), "batima", null));
@@ -47,20 +47,20 @@ public class ProjetArtisantApplication implements CommandLineRunner {
         categoryRepository.save(new Category(null, "HAUTE COUTURE", RandomString.make(12), "couturier", null));
         categoryRepository.save(new Category(null, "SANTE", RandomString.make(12), "doctor", null));
         categoryRepository.save(new Category(null, "SERVICE", RandomString.make(12), "doctor", null));
-        categoryRepository.save(new Category(null, "AERONAUTIQUE", RandomString.make(12), "doctor", null));
-        categoryRepository.save(new Category(null, "AGRICULTURE", RandomString.make(12), "doctor", null));
-        categoryRepository.save(new Category(null, "AGROALIMENTAIRE", RandomString.make(12), "doctor", null));
-        categoryRepository.save(new Category(null, "COMMUNICATION", RandomString.make(12), "doctor", null));
-        categoryRepository.save(new Category(null, "ASSURANCE", RandomString.make(12), "doctor", null));
-        categoryRepository.save(new Category(null, "ART", RandomString.make(12), "doctor", null));
-        categoryRepository.save(new Category(null, "AUDIOVISUEL", RandomString.make(12), "doctor", null));
-        categoryRepository.save(new Category(null, "AUTOMOBIL", RandomString.make(12), "doctor", null));
-        categoryRepository.save(new Category(null, "BANQUE-FINANCE", RandomString.make(12), "doctor", null));
-        categoryRepository.save(new Category(null, "ESTHETIQUE", RandomString.make(12), "doctor", null));
-        categoryRepository.save(new Category(null, "SOCIAL", RandomString.make(12), "doctor", null));
-        categoryRepository.save(new Category(null, "SPORT", RandomString.make(12), "doctor", null));
+        categoryRepository.save(new Category(null, "AERONAUTIQUE", RandomString.make(12), "aeraunotic", null));
+        categoryRepository.save(new Category(null, "AGRICULTURE", RandomString.make(12), "agriculture", null));
+        categoryRepository.save(new Category(null, "AGROALIMENTAIRE", RandomString.make(12), "agroAlima", null));
+        categoryRepository.save(new Category(null, "COMMUNICATION", RandomString.make(12), "comm", null));
+        categoryRepository.save(new Category(null, "ASSURANCE", RandomString.make(12), "assurance", null));
+        categoryRepository.save(new Category(null, "ART", RandomString.make(12), "Art", null));
+        categoryRepository.save(new Category(null, "AUDIOVISUEL", RandomString.make(12), "cinema", null));
+        categoryRepository.save(new Category(null, "AUTOMOBIL", RandomString.make(12), "automobil", null));
+        categoryRepository.save(new Category(null, "BANQUE-FINANCE", RandomString.make(12), "finance", null));
+        categoryRepository.save(new Category(null, "ESTHETIQUE", RandomString.make(12), "never", null));
+        categoryRepository.save(new Category(null, "SOCIAL", RandomString.make(12), "social", null));
+        categoryRepository.save(new Category(null, "SPORT", RandomString.make(12), "sport", null));
         categoryRepository.save(new Category(null, "EVENEMENTIEL", RandomString.make(12), "doctor", null));
-        categoryRepository.save(new Category(null, "CULTURE", RandomString.make(12), "doctor", null));
+        categoryRepository.save(new Category(null, "CULTURE", RandomString.make(12), "peintre", null));
 
         ArrayList<String> mylist = new ArrayList<String>();
         mylist.add("barack");
@@ -130,7 +130,7 @@ public class ProjetArtisantApplication implements CommandLineRunner {
         agroalimentaire.add(" responsable de logistique");
         agroalimentaire.add("attaché(e) commercial merchandising");
         //--Architecte - BTP - Urbanisme
-        ArrayList<String> immobilier= new ArrayList<String>();
+        ArrayList<String> immobilier = new ArrayList<String>();
         immobilier.add("architecte");
         immobilier.add("architecte d’intérieur");
         immobilier.add("géomètre topographe");
@@ -170,7 +170,7 @@ public class ProjetArtisantApplication implements CommandLineRunner {
         immobilier.add(" architecte");
         immobilier.add("promoteur immobilier");
         //---Communication---
-        ArrayList<String> comm= new ArrayList<String>();
+        ArrayList<String> comm = new ArrayList<String>();
         comm.add("acheteur d’art et TV producer)");
         comm.add("directeur artistique");
         comm.add("infographiste");
@@ -182,7 +182,7 @@ public class ProjetArtisantApplication implements CommandLineRunner {
         comm.add("chargé de communication en collectivité");
         comm.add("Griot");
         //Art
-        ArrayList<String> art= new ArrayList<String>();
+        ArrayList<String> art = new ArrayList<String>();
         art.add(" architecte d’intérieur");
         art.add(" décorateur d’intérieur");
         art.add("artiste peintre");
@@ -194,7 +194,7 @@ public class ProjetArtisantApplication implements CommandLineRunner {
         art.add("chargé de communication en collectivité");
         art.add("Griot");
         //--Assurance
-        ArrayList<String> assurance= new ArrayList<String>();
+        ArrayList<String> assurance = new ArrayList<String>();
         assurance.add(" agent général d’assurances");
         assurance.add(" conseiller en assurances");
         assurance.add("courtier");
@@ -206,7 +206,7 @@ public class ProjetArtisantApplication implements CommandLineRunner {
         assurance.add("chargé de communication en collectivité");
         assurance.add("contrôleur sinistres");
         //--Audiovisuel - Cinéma
-        ArrayList<String> audiovisuel= new ArrayList<String>();
+        ArrayList<String> audiovisuel = new ArrayList<String>();
         audiovisuel.add(" comédien");
         audiovisuel.add("cascadeur");
         audiovisuel.add(" professionnels du dessin animé");
@@ -218,7 +218,7 @@ public class ProjetArtisantApplication implements CommandLineRunner {
         audiovisuel.add("costumier");
         audiovisuel.add("accessoiriste");
         //Automobile
-        ArrayList<String> automobile= new ArrayList<String>();
+        ArrayList<String> automobile = new ArrayList<String>();
         automobile.add(" carrossier-peintre");
         automobile.add("technicien plasturgiste");
         automobile.add("électronicien automobile");
@@ -230,7 +230,7 @@ public class ProjetArtisantApplication implements CommandLineRunner {
         automobile.add("carrossier réparateur");
         automobile.add("mécanicien réparateur");
         //Banque - Finance
-        ArrayList<String> banque= new ArrayList<String>();
+        ArrayList<String> banque = new ArrayList<String>();
         banque.add("chargé d’accueil");
         banque.add("chargé d’affaires");
         banque.add(" chargé d’affaires agricoles");
@@ -242,7 +242,7 @@ public class ProjetArtisantApplication implements CommandLineRunner {
         banque.add("directeur d’investissement");
         banque.add("mécanicien réparateur");
         //Commerce - Vente - Distribution
-        ArrayList<String> CommVentedistri= new ArrayList<String>();
+        ArrayList<String> CommVentedistri = new ArrayList<String>();
         CommVentedistri.add("acheteur");
         CommVentedistri.add("marketeur");
         CommVentedistri.add(" conseiller en vente directe");
@@ -252,7 +252,7 @@ public class ProjetArtisantApplication implements CommandLineRunner {
         CommVentedistri.add("vendeur en magasin");
         CommVentedistri.add("vendeur export");
         //Esthétique - Beauté - Coiffure
-        ArrayList<String> esthetique= new ArrayList<String>();
+        ArrayList<String> esthetique = new ArrayList<String>();
         esthetique.add("coiffeur");
         esthetique.add("barbier");
         esthetique.add(" conseiller en image");
@@ -266,7 +266,7 @@ public class ProjetArtisantApplication implements CommandLineRunner {
         esthetique.add(" hydrothérapeute");
         esthetique.add("tatoueur");
         //Social
-        ArrayList<String> social= new ArrayList<String>();
+        ArrayList<String> social = new ArrayList<String>();
         social.add("agent de développement local");
         social.add("aide médico-psychologique");
         social.add(" conseillère conjugale et familiale");
@@ -279,7 +279,7 @@ public class ProjetArtisantApplication implements CommandLineRunner {
         social.add("directeur d’une structure d’insertion");
         social.add(" Association");
         //Sport
-        ArrayList<String> sport= new ArrayList<String>();
+        ArrayList<String> sport = new ArrayList<String>();
         sport.add("éducateur sportif");
         sport.add("éducateur sportif des métiers de la forme");
         sport.add(" entraîneur");
@@ -289,7 +289,7 @@ public class ProjetArtisantApplication implements CommandLineRunner {
         sport.add(" animateur/responsable d’animation");
         sport.add("Lutteur");
         //Événementiel
-        ArrayList<String> evenement= new ArrayList<String>();
+        ArrayList<String> evenement = new ArrayList<String>();
         evenement.add("chef de projet événementiel");
         evenement.add(" animateur/responsable d’animation");
         evenement.add(" wedding planner");
@@ -297,7 +297,7 @@ public class ProjetArtisantApplication implements CommandLineRunner {
         evenement.add(" animateur/responsable d’animation");
         evenement.add("Agences evenement");
         //Culture
-        ArrayList<String> culture= new ArrayList<String>();
+        ArrayList<String> culture = new ArrayList<String>();
         culture.add("administrateur des monuments historiques");
         culture.add("archéologue");
         culture.add("chargé d’études documentaires");
@@ -306,9 +306,108 @@ public class ProjetArtisantApplication implements CommandLineRunner {
         categoryRepository.findAll().forEach(c -> {
             for (int i = 0; i < 10; i++) {
                 Profession profession = new Profession();
-                profession.setName(RandomString.make(8));
-                profession.setPhoto(RandomString.make(9));
-                profession.setDescription(RandomString.make(25));
+                switch (c.getName()) {
+                    case "IMMOBILIER":
+                        Collections.shuffle(immobilier, new Random(3));
+                        profession.setName(immobilier.get(0));
+                        Collections.shuffle(mylist, new Random());
+                        profession.setPhoto("immo");
+                        profession.setDescription(RandomString.make(25));
+                        break;
+                    case "FABRICATION":
+                        Collections.shuffle(professions, new Random(3));
+                        profession.setName(professions.get(0));
+                        Collections.shuffle(mylist, new Random());
+                        profession.setPhoto(mylist.get(0));
+                        profession.setDescription(RandomString.make(25));
+                        break;
+                    case "AGRICULTURE":
+                        Collections.shuffle(agriculture, new Random(3));
+                        profession.setName(agriculture.get(0));
+                        Collections.shuffle(mylist, new Random());
+                        profession.setPhoto("agriculture");
+                        profession.setDescription(RandomString.make(25));
+                        break;
+                    case "ASSURANCE":
+                        Collections.shuffle(assurance, new Random(3));
+                        profession.setName(assurance.get(0));
+                        Collections.shuffle(mylist, new Random());
+                        profession.setPhoto("assurance");
+                        profession.setDescription(RandomString.make(25));
+                        break;
+                    case "AERONAUTIQUE":
+                        Collections.shuffle(aeronautique, new Random(3));
+                        profession.setName(aeronautique.get(0));
+                        Collections.shuffle(mylist, new Random());
+                        profession.setPhoto("aeraunotic");
+                        profession.setDescription(RandomString.make(25));
+                        break;
+                    case "AUTOMOBIL":
+                        Collections.shuffle(automobile, new Random(3));
+                        profession.setName(automobile.get(0));
+                        Collections.shuffle(mylist, new Random());
+                        profession.setPhoto("automobil");
+                        profession.setDescription(RandomString.make(25));
+                        break;
+                    case "ART":
+                        Collections.shuffle(professions, new Random(3));
+                        profession.setName(professions.get(0));
+                        Collections.shuffle(mylist, new Random());
+                        profession.setPhoto("Art");
+                        profession.setDescription(RandomString.make(25));
+                        break;
+                    case "SANTE":
+                        Collections.shuffle(professions, new Random(3));
+                        profession.setName(professions.get(0));
+                        Collections.shuffle(mylist, new Random());
+                        profession.setPhoto(mylist.get(0));
+                        profession.setDescription(RandomString.make(25));
+                        break;
+                    case "AGROALIMENTAIRE":
+                        Collections.shuffle(agroalimentaire, new Random(3));
+                        profession.setName(agroalimentaire.get(0));
+                        Collections.shuffle(mylist, new Random());
+                        profession.setPhoto("agroAlima");
+                        profession.setDescription(RandomString.make(25));
+                        break;
+                    case "COMMUNICATION":
+                        Collections.shuffle(comm, new Random(3));
+                        profession.setName(comm.get(0));
+                        Collections.shuffle(mylist, new Random());
+                        profession.setPhoto("comm");
+                        profession.setDescription(RandomString.make(25));
+                        break;
+                    case "ESTHETIQUE":
+                        Collections.shuffle(esthetique, new Random(3));
+                        profession.setName(esthetique.get(0));
+                        Collections.shuffle(mylist, new Random());
+                        profession.setPhoto("never");
+                        profession.setDescription(RandomString.make(25));
+                        break;
+                    case "EVENEMENTIEL":
+                        Collections.shuffle(evenement, new Random(3));
+                        profession.setName(evenement.get(0));
+                        Collections.shuffle(mylist, new Random());
+                        profession.setPhoto("evenema");
+                        profession.setDescription(RandomString.make(25));
+                        break;
+                    case "SOCIAL":
+                        Collections.shuffle(social, new Random(3));
+                        profession.setName(social.get(0));
+                        Collections.shuffle(mylist, new Random());
+                        profession.setPhoto("social");
+                        profession.setDescription(RandomString.make(25));
+                        break;
+                    case "SPORT":
+                        Collections.shuffle(sport, new Random(3));
+                        profession.setName(sport.get(0));
+                        Collections.shuffle(mylist, new Random());
+                        profession.setPhoto("sport");
+                        profession.setDescription(RandomString.make(25));
+                        break;
+
+                    default:
+                }
                 profession.setCategory(c);
                 professionRepository.save(profession);
             }
@@ -322,7 +421,7 @@ public class ProjetArtisantApplication implements CommandLineRunner {
                 adresse.setName("emeraude");
                 adresse.setCodePostal(10 + rd.nextInt(20018));
                 Collections.shuffle(mylist1, new Random());
-                adresse.setVille(mylist1.get(0));
+                adresse.setVille("lyon");
                 user.setNom(RandomString.make(8));
                 user.setPrenom(RandomString.make(9));
                 user.setAge(1988 + rd.nextInt(20018));
@@ -334,6 +433,7 @@ public class ProjetArtisantApplication implements CommandLineRunner {
                 user.setAdresse(adresse);
                 user.setNote(3.5);
                 user.setProfession(profession);
+                user.setTele(1980008025 + rd.nextInt(2000001823));
                 userRepository.save(user);
             }
         });

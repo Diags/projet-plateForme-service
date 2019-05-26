@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CatalogueService } from './catalogue.service';
 import { UsersComponent } from './users/users.component';
-import { ArtisantDetailComponent } from './artisant-detail/artisant-detail.component';
+import { ProfessionsDetailComponent } from './professions-detail/professions-detail.component';
 import {Route, RouterModule, Routes} from "@angular/router";
 import { CatalogueComponent } from './catalogue/catalogue.component';
 import { CatalogueDetailComponent } from './catalogue-detail/catalogue-detail.component';
@@ -13,16 +13,18 @@ import { DevisFormComponent } from './devis-form/devis-form.component';
 import { StarsComponent } from './stars/stars.component';
 import { ContactComponent } from './contact/contact.component';
 import {FormsModule} from "@angular/forms";
+import { ProfessionelComponent } from './professionel/professionel.component';
 @NgModule({
   declarations: [
     AppComponent,
     UsersComponent,
-    ArtisantDetailComponent,
+    ProfessionsDetailComponent,
     CatalogueComponent,
     CatalogueDetailComponent,
     DevisFormComponent,
     StarsComponent,
-    ContactComponent
+    ContactComponent,
+    ProfessionelComponent
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,7 @@
 package monartisant.com.projetartisant.ws;
 
 import monartisant.com.projetartisant.model.Category;
+import monartisant.com.projetartisant.model.Profession;
 import monartisant.com.projetartisant.model.User;
 import monartisant.com.projetartisant.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;

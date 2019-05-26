@@ -8,13 +8,15 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
+import javax.transaction.Transactional;
 import java.util.List;
 @CrossOrigin("*")
 @RepositoryRestResource
 public interface UserRepository extends JpaRepository<User,Long> {
-    @Modifying(clearAutomatically = true)
-    @Query("update  User u   set u.note =: note  where  u.id =: id")
-    void updateNote(@Param("note") Double note, Long id) ;
+
+    @Query("update  User u   set u.note = note  where  u.id =id")
+   User updateNote( Double note,  Long id) ;
+    List<User> findByProfession_NameAndAdresse_VilleAndProfession_Category_Name(String professionName, String ville, String  catName);
    // List<User> findByprofession_nameContainsAndAdresse_villeContainsAndProfession_Category_name(String professionName, String ville, String categoryName);
 
 }

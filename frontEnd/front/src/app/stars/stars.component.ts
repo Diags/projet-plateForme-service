@@ -18,10 +18,7 @@ export class StarsComponent implements OnInit, OnChanges {
   ngOnInit() {
   }
 onClick():void{
-    this.ratingClicked.emit('the rating '+this.rating);
-  this. catalogueService.updateNote(this.rating, this.userId).subscribe(data => {
-  })
-
+    this.ratingClicked.emit(""+this.rating);
 }
   ngOnChanges(): void {
   this.starWidth = this.rating *75/5;

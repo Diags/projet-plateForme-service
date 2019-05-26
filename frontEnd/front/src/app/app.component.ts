@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnChanges, OnInit, Output} from '@angular/core';
 import { CatalogueService } from './catalogue.service';
 import {ActivatedRoute, Route, Router} from "@angular/router";
 
@@ -8,8 +8,10 @@ import {ActivatedRoute, Route, Router} from "@angular/router";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  private categories;
-  private uniqueCategories;
+   categories;
+   uniqueCategories;
+   currentUsers;
+  @Output() searchClicked: EventEmitter<any>=   new EventEmitter<any>();
   constructor(private catelogService: CatalogueService, private router :  Router, private  routeActive: ActivatedRoute) {
 
   }
@@ -40,7 +42,9 @@ export class AppComponent implements OnInit {
   getcatalogueByAdresse(dataForm: any) {
     console.log("formData==>  ",dataForm);
     this.catelogService.Search(dataForm).subscribe(data => {
-      this.categories =data;
+      let id = data[0];
+      console.log(data);
+      this.router.navigateByUrl("/artisants");
     })
   }
 }

@@ -11,9 +11,9 @@ import { Navigation } from 'selenium-webdriver';
 export class CatalogueComponent implements OnInit {
 
   constructor(private catelogService:CatalogueService, private  routeActive: ActivatedRoute, private route: Router) { }
-  private categories;
-  private currenteCategorie;
- 
+   categories;
+   currenteCategorie;
+
    ngOnInit(): void {
      this.route.events.subscribe((val)=>{
 if(val instanceof NavigationEnd){
@@ -30,7 +30,7 @@ if(val instanceof NavigationEnd){
       }, err=> {
         console.log(err);
       })
-  
+
   }
 
 }
@@ -40,11 +40,11 @@ if(val instanceof NavigationEnd){
          this.getcatalogue("/categories");
      }
    }
-   
+
  getcatalogue(url){
    this.catelogService.getCatalogue(url).subscribe(data => {
      this.categories = data;
-     console.log(data);
+     console.log("catlogue  cateoris",data);
    }, err=> {
      console.log(err);
    })
@@ -53,4 +53,4 @@ if(val instanceof NavigationEnd){
    this.currenteCategorie = c;
 this.route.navigateByUrl('/catalogue/2/'+c.id);
  }
-} 
+}

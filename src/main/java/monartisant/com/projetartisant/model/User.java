@@ -27,4 +27,5 @@ public class User {
     @ManyToOne
     private Profession profession;
     private Double  note ;
+    private Integer tele;
 }

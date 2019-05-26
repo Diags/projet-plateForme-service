@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class CatalogueService {
-public host = "http://localhost:8080";
+public host = "http://192.168.1.89:8989";
   constructor(private http: HttpClient) { }
 
   getArtisants(url){
@@ -18,16 +18,22 @@ getCatalogue(url){
   return this.http.get(this.host+url);
 }
 getArtisantById(id){
-  return this.http.get(this.host+'/users/'+id);
+  return this.http.get(this.host+'/professions/'+id+'/users');
 }
+getProfById(id){
+    return this.http.get(this.host+'/users/'+id);
+  }
 getAllUserbyMetier(url){
   return this.http.get(url);
 }
 
-  updateNote(rating, id) {
-    return  this.http.put(this.host+'/users/',rating, id);
+  updateNote(note, id) {
+    return  this.http.post(this.host+'/updatenote/',{
+      note:note,
+      id:id
+    });
   }
   Search(formData) {
-    return this.http.post(this.host + "/usersbyville", formData)
+    return this.http.post(this.host + "/search", formData)
   }
 }

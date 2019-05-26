@@ -8,8 +8,9 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./catalogue-detail.component.css']
 })
 export class CatalogueDetailComponent implements OnInit {
-  private professions;
-  private message: number;
+   professions;
+   message: number;
+   public idPublic ;
   constructor( private catalogueService: CatalogueService, private routerActivated: ActivatedRoute, private router : Router) {
    // this.router.params.subscribe(params => this.artisantDetail = params.id)
   //   console.log(this.router.snapshot.paramMap.get('id'))
@@ -18,8 +19,11 @@ export class CatalogueDetailComponent implements OnInit {
   ngOnInit() {
     let id = +this.routerActivated.snapshot.paramMap.get('id');
     this.catalogueService.getCatelogById(id).subscribe(resp => {
-      console.log("cat details",resp);
+
       this.professions = resp;
+      this.idPublic =this.professions._embedded.professions[0].id;
+      console.log("cat professions",this.professions);
+      console.log("this is a ",this.idPublic)
     }, error =>{
       console.log(error);
     });
