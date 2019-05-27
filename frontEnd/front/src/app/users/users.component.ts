@@ -14,7 +14,7 @@ export class UsersComponent implements OnInit {
    // this.getUsers();
   }
 private getUsers(){
-  this.cat.getAllUserbyMetier("/categories/1/professions/1/users").subscribe(data => {
+  this.cat.getAllUserbyProfessions("/categories/1/professions/1/users").subscribe(data => {
     this.users = data;
   },err=> {
     console.log(err);

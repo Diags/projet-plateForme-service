@@ -5,25 +5,23 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class CatalogueService {
-public host = "http://192.168.1.89:8989";
+// public host = "http://192.168.1.89:8989";
+  public host = "http://localhost:8080";
   constructor(private http: HttpClient) { }
-
-  getArtisants(url){
-  return this.http.get(this.host+url);
-}
+  
 getCatelogById(id){
   return this.http.get(this.host+'/categories/'+id+'/professions/');
 }
 getCatalogue(url){
   return this.http.get(this.host+url);
 }
-getArtisantById(id){
+getProfessionelUserById(id){
   return this.http.get(this.host+'/professions/'+id+'/users');
 }
 getProfById(id){
     return this.http.get(this.host+'/users/'+id);
   }
-getAllUserbyMetier(url){
+getAllUserbyProfessions(url){
   return this.http.get(url);
 }
 
@@ -35,5 +33,9 @@ getAllUserbyMetier(url){
   }
   Search(formData) {
     return this.http.post(this.host + "/search", formData)
+  }
+
+  sendEmail(dataForm: any) {
+    return this.http.get(this.host + "/sendemail", dataForm)
   }
 }

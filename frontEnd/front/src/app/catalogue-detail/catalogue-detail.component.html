@@ -8,7 +8,7 @@
   <div *ngFor="let user of professions._embedded.professions">
     <div class="col-md-3">
       <div class="panel panel-default">
-        <div class="panel-heading"  [routerLink]="['/artisant-details/', user.id]">
+        <div class="panel-heading"  [routerLink]="['/professions-details/', user.id]">
           <img class="card" alt="Cinque Terre" height="200" style="width:100%;" src="{{this.catalogueService.host+'/photoprofession/'
         +user.id}}" />
         </div>

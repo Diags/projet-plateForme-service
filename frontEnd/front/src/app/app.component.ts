@@ -44,7 +44,7 @@ export class AppComponent implements OnInit {
     this.catelogService.Search(dataForm).subscribe(data => {
       let id = data[0];
       console.log(data);
-      this.router.navigateByUrl("/artisants");
+      this.router.navigateByUrl("/professions");
     })
   }
 }

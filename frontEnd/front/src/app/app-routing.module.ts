@@ -16,8 +16,8 @@ const routes: Routes = [
   {path:"devis",component:DevisFormComponent},
   {path:"contact",component:ContactComponent},
   {path:"catalogue-details/:id",canActivate: [CatalogDetailGuard], component:CatalogueDetailComponent},
-  {path:"artisants",component:UsersComponent},
-  {path:"artisant-details/:id", canActivate: [ProfessionsDetailGuard], component: ProfessionsDetailComponent},
+  {path:"professions",component:UsersComponent},
+  {path:"professions-details/:id", canActivate: [ProfessionsDetailGuard], component: ProfessionsDetailComponent},
   {path:"professionel/:id", canActivate: [ProfessionelGuard], component: ProfessionelComponent},
   {path:"",redirectTo:'/catalogue/1/0',pathMatch:'full'}
 

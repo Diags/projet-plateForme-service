@@ -2,12 +2,15 @@ package monartisant.com.projetartisant;
 
 import monartisant.com.projetartisant.model.*;
 import monartisant.com.projetartisant.repository.*;
+import monartisant.com.projetartisant.ws.EmailHtmlSender;
+import monartisant.com.projetartisant.ws.EmailStatus;
 import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
+import org.thymeleaf.context.Context;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -29,6 +32,8 @@ public class ProjetArtisantApplication implements CommandLineRunner {
     private ImageRepository imageRepository;
     @Autowired
     private ProfessionRepository professionRepository;
+    @Autowired
+    private EmailHtmlSender emailHtmlSender;
 
     public static void main(String[] args) {
         SpringApplication.run(ProjetArtisantApplication.class, args);
@@ -36,7 +41,15 @@ public class ProjetArtisantApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        repositoryRestConfiguration.exposeIdsFor(User.class, Category.class, Adresse.class,Profession.class, Token.class);
+
+//        Context context = new Context();
+//        context.setVariable("title", "Vous avez une demande de devis:");
+//        context.setVariable("body", "Mr. Dupont voudrait un devis sur le coffrage de son appartement.");
+//        context.setVariable("description", "Description:");
+//
+//        EmailStatus emailStatus = emailHtmlSender.send("diaguilysociete@gmail.com", "DEMANDE DE DEVIS", "email/template-1", context);
+
+        repositoryRestConfiguration.exposeIdsFor(User.class, Category.class, Adresse.class, Profession.class, Token.class);
         //  Adresse a = new Adresse(null, 12, "rue", "emeraude", 69006, "lyon");
         Random rd = new Random();
         categoryRepository.save(new Category(null, "IMMOBILIER", RandomString.make(12), "batima", null));
@@ -46,7 +59,7 @@ public class ProjetArtisantApplication implements CommandLineRunner {
         categoryRepository.save(new Category(null, "EDUCATION", RandomString.make(12), "education", null));
         categoryRepository.save(new Category(null, "HAUTE COUTURE", RandomString.make(12), "couturier", null));
         categoryRepository.save(new Category(null, "SANTE", RandomString.make(12), "doctor", null));
-      //  categoryRepository.save(new Category(null, "SERVICE", RandomString.make(12), "doctor", null));
+        //  categoryRepository.save(new Category(null, "SERVICE", RandomString.make(12), "doctor", null));
         categoryRepository.save(new Category(null, "AERONAUTIQUE", RandomString.make(12), "aeraunotic", null));
         categoryRepository.save(new Category(null, "AGRICULTURE", RandomString.make(12), "agriculture", null));
         categoryRepository.save(new Category(null, "AGROALIMENTAIRE", RandomString.make(12), "agroAlima", null));
@@ -56,7 +69,7 @@ public class ProjetArtisantApplication implements CommandLineRunner {
         categoryRepository.save(new Category(null, "AUDIOVISUEL", RandomString.make(12), "cinema", null));
         categoryRepository.save(new Category(null, "AUTOMOBIL", RandomString.make(12), "automobil", null));
         categoryRepository.save(new Category(null, "BANQUE-FINANCE", RandomString.make(12), "finance", null));
-       // categoryRepository.save(new Category(null, "ESTHETIQUE", RandomString.make(12), "never", null));
+        // categoryRepository.save(new Category(null, "ESTHETIQUE", RandomString.make(12), "never", null));
         categoryRepository.save(new Category(null, "SOCIAL", RandomString.make(12), "social", null));
         categoryRepository.save(new Category(null, "SPORT", RandomString.make(12), "sport", null));
         categoryRepository.save(new Category(null, "EVENEMENTIEL", RandomString.make(12), "doctor", null));

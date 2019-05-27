@@ -17,7 +17,7 @@ export class ProfessionsDetailComponent implements OnInit {
 
   ngOnInit() {
     let id = +this.routerActivated.snapshot.paramMap.get('id');
-    this.catalogueService.getArtisantById(id).subscribe(resp => {
+    this.catalogueService.getProfessionelUserById(id).subscribe(resp => {
       console.log(resp);
       this.artisantDetail = resp;
     }, error =>{
