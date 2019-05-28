@@ -1,5 +1,21 @@
-<div class="row usersPanel">
+<div class="row container usersPanel alert alert-danger" *ngIf="mode== 0 && errorMessage">
+  {{errorMessage}}
+  <strong>  the text area must not be empty to send</strong>
+</div>
+<div class=" row container usersPanel panel panel-success" *ngIf="mode==1">
+  <div class="panel-heading">
+    <strong>New request is sending to professionel Thank for using our service!!!  </strong>
+    <div class="panel-body">
+      <ul class="list-group">
+        <li class="list-group-item">
+          Your request is sending  : {{messageStatus}}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
 
+<div class="row usersPanel" *ngIf="mode==0">
     <form  #f="ngForm"(ngSubmit)="sendEmailForDevis(f.value)">
       <div class="container">
         <h1>Quote request</h1>
@@ -23,7 +39,13 @@
         </div>
         <hr>
     
-        <button type="submit" class="registerbtn">Send</button>
+        <button type="submit"  class="registerbtn">Send
+          <img *ngIf="loading" style="background-color: #f5deb3"
+               src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+
+
+        </button>
+
       </div>
 
     </form>

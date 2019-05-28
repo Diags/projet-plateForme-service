@@ -66,14 +66,14 @@ public class ProjetArtisantApplication implements CommandLineRunner {
         categoryRepository.save(new Category(null, "COMMUNICATION", RandomString.make(12), "comm", null));
         categoryRepository.save(new Category(null, "ASSURANCE", RandomString.make(12), "assurance", null));
         categoryRepository.save(new Category(null, "ART", RandomString.make(12), "Art", null));
-        categoryRepository.save(new Category(null, "AUDIOVISUEL", RandomString.make(12), "cinema", null));
+      //  categoryRepository.save(new Category(null, "AUDIOVISUEL", RandomString.make(12), "cinema", null));
         categoryRepository.save(new Category(null, "AUTOMOBIL", RandomString.make(12), "automobil", null));
-        categoryRepository.save(new Category(null, "BANQUE-FINANCE", RandomString.make(12), "finance", null));
+     //   categoryRepository.save(new Category(null, "BANQUE-FINANCE", RandomString.make(12), "finance", null));
         // categoryRepository.save(new Category(null, "ESTHETIQUE", RandomString.make(12), "never", null));
         categoryRepository.save(new Category(null, "SOCIAL", RandomString.make(12), "social", null));
         categoryRepository.save(new Category(null, "SPORT", RandomString.make(12), "sport", null));
         categoryRepository.save(new Category(null, "EVENEMENTIEL", RandomString.make(12), "doctor", null));
-        categoryRepository.save(new Category(null, "CULTURE", RandomString.make(12), "peintre", null));
+      //  categoryRepository.save(new Category(null, "CULTURE", RandomString.make(12), "peintre", null));
 
         ArrayList<String> mylist = new ArrayList<String>();
         mylist.add("barack");

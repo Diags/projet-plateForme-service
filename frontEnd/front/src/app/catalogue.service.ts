@@ -36,6 +36,6 @@ getAllUserbyProfessions(url){
   }
 
   sendEmail(dataForm: any) {
-    return this.http.get(this.host + "/sendemail", dataForm)
+    return this.http.post(this.host + "/sendemail", dataForm)
   }
 }
