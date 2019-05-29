@@ -12,7 +12,8 @@ import { CatalogueDetailComponent } from './catalogue-detail/catalogue-detail.co
 import { DevisFormComponent } from './devis-form/devis-form.component';
 import { StarsComponent } from './stars/stars.component';
 import { ContactComponent } from './contact/contact.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { CommonModule } from '@angular/common';
 import { ProfessionelComponent } from './professionel/professionel.component';
 @NgModule({
   declarations: [
@@ -30,7 +31,9 @@ import { ProfessionelComponent } from './professionel/professionel.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    CommonModule
   ],
   providers: [CatalogueService],
   bootstrap: [AppComponent]

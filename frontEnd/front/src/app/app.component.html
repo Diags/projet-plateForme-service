@@ -6,8 +6,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </span>
-      <a class="navbar-brand" href="#" [routerLink]="['/catalogue/1/0']"><img class="logo" src="assets/img/logo1.svg " style="background-color:aliceblue;"
-          width="180"></a>
+      <a class="navbar-brand" href="#" [routerLink]="['/catalogue/1/0']"><img class="logo" src="assets/img/logo1.svg" width="150"></a>
     </div>
     <div class="collapse navbar-collapse " id="myNavbar">
       <ul class="nav navbar-nav">
@@ -37,6 +36,9 @@
         <img src="assets/img/header-background.png" style="width:100%;" alt="Second slide">
       </div>
       <div class="item">
+        <img src="assets/img/catalogue/aide.png"  alt="Second slide">
+      </div>
+      <div class="item">
         <img src="assets/img/metiers-du-cheval-2.png" alt="Second">
       </div>
       <div class="item">
@@ -54,36 +56,31 @@
         <div class="col-md-12 col-md-offset-1">
           <div class="form-section">
             <div class="row">
-              <form  #f="ngForm"(ngSubmit)="getcatalogueByAdresse(f.value)" class="form-inline"  >
+              <form  #f="ngForm"(ngSubmit)="getcatalogueByAdresse(f.value)" class="form-inline" role="form" novalidate>
                 <div class="col-md-3">
                   <div class="form-group">
-                    <label class="control-label">Location</label>
-                    <input type="text"  name="professionName" class="form-control" id="location" placeholder="specialiste ex:dentiste ?">
+                    <label class="control-label">Professionel </label>
+                    <input type="text"  name="professionName" ngModel class="form-control" id="professionName" placeholder="specialiste ex:dentiste ?" required>
                   </div>
                 </div>
                 <div class="col-md-3">
                   <div class="form-group">
-                    <label class="control-label">Ville</label>
-                    <input type="text"  name="ville" class="form-control" id="ville" placeholder="ville ex:Lyon">
+                    <label class="control-label" >Ville Name </label>
+                    <input type="text"  name="ville" ngModel class="form-control" id="ville" placeholder="ville ex:Lyon">
                   </div>
                 </div>
-                <!--<div class="col-md-3">-->
-                  <!--<div class="form-group">-->
-                    <!--<label class="sr-only" for="code">codePostale</label>-->
-                    <!--<input type="search"  [(ngModel)]="codePostale" name="ville" class="form-control" id="codePostale" placeholder="Code postal ex :69006">-->
-                  <!--</div>-->
-                <!--</div>-->
                 <div class="col-md-3" *ngIf="categories">
-                  <div  >
-                    <select  class="form-control" name="categoryName"  searchable="Search here..">
+                  <div class="form-group">
+                    <label class="control-label">Categories    </label>
+                    <select  class="form-control" ngModel name="categoryName"  searchable="Search here..">
                         <option disabled selected>Choose your categorie</option>
                         <option  *ngFor="let c of categories._embedded.categories">{{c.name}}</option>
 
                       </select>
                   </div>
                 </div>
-                <div class="col-md-2">
-                  <button type="submit" class="btn btn-default btn-primary">Search</button>
+                <div class="col-md-3">
+                  <button type="submit" [disabled]="!f.form.valid" class="btn btn-lg btn-primary">Search</button>
                 </div>
               </form>
             </div>

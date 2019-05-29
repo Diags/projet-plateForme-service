@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
     })
   }
   getCategoryById(id) {
-    this.catelogService.getCatelogById(id).subscribe(data => {
+    this.catelogService.getProfessions(id).subscribe(data => {
       console.log("cououuuuu ",this.routeActive.snapshot.params);
     this.router.navigateByUrl('/catalogue-details/'+id);
       this.categories = data;

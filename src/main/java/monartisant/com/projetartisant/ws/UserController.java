@@ -37,7 +37,7 @@ public class UserController {
 //    public List<User> getUserByVille(@RequestBody SearchParam param){
 //   //   return userRepository.findByProfession_nameContainsAndAdresse_villeContainsAndProfession_Category_name(param.getProfessionName(),param.getVille(), param.getCategoryName());
 //    }
-    @ApiOperation(value = "update user rating",response = User.class)
+    @ApiOperation(value = "update user rating", response = User.class)
     @Transactional
     @PostMapping("updatenote")
     public User update(@RequestBody SearchParamNote param) throws Exception {
@@ -52,8 +52,8 @@ public class UserController {
     @ApiOperation(value = "search user by params")
     @PostMapping("search")
     public List<User> search(@RequestBody SearchParam param) {
-     return  userRepository.findByProfession_NameAndAdresse_VilleAndProfession_Category_Name(
-              param.getProfessionName(),param.getVille(),param.getCategoryName().toUpperCase());
+        return userRepository.findByProfession_NameContainingAndAdresse_VilleContaining(
+                param.getProfessionName(), param.getVille());
 
     }
 
@@ -62,15 +62,14 @@ public class UserController {
     public String sendEmail(@RequestBody SearchParamforDevis param) throws Exception {
         Context context = new Context();
         context.setVariable("title", "Vous avez une demande de devis");
-        context.setVariable("body", "Mr."+ param.getUser_name() +" " +param.getUser_lastName());
-        context.setVariable("suite",  "Adresse:  "+ param.getUser_town()+ "  "+ param.getUser_codePostal());
+        context.setVariable("body", "Mr." + param.getUser_name() + " " + param.getUser_lastName());
+        context.setVariable("suite", "Adresse:  " + param.getUser_town() + "  " + param.getUser_codePostal());
         context.setVariable("description", param.getUser_message());
         EmailStatus emailStatus = emailHtmlSender.send("diaguilysociete@gmail.com", "DEMANDE DE DEVIS", "email/template-1", context);
-        if(emailStatus.getStatus().equalsIgnoreCase("SUCCESS")){
+        if (emailStatus.getStatus().equalsIgnoreCase("SUCCESS")) {
             return "true";
-        }
-        else
-            throw  new Exception("This message not send");
+        } else
+            throw new Exception("This message not send");
     }
 
     @PostMapping("smssender")

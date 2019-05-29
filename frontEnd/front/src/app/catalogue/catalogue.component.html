@@ -6,7 +6,7 @@
     <div class=" col-md-8  cataloguePanel" *ngIf="categories">
       <div  *ngFor="let c of categories._embedded.categories">
           <div class="col-md-4">
-        <div class="panel panel-default"   [routerLink]="['/catalogue-details/',c.id]">
+        <div class="panel panel-default clikable"   [routerLink]="['/catalogue-details/',c.id]">
           <div class="panel-heading">
             <img class="card" alt="Cinque Terre" height="195px" style="width:100%" src="{{this.catelogService.host+'/photocategory/'+c.id}}" />
           </div>

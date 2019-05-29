@@ -7,8 +7,9 @@ import { CatalogueService } from '../catalogue.service';
   styleUrls: ['./professions-detail.component.css']
 })
 export class ProfessionsDetailComponent implements OnInit {
- artisantDetail ;
+  users ;
    message: number;
+   currentUser;
   private iscontactChecked= false;
   constructor( private catalogueService: CatalogueService, private routerActivated: ActivatedRoute, private router : Router) {
    // this.router.params.subscribe(params => this.artisantDetail = params.id)
@@ -19,7 +20,7 @@ export class ProfessionsDetailComponent implements OnInit {
     let id = +this.routerActivated.snapshot.paramMap.get('id');
     this.catalogueService.getProfessionelUserById(id).subscribe(resp => {
       console.log(resp);
-      this.artisantDetail = resp;
+      this.users = resp;
     }, error =>{
       console.log(error);
     })
@@ -29,7 +30,9 @@ export class ProfessionsDetailComponent implements OnInit {
     this.router.navigateByUrl('/devis')
   }
 
-  toggleTel(){
+  toggleTel(user){
+    this.currentUser = user;
+    console.log(user);
     this.iscontactChecked = !this.iscontactChecked;
     console.log("coool",this.iscontactChecked)
 }
