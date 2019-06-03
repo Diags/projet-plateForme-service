@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@ngx-translate/core": "^11.0.1",
     "bootstrap": "^3.4.1",
     "express": "^4.17.0",
     "path": "^0.12.7"

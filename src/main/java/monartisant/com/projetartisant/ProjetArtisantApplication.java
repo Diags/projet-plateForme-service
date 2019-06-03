@@ -2,40 +2,28 @@ package monartisant.com.projetartisant;
 
 import monartisant.com.projetartisant.model.*;
 import monartisant.com.projetartisant.repository.*;
-import monartisant.com.projetartisant.ws.EmailHtmlSender;
-import monartisant.com.projetartisant.ws.EmailStatus;
 import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
-import org.thymeleaf.context.Context;
+
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 import java.util.Random;
 
 @SpringBootApplication
 public class ProjetArtisantApplication implements CommandLineRunner {
-    @Autowired
+    @Autowired(required=true)
     private UserRepository userRepository;
-    @Autowired
-    private TokenRepository tokenRepository;
-    @Autowired
+    @Autowired(required=true)
     private CategoryRepository categoryRepository;
-    @Autowired
-    private AdresRepository adresRepository;
     @Autowired
     private RepositoryRestConfiguration repositoryRestConfiguration;
     @Autowired
-    private ImageRepository imageRepository;
-    @Autowired
     private ProfessionRepository professionRepository;
-    @Autowired
-    private EmailHtmlSender emailHtmlSender;
-
     public static void main(String[] args) {
         SpringApplication.run(ProjetArtisantApplication.class, args);
     }

@@ -2,10 +2,11 @@ package monartisant.com.projetartisant.ws;
 
 import io.swagger.annotations.ApiOperation;
 import monartisant.com.projetartisant.model.User;
-import monartisant.com.projetartisant.repository.AdresRepository;
 import monartisant.com.projetartisant.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.MediaType;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 import org.thymeleaf.context.Context;
 
@@ -19,9 +20,8 @@ import java.util.List;
 @RestController
 public class UserController {
     @Autowired
+    @Qualifier("userRepository")
     private UserRepository userRepository;
-    @Autowired
-    private AdresRepository adresRepository;
     @Autowired
     private EmailHtmlSender emailHtmlSender;
     @Autowired
@@ -49,6 +49,7 @@ public class UserController {
         userRepository.save(user);
         return userRepository.findById(param.getId()).get();
     }
+
     @ApiOperation(value = "search user by params")
     @PostMapping("search")
     public List<User> search(@RequestBody SearchParam param) {
@@ -74,7 +75,7 @@ public class UserController {
 
     @PostMapping("smssender")
     @ApiOperation(value = "send sms of user to professionel")
-    public void sendSms(@Valid @RequestBody SmsRequest smsRequest){
+    public void sendSms(@Valid @RequestBody SmsRequest smsRequest) {
         service.smsdSms(smsRequest);
     }
 }
