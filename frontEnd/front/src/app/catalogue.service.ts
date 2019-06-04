@@ -5,8 +5,8 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class CatalogueService {
-  public host = "http://5.51.141.181:8989";
- // public host = "http://localhost:8080";
+  // public host = "http://5.51.141.181:8989";
+ public host = "http://localhost:8080";
   constructor(private http: HttpClient) { }
 
 getCatelogById(id){

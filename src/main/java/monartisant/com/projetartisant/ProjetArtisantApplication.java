@@ -42,7 +42,7 @@ public class ProjetArtisantApplication implements CommandLineRunner {
         //  Adresse a = new Adresse(null, 12, "rue", "emeraude", 69006, "lyon");
         Random rd = new Random();
         categoryRepository.save(new Category(null, "IMMOBILIER", RandomString.make(12), "batima", null));
-        categoryRepository.save(new Category(null, "FABRICATION", RandomString.make(12), "meunuisier", null));
+        categoryRepository.save(new Category(null, "FABRICATION", RandomString.make(12), "meunuisier1",null));
         categoryRepository.save(new Category(null, "ALIMENTATION", RandomString.make(12), "restau", null));
         categoryRepository.save(new Category(null, "TRANSPORT", RandomString.make(12), "tran1", null));
         categoryRepository.save(new Category(null, "EDUCATION", RandomString.make(12), "education", null));
