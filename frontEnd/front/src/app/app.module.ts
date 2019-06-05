@@ -15,6 +15,9 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { CommonModule } from '@angular/common';
 import { ProfessionelComponent } from './professionel/professionel.component';
 import {HttpClientModule} from "@angular/common/http";
+import { AProposComponent } from './a-propos/a-propos.component';
+import { AcceuilComponent } from './acceuil/acceuil.component';
+import { InscriptionComponent } from './inscription/inscription.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +28,10 @@ import {HttpClientModule} from "@angular/common/http";
     DevisFormComponent,
     StarsComponent,
     ContactComponent,
-    ProfessionelComponent
+    ProfessionelComponent,
+    AProposComponent,
+    AcceuilComponent,
+    InscriptionComponent
   ],
   imports: [
     BrowserModule,

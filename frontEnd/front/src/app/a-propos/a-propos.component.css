@@ -1,0 +1,144 @@
+
+.metier-africa-mentions-data-conatiner {
+  background-color: #F5F5F5;
+}
+.metier-africa-mentions-data-content-not {
+  height: 132px;
+}
+.metier-africa-mentions-data-content-body {
+  padding-bottom: 51px;
+  padding-top: 32px;
+}
+.metier-africa-mentions-data-tabs-left-all-items-tab-left-pd {
+  background:#FFFFFF;
+  margin-left: 20px;
+  padding-left: 3%;
+  padding-right: 3%;
+}
+.metier-africa-mentions-data-title {
+  color: #000000;
+  font-size: 36px;
+  font-weight: bold;
+  line-height: 24px;
+}
+.metier-africa-mentions-data-tabs-conatiner {
+  background-color: #F5F5F5;
+  padding-top: 3%;
+  padding-bottom: 0px;
+}
+.metier-africa-mentions-data-form-content {
+  margin: 0;
+}
+.metier-africa-mentions-data-tabs-left-all-items::before {
+  border: 0.8px solid #B3B3B3;
+  right: 1.8px;
+}
+.metier-africa-mentions-data-tabs-left-all-items>*>a {
+  border-right: 4px solid transparent;
+}
+.metier-africa-mentions-data-tabs-left-all-items>.uk-active>a {
+  font-weight: bold;
+  color: #000000;
+  border-color: #F7931E;
+}
+.metier-africa-mentions-data-tabs-left-all-items> * > a {
+  display: block;
+  color: #000000;
+  font-size: 16px;
+  line-height: 40px;
+  text-transform: none;
+  padding: 0;
+}
+.metier-africa-mentions-data-conatiner-m-w {
+  width: 100%;
+  max-width: 1080px;
+}
+/* Plan du site */
+.metier-africa-plan-site-wrap {
+  margin-bottom: 150px!important;
+  margin-top: -30px;
+}
+.metier-africa-plan-site-wrap-link {
+  color: #4D4D4D!important;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 30px;
+  text-decoration: none;
+}
+.metier-africa-plan-site-wrap-link-title{
+  color: #F7931E!important;
+  font-weight: bold;
+  font-size: 23px;
+  line-height: 39px;
+  text-decoration: none;
+}
+.metier-africa-plan-site-wrap-link:hover, .metier-africa-plan-site-wrap-link:focus, .metier-africa-plan-site-wrap-link:active {
+  color: #666!important;
+  text-decoration: underline;
+}
+.metier-africa-plan-site-wrap-links {
+  margin: 0;
+}
+/* Services populaire */
+.metier-africa-service-populaires {
+  margin-bottom: 150px!important;
+  margin-top: -30px;
+}
+.metier-africa-service-populaires-title {
+  color: #4D4D4D;
+  font-size: 16px;
+  line-height: 18px;
+  margin-bottom: 34px;
+}
+.metier-africa-service-populaires-container-categories >.metier-africa-categorie-metier-step-column {
+  background-color: #f1f1f1!important;
+}
+.metier-africa-mentions-data-content-body-2 {
+  padding-bottom: 51px;
+  padding-top: 32px;
+}
+.metier-africa-contact-follow-us-links {
+  margin-top: 21px;
+}
+.metier-africa-contact-follow-us-links .metier-africa-contact-follow-us-twiiter {
+  margin-left: 15px;
+}
+.metier-africa-mentions-email-wrap {
+  padding-bottom: 70px;
+}
+.metier-africa-mentions-email-desc {
+  padding-top: 21px;
+  padding-bottom: 5px;
+  color: #4D4D4D;
+  font-size: 16px;
+  line-height: 18px;
+}
+.metier-africa-add-artisan-full-body-avis-footer-link-apply {
+  border-radius: 3px;
+  color: #4D4D4D;
+  background-color: #FFFFFF;
+  border: 0.5px solid #979797;
+  text-transform: none;
+  font-size: 16px;
+  font-style: normal;
+  line-height: 24px;
+  font-weight: 400;
+  padding-left: 27px;
+  padding-right: 27px;
+  margin-left: 0px;
+  margin-right: 0px;
+  padding-top: 11px;
+  padding-bottom: 11px;
+}
+.metier-africa-add-artisan-full-body-avis-footer-link-apply:hover, .metier-africa-add-artisan-full-body-avis-footer-link-apply:focus {
+  background-color: #FFFFFF;
+  text-decoration: none;
+  color: #4D4D4D;
+  border: 0.5px solid #979797;
+}
+.metier-africa-add-artisan-full-body-avis-footer-link-apply:active {
+  background-color: #FFFFFF;
+  text-decoration: none;
+  color: #4D4D4D;
+  border: 0.5px solid #979797;
+}

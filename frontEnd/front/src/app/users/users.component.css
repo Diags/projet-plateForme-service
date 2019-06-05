@@ -1,34 +1,1123 @@
-.block-prohead {
-    background-color: rgba(242,242,242,1);
-    padding: 10px 15px 10px 15px;
-    min-height: 120px;
-    max-height: 120px;
-    position: relative;
+
+.metier-africa-header-yes-scroll-profil {
+  display: none;
 }
-.block-prohead .block-societe {
-    position: absolute;
-    top: 5px;
-    left: 10px;
+/* Initial state profil artisan */
+.metier-africa-section-profil-artisan-couverture-subtitle {
+  height: 635px;
+  padding: 0;
 }
-.block-prohead .label-societe {
-    font-size: 15px;
+.metier-africa-profil-artisan-couverture-uk-inline {
+  width: 100%;
+  height: 635px;
 }
-.block-prohead .block-phone {
-    position: absolute;
-    top: 80px;
-    left: 10px;
-    width: 60%;
-    max-width: 250px;
+.metier-africa-profil-artisan-couverture-cover-img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
-.numero-vert {
-    position: absolute;
-    height: 28px;
+.metier-africa-profil-artisan-couverture-cover-img-overlay {
+  background-color: #000000;
+  opacity: 0.4;
 }
-.block-profile {
-    background-color: #1a1734;
-    color: #fff;
-    text-align: center;
-    display: block;
-    height: 50px;
-    padding-top: 15px;
+.metier-africa-section-profil-artisan-couverture {
+  height: 53px;
+  padding-top: 18px;
+  padding-bottom: 18px;
+}
+/* Initial state profil artisan */
+/* Button X1*/
+.metier-africa-profil-artisan-couverture-overlay-container {
+  /*position: absolute;
+  top: 87.5%;
+  width: 31.4%;
+  right: 8%;*/
+}
+.metier-africa-profil-artisan-couverture-overlay-content-btn {
+  height: 50px;
+  width: 33.5%;
+  border: none;
+  background-color: #F69D34;
+  text-transform: none;
+  color: #FFFFFF;
+  font-size: 16px;
+  font-style: normal;
+  line-height: 19px;
+  font-weight: bold;
+  padding-left: 0px;
+  padding-right: 0px;
+  margin-left: 0px;
+  margin-right: -6px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  display: initial;
+}
+.metier-africa-profil-artisan-couverture-overlay-content-link {
+  height: 50px;
+  border: none;
+  background-color: #F69D34;
+  text-transform: none;
+  color: #FFFFFF;
+  font-size: 16px;
+  font-style: normal;
+  line-height: 19px;
+  font-weight: bold;
+  padding-left: px;
+  padding-right: px;
+  margin-left: -1px;
+  margin-right: -4px;
+  padding-top: 16px;
+  padding-bottom: 17px;
+  display: initial;
+}
+.metier-africa-profil-artisan-couverture-overlay-content-btn:hover, .metier-africa-profil-artisan-couverture-overlay-content-link:hover {
+  background-color: #F38503;
+  text-decoration: none;
+  color: #FFFFFF;
+}
+.metier-africa-profil-artisan-couverture-overlay-container:hover  .metier-africa-profil-artisan-couverture-grid-divider  {
+  display: none;
+}
+.metier-africa-profil-artisan-couverture-overlay-content-btn:active, .metier-africa-profil-artisan-couverture-overlay-content-link:active {
+  background-color: #EF9020;
+  text-decoration: none;
+  color: #FFFFFF;
+}
+.metier-africa-profil-artisan-couverture-list-container {
+  padding-top: 26px;
+}
+/* Button X1*/
+/* Vertical divider */
+.metier-africa-profil-artisan-couverture-grid-divider {
+  width: 3px;
+  position: absolute;
+  height: 24px;
+  display: inline;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  margin-top: 12px;
+  border: none;
+  border-left: 1px solid #FFFFFF;
+}
+.metier-africa-profil-artisan-header-infos-grid-divider {
+  width: 3px;
+  position: absolute;
+  height: 24px;
+  display: inline;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  margin-top: 12px;
+  border: none;
+  border-left: 1px solid #FFFFFF;
+}
+.metier-africa-profil-artisan-couverture-border-left {
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+.metier-africa-profil-artisan-couverture-border-right {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+/* Vertical divider */
+/* FullName Artisan */
+.metier-africa-profil-artisan-couverture-overlay-fullname-container {
+  position: absolute;
+  top: 87%;
+  left: 16%;
+}
+.metier-africa-profil-artisan-couverture-overlay-fullname {
+  color: #FFFFFF;
+  font-size: 35px;
+  font-weight: bold;
+  line-height: 24px;
+  padding-bottom: 14px;
+}
+.metier-africa-profil-artisan-couverture-overlay-location {
+  color: #FFFFFF;
+  font-size: 24px;
+  line-height: 14px;
+}
+/* FullName Artisan */
+/* Avatar Artisan */
+.metier-africa-profil-artisan-couverture-overlay-avatar-container {
+  position: absolute;
+  top: 81.5%;
+  left: 8%;
+}
+.metier-africa-profil-artisan-couverture-overlay-avatar {
+  width: 100px;
+  height: 100px;
+}
+.metier-africa-profil-artisan-couverture-overlay-avatar-img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 50%
+}
+.metier-africa-profil-artisan-couverture-overlay-certification {
+  position: absolute;
+  top: 65%;
+  left: 65%;
+}
+/* Avatar Artisan */
+/* Infos contacts */
+.metier-africa-profil-artisan-couverture-overlay-contacts-container {
+  position: absolute;
+  top: 84%;
+  z-index: 2000;
+  right: 8%;
+}
+.metier-africa-profil-artisan-couverture-overlay-contacts {
+  border-radius: 3px;
+  width: 447px;
+  background-color: #2F59A2;
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.22), 0 0 6px 0 rgba(0,0,0,0.02);
+}
+.metier-africa-overlay-profil-artisan-couverture {
+  color: #FFFFFF;
+  border: 3px solid #FFFFFF;
+  border-radius: 50%;
+  height: 18px;
+  width: 18px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-left: 2px;
+  margin-right: 2px;
+}
+.metier-africa-overlay-profil-artisan-couverture-whatsapp {
+  color: #FFFFFF;
+  font-size: 40px;
+}
+.metier-africa-overlay-profil-artisan-couverture-phone {
+  font-size: 22px;
+}
+.metier-africa-overlay-profil-artisan-couverture-contacts-text {
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 16px;
+  padding-top: 5px;
+  padding-left: 15px;
+}
+.metier-africa-overlay-profil-artisan-couverture-contacts-text-container-full-bloc {
+  padding-left: 47px;
+  display: -ms-flexbox;
+  display: flex;
+  padding-top: 19px;
+  padding-bottom: 12px;
+  cursor: pointer;
+}
+.metier-africa-overlay-profil-artisan-couverture-contacts-text-container-full-bloc-conatiner:hover {
+  background-color: #3C6DC1;
+}
+.metier-africa-overlay-profil-artisan-couverture-contacts-text-container-full-bloc-conatiner:hover .metier-africa-profil-artisan-contacts-full-body-divider-x{
+  display: none;
+}
+/* Content page profil artisan */
+.metier-africa-profil-artisan-full-body-container {
+  max-width: 1080px;
+  margin: 85px auto 0;
+}
+.metier-africa-profil-artisan-full-body-divider-x {
+  margin: 0;
+  border-top: 1px solid #B3B3B3;
+}
+.metier-africa-profil-artisan-full-body-divider-x-bas {
+  margin: 0;
+  border-top: 1px solid #B3B3B3;
+  display: none;
+}
+.metier-africa-profil-artisan-full-body-title-profil-similaire {
+  color: #000000;
+  font-size: 28px;
+  font-weight: bold;
+  line-height: 24px;
+  padding-left: 0px;
+}
+.metier-africa-profil-artisan-full-body-title-avis {
+  color: #000000;
+  font-size: 28px;
+  font-weight: bold;
+  line-height: 24px;
+  padding-left: 3px;
+}
+.metier-africa-profil-artisan-full-body-title {
+  color: #000000;
+  font-size: 28px;
+  font-weight: bold;
+  line-height: 24px;
+}
+.metier-africa-profil-artisan-full-body-avis-star-container-1 {
+  background-color: rgba(247,147,30,0.45)!important;
+  cursor: pointer;
+}
+.metier-africa-profil-artisan-full-body-avis-star-container-2 {
+  background-color: rgba(247,147,30,0.65)!important;
+  cursor: pointer;
+}
+.metier-africa-profil-artisan-full-body-avis-star-container-3 {
+  background-color: rgba(247,147,30,0.85)!important;
+  cursor: pointer;
+}
+.metier-africa-profil-artisan-full-body-avis-star-container-4 {
+  background-color: #F7931E!important;
+  cursor: pointer;
+}
+.metier-africa-profil-artisan-full-body-avis-star-container-5 {
+  background-color: #F7621E!important;
+  cursor: pointer;
+}
+.metier-africa-profil-artisan-full-body-title-presentation-container {
+  padding-bottom: 15px;
+  padding-top: 52px;
+}
+.metier-africa-profil-artisan-full-body-similaires-title-presentation-container {
+  padding-bottom: 20px;
+  padding-top: 40px;
+}
+.metier-africa-profil-artisan-full-body-similairesowl-carousel-container {
+  padding-left: 6%;
+  padding-right: 6%;
+  padding-bottom: 20px;
+}
+.metier-africa-profil-artisan-full-body-desc {
+  color: #000000;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 24px;
+}
+.metier-africa-profil-artisan-full-body-subtitle-no-bold {
+  font-weight: 400!important;
+  padding-top: 8px;
+}
+.metier-africa-profil-artisan-full-body-avis-desc-note {
+  padding-top: 22px;
+  padding-bottom: 20px;
+  color: #4D4D4D;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 30px;
+  width: 390px;
+}
+.metier-africa-profil-artisan-full-body-avis-star-container {
+  height: 50px;
+  width: 50px;
+  margin-right: 8px;
+  border-radius: 5px;
+  background-color: rgba(144,144,144,0.56);
+}
+.metier-africa-profil-artisan-full-body-avis-star-default-state {
+  color: #FFFFFF;
+  font-size: 25px;
+  padding-top: 7px;
+}
+.metier-africa-profil-artisan-full-body-avis-msg-title {
+  color: #4D4D4D;
+  font-size: 20px;
+  line-height: 26px;
+  padding-top: 11px;
+}
+.metier-africa-profil-artisan-full-body-desc-presentation-container {
+  padding-bottom: 20px;
+}
+.metier-africa-profil-artisan-full-body-sidebar-left {
+  width: 65%;
+}
+.metier-africa-profil-artisan-full-body-sidebar-right {
+  width: 40%;
+}
+/* Content page profil artisan */
+/* Box avis  */
+.metier-africa-profil-artisan-full-body-title-ratings-container {
+  padding-top: 10px;
+  padding-bottom: 29px;
+}
+.metier-africa-profil-artisan-full-body-ratings-text-container {
+  padding-left: 4px;
+  display: -ms-flexbox;
+  display: flex;
+  padding-bottom: 20px;
+}
+.metier-africa-profil-artisan-full-body-ratings-text {
+  color: #000000;
+  font-size: 18px;
+  line-height: 15px;
+}
+.metier-africa-profil-artisan-full-body-ratings-icon {
+  color: #F6D034;
+  float: right;
+}
+.metier-africa-profil-artisan-full-body-ratings-padding {
+  padding-left: 3%;
+}
+.metier-africa-profil-artisan-full-body-ratings-column {
+  width: 50%;
+}
+/* Box avis */
+/* Box commentaire */
+.metier-africa-profil-artisan-full-body-comments-box-container {
+  padding-left: 5px;
+  padding-top: 30px;
+  padding-bottom: 80px;
+}
+.metier-africa-profil-artisan-full-body-comments-box-content {
+  background-color: #f8f8f8;
+  padding-top: 27px;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-bottom: 29px;
+  margin-bottom: 4px;
+}
+.metier-africa-profil-artisan-full-body-comments-box-img-container {
+  height: 57.3px;
+  width: 57.3px;
+  display: -ms-flexbox;
+  display: flex;
+}
+.metier-africa-profil-artisan-full-body-comments-box-img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 50%
+}
+.metier-africa-profil-artisan-full-body-comments-box-desc {
+  color: #000000;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 22px;
+  padding-top: 12px;
+}
+.metier-africa-profil-artisan-full-body-comments-box-fullname {
+  color: #303030;
+  font-size: 18px;
+  line-height: 15px;
+  padding-top: 12px;
+  padding-bottom: 4px;
+}
+.metier-africa-profil-artisan-full-body-comments-box-date {
+  color: #303030;
+  font-size: 14px;
+  font-style: italic;
+  font-weight: 300;
+  line-height: 15px;
+}
+.metier-africa-profil-artisan-full-body-comments-box-identity {
+  display: -ms-flexbox;
+  display: flex;
+}
+.metier-africa-profil-artisan-full-body-comments-box-identity-infos {
+  padding-left: 13px;
+}
+/* Box commentaire */
+/* Profil similaire */
+.metier-africa-profil-artisan-similaire-full-body-column {
+  padding-left: 0px;
+  padding-right: 10px;
+  position: relative;
+  margin-bottom: 0px;
+  margin-top: -70px;
+}
+.metier-africa-profil-artisan-similaire-grid-conatiner {
+  margin: 0;
+}
+.metier-africa-profil-artisan-similaire-slider {
+  padding-left: 0px;
+  width: 100%;
+}
+.metier-africa-profil-artisan-similaire-slider .uk-slider-items > *{
+  width: 42%;
+}
+/* Couverture bloc */
+.metier-africa-section-profil-artisan-similaire-full-body-subtitle {
+
+  cursor: pointer;
+}
+.metier-africa-profil-artisan-similaire-full-body-uk-inline {
+  height: 281.5px;
+  width: 100%;
+  border-radius: 3px;
+}
+.metier-africa-profil-artisan-similaire-full-body-cover-img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.metier-africa-profil-artisan-similaire-full-body-cover-img-overlay {
+  background-color: #000000;
+  opacity: 0.6;
+}
+.metier-africa-section-profil-artisan-similaire-full-body-subtitle:hover .metier-africa-profil-artisan-similaire-full-body-cover-img-overlay {
+  opacity: 0.4;
+}
+.metier-africa-profil-artisan-similaire-full-body-overlay-content {
+  /*width: 40%;*/
+  top: 10%;
+  left: 85%;
+  padding-right: 19px;
+}
+.metier-africa-profil-artisan-similaire-full-body-overlay-content-full-name {
+  top: 74%;
+  padding-left: 8%;
+}
+.metier-africa-profil-artisan-similaire-full-body-avis {
+  color: #FFFFFF;
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 14px;
+}
+.metier-africa-profil-artisan-similaire-full-body-avis-content {
+  color: #F6D034;
+  font-size: 14px;
+}
+.metier-africa-profil-artisan-similaire-full-body-presentation-fullname {
+  color: #FFFFFF;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 24px;
+}
+.metier-africa-profil-artisan-similaire-full-body-presentation-specialite {
+  color: #FFFFFF;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 14px;
+  padding-left: 20px;
+}
+/* Button X1*/
+.metier-africa-profil-artisan-similaire-full-body-overlay-content-btn-container {
+  position: absolute;
+  top: 117%;
+  left: 20%;
+}
+.metier-africa-profil-artisan-similaire-full-body-overlay-content-btn-container-first {
+  position: absolute;
+  top: 332px;
+  left: 12%;
+}
+.metier-africa-profil-artisan-similaire-full-body-overlay-content-btn {
+  height: 37px;
+  border: none;
+  background-color: #F69D34;
+  border-radius: 3px;
+  text-transform: none;
+  color: #FFFFFF;
+  font-size: 12px;
+  font-style: normal;
+  line-height: 14px;
+  font-weight: bold;
+  padding-left: 70px;
+  padding-right: 70px;
+  margin-left: 0px;
+  margin-right: 0px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: initial;
+}
+.metier-africa-profil-artisan-similaire-full-body-overlay-content-btn:hover {
+  background-color: #F38503;
+  text-decoration: none;
+  color: #FFFFFF;
+}
+.metier-africa-profil-artisan-similaire-full-body-overlay-content-btn:active {
+  background-color: #EF9020;
+  text-decoration: none;
+  color: #FFFFFF;
+}
+/* Button X1*/
+.metier-africa-profil-artisan-similaire-list-conatiner {
+  padding-bottom: 20px;
+}
+.metier-africa-profil-artisan-similaire-list-conatiner > div:first-child {
+  padding-left: 0px;
+}
+.metier-africa-profil-artisan-full-body-sidebar-ratings-link, .metier-africa-profil-artisan-full-body-sidebar-ratings-link:focus, .metier-africa-profil-artisan-full-body-sidebar-ratings-link:hover, .metier-africa-profil-artisan-full-body-sidebar-ratings-link:active {
+  text-decoration: none!important;
+}
+/* Profil similaire */
+/* Disponibilite  */
+.metier-africa-profil-artisan-full-body-disponibility-container {
+  display: -ms-flexbox;
+  display: flex;
+  padding-top: 52px;
+  margin-left: 6%;
+  height: 120px;
+}
+.metier-africa-profil-artisan-full-body-sidebar {
+  display: -ms-flexbox;
+  display: flex;
+  background: #FFFFFF!important;
+  padding-left: 47px;
+  padding-right: 40px;
+}
+.metier-africa-profil-artisan-full-body-disponibility-content {
+  background-color: #F5F5F5;
+  width: 100%;
+  padding-top: 32px;
+  padding-bottom: 26px;
+}
+.metier-africa-profil-artisan-full-body-disponibility-price-title {
+  color: #2A2A2A;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 21px;
+}
+.metier-africa-profil-artisan-full-body-disponibility-day-title {
+  color: #2A2A2A;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 21px;
+}
+.metier-africa-profil-artisan-full-body-disponibility-price-day {
+  position: relative;
+  padding-bottom: 60px;
+}
+.metier-africa-profil-artisan-full-body-expertise-price-day {
+  position: relative;
+}
+.metier-africa-profil-artisan-full-body-disponibility-padding-left {
+  padding-left: 27px;
+}
+.metier-africa-profil-artisan-full-body-disponibility-padding-right {
+  padding-right: 45px;
+}
+.metier-africa-profil-artisan-full-body-disponibility-price-content {
+  padding-left: 14px;
+  padding-right: 20px;
+}
+.metier-africa-profil-artisan-full-body-disponibility-day-content {
+  padding-left: 14px;
+  padding-right: 20px;
+}
+.metier-africa-profil-artisan-full-body-expertise-container {
+  background-color: #F5F5F5;
+  margin-left: 6%;
+  height: 120px;
+}
+.metier-africa-profil-artisan-full-body-video-container {
+  margin-left: 6%;
+}
+.metier-africa-profil-artisan-full-body-expertise-padding-left {
+  padding-left: 27px;
+  padding-top: 30px;
+  padding-bottom: 118px;
+}
+.metier-africa-profil-artisan-full-body-disponibility-first-bloc {
+  position: absolute;
+}
+.metier-africa-profil-artisan-full-body-disponibility-second-bloc {
+  position: absolute;
+  left: 30px;
+}
+.metier-africa-profil-artisan-full-body-disponibility-divider-conatiner {
+  margin-right: 27px;
+  margin-left: 27px;
+}
+.metier-africa-profil-artisan-full-body-expertise-first-bloc {
+  position: absolute;
+}
+.metier-africa-profil-artisan-full-body-expertise-second-bloc {
+  position: absolute;
+  left: 55px;
+}
+.metier-africa-profil-artisan-full-body-expertise-price-title {
+  color: #454545;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 15px;
+}
+.metier-africa-profil-artisan-full-body-expertise-day-title {
+  color: #454545;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 20px;
+}
+/* Disponibilite */
+/*Header CSS*/
+.metier-africa-header-container {
+  height: 80px;
+  padding-left: 0%;
+  padding-right: 0%;
+  background: #2A2A2A;
+}
+.metier-africa-header-navbar {
+  background: none!important;
+}
+.metier-africa-header-logo-container {
+  padding: 0 0px;
+}
+.metier-africa-header-logo {
+  margin-top: 0.66%;
+  margin-bottom: 0.66%;
+}
+[class*=uk-navbar-dropdown-bottom] {
+  margin-top: 7px;
+}
+.metier-africa-header-navbar-content {
+  margin-right: 0px;
+  height: 100%;
+}
+.metier-africa-header-navbar-content-item {
+  height: 58px;
+}
+.metier-africa-header-navbar-content-item:hover {
+  border-bottom: 2.3px solid #F7931E;
+}
+.metier-africa-header-navbar-content-item-active {
+  border-bottom: 2.3px solid #F7931E;
+}
+/* .metier-africa-header-navbar-content-item-title-text, .metier-africa-header-navbar-content-item-title-text:hover, .metier-africa-header-navbar-content-item-title-text:focus, .metier-africa-header-navbar-content-item-title-text:active {
+   color: #FFFFFF ;
+   text-transform: none;
+   font-size: 14px;
+   line-height: 16px;
+   font-weight: 500;
+ } */
+.metier-africa-header-language-country-container {
+  margin-left: 80px;
+}
+.metier-africa-header-navbar-left-pd {
+  padding-right: 80px;
+}
+.metier-africa-header-language-country-content {
+  margin-top: 20px;
+}
+.metier-africa-select-content {
+  padding-right: 13px;
+}
+/* Header Profil Artisan */
+/* Initial state profil artisan */
+.metier-africa-section-profil-artisan-header-scroll-up-couverture-subtitle {
+  height: 93px;
+  padding: 0;
+  background-color: #4D4D4D;
+}
+.metier-africa-profil-artisan-header-scroll-up-couverture {
+  width: 100%;
+  height: 93px;
+  max-width: 1080px;
+  margin: auto;
+}
+.metier-africa-profil-artisan-header-scroll-up-couverture-cover-img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.metier-africa-profil-artisan-header-scroll-up-couverture-cover-img-overlay {
+  background-color: #4D4D4D;
+  opacity: 1;
+}
+.metier-africa-section-profil-artisan-header-scroll-up-couverture {
+  height: 53px;
+  padding-top: 18px;
+  padding-bottom: 18px;
+}
+/* Initial state profil artisan */
+/* Button X1*/
+.metier-africa-profil-artisan-header-scroll-up-couverture-overlay-container {
+  display: block;
+  float: right;
+  margin-top: 22px;
+  margin-right: 4px;
+  position: relative;
+}
+.metier-africa-profil-artisan-header-scroll-up-couverture-overlay-content-btn {
+  height: 50px;
+  border: none;
+  background-color: #f69d34;
+  text-transform: none;
+  color: #fff;
+  font-size: 16px;
+  font-style: normal;
+  line-height: 19px;
+  font-weight: 700;
+  margin-left: 0px;
+  margin-right: -6px;
+  display: initial;
+}
+.metier-africa-profil-artisan-header-scroll-up-couverture-overlay-content-btn-fixed-button-mobile {
+  height: 7vh;
+  width: 33.5%;
+  border: none;
+  background-color: #F69D34;
+  text-transform: none;
+  color: #FFFFFF;
+  font-size: 3vw;
+  font-style: normal;
+  line-height: 19px;
+  font-weight: bold;
+  padding-left: 0px;
+  padding-right: 0px;
+  margin-left: -1px;
+  margin-right: -4px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  display: initial;
+}
+.metier-africa-profil-artisan-header-scroll-up-couverture-overlay-content-link {
+  height: 50px;
+  border: none;
+  background-color: #F69D34;
+  text-transform: none;
+  color: #FFFFFF;
+  font-size: 16px;
+  font-style: normal;
+  line-height: 19px;
+  font-weight: bold;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-left: -1px;
+  margin-right: -4px;
+  padding-top: 17px;
+  padding-bottom: 16px;
+  display: initial;
+}
+.metier-africa-profil-artisan-header-scroll-up-couverture-overlay-content-btn:hover, .metier-africa-profil-artisan-header-scroll-up-couverture-overlay-content-link:hover {
+  background-color: #F38503;
+  text-decoration: none;
+  color: #FFFFFF;
+}
+.metier-africa-profil-artisan-header-scroll-up-couverture-overlay-container:hover  .metier-africa-profil-artisan-header-scroll-up-couverture-grid-divider  {
+  display: none;
+}
+.metier-africa-profil-artisan-header-scroll-up-couverture-overlay-content-btn:active, .metier-africa-profil-artisan-header-scroll-up-couverture-overlay-content-link:active {
+  background-color: #EF9020;
+  text-decoration: none;
+  color: #FFFFFF;
+}
+.metier-africa-profil-artisan-header-scroll-up-couverture-list-container {
+  padding-top: 26px;
+}
+/* Button X1*/
+/* Vertical divider */
+.metier-africa-profil-artisan-header-scroll-up-couverture-grid-divider-fixed-mobile {
+  width: 2vw;
+  position: absolute;
+  height: 3vh;
+  display: inline;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  margin-top: 2vh;
+  border: none;
+  border-left: 1px solid #FFFFFF;
+}
+.metier-africa-profil-artisan-header-scroll-up-couverture-grid-divider {
+  width: 3px;
+  position: absolute;
+  height: 24px;
+  display: inline;
+  margin-right: 0;
+  margin-bottom: 0;
+  margin-top: 12px;
+  border: none;
+  border-left: 1px solid #fff;
+}
+.metier-africa-profil-artisan-header-scroll-up-couverture-border-left {
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+.metier-africa-profil-artisan-header-scroll-up-couverture-border-right {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+/* Vertical divider */
+/* FullName Artisan */
+.metier-africa-profil-artisan-header-scroll-up-couverture-overlay-fullname-container {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 15px;
+}
+.metier-africa-profil-artisan-header-scroll-up-couverture-overlay-fullname {
+  color: #FFFFFF;
+  font-size: 25px;
+  font-weight: bold;
+  line-height: 24px;
+  padding-bottom: 6px;
+}
+.metier-africa-profil-artisan-header-scroll-up-couverture-overlay-location {
+  color: #FFFFFF;
+  font-size: 16px;
+  line-height: 14px;
+}
+/* FullName Artisan */
+/* Avatar Artisan */
+.metier-africa-profil-artisan-header-scroll-up-couverture-overlay-avatar-container {
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+  margin-top: 7px;
+}
+.metier-africa-profil-artisan-header-scroll-up-couverture-overlay-avatar {
+  width: 81px;
+  height: 81px;
+}
+.metier-africa-profil-artisan-header-scroll-up-couverture-overlay-avatar-img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 50%
+}
+.metier-africa-profil-artisan-header-scroll-up-couverture-overlay-certification {
+  float: left;
+  width: 23px;
+}
+.metier-africa-profil-artisan-header-scroll-up-couverture-overlay-fullname-content {
+  margin-left: 30px;
+}
+
+/* Avatar Artisan */
+/* Infos contacts */
+.metier-africa-profil-artisan-header-scroll-up-couverture-overlay-contacts-container {
+  position: absolute;
+  top: 50.5%;
+  right: 8%;
+}
+.metier-africa-profil-artisan-header-scroll-up-couverture-overlay-contacts {
+  border-radius: 3px;
+  width: 447px;
+  background-color: #2F59A2;
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.22), 0 0 6px 0 rgba(0,0,0,0.02);
+}
+.metier-africa-overlay-profil-artisan-header-scroll-up-couverture {
+  color: #FFFFFF;
+  border: 3px solid #FFFFFF;
+  border-radius: 50%;
+  height: 18px;
+  width: 18px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-left: 2px;
+  margin-right: 2px;
+}
+.metier-africa-overlay-profil-artisan-header-scroll-up-couverture-whatsapp {
+  color: #FFFFFF;
+  font-size: 40px;
+}
+.metier-africa-overlay-profil-artisan-header-scroll-up-couverture-phone {
+  font-size: 22px;
+}
+.metier-africa-overlay-profil-artisan-header-scroll-up-couverture-contacts-text {
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 16px;
+  padding-top: 5px;
+  padding-left: 15px;
+}
+.metier-africa-overlay-profil-artisan-header-scroll-up-couverture-contacts-text-container-full-bloc {
+  padding-left: 47px;
+  display: -ms-flexbox;
+  display: flex;
+  padding-top: 19px;
+  padding-bottom: 12px;
+  cursor: pointer;
+}
+.metier-africa-overlay-profil-artisan-header-scroll-up-couverture-contacts-text-container-full-bloc-conatiner:hover {
+  background-color: #3C6DC1;
+}
+.metier-africa-overlay-profil-artisan-header-scroll-up-couverture-contacts-text-container-full-bloc-conatiner:hover .metier-africa-profil-artisan-header-scroll-up-contacts-full-body-divider-x{
+  display: none;
+}
+/* Header Profil Artisan */
+/*Header section infos*/
+.metier-africa-profil-artisan-header-section-infos-item {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 3vw;
+}
+.metier-africa-profil-artisan-header-section-infos-title {
+  color: #000000;
+  font-size: 14px;
+  line-height: 24px;
+}
+.metier-africa-profil-artisan-header-section-infos-title > span{
+  text-transform: uppercase;
+}
+.metier-africa-profil-artisan-header-section-infos-item-icon-fa {
+  font-size: 10px;
+  color: #000000;
+}
+/*Header details*/
+.metier-africa-profil-artisan-header-section-infos-details {
+  padding-top: 31px;
+  padding-bottom: 18px;
+}
+.metier-africa-profil-artisan-header-section-infos-details >
+.uk-grid-match.uk-child-width-1-3.uk-grid > div:not(.uk-first-column) {
+  padding-left: 27px !important;
+}
+.metier-africa-profil-artisan-header-section-infos-details-title {
+  color: #767676;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 24px;
+  padding-bottom: 17px;
+}
+.metier-africa-profil-artisan-header-section-infos-details-icons {
+  color:#767676;
+  font-size: 20px;
+  padding-right: 10px;
+}
+.metier-africa-profil-artisan-header-section-infos-details-tags, .metier-africa-profil-artisan-header-section-infos-details-tags, .metier-africa-profil-artisan-header-section-infos-details-tags:focus, .metier-africa-profil-artisan-header-section-infos-details-tags {
+  height: 25px;
+  background-color: #FFFFFF;
+  border: 1px solid #DDDDDD;
+  color: #000000;
+  font-size: 10px;
+  font-style: normal;
+  line-height: 13px;
+  font-weight: bold;
+  display: initial;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-bottom: 5px;
+}
+.metier-africa-profil-artisan-header-section-infos-details-tags-current-day, .metier-africa-profil-artisan-header-section-infos-details-tags-current-day:hover, .metier-africa-profil-artisan-header-section-infos-details-tags-current-day:focus {
+  background-color: #6DB350;
+  color: #FFFFFF;
+}
+.metier-africa-profil-artisan-header-section-infos-details-tags-container {
+  padding-right: 6px;
+  padding-bottom: 6px;
+}
+/* Container PopUp Design */
+.metier-africa-profil-artisan-background-header {
+  background-color: #4D4D4D;
+  height: 250px;
+}
+.metier-africa-profil-artisan-popup-container {
+  margin-top: -170px;
+  padding-top: 20px;
+  background: #F6F6F6;
+  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.12);
+  max-width: 1080px;
+  width: 100%;
+}
+.metier-africa-profil-artisan-popup-header-section {
+  background: #F6F6F6;
+  margin-left: 0px;
+}
+.metier-africa-profil-artisan-popup-header-section-column {
+  padding-left: 0px
+}
+.metier-africa-profil-artisan-popup-header-section-column-second {
+  padding-left: 45px;
+}
+.metier-africa-profil-artisan-popup-header-section-avatar-container {
+  position: relative;
+  padding-left: 20px;
+  padding-bottom: 80px;
+  width: 225px;
+  margin-right: 25px;
+}
+.metier-africa-profil-artisan-popup-header-section-avatar-container > div {
+  position: relative;
+}
+.metier-africa-profil-artisan-popup-header-section-avatar-img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  overflow:hidden;
+  border-radius: 10px;
+  border:1px solid #B3B3B3;
+  background-color: #F6F6F6;
+}
+.metier-africa-profil-artisan-popup-header-section-not-avatar-img-fullname {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  color: #fff;
+  font-size: 50px;
+  font-weight: bold;
+  line-height: 60px;
+  text-align: right;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-shadow: 0 2px 3px rgba(0,0,0,0.36);
+}
+.metier-africa-profil-artisan-popup-scroll-section-avatar-img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  overflow: hidden;
+  border-radius: 10px;
+  background-color: #F6F6F6;
+}
+.metier-africa-profil-artisan-popup-scroll-section-not-avatar-img-fullname {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  color: #fff;
+  font-size: 28px;
+  font-weight: bold;
+  line-height: 60px;
+  text-align: center;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-shadow: 0 2px 3px rgba(0,0,0,0.36);
+}
+.metier-africa-profil-artisan-popup-header-section-column-width {
+  width: 8.5%;
+}
+.metier-africa-profil-artisan-popup-header-section-details-profil {
+  padding-right: 20px;
+}
+.metier-africa-profil-artisan-header-section-infos-details-title-response {
+  color: #000000;
+  font-size: 14px;
+  line-height: 19px;
+  padding-left: 35px;
+}
+.metier-africa-profil-artisan-header-section-infos-details-title-response-location {
+  color: #000000;
+  font-size: 14px;
+  line-height: 19px;
+  padding-left: 29px;
+}
+.metier-africa-profil-artisan-header-section-infos-details-button-response {
+  padding-left: 35px;
+  padding-top: 4px;
+}
+.metier-africa-profil-artisan-header-section-right-title {
+  color: #4D4D4D;
+  font-size: 32px;
+  font-weight: bold;
+  line-height: 34px;
+  padding-bottom: 0px;
+  padding-right: 54%;
+}
+.metier-africa-profil-artisan-header-section-right-subtitle {
+  color: #4D4D4D;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 28px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+.metier-africa-profil-artisan-header-section-right-avis {
+  color: #4D4D4D;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 14px;
+  padding-bottom: 20px;
+}
+.metier-africa-profil-artisan-header-section-right-avis-star {
+  color: #f6d034;
+  font-size: 25px;
+}
+.metier-africa-profil-artisan-popup-header-section-column-show-popup-contacts {
+  position: relative;
+}
+.metier-africa-popup-header-section-profil-artisan-couverture-overlay-container {
+  width: 52%;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.metier-africa-profil-artisan-full-body-sidebar-left-content {
+  padding-top: 20px;
 }

@@ -5,8 +5,55 @@
   left: 0;
   z-index: 1030;
 }
-.tes1{
+.test1{
+display: inline-flex;
+}
+.vertical-center {
+  min-height: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  top: 0;
+}
+.uk-position-center {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  display: table;
+  width: -moz-max-content;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+.uk-grid {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.uk-flex {
+  display: flex;
+}
+.uk-flex-center {
+  justify-content: center;
+}
+.uk-text-center {
+  text-align: center!important;
+}
+form {
+  border-radius: 15px 15px 15px 15px;
+  padding: 25px;
+  text-align: center;
+  background-color: rgba(237, 237, 237, 0.5);
+  background-color: hsla(0, 0%, 93%, 0.5);
+  width: 900px;
+}
 
+#carousel-img {
+  height: 100vh;
+  width: 100%;
 }
 
 /*eader.masthead .page-heading, header.masthead .site-heading {*/
@@ -136,3 +183,576 @@ a .active {
   -webkit-animation: zoom 20s;
   animation: zoom 20s;
 }
+
+/*---------------*/
+
+@keyframes metier-africa-kenny{
+  0%, 100% {
+    transform: scale(1) translateX(-50%)
+  }
+  50% {
+    transform: scale(1.5) translateX(-50%)
+  }
+}
+.metier-africa-section-subheader-subtitle {
+  height: 100vh;
+  padding: 0;
+}
+.metier-africa-subheader-uk-inline {
+  width: 100%;
+  height: 100vh;
+}
+@keyframes shrink {
+  0% {
+    transform: scale(1) translateX(0%);
+  }
+  100% {
+    transform: scale(1.2) translateX(-5%);
+  }
+}
+.metier-africa-subheader-cover-img-wrapper {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+.metier-africa-subheader-cover-img {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  will-change: transform;
+  animation: shrink 9s infinite alternate linear;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  /* object-fit: cover; */
+  /* left: 50%; */
+  /* animation-name: metier-africa-kenny; */
+  /* animation-iteration-count: infinite; */
+  /* animation-duration: 60s; */
+  /* animation-fill-mode: forwards; */
+  /* animation-timing-function: ease-in-out; */
+}
+.metier-africa-subheader-cover-img-overlay {
+  background-color: #000000;
+  opacity: 0.4;
+}
+.metier-africa-subheader-overlay-content-title-first {
+  color: #13070d;
+  font-size: 22px;
+  line-height: 30px;
+  font-weight: 300;
+  margin-bottom: 5px;
+}
+.metier-africa-subheader-overlay-content-title-second {
+  color: #506306;;
+  font-size: 70px;
+  line-height: 60px;
+  font-weight: bold;
+  margin: 0;
+  padding-bottom: 12px;
+}
+.metier-africa-subheader-overlay-content-button {
+  margin-top: 53px;
+}
+.metier-africa-subheader-overlay-content {
+  top: 50%;
+}
+.metier-africa-section-subheader {
+  height: 53px;
+  padding-top: 18px;
+  padding-bottom: 18px;
+}
+.metier-africa-section-subheader-parent-container {
+  padding-left: 4.77%;
+  padding-right: 0px;
+}
+.metier-africa-subheader-title {
+  height: 17px;
+  color: #999999;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 17px;
+  padding-right: 3px;
+  padding-left: 3px;
+}
+.metier-africa-subheader-lien:hover, .metier-africa-subheader-lien:focus, .metier-africa-subheader-lien:active {
+  text-decoration: none;
+}
+/* Couverture bloc */
+.metier-africa-btn-simple-white, .metier-africa-btn-simple-white:hover {
+  height: 60px;
+  border: 1px solid #FFFFFF;
+  background-color: #FFFFFF;
+  border-radius: 3px;
+  text-transform: none;
+  color: #4D4D4D;
+  font-size: 18px;
+  font-style: normal;
+  line-height: 21px;
+  font-weight: 500;
+  padding-left: 22px;
+  padding-right: 500px;
+  margin-left: 0px;
+  margin-right: 0px;
+  padding-top: 20px;
+  padding-bottom: 19px;
+  display: initial;
+}
+.metier-africa-btn-simple-icon-search {
+  padding-right: 8px;
+  color: #4D4D4D;
+}
+/* Category and City artisan */
+.metier-africa-search-landing-page-input-page-body-search-from-select-grid {
+  margin: 0;
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.22), 0 0 6px 0 rgba(0,0,0,0.02)!important;
+  border-radius: 3px;
+}
+.metier-africa-search-landing-page-input-page-body-search-from-column-select-2-not-filter {
+  position: relative;
+  padding: 0;
+  width: 50%;
+}
+.metier-africa-search-landing-page-input-page-body-search-from-column-select-2-not-filter-p-right::after {
+  position: absolute;
+  width: 1px;
+  height: 38px;
+  display: block;
+  background: #B3B3B3;
+  content: ' ';
+  top: 11px;
+  right: 0;
+}
+.metier-africa-search-landing-page-input-page-body-search-from-inline-input {
+  width: 100%;
+}
+.metier-africa-search-landing-page-input-page-body-search-from-inline-input-category > input{
+  padding-left: 185px !important;
+}
+.metier-africa-search-landing-page-input-page-body-search-from-inline-input-location > input{
+  padding-left: 185px !important;
+}
+.metier-africa-search-landing-page-input-page-body-search-from-icon {
+  color: #4D4D4D;
+  margin-top: -6px;
+}
+.metier-africa-search-landing-page-input-page-body-search-from-label {
+  position: absolute;
+  top: -29px;
+  bottom: 0;
+  left: 5px;
+  color: #4D4D4D;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 19px;
+  padding-top:  46px;
+
+  display: inline-flex;
+}
+
+.metier-africa-search-landing-page-input-page-body-search-from-label1{
+  position: absolute;
+  top: -29px;
+  bottom: 0;
+  left: 5px;
+  color: #4D4D4D;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 19px;
+  padding-top:  46px;
+
+  display: inline-flex;
+}
+.metier-africa-search-landing-page-input-page-body-search-from-input-dropdown::-webkit-scrollbar {
+  width: 10px;
+  background-color: #F5F5F5;
+}
+.metier-africa-search-landing-page-input-page-body-search-from-input-dropdown::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: linear-gradient(left, #96A6BF, #63738C);
+  box-shadow: inset 0 0 1px 1px #5C6670;
+}
+.metier-africa-search-landing-page-input-page-body-search-from-input-dropdown::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background: #eee;
+  box-shadow: 0 0 1px 1px #bbb, inset 0 0 7px rgba(0,0,0,0.3)
+}
+.metier-africa-search-landing-page-input-page-body-search-from-input-dropdown::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(left, #8391A6, #536175);
+}
+.metier-africa-search-landing-page-input-page-body-search-from-input-dropdown {
+  margin-top: 0px!important;
+  padding: 0px!important;
+  width: 100%;
+  max-height: 201px;
+  overflow: auto;
+  overflow-y: scroll;
+}
+.metier-africa-search-landing-page-input-page-body-search-from-input-dropdown-item {
+  padding-left: 20px;
+  padding-right: 10px;
+  padding-bottom: 11px;
+  padding-top: 12px;
+  cursor: pointer;
+}
+.metier-africa-search-landing-page-input-page-body-search-from-input-dropdown-item:hover {
+  /*background-color: #F7931E;*/
+  background-color: #F1F1F1;
+}
+.metier-africa-search-landing-page-input-circle-search-cat {
+  background-color: #D8D8D8;
+  border-radius: 50%;
+  margin-right: 17px;
+}
+.metier-africa-search-landing-page-input-circle-search-cat-container {
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.metier-africa-search-landing-page-input-circle-search-cat-icon {
+  position: initial;
+  width: 27px;
+  height: 27px;
+  color: #4D4D4D;
+}
+.metier-africa-search-landing-page-input-page-body-search-from-input-dropdown-item > div > a {
+  color: #4D4D4D!important;
+  cursor: pointer;
+  background: none;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 14px;
+  padding: 0!important;
+  display: block;
+  text-decoration: none;
+}
+.metier-africa-search-landing-page-input-page-body-search-from-input {
+  background-color: #FFFFFF!important;
+  border: none;
+  height: 60px;
+  border-radius: 0px 3px 3px 0;
+  /* box-shadow: 0 1px 3px 0 rgba(0,0,0,0.22), 0 0 6px 0 rgba(0,0,0,0.02); */
+  color: #4D4D4D;
+  font-weight: bold;
+  font-size: 48px;
+  /* font-weight: 500; */
+  line-height: 21px;
+  padding-left: 53px!important;
+}
+.metier-africa-search-landing-page-input-page-body-search-from-inline-input-category
+.metier-africa-search-landing-page-input-page-body-search-from-input {
+  border-radius: 3px 0 0 3px;
+}
+.metier-africa-search-landing-page-input-page-body-search-from-input:focus, .metier-africa-search-landing-page-input-page-body-search-from-input:hover, .metier-africa-search-landing-page-input-search-from-input-header:focus {
+  border: none;
+  color: #4D4D4D;
+}
+.metier-africa-search-landing-page-input-page-body-search-from-inline-input-category > .metier-africa-search-landing-page-input-page-body-search-from-input:focus,
+.metier-africa-search-landing-page-input-page-body-search-from-inline-input-category > .metier-africa-search-landing-page-input-page-body-search-from-input:hover    {
+  border-radius: 3px 0 0 0px!important;
+}
+.metier-africa-search-landing-page-input-page-body-search-from-inline-input-location > .metier-africa-search-landing-page-input-page-body-search-from-input:focus,
+.metier-africa-search-landing-page-input-page-body-search-from-inline-input-location > .metier-africa-search-landing-page-input-page-body-search-from-input:hover    {
+  border-radius: 0px 3px 0px 0!important;
+}
+/* Input Files Category and City artisan on Mobile*/
+.metier-africa-search-landing-page-input-on-mobile-page-body-search-from-select-grid {
+  margin: 0;
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.22), 0 0 6px 0 rgba(0,0,0,0.02)!important;
+  border-radius: 3px;
+}
+.metier-africa-search-landing-page-input-on-mobile-page-body-search-from-column-select-2-not-filter {
+  position: relative;
+  padding: 0;
+  width: 50%;
+}
+.metier-africa-search-landing-page-input-on-mobile-page-body-search-from-column-select-2-not-filter-p-right::after {
+  position: absolute;
+  width: 1px;
+  height: 38px;
+  display: block;
+  background: #B3B3B3;
+  content: ' ';
+  top: 11px;
+  right: 0;
+}
+.metier-africa-search-landing-page-input-on-mobile-page-body-search-from-inline-input {
+  width: 100%;
+}
+.metier-africa-search-landing-page-input-on-mobile-page-body-search-from-inline-input-category > input{
+  padding-left: 185px !important;
+}
+.metier-africa-search-landing-page-input-on-mobile-page-body-search-from-inline-input-location > input{
+  padding-left: 185px !important;
+}
+.metier-africa-search-landing-page-input-on-mobile-page-body-search-from-icon {
+  color: #4D4D4D;
+  left: 1.5vw;
+}
+.metier-africa-search-landing-page-input-on-mobile-page-body-search-from-label {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 12vw;
+  color: #4D4D4D;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 14px;
+  padding-top: 13px;
+}
+.metier-africa-search-landing-page-input-on-mobile-page-body-search-from-input {
+  background-color: #FFFFFF!important;
+  cursor: pointer;
+  border: none;
+  height: 40px;
+  border-radius: 3px 0 0 0;
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.22), 0 0 6px 0 rgba(0,0,0,0.02);
+  color: #979797;
+  font-size: 12px;
+  /* font-weight: 500; */
+  line-height: 14px;
+  padding-left: 36vw!important;
+  padding-right: 20vw!important;
+}
+.metier-africa-search-landing-page-input-on-mobile-page-body-search-from-input:focus, .metier-africa-search-landing-page-input-on-mobile-page-body-search-from-input:hover, .metier-africa-search-landing-page-input-on-mobile-search-from-input-header:focus {
+  border: none;
+}
+.metier-africa-search-landing-page-input-at-apply-category > input {
+  padding-left: 118px!important;
+  padding-right: 56px!important;
+}
+.metier-africa-search-landing-page-input-at-apply-location > input {
+  padding-left: 120px!important;
+  padding-right: 82px!important;
+}
+.metier-africa-search-landing-page-input-at-apply-category-kiny > input {
+  padding-left: 126px!important;
+  padding-right: 48px!important;
+}
+.metier-africa-search-landing-page-input-at-apply-location-kiny > input {
+  padding-left: 116px!important;
+  padding-right: 86px!important;
+}
+.metier-africa-search-landing-page-input-page-body-search-from-input:-ms-input-placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #e0e0e0;
+  opacity: 1; /* Firefox */
+}
+.metier-africa-search-landing-page-input-page-body-search-from-input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #e0e0e0;
+  opacity: 1; /* Firefox */
+}
+.metier-africa-search-landing-page-input-page-body-search-from-input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #e0e0e0;
+}
+.metier-africa-search-landing-page-input-page-body-search-from-input::-ms-input-placeholder { /* Microsoft Edge */
+  color: #e0e0e0;
+}
+
+/*------*/
+/* Categorie metier */
+.metier-africa-categorie-metier-container {
+  height: auto;
+  padding-bottom: 41px;
+  background-color: #F0F0F0;
+}
+.metier-africa-categorie-metier-title {
+  height: 24px;
+  color: #4D4D4D;
+  font-size: 36px;
+  font-weight: bold;
+  line-height: 24px;
+  padding-top: 64px;
+  margin: 0;
+}
+.metier-africa-categorie-metier-step-container-flex-width {
+  max-width: 1080px;
+  width: 100%;
+}
+.metier-africa-categorie-metier-all-category-title-txt-link {
+  cursor: pointer;
+}
+.metier-africa-categorie-metier-all-category-title-txt-link, .metier-africa-categorie-metier-all-category-title-txt-link:hover, .metier-africa-categorie-metier-all-category-title-txt-link:focus {
+  color: #4D4D4D;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 12px;
+  text-align: right;
+  text-decoration: none;
+}
+.metier-africa-categorie-metier-all-category-title-txt-link > span {
+  color: #4D4D4D;
+}
+.metier-africa-categorie-metier-list-container-flex-center {
+  max-width: 100%;
+  width: 100%;
+}
+ /*----*/
+
+/* Bloc list category */
+.metier-africa-categorie-metier-list-container {
+  padding-top: 40px;
+}
+.metier-africa-categorie-metier-step-container {
+}
+.metier-africa-categorie-metier-step-content {
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  height: auto;
+  margin: 0;
+  margin-left: -14px;
+  margin-right: -14px;
+}
+.metier-africa-categorie-metier-step-title {
+  color: #575757;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 21px;
+}
+.metier-africa-categorie-metier-step-column {
+  margin-top: 0px!important;
+  padding: 0;
+  width: 150px;
+  height: 150px;
+  margin: 14px;
+  margin-bottom: 28px;
+  background-color: #FFFFFF;
+  border: 2px solid #FFFFFF;
+}
+.metier-africa-categorie-metier-step-column:hover {
+  cursor: pointer;
+  border: 2px solid #467FC9;
+  box-shadow: 0px 3px 12px -5px #888888;
+}
+.metier-africa-categorie-metier-step-column:hover .metier-africa-categorie-metier-title-box {
+  color: #467FC9;
+}
+.metier-africa-categorie-metier-step-column:hover .metier-africa-categorie-metier-title-box {
+  color: #467FC9;
+}
+.metier-africa-categorie-metier-icon {
+  padding-top: 45px;
+}
+.uk-transition-active.uk-active .uk-transition-scale-down, .uk-transition-toggle.uk-hover .uk-transition-scale-down, .uk-transition-toggle:focus .uk-transition-scale-down, .uk-transition-toggle:hover .uk-transition-scale-down {
+  opacity: 1;
+  transform: scale3d(1,1,2)!important;
+}
+.metier-africa-categorie-metier-step-column-first {
+  padding: 0;
+  padding-left: 13px;
+  width: 150px;
+  height: 150px;
+  margin: 0.5px;
+  background-color: #FFFFFF;
+}
+.metier-africa-categorie-metier-step-column-first:hover {
+  background: #EFEFEF;
+  cursor: pointer;
+}
+.metier-africa-categorie-metier-title-box {
+  color: #000000;
+  font-size: 18px;
+  line-height: 24px;
+  padding-top: 12px;
+  font-weight: 600;
+  text-align: center;
+}
+.metier-africa-categorie-metier-all-category, .metier-africa-categorie-metier-all-category > a, .metier-africa-categorie-metier-all-category > a:hover {
+  color: #FFFFFF;
+  font-size: 16px;
+  line-height: 12px;
+  padding-top: 27px;
+  text-decoration: none;
+}
+/*----*/
+
+.metier-africa-section-promesse-subtitle {
+  height: 472px;
+  padding: 0;
+}
+.metier-africa-promesse-uk-inline {
+  width: 100%;
+  height: 472px;
+}
+.metier-africa-promesse-cover-img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.metier-africa-promesse-cover-img-overlay {
+  background-color: #000000;
+  opacity: 0;
+}
+.metier-africa-promesse-overlay-position {
+  max-width: 40%;
+  width: 100%;
+  margin-top: -13%;
+}
+.metier-africa-promesse-overlay-content {
+  width: 463px;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-bottom: 12px;
+  padding-top: 12px;
+  background-color: #F69D34;
+}
+.metier-africa-promesse-overlay-content-border-all {
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+  border: 0.5px solid #FFFFFF;
+}
+.metier-africa-promesse-overlay-content-title {
+  color: #FFFFFF;
+  padding-top: 38px;
+  font-size: 36px;
+  font-weight: 300;
+  line-height: 24px;
+}
+.metier-africa-promesse-overlay-content-desc-first {
+  color: #FFFFFF;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 22px;
+  padding-top: 15px;
+  padding-left: 22px;
+  padding-right: 22px;
+  margin: 0;
+}
+.metier-africa-promesse-overlay-content-desc-second {
+  color: #FFFFFF;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 22px;
+  padding-top: 34px;
+  padding-bottom: 34px;
+  padding-left: 22px;
+  padding-right: 22px;
+  margin: 0;
+}
+/* Button */
+.metier-africa-promesse-overlay-content-button {
+  height: 41px;
+  border: none;
+  background-color: #575757;
+  border-radius: 3px;
+  text-transform: none;
+  color: #FFFFFF;
+  font-size: 16px;
+  font-style: normal;
+  line-height: 19px;
+  font-weight: 400;
+  padding-left: 30px;
+  padding-right: 30px;
+  margin-left: 0px;
+  margin-right: 0px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: initial;
+}
+.metier-africa-promesse-overlay-content-button:hover {
+  background-color: #3a3838;
+}
+.metier-africa-promesse-overlay-content-button-container {
+  padding-bottom: 30px;
+}
+

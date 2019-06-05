@@ -11,15 +11,22 @@ import { DevisFormComponent } from './devis-form/devis-form.component';
 import {ContactComponent} from "./contact/contact.component";
 import {ProfessionelGuard} from "./professionel.guard";
 import {ProfessionelComponent} from "./professionel/professionel.component";
+import {AProposComponent} from "./a-propos/a-propos.component";
+import {AcceuilComponent} from "./acceuil/acceuil.component";
+import {InscriptionComponent} from "./inscription/inscription.component";
 const routes: Routes = [
   {path:"catalogue/:p1/:p2",component:CatalogueComponent},
   {path:"devis",component:DevisFormComponent},
+  {path:"a-propos",component:AProposComponent},
+  {path:"user",component:UsersComponent},
+  {path:"inscription",component:InscriptionComponent},
+  {path:"acceuil",component:AcceuilComponent},
   {path:"contact",component:ContactComponent},
   {path:"catalogue-details/:id",canActivate: [CatalogDetailGuard], component:CatalogueDetailComponent},
   {path:"professions",component:UsersComponent},
   {path:"professions-details/:id", canActivate: [ProfessionsDetailGuard], component: ProfessionsDetailComponent},
   {path:"professionel/:id", canActivate: [ProfessionelGuard], component: ProfessionelComponent},
-  {path:"",redirectTo:'/catalogue/1/0',pathMatch:'full'}
+  {path:"",redirectTo:'acceuil',pathMatch:'full'}
 
 ];
 
