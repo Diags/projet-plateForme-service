@@ -41,16 +41,16 @@ public class ProjetArtisantApplication implements CommandLineRunner {
         repositoryRestConfiguration.exposeIdsFor(User.class, Category.class, Adresse.class, Profession.class, Token.class);
         //  Adresse a = new Adresse(null, 12, "rue", "emeraude", 69006, "lyon");
         Random rd = new Random();
-        categoryRepository.save(new Category(null, "IMMOBILIER", RandomString.make(12), "batima", null));
-        categoryRepository.save(new Category(null, "FABRICATION", RandomString.make(12), "meunuisier1",null));
-        categoryRepository.save(new Category(null, "ALIMENTATION", RandomString.make(12), "restau", null));
-        categoryRepository.save(new Category(null, "TRANSPORT", RandomString.make(12), "tran1", null));
-        categoryRepository.save(new Category(null, "EDUCATION", RandomString.make(12), "education", null));
-        categoryRepository.save(new Category(null, "HAUTE COUTURE", RandomString.make(12), "couturier", null));
-        categoryRepository.save(new Category(null, "SANTE", RandomString.make(12), "doctor", null));
+        categoryRepository.save(new Category(null, "MACON", RandomString.make(12), "macon1", null));
+        categoryRepository.save(new Category(null, "MECANICIEN", RandomString.make(12), "meca",null));
+        categoryRepository.save(new Category(null, "PEINTRE", RandomString.make(12), "peintre1", null));
+        categoryRepository.save(new Category(null, "COIFFURE", RandomString.make(12), "coiffeur", null));
+        categoryRepository.save(new Category(null, "MEUNUISIER", RandomString.make(12), "meunuisier1", null));
+        categoryRepository.save(new Category(null, "HAUTE COUTURE", RandomString.make(12), "couturier1", null));
+        categoryRepository.save(new Category(null, "ELECTRICIEN", RandomString.make(12), "electricien", null));
         //  categoryRepository.save(new Category(null, "SERVICE", RandomString.make(12), "doctor", null));
-        categoryRepository.save(new Category(null, "AERONAUTIQUE", RandomString.make(12), "aeraunotic", null));
-        categoryRepository.save(new Category(null, "AGRICULTURE", RandomString.make(12), "agriculture", null));
+        categoryRepository.save(new Category(null, "MAINTENANIER", RandomString.make(12), "maintenancier", null));
+        categoryRepository.save(new Category(null, "PRESSING", RandomString.make(12), "presseur", null));
         categoryRepository.save(new Category(null, "AGROALIMENTAIRE", RandomString.make(12), "agroAlima", null));
         categoryRepository.save(new Category(null, "COMMUNICATION", RandomString.make(12), "comm", null));
         categoryRepository.save(new Category(null, "ASSURANCE", RandomString.make(12), "assurance", null));
@@ -336,29 +336,28 @@ public class ProjetArtisantApplication implements CommandLineRunner {
             for (int i = 0; i < 10; i++) {
                 Profession profession = new Profession();
                 switch (c.getName()) {
-                    case "IMMOBILIER":
+                    case "MACON":
                         Collections.shuffle(immobilier, new Random(3));
                         profession.setName(immobilier.get(0));
                       //  Collections.shuffle(mylist, new Random());
                         profession.setPhoto("immo");
                         profession.setDescription(RandomString.make(25));
                         break;
-                    case "TRANSPORT":
+                    case "MECANICIEN":
                         Collections.shuffle(transport, new Random(3));
                         profession.setName(transport.get(0));
                      //   Collections.shuffle(mylist, new Random());
                         profession.setPhoto("automobil");
                         profession.setDescription(RandomString.make(25));
                         break;
-
-                    case "EDUCATION":
+                    case "PEINTRE":
                         Collections.shuffle(educa, new Random(3));
                         profession.setName(educa.get(0));
                         //Collections.shuffle(educa, new Random());
                         profession.setPhoto("education");
                         profession.setDescription(RandomString.make(25));
                         break;
-                    case "ALIMENTATION":
+                    case "ELECTRICIEN":
                         Collections.shuffle(restau, new Random(3));
                         profession.setName(restau.get(0));
                      //   Collections.shuffle(restau, new Random());
@@ -372,14 +371,14 @@ public class ProjetArtisantApplication implements CommandLineRunner {
                         profession.setPhoto("peintre");
                         profession.setDescription(RandomString.make(25));
                         break;
-                    case "FABRICATION":
+                    case "MAINTENANCE":
                         Collections.shuffle(fabric, new Random(3));
                         profession.setName(fabric.get(0));
                         Collections.shuffle(fabric, new Random());
                         profession.setPhoto("meunuisier");
                         profession.setDescription(RandomString.make(25));
                         break;
-                    case "AGRICULTURE":
+                    case "Pressing":
                         Collections.shuffle(agriculture, new Random(3));
                         profession.setName(agriculture.get(0));
                         //Collections.shuffle(agriculture, new Random());

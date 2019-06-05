@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --sourcemap false --host 192.168.1.89",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",

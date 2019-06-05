@@ -6,7 +6,7 @@
   z-index: 1030;
 }
 .test1{
-display: inline-flex;
+  margin-top: 3%;
 }
 .vertical-center {
   min-height: 100%;
