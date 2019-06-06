@@ -612,8 +612,8 @@ a .active {
   margin-top: 0px!important;
   padding: 0;
   width: 150px;
-  height: 150px;
-  margin: 14px;
+  height: 160px;
+  margin: 23px;
   margin-bottom: 28px;
   background-color: #FFFFFF;
   border: 2px solid #FFFFFF;
@@ -630,7 +630,7 @@ a .active {
   color: #467FC9;
 }
 .metier-africa-categorie-metier-icon {
-  padding-top: 45px;
+  padding-top: 25px;
 }
 .uk-transition-active.uk-active .uk-transition-scale-down, .uk-transition-toggle.uk-hover .uk-transition-scale-down, .uk-transition-toggle:focus .uk-transition-scale-down, .uk-transition-toggle:hover .uk-transition-scale-down {
   opacity: 1;

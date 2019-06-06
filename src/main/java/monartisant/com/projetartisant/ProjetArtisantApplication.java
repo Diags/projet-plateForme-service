@@ -42,27 +42,27 @@ public class ProjetArtisantApplication implements CommandLineRunner {
         //  Adresse a = new Adresse(null, 12, "rue", "emeraude", 69006, "lyon");
         Random rd = new Random();
         categoryRepository.save(new Category(null, "MACON", RandomString.make(12), "macon1", null));
-        categoryRepository.save(new Category(null, "MECANICIEN", RandomString.make(12), "meca",null));
+        categoryRepository.save(new Category(null, "MECANICIEN", RandomString.make(12), "conducteuTraveau",null));
         categoryRepository.save(new Category(null, "PEINTRE", RandomString.make(12), "peintre1", null));
         categoryRepository.save(new Category(null, "COIFFURE", RandomString.make(12), "coiffeur", null));
-        categoryRepository.save(new Category(null, "MEUNUISIER", RandomString.make(12), "meunuisier1", null));
+        categoryRepository.save(new Category(null, "MEUNUISIER", RandomString.make(12), "menuisier1", null));
         categoryRepository.save(new Category(null, "HAUTE COUTURE", RandomString.make(12), "couturier1", null));
         categoryRepository.save(new Category(null, "ELECTRICIEN", RandomString.make(12), "electricien", null));
         //  categoryRepository.save(new Category(null, "SERVICE", RandomString.make(12), "doctor", null));
         categoryRepository.save(new Category(null, "MAINTENANIER", RandomString.make(12), "maintenancier", null));
         categoryRepository.save(new Category(null, "PRESSING", RandomString.make(12), "presseur", null));
-        categoryRepository.save(new Category(null, "AGROALIMENTAIRE", RandomString.make(12), "agroAlima", null));
-        categoryRepository.save(new Category(null, "COMMUNICATION", RandomString.make(12), "comm", null));
-        categoryRepository.save(new Category(null, "ASSURANCE", RandomString.make(12), "assurance", null));
-        categoryRepository.save(new Category(null, "ART", RandomString.make(12), "Art", null));
-      //  categoryRepository.save(new Category(null, "AUDIOVISUEL", RandomString.make(12), "cinema", null));
-        categoryRepository.save(new Category(null, "AUTOMOBIL", RandomString.make(12), "automobil", null));
-     //   categoryRepository.save(new Category(null, "BANQUE-FINANCE", RandomString.make(12), "finance", null));
-        // categoryRepository.save(new Category(null, "ESTHETIQUE", RandomString.make(12), "never", null));
-        categoryRepository.save(new Category(null, "SOCIAL", RandomString.make(12), "social", null));
-        categoryRepository.save(new Category(null, "SPORT", RandomString.make(12), "sport", null));
-        categoryRepository.save(new Category(null, "EVENEMENTIEL", RandomString.make(12), "doctor", null));
-      //  categoryRepository.save(new Category(null, "CULTURE", RandomString.make(12), "peintre", null));
+//        categoryRepository.save(new Category(null, "AGROALIMENTAIRE", RandomString.make(12), "agroAlima", null));
+//        categoryRepository.save(new Category(null, "COMMUNICATION", RandomString.make(12), "comm", null));
+//        categoryRepository.save(new Category(null, "ASSURANCE", RandomString.make(12), "assurance", null));
+//        categoryRepository.save(new Category(null, "ART", RandomString.make(12), "Art", null));
+//      //  categoryRepository.save(new Category(null, "AUDIOVISUEL", RandomString.make(12), "cinema", null));
+//        categoryRepository.save(new Category(null, "AUTOMOBIL", RandomString.make(12), "automobil", null));
+//     //   categoryRepository.save(new Category(null, "BANQUE-FINANCE", RandomString.make(12), "finance", null));
+//        // categoryRepository.save(new Category(null, "ESTHETIQUE", RandomString.make(12), "never", null));
+//        categoryRepository.save(new Category(null, "SOCIAL", RandomString.make(12), "social", null));
+//        categoryRepository.save(new Category(null, "SPORT", RandomString.make(12), "sport", null));
+//        categoryRepository.save(new Category(null, "EVENEMENTIEL", RandomString.make(12), "doctor", null));
+//      //  categoryRepository.save(new Category(null, "CULTURE", RandomString.make(12), "peintre", null));
 
         ArrayList<String> mylist = new ArrayList<String>();
         mylist.add("barack");
@@ -385,55 +385,55 @@ public class ProjetArtisantApplication implements CommandLineRunner {
                         profession.setPhoto("agriculture");
                         profession.setDescription(RandomString.make(25));
                         break;
-                    case "ASSURANCE":
-                        Collections.shuffle(assurance, new Random(3));
-                        profession.setName(assurance.get(0));
-                     //   Collections.shuffle(mylist, new Random());
-                        profession.setPhoto("assurance");
-                        profession.setDescription(RandomString.make(25));
-                        break;
-                    case "AERONAUTIQUE":
-                        Collections.shuffle(aeronautique, new Random(3));
-                        profession.setName(aeronautique.get(0));
-                       // Collections.shuffle(mylist, new Random());
-                        profession.setPhoto("aeraunotic");
-                        profession.setDescription(RandomString.make(25));
-                        break;
-                    case "AUTOMOBIL":
-                        Collections.shuffle(automobile, new Random(3));
-                        profession.setName(automobile.get(0));
-                       // Collections.shuffle(mylist, new Random());
-                        profession.setPhoto("automobil");
-                        profession.setDescription(RandomString.make(25));
-                        break;
-                    case "ART":
-                        Collections.shuffle(professions, new Random(3));
-                        profession.setName(professions.get(0));
-                       // Collections.shuffle(mylist, new Random());
-                        profession.setPhoto("Art");
-                        profession.setDescription(RandomString.make(25));
-                        break;
-                    case "SANTE":
-                        Collections.shuffle(professions, new Random(3));
-                        profession.setName(professions.get(0));
-                        //Collections.shuffle(mylist, new Random());
-                        profession.setPhoto("evenema");
-                        profession.setDescription(RandomString.make(25));
-                        break;
-                    case "AGROALIMENTAIRE":
-                        Collections.shuffle(agroalimentaire, new Random(3));
-                        profession.setName(agroalimentaire.get(0));
-                      //  Collections.shuffle(mylist, new Random());
-                        profession.setPhoto("agroAlima");
-                        profession.setDescription(RandomString.make(25));
-                        break;
-                    case "COMMUNICATION":
-                        Collections.shuffle(comm, new Random(3));
-                        profession.setName(comm.get(0));
-                     //   Collections.shuffle(mylist, new Random());
-                        profession.setPhoto("comm");
-                        profession.setDescription(RandomString.make(25));
-                        break;
+//                    case "ASSURANCE":
+//                        Collections.shuffle(assurance, new Random(3));
+//                        profession.setName(assurance.get(0));
+//                     //   Collections.shuffle(mylist, new Random());
+//                        profession.setPhoto("assurance");
+//                        profession.setDescription(RandomString.make(25));
+//                        break;
+//                    case "AERONAUTIQUE":
+//                        Collections.shuffle(aeronautique, new Random(3));
+//                        profession.setName(aeronautique.get(0));
+//                       // Collections.shuffle(mylist, new Random());
+//                        profession.setPhoto("aeraunotic");
+//                        profession.setDescription(RandomString.make(25));
+//                        break;
+//                    case "AUTOMOBIL":
+//                        Collections.shuffle(automobile, new Random(3));
+//                        profession.setName(automobile.get(0));
+//                       // Collections.shuffle(mylist, new Random());
+//                        profession.setPhoto("automobil");
+//                        profession.setDescription(RandomString.make(25));
+//                        break;
+//                    case "ART":
+//                        Collections.shuffle(professions, new Random(3));
+//                        profession.setName(professions.get(0));
+//                       // Collections.shuffle(mylist, new Random());
+//                        profession.setPhoto("Art");
+//                        profession.setDescription(RandomString.make(25));
+//                        break;
+//                    case "SANTE":
+//                        Collections.shuffle(professions, new Random(3));
+//                        profession.setName(professions.get(0));
+//                        //Collections.shuffle(mylist, new Random());
+//                        profession.setPhoto("evenema");
+//                        profession.setDescription(RandomString.make(25));
+//                        break;
+//                    case "AGROALIMENTAIRE":
+//                        Collections.shuffle(agroalimentaire, new Random(3));
+//                        profession.setName(agroalimentaire.get(0));
+//                      //  Collections.shuffle(mylist, new Random());
+//                        profession.setPhoto("agroAlima");
+//                        profession.setDescription(RandomString.make(25));
+//                        break;
+//                    case "COMMUNICATION":
+//                        Collections.shuffle(comm, new Random(3));
+//                        profession.setName(comm.get(0));
+//                     //   Collections.shuffle(mylist, new Random());
+//                        profession.setPhoto("comm");
+//                        profession.setDescription(RandomString.make(25));
+//                        break;
 //                    case "ESTHETIQUE":
 //                        Collections.shuffle(esthetique, new Random(3));
 //                        profession.setName(esthetique.get(0));
@@ -448,20 +448,20 @@ public class ProjetArtisantApplication implements CommandLineRunner {
 //                        profession.setPhoto("evenema");
 //                        profession.setDescription(RandomString.make(25));
 //                        break;
-                    case "SOCIAL":
-                        Collections.shuffle(social, new Random(3));
-                        profession.setName(social.get(0));
-                     //   Collections.shuffle(social, new Random());
-                        profession.setPhoto("social");
-                        profession.setDescription(RandomString.make(25));
-                        break;
-                    case "SPORT":
-                        Collections.shuffle(sport, new Random(3));
-                        profession.setName(sport.get(0));
-                      //  Collections.shuffle(sport, new Random());
-                        profession.setPhoto("sport");
-                        profession.setDescription(RandomString.make(25));
-                        break;
+//                    case "SOCIAL":
+//                        Collections.shuffle(social, new Random(3));
+//                        profession.setName(social.get(0));
+//                     //   Collections.shuffle(social, new Random());
+//                        profession.setPhoto("social");
+//                        profession.setDescription(RandomString.make(25));
+//                        break;
+//                    case "SPORT":
+//                        Collections.shuffle(sport, new Random(3));
+//                        profession.setName(sport.get(0));
+//                      //  Collections.shuffle(sport, new Random());
+//                        profession.setPhoto("sport");
+//                        profession.setDescription(RandomString.make(25));
+//                        break;
 
                     default:
                 }
