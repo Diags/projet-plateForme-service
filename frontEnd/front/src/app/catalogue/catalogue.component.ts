@@ -39,6 +39,7 @@ if(val instanceof NavigationEnd){
      if(p1 == 1){
          this.getcatalogue("/categories");
      }
+     this.catelogService.curenteSearchUsers=[];
    }
 
  getcatalogue(url){
@@ -53,4 +54,11 @@ if(val instanceof NavigationEnd){
    this.currenteCategorie = c;
 this.route.navigateByUrl('/catalogue/2/'+c.id);
  }
+  getUsersByAdresse(dataForm){
+    console.log("formData ++++==>  ",dataForm);
+    this.catelogService.Search(dataForm).subscribe(data => {
+      this.catelogService.curenteSearchUsers=data;
+      this.route.navigateByUrl("/professions-details/"+0);
+    })
+  }
 }

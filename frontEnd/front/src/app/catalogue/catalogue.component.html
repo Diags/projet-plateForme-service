@@ -1,27 +1,67 @@
-<div class="col-sm-2 sidenav menuPanel"  *ngIf="categories">
-    <ul class="list-group"    *ngFor="let c of categories._embedded.categories">
-      <li class="list-group-item clikable " [routerLink]="['/catalogue-details/',c.id]">{{c.name}}</li>
-    </ul>
-  </div>
-    <div class=" col-md-8  cataloguePanel" *ngIf="categories">
-      <div  *ngFor="let c of categories._embedded.categories">
-          <div class="col-md-4">
-        <div class="panel panel-default clikable"   [routerLink]="['/catalogue-details/',c.id]">
-          <div class="panel-heading">
-            <img class="card" alt="Cinque Terre" height="195px" style="width:100%" src="{{this.catelogService.host+'/photocategory/'+c.id}}" />
+<!--<div class="col-sm-2 sidenav menuPanel"  *ngIf="categories">-->
+    <!--<ul class="list-group"    *ngFor="let c of categories._embedded.categories">-->
+      <!--<li class="list-group-item clikable " [routerLink]="['/catalogue-details/',c.id]">{{c.name}}</li>-->
+    <!--</ul>-->
+  <!--</div>-->
+<div class="bg-img test1">
+</div>
+
+<div class="container">
+  <h1>Trouver un artisan</h1>
+  <form class="form-inline"  #f="ngForm" (ngSubmit)="getUsersByAdresse(f.value)" role="form" novalidate>
+    <div class="col-md-4 col-sm-6 col-xs-12 form-group has-feedback has-error has-danger">
+      <i class="fa fa-search" aria-hidden="true"></i>
+      <input id="form-projet-type"ngModel name="prossionName" class="fullWidth form-control" type="text" placeholder="Ex: Plomberie, Fuite, Cuisine ..." autocomplete="off" required="" value="">
+    </div>
+    <div class="col-md-4 col-sm-6 col-xs-12 form-group has-feedback has-error has-danger">
+      <input id ="form-cp" ngModel type="text"placeholder="Ville, Quartier,..." class="fullWidth form-control" autocomplete="off" pattern="[0-9]{5}" name="ville" required="" value="">
+    </div>
+    <button type="submit" id="form-artisan-submit" class="btn btn-default">Submit</button>
+  </form>
+</div>
+<hr style="background-color: #F7621E"/>
+    <!--<div class=" col-md-8  cataloguePanel" *ngIf="categories">-->
+      <!--<div  *ngFor="let c of categories._embedded.categories">-->
+          <!--<div class="col-md-4">-->
+        <!--<div class="panel panel-default clikable"   [routerLink]="['/catalogue-details/',c.id]">-->
+          <!--<div class="panel-heading">-->
+            <!--<img class="card" alt="Cinque Terre" height="195px" style="width:100%" src="{{this.catelogService.host+'/photocategory/'+c.id}}" />-->
+            <!--<div class="overlay">My Name is John</div>-->
+          <!--</div>-->
+          <!--<div class="panel-body">-->
+            <!--&lt;!&ndash;header &ndash;&gt;-->
+            <!--<table>-->
+                <!--<tr>-->
+                  <!--<td><Strong>{{c.name}}</Strong></td>-->
+                <!--</tr>-->
+                <!--<tr>-->
+                  <!--<td>{{c.description}}</td>-->
+                <!--</tr>-->
+            <!--</table>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+<div class="uk-text-center metier-africa-categorie-metier-container " ngShow ="curenteSearchUsers ==null">
+  <div class="uk-flex uk-flex-center">
+    <div class="metier-africa-categorie-metier-list-container-flex-center"  *ngIf="categories"><h1
+      id="metier-africa-proposition-value-container-ancre" class="uk-text-left metier-africa-categorie-metier-title">
+      Recherche par catégorie :
+    </h1>
+      <div class="metier-africa-categorie-metier-list-container container ">
+        <div class="metier-africa-categorie-metier-step-content uk-grid"    *ngFor="let c of categories._embedded.categories">
+          <div tabindex="0" class="metier-africa-categorie-metier-step-column uk-transition-toggle"
+               visibleathome="true" country="bj" active="true"
+               style="opacity: 1; height: 150px;" [routerLink]="['/catalogue-details/',c.id]"><img src="{{this.catelogService.host+'/photocategory/'+c.id}}"
+                                                                                                   alt="metier-artisan"
+                                                                                                   class="metier-africa-categorie-metier-icon uk-transition-scale-down uk-transition-opaque">
+            <div class="metier-africa-categorie-metier-title-box">
+              {{c.name}}
+            </div>
           </div>
-          <div class="panel-body">
-            <!--header -->
-            <table>
-                <tr>
-                  <td><Strong>{{c.name}}</Strong></td>
-                </tr>
-                <tr>
-                  <td>{{c.description}}</td>
-                </tr>
-            </table>
-          </div>
-        </div>
         </div>
       </div>
     </div>
+  </div>
+</div>

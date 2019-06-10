@@ -25,7 +25,6 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-4 col-sm-4 col-xs-12">
-
           <form #f="ngForm" (ngSubmit)="getcatalogueByAdresse(f.value)" role="form" novalidate>
             <div class="metier-africa-subheader-overlay-content-title-second">À la recherche d’un artisan&nbsp;?</div>
             <div class="metier-africa-subheader-overlay-content-title-first">Trouvez un artisan près de chez vous, pour
@@ -48,7 +47,7 @@
                                                                                                      stroke="#000"
                                                                                                      stroke-width="1.1"
                                                                                                      d="M14,14 L18,18 L14,14 Z"></path></svg></span>
-                      Rechercher</label> <input
+                      Rechercher</label> <input ngModel name="professionName"
                     id="ma-page-search-category" placeholder="maçon, peintre, plombier..."
                     class="uk-input metier-africa-search-landing-page-input-page-body-search-from-input metier-africa-search-landing-page-input-page-body-search-from-input-mobile">
                   </div>
@@ -71,7 +70,7 @@
                 d="M10,0.5 C6.41,0.5 3.5,3.39 3.5,6.98 C3.5,11.83 10,19 10,19 C10,19 16.5,11.83 16.5,6.98 C16.5,3.39 13.59,0.5 10,0.5 L10,0.5 Z"></path> <circle
                 fill="none" stroke="#000" cx="10" cy="6.8" r="2.3"></circle></svg></span> À
                       proximité de</label>
-                    <input id="ma-page-search-location" placeholder="ville, quartier..."
+                    <input id="ma-page-search-location"  name="ville" ngModel placeholder="ville, quartier..."
                            class="uk-input metier-africa-search-landing-page-input-page-body-search-from-input metier-africa-search-landing-page-input-page-body-search-from-input-mobile">
                   </div>
                 </div>
@@ -85,9 +84,8 @@
       </div>
     </div>
   </div>
-
 </div>
-<div class="uk-text-center metier-africa-categorie-metier-container ">
+<div class="uk-text-center metier-africa-categorie-metier-container " ngShow ="curenteSearchUsers ==null">
   <div class="uk-flex uk-flex-center">
     <div class="metier-africa-categorie-metier-list-container-flex-center"  *ngIf="categories"><h1
       id="metier-africa-proposition-value-container-ancre" class="uk-text-left metier-africa-categorie-metier-title">
@@ -104,152 +102,12 @@
               {{c.name}}
             </div>
           </div>
-          <!--<div tabindex="0" class="metier-africa-categorie-metier-step-column uk-transition-toggle"-->
-               <!--_id="5a5c5ea6254f0c00148f0426" __v="0" visibleathome="true" country="bj" active="true"-->
-               <!--style="opacity: 1; height: 150px;"><img-->
-            <!--src="assets/img/catalogue/meca.png"-->
-            <!--alt="metier-artisan"-->
-            <!--class="metier-africa-categorie-metier-icon uk-transition-scale-down uk-transition-opaque">-->
-            <!--<div class="metier-africa-categorie-metier-title-box">-->
-              <!--Mécanicien-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div tabindex="0" class="metier-africa-categorie-metier-step-column uk-transition-toggle"-->
-               <!--_id="5a5c5ec1254f0c00148f0427" __v="0" visibleathome="true" country="bj" active="true"-->
-               <!--style="opacity: 1; height: 150px;"><img-->
-            <!--src="assets/img/catalogue/couturier1.png"-->
-            <!--alt="metier-artisan"-->
-            <!--class="metier-africa-categorie-metier-icon uk-transition-scale-down uk-transition-opaque">-->
-            <!--<div class="metier-africa-categorie-metier-title-box">-->
-              <!--Couturier-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div tabindex="0" class="metier-africa-categorie-metier-step-column uk-transition-toggle"-->
-               <!--_id="5a5c5ed7254f0c00148f0428" __v="0" visibleathome="true" country="bj" active="true"-->
-               <!--style="opacity: 1; height: 150px;"><img-->
-            <!--src="assets/img/catalogue/coiffeur.png"-->
-            <!--alt="metier-artisan"-->
-            <!--class="metier-africa-categorie-metier-icon uk-transition-scale-down uk-transition-opaque">-->
-            <!--<div class="metier-africa-categorie-metier-title-box">-->
-              <!--Coiffeur-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div tabindex="0" class="metier-africa-categorie-metier-step-column uk-transition-toggle"-->
-               <!--_id="5a67231dea5fad001437005b" visibleathome="true" __v="0" country="bj" active="true"-->
-               <!--style="opacity: 1; height: 150px;"><img-->
-            <!--src="assets/img/catalogue/meunuisier1.png"-->
-            <!--alt="metier-artisan"-->
-            <!--class="metier-africa-categorie-metier-icon uk-transition-scale-down uk-transition-opaque">-->
-            <!--<div class="metier-africa-categorie-metier-title-box">-->
-              <!--Menuisier-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div tabindex="0" class="metier-africa-categorie-metier-step-column uk-transition-toggle"-->
-               <!--_id="5a672c96ea5fad0014370063" visibleathome="true" __v="0" country="bj" active="true"-->
-               <!--style="opacity: 1; height: 150px;"><img-->
-            <!--src="assets/img/catalogue/peintre1.png"-->
-            <!--alt="metier-artisan"-->
-            <!--class="metier-africa-categorie-metier-icon uk-transition-scale-down uk-transition-opaque">-->
-            <!--<div class="metier-africa-categorie-metier-title-box">-->
-              <!--Peintre-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div tabindex="0" class="metier-africa-categorie-metier-step-column uk-transition-toggle"-->
-               <!--_id="5a672c96ea5fad0014370063" visibleathome="true" __v="0" country="bj" active="true"-->
-               <!--style="opacity: 1; height: 150px;"><img-->
-            <!--src="assets/img/catalogue/electricien.png"-->
-            <!--alt="metier-artisan"-->
-            <!--class="metier-africa-categorie-metier-icon uk-transition-scale-down uk-transition-opaque">-->
-            <!--<div class="metier-africa-categorie-metier-title-box">-->
-              <!--Electricien-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div tabindex="0" class="metier-africa-categorie-metier-step-column uk-transition-toggle"-->
-               <!--_id="5a672c96ea5fad0014370063" visibleathome="true" __v="0" country="bj" active="true"-->
-               <!--style="opacity: 1; height: 150px;"><img-->
-            <!--src="assets/img/catalogue/maintenancier.png"-->
-            <!--alt="metier-artisan"-->
-            <!--class="metier-africa-categorie-metier-icon uk-transition-scale-down uk-transition-opaque">-->
-            <!--<div class="metier-africa-categorie-metier-title-box">-->
-              <!--Mainenancier-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div tabindex="0" class="metier-africa-categorie-metier-step-column uk-transition-toggle"-->
-               <!--_id="5a672c96ea5fad0014370063" visibleathome="true" __v="0" country="bj" active="true"-->
-               <!--style="opacity: 1; height: 150px;"><img-->
-            <!--src="assets/img/catalogue/presseur.png"-->
-            <!--alt="metier-artisan"-->
-            <!--class="metier-africa-categorie-metier-icon uk-transition-scale-down uk-transition-opaque">-->
-            <!--<div class="metier-africa-categorie-metier-title-box">-->
-              <!--Pressing-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div tabindex="0" class="metier-africa-categorie-metier-step-column uk-transition-toggle"-->
-               <!--_id="5a672c96ea5fad0014370063" visibleathome="true" __v="0" country="bj" active="true"-->
-               <!--style="opacity: 1; height: 150px;"><img-->
-            <!--src="assets/img/catalogue/soudeur.png"-->
-            <!--alt="metier-artisan"-->
-            <!--class="metier-africa-categorie-metier-icon uk-transition-scale-down uk-transition-opaque">-->
-            <!--<div class="metier-africa-categorie-metier-title-box">-->
-              <!--Peintre-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div tabindex="0" class="metier-africa-categorie-metier-step-column uk-transition-toggle"-->
-               <!--_id="5a672c96ea5fad0014370063" visibleathome="true" __v="0" country="bj" active="true"-->
-               <!--style="opacity: 1; height: 150px;"><img-->
-            <!--src="assets/img/catalogue/vulganiseur.png"-->
-            <!--alt="metier-artisan"-->
-            <!--class="metier-africa-categorie-metier-icon uk-transition-scale-down uk-transition-opaque">-->
-            <!--<div class="metier-africa-categorie-metier-title-box">-->
-              <!--Peintre-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div tabindex="0" class="metier-africa-categorie-metier-step-column uk-transition-toggle"-->
-               <!--_id="5a672c96ea5fad0014370063" visibleathome="true" __v="0" country="bj" active="true"-->
-               <!--style="opacity: 1; height: 150px;"><img-->
-            <!--src="assets/img/catalogue/vulganiseur.png"-->
-            <!--alt="metier-artisan"-->
-            <!--class="metier-africa-categorie-metier-icon uk-transition-scale-down uk-transition-opaque">-->
-            <!--<div class="metier-africa-categorie-metier-title-box">-->
-              <!--Peintre-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div tabindex="0" class="metier-africa-categorie-metier-step-column uk-transition-toggle"-->
-               <!--_id="5a672c96ea5fad0014370063" visibleathome="true" __v="0" country="bj" active="true"-->
-               <!--style="opacity: 1; height: 150px;"><img-->
-            <!--src="assets/img/catalogue/vulganiseur.png"-->
-            <!--alt="metier-artisan"-->
-            <!--class="metier-africa-categorie-metier-icon uk-transition-scale-down uk-transition-opaque">-->
-            <!--<div class="metier-africa-categorie-metier-title-box">-->
-              <!--Peintre-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div tabindex="0" class="metier-africa-categorie-metier-step-column uk-transition-toggle"-->
-               <!--_id="5a672c96ea5fad0014370063" visibleathome="true" __v="0" country="bj" active="true"-->
-               <!--style="opacity: 1; height: 150px;"><img-->
-            <!--src="assets/img/catalogue/vulganiseur.png"-->
-            <!--alt="metier-artisan"-->
-            <!--class="metier-africa-categorie-metier-icon uk-transition-scale-down uk-transition-opaque">-->
-            <!--<div class="metier-africa-categorie-metier-title-box">-->
-              <!--Peintre-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div tabindex="0" class="metier-africa-categorie-metier-step-column uk-transition-toggle"-->
-               <!--_id="5a672c96ea5fad0014370063" visibleathome="true" __v="0" country="bj" active="true"-->
-               <!--style="opacity: 1; height: 150px;"><img-->
-            <!--src="assets/img/catalogue/vulganiseur.png"-->
-            <!--alt="metier-artisan"-->
-            <!--class="metier-africa-categorie-metier-icon uk-transition-scale-down uk-transition-opaque">-->
-            <!--<div class="metier-africa-categorie-metier-title-box">-->
-              <!--FABRICATION-->
-            <!--</div>-->
-          <!--</div>-->
         </div>
       </div>
     </div>
   </div>
 </div>
-<div class="uk-container-large metier-africa-container-large">
+<div class="uk-container-large metier-africa-container-large" ngShow ="curenteSearchUsers ==null">
   <div class="uk-section metier-africa-section-promesse-subtitle">
     <div class="uk-inline-clip metier-africa-promesse-uk-inline">
       <img src="assets/img/catalogue/promesse.jpg"
@@ -280,4 +138,6 @@
     </div>
   </div>
 </div>
-
+<div *ngIf="curenteSearchUsers">
+  <div    *ngFor="let c of curenteSearchUsers" >{{c.nom}}</div>
+</div>

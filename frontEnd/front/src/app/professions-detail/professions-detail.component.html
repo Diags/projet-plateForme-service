@@ -1,4 +1,7 @@
+<div class="bg-img test1">
+</div>
 <div class="row usersPanel">
+
   <div class="container " *ngIf="users">
 <div *ngFor="let user of users._embedded.users">
     <div class="col-md-3">
@@ -47,5 +50,56 @@
       </div>
     </div>
 </div>
+  </div>
+
+  <div class="container " *ngIf="usersSearch">
+    <h1>Il y a {{usersSearch.length}} trouvés</h1>
+    <div *ngFor="let user of usersSearch">
+      <div class="col-md-3">
+        <div class="panel panel-default" >
+          <div class="panel-heading" [routerLink]="['/professionel/', user.id]" >
+            <img class="card" alt="Cinque Terre" height="195px" style="width:100%" src="{{this.catalogueService.host+'/photouser/'
+        +user.id}}" />
+          </div>
+          <div class="panel-body">
+            <table>
+              <tr>
+                <td>
+                  <strong>  {{user.nom}}  </strong>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  {{user.prenom}}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <i> Numéroi de Siret:    </i>  {{user.numeroSiret}}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  {{user.recommanderBy}}
+                </td>
+              </tr>
+            </table>
+          </div>
+
+          <div class="panel-footer">
+            <button class="button" (click)="toggleTel(user)">
+              Contact<i *ngIf="iscontactChecked && currentUser===user">:
+              {{user.tele}}</i>
+            </button>
+
+            <div class="rating-inline">
+              <h4>Average user rating</h4>
+              <h2 class="bold padding-bottom-7">{{this.message == null ?  user.note :this.message }}<small>/ 5</small></h2>
+              <app-stars></app-stars>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

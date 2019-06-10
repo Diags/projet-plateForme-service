@@ -13,10 +13,13 @@ export class ProfessionsDetailGuard  implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     let id = +next.url[1].path;
-    if(isNaN(id) || id <1){
+    if(isNaN(id) || id <0){
       this.router.navigateByUrl("/professions");
       alert("nop !! this is id is not ok ");
       return false;
+    }
+    if(id ==0){
+      return true
     }
     return true;
   }

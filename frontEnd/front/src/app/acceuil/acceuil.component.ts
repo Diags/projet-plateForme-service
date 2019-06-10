@@ -12,9 +12,9 @@ export class AcceuilComponent implements OnInit {
   constructor(private catelogService:CatalogueService, private  routeActive: ActivatedRoute, private route: Router) { }
   categories;
   currenteCategorie;
-
+  curenteSearchUsers;
   ngOnInit(): void {
-
+    this.catelogService.curenteSearchUsers=[];
           this.getcatalogue("/categories");
   }
 
@@ -24,6 +24,17 @@ export class AcceuilComponent implements OnInit {
       console.log("catlogue hommm",data);
     }, err=> {
       console.log(err);
+    })
+  }
+
+  getcatalogueByAdresse(dataForm: any) {
+    console.log("formData==>  ",dataForm);
+    this.catelogService.Search(dataForm).subscribe(data => {
+      this.catelogService.curenteSearchUsers=data;
+      console.log("id**>  " , data[0].profession.id);
+      let id = data[0].profession.id;
+
+       this.route.navigateByUrl("/professions-details/"+0);
     })
   }
   getUsersBycategories(c){

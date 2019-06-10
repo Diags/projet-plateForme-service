@@ -26,6 +26,7 @@ public class UserController {
     private EmailHtmlSender emailHtmlSender;
     @Autowired
     private Service service;
+
     @ApiOperation(value = "retreive user image from id")
     @GetMapping(path = "photouser/{id}", produces = MediaType.IMAGE_PNG_VALUE)
     public byte[] getUserPhoto(@PathVariable("id") Long id) throws Exception {
@@ -50,10 +51,11 @@ public class UserController {
         return userRepository.findById(param.getId()).get();
     }
 
+    @Transactional
     @ApiOperation(value = "search user by params")
     @PostMapping("search")
     public List<User> search(@RequestBody SearchParam param) {
-        return userRepository.findByProfession_NameContainingAndAdresse_VilleContaining(
+        return userRepository.getUsers(
                 param.getProfessionName(), param.getVille());
 
     }

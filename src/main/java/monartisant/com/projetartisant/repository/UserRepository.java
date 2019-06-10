@@ -16,7 +16,8 @@ public interface UserRepository extends JpaRepository<User,Long> {
 
     @Query("update  User u   set u.note = note  where  u.id =id")
    User updateNote( Double note,  Long id) ;
-    List<User> findByProfession_NameContainingAndAdresse_VilleContaining(String professionName, String ville);
+    @Query("select u from User u  where  u.profession.name =:name and u.adresse.ville =:ville")
+    List<User> getUsers(@Param("name") String name, @Param("ville") String ville);
    // List<User> findByprofession_nameContainsAndAdresse_villeContainsAndProfession_Category_name(String professionName, String ville, String categoryName);
 
 }

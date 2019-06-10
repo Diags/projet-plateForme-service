@@ -11,6 +11,8 @@ export class ProfessionsDetailComponent implements OnInit {
    message: number;
    currentUser;
   private iscontactChecked= false;
+  usersSearch;
+
   constructor( private catalogueService: CatalogueService, private routerActivated: ActivatedRoute, private router : Router) {
    // this.router.params.subscribe(params => this.artisantDetail = params.id)
   //   console.log(this.router.snapshot.paramMap.get('id'))
@@ -18,12 +20,18 @@ export class ProfessionsDetailComponent implements OnInit {
 
   ngOnInit() {
     let id = +this.routerActivated.snapshot.paramMap.get('id');
-    this.catalogueService.getProfessionelUserById(id).subscribe(resp => {
-      console.log(resp);
-      this.users = resp;
-    }, error =>{
-      console.log(error);
-    })
+    if(id==0){
+      this.usersSearch = this.catalogueService.curenteSearchUsers;
+      console.log("usersss *******> ",this.catalogueService.curenteSearchUsers)
+    }else {
+      this.catalogueService.getProfessionelUserById(id).subscribe(resp => {
+          console.log(resp);
+          this.users = resp;
+        }
+        , error => {
+          console.log(error);
+        })
+    }
   }
 
   getDevis(){

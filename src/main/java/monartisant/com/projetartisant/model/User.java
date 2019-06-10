@@ -1,6 +1,7 @@
 package monartisant.com.projetartisant.model;
 
 
+import com.fasterxml.jackson.annotation.*;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,6 +9,9 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 @Entity
 @Data
 @AllArgsConstructor
@@ -34,11 +38,12 @@ public class User {
     private String photoName;
     @ApiModelProperty(notes = "is user recommended")
     private String recommanderBy;
-    @ManyToOne
     @ApiModelProperty(notes = "the user profession")
+    @JsonManagedReference
+    @ManyToOne
     private Profession profession;
     @ApiModelProperty(notes = "the user rating")
-    private Double  note ;
+    private Double note;
     @ApiModelProperty(notes = "the user phone number")
     private Integer tele;
 }

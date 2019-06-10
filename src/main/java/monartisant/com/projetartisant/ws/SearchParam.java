@@ -10,6 +10,4 @@ import org.springframework.stereotype.Component;
 public class SearchParam {
 private String professionName;
 private String ville;
-private String categoryName;
-
 }
