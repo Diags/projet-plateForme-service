@@ -41,9 +41,9 @@ public class ProjetArtisantApplication implements CommandLineRunner {
         repositoryRestConfiguration.exposeIdsFor(User.class, Category.class, Adresse.class, Profession.class, Token.class);
         //  Adresse a = new Adresse(null, 12, "rue", "emeraude", 69006, "lyon");
         Random rd = new Random();
-        categoryRepository.save(new Category(null, "MACON", RandomString.make(12), "macon1", null));
-        categoryRepository.save(new Category(null, "MECANICIEN", RandomString.make(12), "conducteuTraveau",null));
-        categoryRepository.save(new Category(null, "PEINTRE", RandomString.make(12), "peintre1", null));
+        categoryRepository.save(new Category(null, "BATIMENT", RandomString.make(12), "macon1", null));
+        categoryRepository.save(new Category(null, "FABRICATION", RandomString.make(12), "conducteuTraveau",null));
+        categoryRepository.save(new Category(null, "ARTISTE-PEINTRE", RandomString.make(12), "peintre1", null));
         categoryRepository.save(new Category(null, "COIFFURE", RandomString.make(12), "coiffeur", null));
         categoryRepository.save(new Category(null, "MEUNUISIER", RandomString.make(12), "menuisier1", null));
         categoryRepository.save(new Category(null, "HAUTE COUTURE", RandomString.make(12), "couturier1", null));
@@ -336,53 +336,53 @@ public class ProjetArtisantApplication implements CommandLineRunner {
             for (int i = 0; i < 10; i++) {
                 Profession profession = new Profession();
                 switch (c.getName()) {
-                    case "MACON":
+                    case "BATIMENT":
                         Collections.shuffle(immobilier, new Random(3));
                         profession.setName(immobilier.get(0));
                       //  Collections.shuffle(mylist, new Random());
                         profession.setPhoto("immo");
                         profession.setDescription(RandomString.make(25));
                         break;
-                    case "MECANICIEN":
+                    case "FABRICATION":
                         Collections.shuffle(transport, new Random(3));
                         profession.setName(transport.get(0));
                      //   Collections.shuffle(mylist, new Random());
-                        profession.setPhoto("automobil");
+                        profession.setPhoto("menuisierie");
                         profession.setDescription(RandomString.make(25));
                         break;
-                    case "PEINTRE":
+                    case "ARTISTE-PEINTRE":
                         Collections.shuffle(educa, new Random(3));
                         profession.setName(educa.get(0));
                         //Collections.shuffle(educa, new Random());
-                        profession.setPhoto("education");
+                        profession.setPhoto("peintreOk");
                         profession.setDescription(RandomString.make(25));
                         break;
                     case "ELECTRICIEN":
                         Collections.shuffle(restau, new Random(3));
                         profession.setName(restau.get(0));
                      //   Collections.shuffle(restau, new Random());
-                        profession.setPhoto("restau");
+                        profession.setPhoto("electrician");
                         profession.setDescription(RandomString.make(25));
                         break;
                     case "HAUTE COUTURE":
                         Collections.shuffle(esthetique, new Random(3));
                         profession.setName(esthetique.get(0));
                       //  Collections.shuffle(mylist, new Random());
-                        profession.setPhoto("peintre");
+                        profession.setPhoto("couture");
                         profession.setDescription(RandomString.make(25));
                         break;
                     case "MAINTENANCE":
                         Collections.shuffle(fabric, new Random(3));
                         profession.setName(fabric.get(0));
                         Collections.shuffle(fabric, new Random());
-                        profession.setPhoto("meunuisier");
+                        profession.setPhoto("menuisierie");
                         profession.setDescription(RandomString.make(25));
                         break;
                     case "Pressing":
                         Collections.shuffle(agriculture, new Random(3));
                         profession.setName(agriculture.get(0));
                         //Collections.shuffle(agriculture, new Random());
-                        profession.setPhoto("agriculture");
+                        profession.setPhoto("woman");
                         profession.setDescription(RandomString.make(25));
                         break;
 //                    case "ASSURANCE":
