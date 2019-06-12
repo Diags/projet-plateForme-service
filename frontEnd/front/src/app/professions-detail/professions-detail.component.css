@@ -2,7 +2,7 @@
   /* The image used */
   background-image: url("/assets/img/catalogue/craftsmen.png");
 
-  min-height: 300px;
+  min-height: 520px;
 
   /* Center and scale the image nicely */
   background-position: center;
@@ -14,11 +14,12 @@
 .test1{
   right: 0;
   /* margin: 25px; */
-  max-width: 500px;
+  min-width: 800px;
   background-color: white;
-  left: 25%;
-  margin-top: 1%;
+  left: 20%;
+  margin-top: 3%;
   padding: 0px;
+  max-width: 920px;
 }
 
 .panel-footer{

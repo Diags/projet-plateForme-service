@@ -28,13 +28,10 @@ export class AcceuilComponent implements OnInit {
   }
 
   getcatalogueByAdresse(dataForm: any) {
-    console.log("formData==>  ",dataForm);
+    console.log("formData ++++==>  ",dataForm);
     this.catelogService.Search(dataForm).subscribe(data => {
       this.catelogService.curenteSearchUsers=data;
-      console.log("id**>  " , data[0].profession.id);
-      let id = data[0].profession.id;
-
-       this.route.navigateByUrl("/professions-details/"+0);
+      this.route.navigateByUrl("/professions-details/"+0);
     })
   }
   getUsersBycategories(c){
