@@ -24,7 +24,8 @@
   <div class="vertical-center uk-inline-clip ">
     <div class="container-fluid">
       <div class="row">
-<!--        <div class="col-md-4 col-sm-4 col-xs-12">-->
+        <div class="container">
+
           <form #f="ngForm" class="form-inline" (ngSubmit)="getcatalogueByAdresse(f.value)" role="form" novalidate>
             <div class="metier-africa-subheader-overlay-content-title-second">À la recherche d’un artisan&nbsp;?</div>
             <div class="metier-africa-subheader-overlay-content-title-first">Trouvez un artisan près de chez vous, pour
@@ -80,7 +81,8 @@
               <button type="submit" [disabled]="!f.form.valid" class="btn btn-lg btn-primary">Search</button>
             </div>
           </form>
-<!--        </div>-->
+        </div>
+
       </div>
     </div>
   </div>
