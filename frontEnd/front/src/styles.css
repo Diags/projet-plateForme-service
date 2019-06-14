@@ -1,1 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
+body{
+  overflow-x: hidden;
+}
+@media screen and (max-width: 992px) {
+  .metier-africa-search-landing-page-input-page-body-search-from-inline-input-category > input {
+    padding-left: auto !important;
+  }
+
+  .metier-africa-search-landing-page-input-page-body-search-from-inline-input-location > input {
+    padding-left: auto !important;
+  }
+}
+@media screen and (max-width: 600px) {
+
+  .metier-africa-search-landing-page-input-page-body-search-from-inline-input-category > input {
+    padding-left: auto !important;
+  }
+
+  .metier-africa-search-landing-page-input-page-body-search-from-inline-input-location > input {
+    padding-left: auto !important;
+  }
+}
+
+

@@ -26,7 +26,7 @@
       <div class="row">
         <div class="container">
 
-          <form #f="ngForm" class="form-inline" (ngSubmit)="getcatalogueByAdresse(f.value)" role="form" novalidate>
+          <form #f="ngForm" class="form-inline container" (ngSubmit)="getcatalogueByAdresse(f.value)" role="form" novalidate>
             <div class="metier-africa-subheader-overlay-content-title-second">À la recherche d’un artisan&nbsp;?</div>
             <div class="metier-africa-subheader-overlay-content-title-first">Trouvez un artisan près de chez vous, pour
               tous types de travaux
@@ -38,8 +38,8 @@
                   <div
                     class="uk-inline metier-africa-search-landing-page-input-page-body-search-from-inline-input metier-africa-search-landing-page-input-page-body-search-from-inline-input-category metier-africa-search-landing-page-input-is-apply-category">
 
-                    <label for="ma-page-search-category"
-                           class="metier-africa-search-landing-page-input-page-body-search-from-label">
+                  <label for="ma-page-search-category"
+                         class="metier-africa-search-landing-page-input-page-body-search-from-label">
 
                   <span uk-icon="icon: search; ratio: 1.3"
                         class="uk-form-icon metier-africa-search-landing-page-input-page-body-search-from-icon uk-icon"><svg
@@ -87,7 +87,7 @@
     </div>
   </div>
 </div>
-<div class="uk-text-center metier-africa-categorie-metier-container uk-inline-clip  " ngShow="curenteSearchUsers ==null">
+<div class="uk-text-center metier-africa-categorie-metier-container container-fluid">
   <div class="uk-flex uk-flex-center">
     <div class="metier-africa-categorie-metier-list-container-flex-center" *ngIf="categories"><h1
       id="metier-africa-proposition-value-container-ancre" class="uk-text-left metier-africa-categorie-metier-title">
@@ -111,14 +111,39 @@
     </div>
   </div>
 </div>
-<div class="uk-container-large metier-africa-container-large" ngShow="curenteSearchUsers ==null">
-  <div class="uk-section metier-africa-section-promesse-subtitle">
+<!-- First Container -->
+<div class="container-fluid  text-center">
+
+
+    <div class='img-container'>
+      <div class='img-text'>text</div>
+      <img src="assets/img/catalogue/promesse.jpg" alt="artisan-couverture-home" class="metier-africa-promesse-cover-img">
+    </div>
+
+    <div style="clear: both"></div>
+
+<div class="uk-text-center metier-africa-promesse-overlay-content">
+  <h1>
+    Notre promesse
+  </h1>
+
+  <span style="font-weight: 400;">Chez metiers.africa, <strong>nous vous mettons en relation directe avec des artisans qualifiés et qui s’engagent à respecter une charte exigeante.</strong></span>
+
+  <p><span style="font-weight: 400;">Grand chantier ou petite rénovation, nous vous aidons à choisir les meilleurs experts capables de répondre à vos besoins spécifiques.</span>
+  </p>
+  <div class="metier-africa-promesse-overlay-content-button-container">
+    <button [routerLink]="['/a-propos']" class="uk-button metier-africa-promesse-overlay-content-button">
+      En savoir plus
+    </button>
+  </div>
+</div>
+
+        </div>
     <div class="uk-inline-clip metier-africa-promesse-uk-inline">
       <img src="assets/img/catalogue/promesse.jpg"
            alt="artisan-couverture-home"
            class="metier-africa-promesse-cover-img">
-      <div class="metier-africa-promesse-cover-img-overlay uk-position-cover"></div>
-      <div class="uk-flex uk-flex-center">
+      <div class="uk-flex uk-flex-center container-fluid">
         <div class="uk-position-center metier-africa-promesse-overlay-position">
           <div class="uk-text-center metier-africa-promesse-overlay-content">
             <div class="metier-africa-promesse-overlay-content-border-all"><h1
@@ -140,8 +165,6 @@
         </div>
       </div>
     </div>
-  </div>
-</div>
 <div *ngIf="curenteSearchUsers">
   <div *ngFor="let c of curenteSearchUsers">{{c.nom}}</div>
 </div>

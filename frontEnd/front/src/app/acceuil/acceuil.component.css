@@ -1,3 +1,43 @@
+@media screen and (max-width: 992px) {
+  .metier-africa-search-landing-page-input-page-body-search-from-inline-input-category > input {
+    padding-left: auto !important;
+  }
+
+  .metier-africa-search-landing-page-input-page-body-search-from-inline-input-location > input {
+    padding-left: auto !important;
+  }
+}
+@media screen and (max-width: 600px) {
+
+  .metier-africa-search-landing-page-input-page-body-search-from-inline-input-category > input {
+    padding-left: auto !important;
+  }
+
+  .metier-africa-search-landing-page-input-page-body-search-from-inline-input-location > input {
+    padding-left: auto !important;
+  }
+}
+.container-fluid {
+  padding-top: 70px;
+  padding-bottom: 70px;
+}
+
+.img-container{
+  width:150px;
+  height:225px;
+  position: relative;
+  display: inline-block;
+  margin: 10px 5px 5px;
+}
+.img-text{
+  top:50%;
+  width:150px;
+  height:50px;
+  margin-top: -25px;
+  position: absolute;
+  background-color: yellow;
+  display:block;
+}
 .fixed-top {
   position: fixed;
   top: 0;
@@ -57,7 +97,7 @@ form {
   border-radius: 15px 15px 15px 15px;
   padding: 25px;
   text-align: center;
-  background-color: rgba(237, 237, 237, 0.5);
+  /*background-color: rgba(237, 237, 237, 0.5);*/
   background-color: hsla(0, 0%, 93%, 0.5);
   /*width: 650px;*/
   /*margin-left: 40%;*/
