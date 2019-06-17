@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {CatalogueService} from "../catalogue.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-inscription',
@@ -10,19 +11,18 @@ export class InscriptionComponent implements OnInit {
   categories;
   filteredCountriesMultiple:[];
   villes;
-  mode = 1;
+  mode:number=1;
   pays;
   addUsers;
+  message;
 
-
-  constructor(private catelogService: CatalogueService) {
+  constructor(private catelogService: CatalogueService, private route:Router) {
   }
 
   ngOnInit() {
     this.getcatalogue();
     this.getVilles("villes");
     this.getPays("pays");
-    this.addProfessional("addprofessional");
     this.filteredCountriesMultiple = [];
 
   }
@@ -67,7 +67,12 @@ export class InscriptionComponent implements OnInit {
     },error1 => {
       console.log(error1);
       this.mode = 0;
+      this.message = error1.error.message;
     });
-
   }
+  goToInscription(){
+    this.mode = 1;
+    this.route.navigateByUrl("inscription");
+  }
+
 }

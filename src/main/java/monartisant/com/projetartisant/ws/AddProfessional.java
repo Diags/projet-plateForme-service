@@ -15,9 +15,9 @@ public class AddProfessional {
     private String categoryName;
     private Boolean contacterViasTel;
     private Boolean contacterViasWhatshap;
-    private Double cout;
+    private String cout;
     private String entrepriseName;
-    private Double experience;
+    private String experience;
     private String ifu;
     private String jour;
     private String langEng;

@@ -94,9 +94,9 @@ public class UserController {
         user.setProfession(profession);
         user.setContacterViasTel(addProfessional.getContacterViasTel());
         user.setContacterViasTelWhatshap(addProfessional.getContacterViasWhatshap());
-        user.setCout(addProfessional.getCout());
+        user.setCout(Double.parseDouble(addProfessional.getCout()));
         user.setEntrepriseName(addProfessional.getEntrepriseName());
-        user.setExperience(addProfessional.getExperience());
+        user.setExperience(Double.parseDouble(addProfessional.getExperience()));
         user.setIfu(addProfessional.getIfu());
         user.setJour(addProfessional.getJour());
         user.setLangueEnum(LangueEnum.EN);

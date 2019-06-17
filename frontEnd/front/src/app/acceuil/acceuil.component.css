@@ -670,7 +670,7 @@ a .active {
   font-size: 36px;
   font-weight: bold;
   line-height: 24px;
-  padding-top: 64px;
+  /*padding-top: 64px;*/
   margin: 0;
 }
 .metier-africa-categorie-metier-step-container-flex-width {

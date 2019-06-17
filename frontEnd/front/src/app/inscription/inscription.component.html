@@ -17,8 +17,7 @@
           des vérifications.
         </div>
       </div>
-      <div *ngIf="mode == 0" class="danger"> an error occured !!!</div>
-      <form #f="ngForm" *ngIf="categories" >
+      <form #f="ngForm" *ngIf="categories && mode ===1" >
         <div class="metier-africa-add-artisan-form-container">
           <div class="metier-africa-add-artisan-form-2-full">
             <div class="metier-africa-add-artisan-form-2-content">
@@ -136,7 +135,7 @@
                   </div>
                 </div>
                 <div class="metier-africa-add-artisan-form-input-content">
-                  <input ngModel name="experience" data-vv-as="nombre d'années d'expérience" placeholder="Entrez du texte"
+                  <input type="number" ngModel name="experience" data-vv-as="nombre d'années d'expérience" placeholder="Entrez du texte"
                          class="uk-input metier-africa-add-artisan-form-input" data-vv-id="9" aria-required="true"
                          aria-invalid="false"></div>
                 <div class="metier-africa-form-show-error-msg-txt" style="display: none;"></div>
@@ -158,7 +157,7 @@
                   </div>
                 </div>
                 <div class="metier-africa-add-artisan-form-input-content">
-                  <input ngModel name="telephone" data-vv-as="numéro de téléphone 1" placeholder="Entrez du texte" class="uk-input metier-africa-add-artisan-form-input"
+                  <input type="number" ngModel name="telephone" data-vv-as="numéro de téléphone 1" placeholder="Entrez du texte" class="uk-input metier-africa-add-artisan-form-input"
                          data-vv-id="10" aria-required="true" aria-invalid="false"></div>
                 <div class="metier-africa-form-show-error-msg-txt" style="display: none;"></div>
               </div>
@@ -169,7 +168,7 @@
                   </div>
                 </div>
                 <div class="metier-africa-add-artisan-form-input-content">
-                  <input ngModel  name="telephone2"  placeholder="Entrez du texte" class="uk-input metier-africa-add-artisan-form-input">
+                  <input type="number" ngModel  name="telephone2"  placeholder="Entrez du texte" class="uk-input metier-africa-add-artisan-form-input">
                 </div>
               </div>
               <div class="metier-africa-add-artisan-form-label-and-input">
@@ -179,7 +178,7 @@
                   </div>
                 </div>
                 <div class="metier-africa-add-artisan-form-input-content">
-                  <input ngModel name="whatsapp" data-vv-as="numéro WhatsAp" placeholder="Entrez du texte"
+                  <input type="number" ngModel name="whatsapp" data-vv-as="numéro WhatsAp" placeholder="Entrez du texte"
                          class="uk-input metier-africa-add-artisan-form-input" data-vv-id="11" aria-required="true"
                          aria-invalid="false"></div>
                 <div class="metier-africa-form-show-error-msg-txt" style="display: none;"></div>
@@ -232,6 +231,11 @@
           </div>
         </div>
       </form>
+    </div>
+    <div *ngIf="mode === 0" class="alert alert-danger">{{message}} an error occured !!!
+    <div class="panel-body">
+      <button class="btn btn-lg btn-elegant" (click)="goToInscription()">Back </button>
+    </div>
     </div>
   </div>
 </div>
