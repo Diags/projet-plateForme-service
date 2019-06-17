@@ -17,7 +17,7 @@
           des vérifications.
         </div>
       </div>
-      <form>
+      <form #f="ngForm" >
         <div class="metier-africa-add-artisan-form-container">
           <div class="metier-africa-add-artisan-form-2-full">
             <div class="metier-africa-add-artisan-form-2-content">
@@ -32,12 +32,10 @@
                     Nom de l’entreprise :
                   </div>
                 </div>
-                <div class="metier-africa-add-artisan-form-input-content"><input name="entreprise"
-                                                                                 data-vv-as="nom de l’entreprise "
-                                                                                 placeholder="Entrez du texte"
-                                                                                 class="uk-input metier-africa-add-artisan-form-input"
-                                                                                 data-vv-id="1" aria-required="true"
-                                                                                 aria-invalid="false"></div>
+                <div class="metier-africa-add-artisan-form-input-content">
+                  <input ngModel name="entreprise"  data-vv-as="nom de l’entreprise " placeholder="Entrez du texte" class="uk-input metier-africa-add-artisan-form-input"
+                         data-vv-id="1" aria-required="true" aria-invalid="false">
+                </div>
                 <div class="metier-africa-form-show-error-msg-txt" style="display: none;"></div>
               </div>
               <div class="metier-africa-add-artisan-form-label-and-input">
@@ -45,19 +43,14 @@
                   <div class="metier-africa-add-artisan-form-label">
                     Catégorie d'activité :
                   </div>
-                </div>
-                <div class="uk-inline metier-africa-add-artisan-form-input-content"><span
-                  uk-icon="icon: chevron-down; ratio: 1.3" class="uk-form-icon uk-form-icon-flip uk-icon"><svg
-                  width="26" height="26" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" ratio="1.3"> <polyline
-                  fill="none" stroke="#000" stroke-width="1.03" points="16 7 10 13 4 7"></polyline></svg></span> <input
-                  name="categorieall" data-vv-as="catégorie d'activité " readonly="readonly"
-                  placeholder="Cliquez pour choisir une catégorie" class="uk-input metier-africa-add-artisan-form-input"
-                  data-vv-id="2" aria-required="true" aria-invalid="false">
-                  <div uk-dropdown="mode: click"
-                       class="metier-africa-page-body-search-from-input-dropdown-add-artisan uk-dropdown">
 
-                  </div>
-                  <div class="metier-africa-form-show-error-msg-txt" style="display: none;"></div>
+                </div>
+
+                <div class="uk-inline metier-africa-add-artisan-form-input-content">
+                  <select  class="form-control " ngModel name="categoryName"  searchable="Search here..">
+                    <option disabled selected>Choose your categorie</option>
+                    <option  *ngFor="let c of categories._embedded.categories">{{c.name}}</option>
+                  </select>
                 </div>
               </div>
               <div class="metier-africa-add-artisan-form-label-and-input metier-africa-add-artisan-other-categorie"
@@ -67,8 +60,8 @@
                     Autre
                   </div>
                 </div>
-                <div class="metier-africa-add-artisan-form-input-content"><input placeholder="Saisir"
-                                                                                 class="uk-input metier-africa-add-artisan-form-input">
+                <div class="metier-africa-add-artisan-form-input-content">
+                  <input placeholder="Saisir" class="uk-input metier-africa-add-artisan-form-input">
                 </div>
               </div>
               <div class="metier-africa-add-artisan-form-label-and-input">
@@ -77,12 +70,10 @@
                     Raison sociale :
                   </div>
                 </div>
-                <div class="metier-africa-add-artisan-form-input-content"><input name="raison"
-                                                                                 data-vv-as="raison sociale "
-                                                                                 placeholder="ETS, SARL, SA..."
-                                                                                 class="uk-input metier-africa-add-artisan-form-input"
-                                                                                 data-vv-id="3" aria-required="true"
-                                                                                 aria-invalid="false"></div>
+                <div class="metier-africa-add-artisan-form-input-content">
+                  <input ngModel  name="raison" data-vv-as="raison sociale "placeholder="ETS, SARL, SA..."
+                         class="uk-input metier-africa-add-artisan-form-input"   data-vv-id="3" aria-required="true"
+                         aria-invalid="false"></div>
                 <div class="metier-africa-form-show-error-msg-txt" style="display: none;"></div>
               </div>
               <div class="metier-africa-add-artisan-form-label-and-input">
@@ -91,11 +82,9 @@
                     IFU/RCM :
                   </div>
                 </div>
-                <div class="metier-africa-add-artisan-form-input-content"><input name="ifu" data-vv-as="iFU/RCM "
-                                                                                 placeholder="Entrez du texte"
-                                                                                 class="uk-input metier-africa-add-artisan-form-input"
-                                                                                 data-vv-id="4" aria-required="true"
-                                                                                 aria-invalid="false"></div>
+                <div class="metier-africa-add-artisan-form-input-content">
+                  <input ngModel name="ifu" data-vv-as="iFU/RCM " placeholder="Entrez du texte" class="uk-input metier-africa-add-artisan-form-input"
+                         data-vv-id="4" aria-required="true" aria-invalid="false"></div>
                 <div class="metier-africa-form-show-error-msg-txt" style="display: none;"></div>
               </div>
               <div class="metier-africa-add-artisan-form-label-and-input">
@@ -104,18 +93,10 @@
                     Jours d'ouvertures :
                   </div>
                 </div>
-                <div class="uk-inline metier-africa-add-artisan-form-input-content"><span
-                  uk-icon="icon: chevron-down; ratio: 1.3" class="uk-form-icon uk-form-icon-flip uk-icon"><svg
-                  width="26" height="26" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" ratio="1.3"> <polyline
-                  fill="none" stroke="#000" stroke-width="1.03" points="16 7 10 13 4 7"></polyline></svg></span> <input
-                  name="jour" data-vv-as="jours d'ouvertures " placeholder="Choisissez un ou plusieurs jours"
+                <div class="uk-inline metier-africa-add-artisan-form-input-content">
+                 <input ngModel name="jour" data-vv-as="jours d'ouvertures " placeholder="Choisissez un ou plusieurs jours"
                   class="uk-input metier-africa-add-artisan-form-input" data-vv-id="5" aria-required="true"
                   aria-invalid="false">
-                  <div uk-dropdown="mode: click"
-                       class="metier-africa-page-body-search-from-input-dropdown-add-artisan uk-dropdown">
-
-                  </div>
-                  <div class="metier-africa-form-show-error-msg-txt" style="display: none;"></div>
                 </div>
               </div>
               <div class="metier-africa-add-artisan-form-label-and-input">
@@ -124,17 +105,10 @@
                     Pays :
                   </div>
                 </div>
-                <div class="uk-inline metier-africa-add-artisan-form-input-content"><span
-                  uk-icon="icon: chevron-down; ratio: 1.3" class="uk-form-icon uk-form-icon-flip uk-icon"><svg
-                  width="26" height="26" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" ratio="1.3"> <polyline
-                  fill="none" stroke="#000" stroke-width="1.03" points="16 7 10 13 4 7"></polyline></svg></span> <input
-                  read-only="" name="pays" data-vv-as="pays " placeholder="Choisissez un pays" readonly="readonly"
+                <div class="uk-inline metier-africa-add-artisan-form-input-content">
+                <input ngModel read-only="" name="pays" data-vv-as="pays " placeholder="Choisissez un pays" readonly="readonly"
                   class="uk-input metier-africa-add-artisan-form-input" data-vv-id="6" aria-required="true"
                   aria-invalid="false">
-                  <div uk-dropdown="mode: click"
-                       class="metier-africa-page-body-search-from-input-dropdown-add-artisan uk-dropdown">
-
-                  </div>
                   <div class="metier-africa-form-show-error-msg-txt" style="display: none;"></div>
                 </div>
               </div>
@@ -144,11 +118,9 @@
                     Coût horaire :
                   </div>
                 </div>
-                <div class="metier-africa-add-artisan-form-input-content"><input name="cout" data-vv-as="coût horaire "
-                                                                                 placeholder="Précisez votre coût de travail"
-                                                                                 class="uk-input metier-africa-add-artisan-form-input"
-                                                                                 data-vv-id="7" aria-required="true"
-                                                                                 aria-invalid="false"></div>
+                <div class="metier-africa-add-artisan-form-input-content">
+                  <input ngModel  name="cout" data-vv-as="coût horaire " placeholder="Précisez votre coût de travail" class="uk-input metier-africa-add-artisan-form-input"
+                         data-vv-id="7" aria-required="true" aria-invalid="false"></div>
                 <div class="metier-africa-form-show-error-msg-txt" style="display: none;"></div>
               </div>
               <div class="metier-africa-add-artisan-form-label-and-input">
@@ -157,30 +129,26 @@
                     Zone d'intervention :
                   </div>
                 </div>
-                <div class="uk-inline metier-africa-add-artisan-form-input-content"><span
-                  uk-icon="icon: chevron-down; ratio: 1.3" class="uk-form-icon uk-form-icon-flip uk-icon"><svg
-                  width="26" height="26" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" ratio="1.3"> <polyline
-                  fill="none" stroke="#000" stroke-width="1.03" points="16 7 10 13 4 7"></polyline></svg></span> <input
-                  name="ville" data-vv-as="zone d'intervention "
-                  placeholder="Choisissez un ou plusieurs zones d'intervention" readonly="readonly"
-                  class="uk-input metier-africa-add-artisan-form-input" data-vv-id="8" aria-required="true"
-                  aria-invalid="false">
-                  <div uk-dropdown="mode: click"
-                       class="metier-africa-page-body-search-from-input-dropdown-add-artisan uk-dropdown">
 
-                  </div>
-                  <div class="metier-africa-form-show-error-msg-txt" style="display: none;"></div>
+                <div class="uk-inline metier-africa-add-artisan-form-input-content" >
+                  <!--<input ngModel name="ville" data-vv-as="zone d'intervention "-->
+                  <!--placeholder="Choisissez un ou plusieurs zones d'intervention" readonly="readonly"-->
+                  <!--class="uk-input metier-africa-add-artisan-form-input" data-vv-id="8" aria-required="true"-->
+                  <!--aria-invalid="false">-->
+                  <!--<tag-input  class="uk-input metier-africa-add-artisan-form-input"[(ngModel)]='items' [maxItems]='5'></tag-input>-->
+                  <tag-input [ngModel]="['@item']">
+                    <tag-input-dropdown [autocompleteObservable]='requestAutocompleteItems'></tag-input-dropdown>
+                  </tag-input>
                 </div>
               </div>
-              <div class="metier-africa-add-artisan-form-label-and-input metier-africa-add-artisan-other-citie"
-                   style="display: none;">
+              <div class="metier-africa-add-artisan-form-label-and-input metier-africa-add-artisan-other-citie" style="display: none;">
                 <div class="metier-africa-add-artisan-form-label-content">
                   <div class="metier-africa-add-artisan-form-label">
                     Autres (ville 1, ville 2)
                   </div>
                 </div>
-                <div class="metier-africa-add-artisan-form-input-content"><input placeholder="Saisir"
-                                                                                 class="uk-input metier-africa-add-artisan-form-input">
+                <div class="metier-africa-add-artisan-form-input-content">
+                  <input ngModel placeholder="Saisir" class="uk-input metier-africa-add-artisan-form-input">
                 </div>
               </div>
               <div class="metier-africa-add-artisan-form-label-and-input">
@@ -189,12 +157,10 @@
                     Nombre d'années d'expérience :
                   </div>
                 </div>
-                <div class="metier-africa-add-artisan-form-input-content"><input name="nombre"
-                                                                                 data-vv-as="nombre d'années d'expérience "
-                                                                                 placeholder="Entrez du texte"
-                                                                                 class="uk-input metier-africa-add-artisan-form-input"
-                                                                                 data-vv-id="9" aria-required="true"
-                                                                                 aria-invalid="false"></div>
+                <div class="metier-africa-add-artisan-form-input-content">
+                  <input ngModel name="experience" data-vv-as="nombre d'années d'expérience " placeholder="Entrez du texte"
+                         class="uk-input metier-africa-add-artisan-form-input" data-vv-id="9" aria-required="true"
+                         aria-invalid="false"></div>
                 <div class="metier-africa-form-show-error-msg-txt" style="display: none;"></div>
               </div>
             </div>
@@ -203,7 +169,7 @@
           <div>
             <div class="metier-africa-add-artisan-form-3-content">
               <div class="metier-africa-add-artisan-form-3-content-title">
-                Contacts de l’entreprise :
+                Contacts de l’entreprise:
               </div>
             </div>
             <div class="metier-africa-add-artisan-form-3-container">
@@ -213,12 +179,9 @@
                     Numéro de téléphone 1:
                   </div>
                 </div>
-                <div class="metier-africa-add-artisan-form-input-content"><input name="telephone"
-                                                                                 data-vv-as="numéro de téléphone 1"
-                                                                                 placeholder="Entrez du texte"
-                                                                                 class="uk-input metier-africa-add-artisan-form-input"
-                                                                                 data-vv-id="10" aria-required="true"
-                                                                                 aria-invalid="false"></div>
+                <div class="metier-africa-add-artisan-form-input-content">
+                  <input ngModel name="telephone" data-vv-as="numéro de téléphone 1" placeholder="Entrez du texte" class="uk-input metier-africa-add-artisan-form-input"
+                         data-vv-id="10" aria-required="true" aria-invalid="false"></div>
                 <div class="metier-africa-form-show-error-msg-txt" style="display: none;"></div>
               </div>
               <div class="metier-africa-add-artisan-form-label-and-input">
@@ -227,8 +190,8 @@
                     Numéro de téléphone 2:
                   </div>
                 </div>
-                <div class="metier-africa-add-artisan-form-input-content"><input placeholder="Entrez du texte"
-                                                                                 class="uk-input metier-africa-add-artisan-form-input">
+                <div class="metier-africa-add-artisan-form-input-content">
+                  <input ngModel  name="telephone2"  placeholder="Entrez du texte" class="uk-input metier-africa-add-artisan-form-input">
                 </div>
               </div>
               <div class="metier-africa-add-artisan-form-label-and-input">
@@ -237,12 +200,10 @@
                     Numéro WhatsApp
                   </div>
                 </div>
-                <div class="metier-africa-add-artisan-form-input-content"><input name="whatsapp"
-                                                                                 data-vv-as="numéro WhatsAp"
-                                                                                 placeholder="Entrez du texte"
-                                                                                 class="uk-input metier-africa-add-artisan-form-input"
-                                                                                 data-vv-id="11" aria-required="true"
-                                                                                 aria-invalid="false"></div>
+                <div class="metier-africa-add-artisan-form-input-content">
+                  <input ngModel name="whatsapp" data-vv-as="numéro WhatsAp" placeholder="Entrez du texte"
+                         class="uk-input metier-africa-add-artisan-form-input" data-vv-id="11" aria-required="true"
+                         aria-invalid="false"></div>
                 <div class="metier-africa-form-show-error-msg-txt" style="display: none;"></div>
               </div>
               <div class="metier-africa-add-artisan-checked-group" style="padding-bottom: 0px;">
@@ -252,11 +213,12 @@
                   </div>
                 </div>
                 <div class="metier-africa-add-artisan-checked-group-items">
-                  <div><input checked="checked" name="metier-africa-add-artisan-contact" type="checkbox"
+                  <div>
+                    <input ngModel checked="checked" name="checkBoxTel" type="checkbox"
                               class="uk-checkbox metier-africa-add-artisan-checkbox"> <label
                     class="metier-africa-add-artisan-checkbox-label"> Appels téléphoniques</label></div>
-                  <div><input name="metier-africa-add-artisan-contact" type="checkbox"
-                              class="uk-checkbox metier-africa-add-artisan-checkbox"> <label
+                  <div>
+                    <input ngModel name="checkBoxWhatshap" type="checkbox" class="uk-checkbox metier-africa-add-artisan-checkbox"> <label
                     class="metier-africa-add-artisan-checkbox-label"> Messagerie WhatsApp</label></div>
                 </div>
               </div>
@@ -267,10 +229,12 @@
                   </div>
                 </div>
                 <div class="metier-africa-add-artisan-checked-group-items">
-                  <div><input checked="checked" name="metier-africa-add-artisan-lang" type="checkbox"
+                  <div>
+                    <input ngModel checked="checked" name="langFr" type="checkbox"
                               class="uk-checkbox metier-africa-add-artisan-checkbox"> <label
                     class="metier-africa-add-artisan-checkbox-label"> Français</label></div>
-                  <div><input name="metier-africa-add-artisan-lang" type="checkbox"
+                  <div>
+                    <input ngModel name="langEng" type="checkbox"
                               class="uk-checkbox metier-africa-add-artisan-checkbox"> <label
                     class="metier-africa-add-artisan-checkbox-label"> English</label></div>
                 </div>
@@ -283,7 +247,7 @@
               <button class="uk-button metier-africa-add-artisan-full-body-avis-footer-button-remove">
                 Annuler
               </button>
-              <button class="uk-button metier-africa-add-artisan-full-body-avis-footer-button-apply">
+              <button class="uk-button metier-africa-add-artisan-full-body-avis-footer-button-apply" (click) = "addProfessional(f.value)">
                 Soumettre
               </button>
             </div>

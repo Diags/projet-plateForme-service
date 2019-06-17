@@ -18,6 +18,9 @@ import {HttpClientModule} from "@angular/common/http";
 import { AProposComponent } from './a-propos/a-propos.component';
 import { AcceuilComponent } from './acceuil/acceuil.component';
 import { InscriptionComponent } from './inscription/inscription.component';
+import { TagInputModule } from 'ngx-chips';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // this is needed!
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +42,9 @@ import { InscriptionComponent } from './inscription/inscription.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    CommonModule
+    CommonModule,
+    TagInputModule,
+    BrowserAnimationsModule
   ],
   providers: [CatalogueService],
   bootstrap: [AppComponent]

@@ -16,6 +16,7 @@ public class Adresse {
     private String name;
     private int codePostal;
     private String ville;
+    private String pays;
     @OneToOne(mappedBy = "adresse")
     private User user;
 }

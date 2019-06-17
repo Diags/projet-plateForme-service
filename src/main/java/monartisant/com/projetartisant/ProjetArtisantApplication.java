@@ -392,13 +392,7 @@ public class ProjetArtisantApplication implements CommandLineRunner {
 //                        profession.setPhoto("assurance");
 //                        profession.setDescription(RandomString.make(25));
 //                        break;
-//                    case "AERONAUTIQUE":
-//                        Collections.shuffle(aeronautique, new Random(3));
-//                        profession.setName(aeronautique.get(0));
-//                       // Collections.shuffle(mylist, new Random());
-//                        profession.setPhoto("aeraunotic");
-//                        profession.setDescription(RandomString.make(25));
-//                        break;
+//
 //                    case "AUTOMOBIL":
 //                        Collections.shuffle(automobile, new Random(3));
 //                        profession.setName(automobile.get(0));

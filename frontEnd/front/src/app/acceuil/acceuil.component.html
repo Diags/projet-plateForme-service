@@ -111,39 +111,14 @@
     </div>
   </div>
 </div>
-<!-- First Container -->
-<div class="container-fluid  text-center">
-
-
-    <div class='img-container'>
-      <div class='img-text'>text</div>
-      <img src="assets/img/catalogue/promesse.jpg" alt="artisan-couverture-home" class="metier-africa-promesse-cover-img">
-    </div>
-
-    <div style="clear: both"></div>
-
-<div class="uk-text-center metier-africa-promesse-overlay-content">
-  <h1>
-    Notre promesse
-  </h1>
-
-  <span style="font-weight: 400;">Chez metiers.africa, <strong>nous vous mettons en relation directe avec des artisans qualifiés et qui s’engagent à respecter une charte exigeante.</strong></span>
-
-  <p><span style="font-weight: 400;">Grand chantier ou petite rénovation, nous vous aidons à choisir les meilleurs experts capables de répondre à vos besoins spécifiques.</span>
-  </p>
-  <div class="metier-africa-promesse-overlay-content-button-container">
-    <button [routerLink]="['/a-propos']" class="uk-button metier-africa-promesse-overlay-content-button">
-      En savoir plus
-    </button>
-  </div>
-</div>
-
-        </div>
+<div class="uk-container-large metier-africa-container-large" ngShow ="!curenteSearchUsers">
+  <div class="uk-section metier-africa-section-promesse-subtitle">
     <div class="uk-inline-clip metier-africa-promesse-uk-inline">
       <img src="assets/img/catalogue/promesse.jpg"
            alt="artisan-couverture-home"
            class="metier-africa-promesse-cover-img">
-      <div class="uk-flex uk-flex-center container-fluid">
+      <div class="metier-africa-promesse-cover-img-overlay uk-position-cover"></div>
+      <div class="uk-flex uk-flex-center">
         <div class="uk-position-center metier-africa-promesse-overlay-position">
           <div class="uk-text-center metier-africa-promesse-overlay-content">
             <div class="metier-africa-promesse-overlay-content-border-all"><h1
@@ -165,6 +140,7 @@
         </div>
       </div>
     </div>
+  </div>
 <div *ngIf="curenteSearchUsers">
   <div *ngFor="let c of curenteSearchUsers">{{c.nom}}</div>
 </div>
