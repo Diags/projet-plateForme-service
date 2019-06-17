@@ -1,7 +1,7 @@
 package monartisant.com.projetartisant.ws;
 
 import io.swagger.annotations.ApiOperation;
-import monartisant.com.projetartisant.model.User;
+import monartisant.com.projetartisant.model.*;
 import monartisant.com.projetartisant.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -79,5 +79,33 @@ public class UserController {
     @ApiOperation(value = "send sms of user to professionel")
     public void sendSms(@Valid @RequestBody SmsRequest smsRequest) {
         service.smsdSms(smsRequest);
+    }
+
+    @PostMapping("addprofessional")
+    public User addProfessional(@RequestBody AddProfessional addProfessional){
+        User  user = new User();
+        Adresse adresse =new Adresse();
+        adresse.setPays(addProfessional.getPays());
+      addProfessional.getTags().stream().forEach(ville -> adresse.setVille(ville));
+        Profession profession = new Profession();
+        Category category = new Category();
+        category.setName(addProfessional.getCategoryName());
+        profession.setCategory(category);
+        user.setProfession(profession);
+        user.setContacterViasTel(addProfessional.getContacterViasTel());
+        user.setContacterViasTelWhatshap(addProfessional.getContacterViasWhatshap());
+        user.setCout(addProfessional.getCout());
+        user.setEntrepriseName(addProfessional.getEntrepriseName());
+        user.setExperience(addProfessional.getExperience());
+        user.setIfu(addProfessional.getIfu());
+        user.setJour(addProfessional.getJour());
+        user.setLangueEnum(LangueEnum.EN);
+        user.setLangueEnum(LangueEnum.FR);
+        user.setAdresse(adresse);
+        user.setRaison(addProfessional.getRaison());
+        user.setTele(Integer.valueOf(addProfessional.getTelephone()));
+        user.setTelephone2(addProfessional.getTelephone2());
+        user.setWhatsapp(addProfessional.getWhatsapp());
+        return user;
     }
 }

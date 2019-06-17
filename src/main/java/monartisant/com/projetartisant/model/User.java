@@ -46,4 +46,15 @@ public class User {
     private Double note;
     @ApiModelProperty(notes = "the user phone number")
     private Integer tele;
+    private Boolean contacterViasTel;
+    private Boolean contacterViasTelWhatshap;
+    private Double cout;
+    private String entrepriseName;
+    private Double experience;
+    private String ifu;
+    private String jour;
+    private LangueEnum langueEnum;
+    private String raison;
+    private String telephone2;
+    private String whatsapp;
 }

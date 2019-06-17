@@ -39,4 +39,14 @@ getAllUserbyProfessions(url){
   sendEmail(dataForm: any) {
     return this.http.post(this.host + "/sendemail", dataForm)
   }
+  getPays(url){
+  return this.http.get(this.host+'/'+url);
+  }
+
+  getVilles(url){
+    return this.http.get(this.host+'/'+url);
+  }
+  addProfessional(dataForm){
+  return this.http.post(this.host+'/addprofessional',dataForm);
+  }
 }

@@ -473,6 +473,7 @@ public class ProjetArtisantApplication implements CommandLineRunner {
                 adresse.setCodePostal(10 + rd.nextInt(20018));
                 Collections.shuffle(mylist1, new Random());
                 adresse.setVille(mylist1.get(0));
+                adresse.setPays("FRANCE");
                 user.setNom(RandomString.make(8));
                 user.setPrenom(RandomString.make(9));
                 user.setAge(1988 + rd.nextInt(20018));
