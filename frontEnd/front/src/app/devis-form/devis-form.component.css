@@ -1,10 +1,12 @@
 .usersPanel{
-    margin-top: 2%;
+    margin-top: 5%;
     padding: 2%;
     display: inline-block;
     margin-left: 10%
 }
-  
+  .panel-success{
+    margin-left: 20%;
+  }
   * {
     box-sizing: border-box;
   }
@@ -62,3 +64,331 @@
     background-color: #f1f1f1;
     text-align: center;
   }
+/*------*/
+
+.metier-africa-add-artisan-conatiner {
+  background-color: #F5F5F5;
+  padding-left: 4%;
+  padding-right: 4%;
+  padding-bottom: 59px;
+}
+.metier-africa-add-artisan-content {
+  width: 100%;
+  max-width: 1080px;
+  padding-top: 80px;
+}
+.metier-africa-add-artisan-head-wrap {
+  background-color: #FFFFFF;
+  margin-bottom: 27px;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+.metier-africa-add-artisan-title {
+  color: #000000;
+  font-size: 36px;
+  font-weight: bold;
+  line-height: 24px;
+  padding-top: 73px;
+}
+.metier-africa-add-artisan-form-container {
+  background-color: #FFFFFF;
+}
+.metier-africa-add-artisan-form-head-txt {
+  color: #4D4D4D;
+  font-size: 16px;
+  line-height: 18px;
+  padding-top: 45px;
+  padding-bottom: 47px;
+}
+.metier-africa-add-artisan-form-2-content {
+  padding-top: 42px;
+  padding-bottom: 34px;
+  padding-left: 22%;
+  padding-right: 22%;
+}
+.metier-africa-add-artisan-form-3-content {
+  padding-top: 25px;
+  padding-bottom: 34px;
+  padding-left: 22%;
+  padding-right: 22%;
+}
+.metier-africa-add-artisan-form-4-content {
+  padding-top: 63px;
+  padding-bottom: 68px;
+}
+.metier-africa-add-artisan-form-2-content-title {
+  color: #979797;
+  font-size: 28px;
+  font-weight: bold;
+  line-height: 24px;
+}
+.metier-africa-add-artisan-form-3-content-title {
+  color: #979797;
+  font-size: 28px;
+  font-weight: bold;
+  line-height: 24px;
+}
+.metier-africa-add-artisan-form-divider-x {
+  margin: 0;
+  border-top: 1px solid #B3B3B3;
+}
+.metier-africa-add-artisan-full-body-avis-footer {
+  text-align: right;
+  padding-left: 54px;
+  padding-right: 53px;
+}
+.metier-africa-add-artisan-full-body-avis-footer-button-remove {
+  border-radius: 3px;
+  color: #4D4D4D;
+  border: 1px solid #4D4D4D;
+  width: 190px;
+  height: 42px;
+  background: none;
+  text-transform: none;
+  font-size: 16px;
+  font-style: normal;
+  line-height: 24px;
+  font-weight: 400;
+  padding-left: 0px;
+  padding-right: 6px;
+  margin-left: 0px;
+  margin-right: 8px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  display: initial;
+}
+.metier-africa-add-artisan-full-body-avis-footer-button-apply {
+  border-radius: 3px;
+  color: #FFFFFF;
+  width: 190px;
+  height: 42px;
+  background-color: #F7931E;
+  text-transform: none;
+  font-size: 16px;
+  font-style: normal;
+  line-height: 24px;
+  font-weight: 400;
+  padding-left: 0px;
+  padding-right: 6px;
+  margin-left: 0px;
+  margin-right: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  display: initial;
+}
+.metier-africa-add-artisan-full-body-avis-footer-button-apply:hover, .metier-africa-add-artisan-full-body-avis-footer-button-apply:focus {
+  background-color: #F38503;
+  text-decoration: none;
+  color: #FFFFFF;
+}
+.metier-africa-add-artisan-full-body-avis-footer-button-apply:active {
+  background-color: #EF9020;
+  text-decoration: none;
+  color: #FFFFFF;
+}
+.metier-africa-add-artisan-form-2-container, .metier-africa-add-artisan-form-3-container {
+  padding-left: 22%;
+  padding-right: 22%;
+}
+.metier-africa-add-artisan-form-input-content {
+  width: 100%;
+}
+.metier-africa-add-artisan-form-label-and-input {
+  padding-bottom: 23px;
+}
+.metier-africa-add-artisan-form-label-content {
+  padding-bottom: 5px;
+}
+.metier-africa-add-artisan-form-label {
+  color: #4D4D4D;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 24px;
+}
+.metier-africa-add-artisan-form-input {
+  border: 0.5px solid #C5C5C5;
+  border-radius: 3px;
+  height: 60px;
+  background-color: #FFFFFF;
+  font-size: 16px;
+  line-height: 19px;
+  color: #4D4D4D;
+  padding-bottom: 22px;
+  width: 100%;
+  padding-left: 18px;
+  padding-top: 23px;
+}
+.metier-africa-add-artisan-form-input:focus {
+  outline: 0;
+  background-color: #FFFFFF;
+  color: #4D4D4D;
+  border: 1px solid #55ACEE;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.09);
+}
+.metier-africa-add-artisan-checkbox-label {
+  color: #4D4D4D;
+  font-size: 14px;
+  line-height: 16px;
+  padding-left: 14px;
+}
+.metier-africa-add-artisan-checkbox {
+  background-color: #D8D8D8;
+  border-color: transparent!important;
+}
+.metier-africa-add-artisan-checkbox:checked, .metier-africa-add-artisan-checkbox:indeterminate, .metier-africa-add-artisan-checkbox:checked:focus, .metier-africa-add-artisan-checkbox:indeterminate:focus {
+  background-color: #F7931E;
+  border-color: transparent!important;
+}
+.metier-africa-add-artisan-checked-group {
+  padding-top: 15px;
+  padding-bottom: 48px;
+}
+.metier-africa-add-artisan-checked-group-items {
+  padding-top: 10px;
+}
+.metier-africa-add-artisan-form-2-full {
+  padding-bottom: 40px;
+}
+.metier-africa-page-body-search-from-input-dropdown-add-artisan::-webkit-scrollbar {
+  width: 10px;
+  background-color: #F5F5F5;
+}
+.metier-africa-page-body-search-from-input-dropdown-add-artisan::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: linear-gradient(left, #96A6BF, #63738C);
+  box-shadow: inset 0 0 1px 1px #5C6670;
+}
+.metier-africa-page-body-search-from-input-dropdown-add-artisan::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background: #eee;
+  box-shadow: 0 0 1px 1px #bbb, inset 0 0 7px rgba(0,0,0,0.3)
+}
+.metier-africa-page-body-search-from-input-dropdown-add-artisan::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(left, #8391A6, #536175);
+}
+.metier-africa-page-body-search-from-input-dropdown-add-artisan {
+  border: none;
+  margin-top: 0px;
+  padding: 0px!important;
+  width: 100%;
+  max-height: 162px;
+  overflow: auto;
+  overflow-y: scroll;
+}
+.metier-africa-page-body-search-from-input-dropdown-add-artisan-item {
+  padding-left: 50px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+.metier-africa-page-body-search-from-input-dropdown-add-artisan-item:hover {
+  background-color: #F7931E;
+}
+.metier-africa-page-body-search-from-input-dropdown-add-artisan-item > a {
+  color: #4D4D4D!important;
+  cursor: pointer;
+  background: none;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 21px;
+  padding: 0!important;
+}
+.metier-africa-page-body-search-from-input-dropdown-add-artisan-item:hover > a {
+  color: #fff !important;
+}
+.metier-africa-form-show-error-msg {
+  border: 0.5px solid red!important;
+}
+.metier-africa-form-show-error-msg-txt {
+  padding-top: 3px;
+  color: #4D4D4D;
+  font-size: 12px;
+  font-style: italic;
+  line-height: 24px;
+}
+.uk-notification-message {
+  margin-top: 80px!important;
+}
+
+.uk-dropdown-nav {
+  white-space: nowrap;
+  font-size: .875rem;
+}
+
+.uk-nav, .uk-nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.uk-input, .uk-select:not([multiple]):not([size]) {
+  height: 40px;
+  vertical-align: middle;
+  display: inline-block;
+}
+.uk-input, .uk-select, .uk-textarea {
+  max-width: 100%;
+  width: 100%;
+  border: 0 none;
+  padding: 0 10px;
+  background: #fff;
+  color: #666;
+  border: 1px solid #e5e5e5;
+  transition: .2s ease-in-out;
+  transition-property: color,background-color,border;
+}
+.uk-input, .uk-textarea {
+  -webkit-appearance: none;
+}
+.uk-input {
+  overflow: visible;
+}
+.uk-checkbox, .uk-input, .uk-radio, .uk-select, .uk-textarea {
+  box-sizing: border-box;
+  margin: 0;
+  border-radius: 0;
+  font: inherit;
+}
+.uk-form-icon:not(a):not(button):not(input) {
+  pointer-events: none;
+}
+
+.uk-form-icon-flip {
+  right: 0;
+  left: auto;
+}
+.uk-form-icon {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  color: #999;
+}
+.uk-icon {
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  overflow: visible;
+  font: inherit;
+  color: inherit;
+  text-transform: none;
+  padding: 0;
+  background-color: transparent;
+  display: inline-block;
+  fill: currentcolor;
+  line-height: 0;
+}
+.metier-africa-add-artisan-form-input-content {
+  width: 100%;
+}
+
+[class*=uk-inline] {
+  display: inline-block;
+  position: relative;
+  max-width: 100%;
+  vertical-align: middle;
+  -webkit-backface-visibility: hidden;
+}

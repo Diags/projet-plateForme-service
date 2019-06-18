@@ -1,3 +1,26 @@
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+}
+#argument{
+  padding: 50px 0;
+/*background-color: #f2f2f2;*/
+}
+#argument .iconeDiv {
+  display: inline-block;
+  margin: 0 auto;
+  width: 80px;
+  height: 80px;
+  line-height: 77px;
+  background-color: #fff;
+  border-radius: 40px;
+}
+#argument .img-ekomi {
+  width: 100% !important;
+}
 @media screen and (max-width: 992px) {
   .metier-africa-search-landing-page-input-page-body-search-from-inline-input-category > input {
     padding-left: auto !important;

@@ -48,6 +48,7 @@ public class ProjetArtisantApplication implements CommandLineRunner {
         categoryRepository.save(new Category(null, "MEUNUISIER", RandomString.make(12), "menuisier1", null));
         categoryRepository.save(new Category(null, "HAUTE COUTURE", RandomString.make(12), "couturier1", null));
         categoryRepository.save(new Category(null, "ELECTRICIEN", RandomString.make(12), "electricien", null));
+        categoryRepository.save(new Category(null, "SOUDEUR", RandomString.make(12), "soudeur", null));
         //  categoryRepository.save(new Category(null, "SERVICE", RandomString.make(12), "doctor", null));
         categoryRepository.save(new Category(null, "MAINTENANIER", RandomString.make(12), "maintenancier", null));
         categoryRepository.save(new Category(null, "PRESSING", RandomString.make(12), "presseur", null));
@@ -65,8 +66,7 @@ public class ProjetArtisantApplication implements CommandLineRunner {
 //      //  categoryRepository.save(new Category(null, "CULTURE", RandomString.make(12), "peintre", null));
 
         ArrayList<String> mylist = new ArrayList<String>();
-        mylist.add("barack");
-        mylist.add("ba");
+        mylist.add("img_avatar4");
         ArrayList<String> mylist1 = new ArrayList<String>();
         mylist1.add("Lyon");
         mylist1.add("Dijon");
@@ -378,20 +378,19 @@ public class ProjetArtisantApplication implements CommandLineRunner {
                         profession.setPhoto("menuisierie");
                         profession.setDescription(RandomString.make(25));
                         break;
-                    case "Pressing":
+                    case "PRESSING":
                         Collections.shuffle(agriculture, new Random(3));
                         profession.setName(agriculture.get(0));
                         //Collections.shuffle(agriculture, new Random());
                         profession.setPhoto("woman");
                         profession.setDescription(RandomString.make(25));
                         break;
-//                    case "ASSURANCE":
-//                        Collections.shuffle(assurance, new Random(3));
-//                        profession.setName(assurance.get(0));
-//                     //   Collections.shuffle(mylist, new Random());
-//                        profession.setPhoto("assurance");
-//                        profession.setDescription(RandomString.make(25));
-//                        break;
+                    case "SOUDEUR":
+                        Collections.shuffle(assurance, new Random(3));
+                        profession.setName(assurance.get(0));
+                        profession.setPhoto("social");
+                        profession.setDescription(RandomString.make(25));
+                        break;
 //
 //                    case "AUTOMOBIL":
 //                        Collections.shuffle(automobile, new Random(3));
@@ -481,7 +480,7 @@ public class ProjetArtisantApplication implements CommandLineRunner {
                 user.setNumeroSiret(100001988 + rd.nextInt(1000020018));
                 //   user.setAdresse(new Adresse(null, 1 + rd.nextInt(100), "rue", "emeraude", 10 + rd.nextInt(20018), "lyon"));
                 Collections.shuffle(mylist, new Random());
-                user.setPhotoName(mylist.get(0));
+                user.setPhotoName("img");
                 user.setAdresse(adresse);
                 user.setNote(3.5);
                 user.setProfession(profession);

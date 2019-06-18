@@ -1,3 +1,4 @@
+
 usersPanel
 .overlay {
   position: absolute;
@@ -67,7 +68,7 @@ min-height: 520px;
 }
 
 .form-inline .form-group {
-  min-width: 20%;
+  min-width: 20%;display: inline-flex;
 }
 #form-artisan-submit {
   opacity: 1;

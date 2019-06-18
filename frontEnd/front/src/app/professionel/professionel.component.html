@@ -1,114 +1,170 @@
 <div class="row usersPanel">
-<div class="container " *ngIf="user">
-  <div class="col-md-3">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <img class="card" alt="Cinque Terre" height="200" style="width:100%;" src="{{this.catalogueService.host+'/photouser/'
-        +user.id}}" />
+  <div class="container " *ngIf="user">
+    <div class="col-md-3">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <img class="card" alt="Cinque Terre" height="200" style="width:100%;" src="{{this.catalogueService.host+'/photouser/'
+        +user.id}}"/>
+        </div>
+        <div class="panel-body">
+          <table>
+            <tr>
+              <td>
+                <strong>  {{user.nom}}  </strong>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                {{user.prenom}}
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <i> Numéroi de Siret: </i>  {{user.numeroSiret}}
+              </td>
+            </tr>
+            <tr>
+              <td>
+                {{user.recommanderBy}}
+              </td>
+            </tr>
+          </table>
+        </div>
       </div>
-      <div class="panel-body">
-        <table>
-          <tr>
-            <td>
-              <strong>  {{user.nom}}  </strong>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              {{user.prenom}}
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <i> Numéroi de Siret:    </i>  {{user.numeroSiret}}
-            </td>
-          </tr>
-          <tr>
-            <td>
-              {{user.recommanderBy}}
-            </td>
-          </tr>
-        </table>
+      <div class="panel-footer">
+        <div class="w3-row">
+          <div class="w3-col m3 w3-center" (click)="toggleTel()">
+            <h3>Tel</h3>
+            <span class="glyphicon glyphicon-earphone" style="font-size:40px;color:red">
+            <i class="w3-medium" *ngIf="iscontactChecked">:<b>{{user.tele}}</b></i>
+          </span>
+          </div>
+          <div class="w3-col s5 w3-center w3-margin-right aw3-margin-bottom" (click)="toggleWatshap()"
+               style="float: right;">
+            <h3>Whatsapp</h3>
+            <span class="fab fa-whatsapp " style="font-size:40px;color:green;">
+            <i class="w3-medium" *ngIf="iscontactWhatShapChecked">:<b>{{user.tele}}</b></i>
+          </span>
+          </div>
+        </div>
+        <div class="w3-container">
+          <div class="rating-inline" onclick="document.getElementById('id01').style.display='block'">
+            <h4>Average user rating</h4>
+
+            <h2 class="bold padding-bottom-7">{{user.note}}
+              <small>/ 5</small>
+            </h2>
+            <app-stars [rating]=" user.note | number: '1.0-0'" (ratingClicked)='onRatingClicked($event)'></app-stars>
+          </div>
+          <div id="id01" class="w3-modal">
+            <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:800px">
+
+              <div class="w3-center"><br>
+                <span onclick="document.getElementById('id01').style.display='none'"
+                      class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
+                <img src="assets/img/catalogue/img_avatar4.png" alt="Avatar" style="width:30%" class="w3-circle w3-margin-top">
+              </div>
+
+              <form class="w3-container">
+                <div class="w3-section">
+                  <label><b><h2>Commentaire</h2></b></label>
+                  <textarea id="subject" name="subject" placeholder="Votre avis nous interese sur notre professionel.."
+                            class="w3-container w3-block w3-light-grey w3-padding-64 w3-section"></textarea>
+                </div>
+              </form>
+              <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
+                <button onclick="document.getElementById('id01').style.display='none'" type="button"
+                        class="w3-button w3-red w3-center">Cancel
+                </button>
+                <button onclick="document.getElementById('id01').style.display='none'" type="button"
+                        class="w3-button w3-green w3-center w3-right">send
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
+
+
     </div>
-    <div class="panel-footer">
-      <button class="button" (click)="toggleTel()">
-        Contact<i *ngIf="iscontactChecked">: {{user.tele}}</i>
-      </button>
-
-
-      <div class="rating-inline">
-        <h4>Average user rating</h4>
-
-        <h2 class="bold padding-bottom-7">{{user.note}}<small>/ 5</small></h2>
-        <app-stars [rating]= " user.note | number: '1.0-0'" (ratingClicked)='onRatingClicked($event)'></app-stars>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-6 card " style="background-color:white">
-  Lorem ipsum dolor sit amet,Lorem ipsum dolor sit amet,
-  consectetuer adipiscing elit. Aenean commodo ligula eget dolor.Lorem ipsum dolor sit amet,
-  consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
-  consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
-  Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,
-  nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu,
-  pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel,
-  aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imp consectetuer adipiscing elit. Aenean commodo
-  ligula eget dolor.
-  Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,
-  nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu,
-  pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel,
-  aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imp
-  consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
-  Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,
-  nascetur ridiculus mus. Donec quam f Lorem ipsum dolor sit amet,Lorem ipsum dolor sit amet,
-  consectetuer adipiscing elit. Aenean commodo ligula eget dolor.Lorem ipsum dolor sit amet,
-  consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
-  consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
-  Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,
-  nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu,
-  pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel,
-  aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imp consectetuer adipiscing elit. Aenean commodo
-  ligula eget dolor.
     <div class="col-md-6 card " style="background-color:white">
-     <b> Lorem ipsum dolor sit amet,Lorem ipsum dolor sit amet,
-      consectetuer adipiscing elit. Aenean commodo ligula eget dolor.Lorem ipsum dolor sit amet,
       Lorem ipsum dolor sit amet,Lorem ipsum dolor sit amet,
       consectetuer adipiscing elit. Aenean commodo ligula eget dolor.Lorem ipsum dolor sit amet,
-      consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</b>
-      <img class="card" alt="Cinque Terre" height="200" style="width:100%;" src="{{this.catalogueService.host+'/photouser/'
-        +user.id}}" />
+      consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
+      consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
+      Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,
+      nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu,
+      pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel,
+      aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imp consectetuer adipiscing elit. Aenean commodo
+      Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,
+      nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu,
+      pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel,
+      aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imp
+      consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
+      Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,
+      nascetur ridiculus mus. Donec quam f Lorem ipsum dolor sit amet,Lorem ipsum dolor sit amet,
+      consectetuer adipiscing elit. Aenean commodo ligula eget dolor.Lorem ipsum dolor sit amet,
+      consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
+      consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
+      Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,
+      nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu,
+      pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel,
+      aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imp consectetuer adipiscing elit. Aenean commodo
+      ligula eget dolor.
+      Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,
+      nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu,
+      pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel,
+      aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imp
+      consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
+      Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,
+      nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu,
+      pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel,
+      aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis
+      vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum
+      semper
     </div>
-  Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,
-  nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu,
-  pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel,
-  aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imp
-  consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
-  Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,
-  nascetur ridiculus mus. Donec quam f Lorem ipsum dolor sit amet,Lorem ipsum dolor sit amet,
-  consectetuer adipiscing elit. Aenean commodo ligula eget dolor.Lorem ipsum dolor sit amet,
-  consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
-  consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
-  Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,
-  nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu,
-  pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel,
-  aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imp consectetuer adipiscing elit. Aenean commodo
-  ligula eget dolor.
-  Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,
-  nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu,
-  pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel,
-  aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imp
-  consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
-  Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,
-  nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu,
-  pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel,
-  aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis
-  vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum
-  semper
+    <div class="col-md-2">
+      <button type="button" class="btn btn-lg btn-primary button" (click)="getDevis()"> Devis</button>
+    </div>
   </div>
-  <div class="col-md-2">
-  <button type="button" class="btn btn-lg btn-primary button" (click)="getDevis()"> Devis </button>
-  </div>
-
 </div>
+
+
+<div class="w3-container w3-center">
+  <h2>Les realisations</h2>
+  <p>vous trouverez les differentes realisations de notre professionel qualifié</p>
+</div>
+<div class="w3-content" style="max-width:1200px">
+  <img class="mySlides" src="assets/img/catalogue/img_snow_wide.png" style="width:100%;display:none">
+  <img class="mySlides" src="assets/img/catalogue/immo.png" style="width:100%">
+  <img class="mySlides" src="assets/img/catalogue/promesse.jpg" style="width:100%;display:none">
+  <img class="mySlides" src="assets/img/header-background.png" style="width:100%;display:none">
+  <img class="mySlides" src="assets/img/catalogue/batima.png" style="width:100%;display:none">
+
+
+  <div class="w3-row-padding w3-section">
+    <div class="w3-col m2">
+      <img class="demo w3-opacity w3-hover-opacity-off" src="assets/img/catalogue/img_snow_wide.png"
+           style="width:100%;cursor:pointer" onclick="currentDiv(1)">
+    </div>
+    <div class="w3-col m2">
+      <img class="demo w3-opacity w3-hover-opacity-off" src="assets/img/catalogue/immo.png"
+           style="width:100%;cursor:pointer" onclick="currentDiv(2)">
+    </div>
+
+    <div class="w3-col m2">
+      <img class="demo w3-opacity w3-hover-opacity-off" src="assets/img/catalogue/promesse.jpg"
+           style="width:100%;cursor:pointer" onclick="currentDiv(3)">
+    </div>
+    <div class="w3-col m2">
+      <img class="demo w3-opacity w3-hover-opacity-off" src="assets/img/header-background.png"
+           style="width:100%;cursor:pointer" onclick="currentDiv(4)">
+    </div>
+    <div class="w3-col m2">
+      <img class="demo w3-opacity w3-hover-opacity-off" src="assets/img/catalogue/batima.png"
+           style="width:100%;cursor:pointer" onclick="currentDiv(5)">
+    </div>
+
+  </div>
 </div>

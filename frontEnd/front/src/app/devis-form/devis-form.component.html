@@ -2,8 +2,29 @@
   {{errorMessage}}
   <strong>  the text area must not be empty to send</strong>
 </div>
-<div class=" row container usersPanel panel panel-success" *ngIf="mode==1">
-  <div class="panel-heading">
+
+  <div class="metier-africa-add-artisan-conatiner uk-flex uk-flex-center" *ngIf="mode==1">
+    <div class="metier-africa-add-artisan-content container" >
+      <div class="uk-text-center metier-africa-add-artisan-head-wrap">
+        <div class="metier-africa-add-artisan-title">
+          Demande de devis Artisan
+        </div>
+        <div class="metier-africa-add-artisan-form-head-txt metier-africa-add-artisan-form-head-txt-show-web">
+       Les demandes de devis à la plateforme sont gratuites. Les valeurs qui nous importent sont vos qualités professionnelles et
+          humaines. Pour être un artisan sur notre plateforme, remplissez le formulaire ci dessous. Nous procéderons à
+          des vérifications.
+        </div>
+        <div class="metier-africa-add-artisan-form-head-txt metier-africa-add-artisan-form-head-txt-show-mobile"
+             style="display: none;">
+          L'adhésion à la plateforme est gratuite. Les valeurs qui nous importent sont vos qualités professionnelles et
+          humaines. Pour être un artisan sur notre plateforme, remplissez le formulaire ci dessous. Nous procéderons à
+          des vérifications.
+        </div>
+      </div>
+    </div>
+  </div>
+<div class=" container usersPanel panel panel-success " *ngIf="mode==1">
+    <div class="panel-heading">
     <strong>New request is sending to professionel Thank for using our service!!!  </strong>
     <div class="panel-body">
       <ul class="list-group">
@@ -39,7 +60,7 @@
         </div>
         <hr>
     
-        <button type="submit" [disabled]="!f.form.valid" class="registerbtn">Send
+        <button  class="w3-spin" type="submit" [disabled]="!f.form.valid" class="registerbtn">Send
           <img *ngIf="loading"  style="background-color: #f5deb3"
                src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
 

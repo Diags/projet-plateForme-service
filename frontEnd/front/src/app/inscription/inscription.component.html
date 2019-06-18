@@ -48,7 +48,7 @@
 
                 <div class="uk-inline metier-africa-add-artisan-form-input-content">
                   <select  class="form-control " ngModel name="categoryName"  searchable="Search here..">
-                    <option disabled selected>choisir ton domaine </option>
+                    <option  value="" disabled selected>choisir ton domaine </option>
                     <option  *ngFor="let c of categories._embedded.categories">{{c.name}}</option>
                   </select>
                 </div>
@@ -97,7 +97,7 @@
                 <div class="uk-inline metier-africa-add-artisan-form-input-content" *ngIf="pays">
                   <select   class="uk-input metier-africa-add-artisan-form-input" data-vv-id="6" aria-required="true"
                   aria-invalid="false" ngModel name="pays"  searchable="Search here..">
-                    <option disabled selected>choisir ton pays</option>
+                    <option  value="" disabled selected>choisir ton pays</option>
                     <option    *ngFor="let c of pays">{{c}}</option>
                   </select>
                   <div class="metier-africa-form-show-error-msg-txt" style="display: none;"></div>

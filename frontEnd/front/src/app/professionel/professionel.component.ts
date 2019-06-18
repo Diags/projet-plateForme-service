@@ -11,6 +11,7 @@ import {CatalogueService} from "../catalogue.service";
 export class ProfessionelComponent implements OnInit {
   public user;
   private iscontactChecked = false;
+  private iscontactWhatShapChecked = false;
   private noteRating: number;
   constructor(private catalogueService: CatalogueService, private routerActivated: ActivatedRoute, private router: Router) {
     // this.router.params.subscribe(params => this.artisantDetail = params.id)
@@ -34,7 +35,10 @@ export class ProfessionelComponent implements OnInit {
     this.iscontactChecked = !this.iscontactChecked;
     console.log("iscontactChecked",this.iscontactChecked)
   }
-
+  toggleWatshap(){
+    this.iscontactWhatShapChecked = !this.iscontactWhatShapChecked;
+    console.log("iscontactWhatShapChecked",this.iscontactWhatShapChecked)
+  }
   onRatingClicked(note:number):void{
     this.noteRating = note;
     console.log(this.noteRating, "==> noteRating");
