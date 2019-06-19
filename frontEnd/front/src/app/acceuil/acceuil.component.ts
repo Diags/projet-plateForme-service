@@ -8,25 +8,39 @@ import {CatalogueService} from "../catalogue.service";
   styleUrls: ['./acceuil.component.css']
 })
 export class AcceuilComponent implements OnInit {
-
-  constructor(private catelogService:CatalogueService, private  routeActive: ActivatedRoute, private route: Router) { }
+   users;
   categories;
   currenteCategorie;
   curenteSearchUsers;
+  iscontactChecked= false;
+  currentUser;
+  constructor(private catelogService:CatalogueService, private  routeActive: ActivatedRoute, private route: Router) { }
   ngOnInit(): void {
     this.catelogService.curenteSearchUsers=[];
           this.getcatalogue("/categories");
+          this. getUsers();
   }
 
   getcatalogue(url){
     this.catelogService.getCatalogue(url).subscribe(data => {
       this.categories = data;
-      console.log("catlogue hommm",data);
     }, err=> {
       console.log(err);
     })
   }
-
+  getUsers(){
+    this.catelogService.getAllUsers("/allUsers").subscribe(data => {
+      this.users = data;
+      console.log("users ****>",data);
+    },err=> {
+      console.log(err);
+    })
+  }
+  toggleTel(user){
+    this.currentUser = user;
+    this.iscontactChecked = !this.iscontactChecked;
+    console.log("iscontactChecked",this.iscontactChecked)
+  }
   getcatalogueByAdresse(dataForm: any) {
     console.log("formData ++++==>  ",dataForm);
     this.catelogService.Search(dataForm).subscribe(data => {

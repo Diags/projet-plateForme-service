@@ -5,6 +5,7 @@ import monartisant.com.projetartisant.model.*;
 import monartisant.com.projetartisant.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
@@ -32,6 +33,11 @@ public class UserController {
     public byte[] getUserPhoto(@PathVariable("id") Long id) throws Exception {
         User user = userRepository.findById(id).get();
         return Files.readAllBytes(Paths.get(this.getClass().getClassLoader().getResource("imageDiaguily/image/" + user.getPhotoName() + ".png").toURI()));
+    }
+    @ApiOperation(value = "retreive all Users ")
+    @GetMapping("allUsers")
+    public List<User> getAllUsers() throws Exception {
+        return userRepository.chercherUsers(PageRequest.of(0,4));
     }
 
     //    @GetMapping("/usersbyville")

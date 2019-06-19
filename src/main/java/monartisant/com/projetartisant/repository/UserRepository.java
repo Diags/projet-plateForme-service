@@ -1,6 +1,7 @@
 package monartisant.com.projetartisant.repository;
 
 import monartisant.com.projetartisant.model.User;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -19,5 +20,8 @@ public interface UserRepository extends JpaRepository<User,Long> {
     @Query("select u from User u  where  u.profession.name =:name and u.adresse.ville =:ville")
     List<User> getUsers(@Param("name") String name, @Param("ville") String ville);
    // List<User> findByprofession_nameContainsAndAdresse_villeContainsAndProfession_Category_name(String professionName, String ville, String categoryName);
+
+    @Query("select u from User u")
+  List<User> chercherUsers( Pageable pageable);
 
 }

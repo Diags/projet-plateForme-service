@@ -5,10 +5,11 @@
   margin-bottom: 3%;
 }
 .usersPanel{
-  margin-top: 13%;
-  min-height:50%;
-  margin-bottom: 6%;
-}
+    margin-top: 13%;
+    min-height:50%;
+    margin-bottom: 6%;
+  }
+
 a {
   text-decoration: none;
   display: inline-block;

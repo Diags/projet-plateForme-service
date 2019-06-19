@@ -25,7 +25,9 @@ getProfById(id){
 getAllUserbyProfessions(url){
   return this.http.get(url);
 }
-
+  getAllUsers(url){
+    return this.http.get(this.host+'/'+url);
+  }
   updateNote(note, id) {
     return  this.http.post(this.host+'/updatenote/',{
       note:note,

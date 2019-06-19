@@ -185,57 +185,64 @@
   </div>
 </div>
 <div class="row" style=" margin-top: 2%;">
+
   <div class="container w3-center">
     <h1 >Nos artisans</h1>
-   <h5> Découvrez une sélection d'artisans de votre région.</h5>
-    <div class="col-md-4">
-<div class="card">
-  <img src="assets/img/catalogue/img_avatar4.png"   alt="John" style="width:100%">
-  <h1>John Doeffffffffffffffff</h1>
-  <p class="title">CEO & Founder, Example</p>
-  <p>Harvard University</p>
-  <div style="margin: 24px 0;">
-    <a href="#"><i class="fab fa-dribbble"></i></a>
-    <a href="#"><i class="fab fa-twitter"></i></a>
-    <a href="#"><i class="fab fa-linkedin"></i></a>
-    <a href="#"><i class="fab fa-facebook"></i></a>
-  </div>
-  <p><button class="w3-button w3-green">Contact</button></p>
-</div>
-    </div>
-    <div class="col-md-4">
-      <div class="card">
-        <img src="assets/img/catalogue/img_avatar4.png"   alt="John" style="width:100%">
-        <h1>John Doe</h1>
-        <p class="title">CEO & Founder, Example</p>
-        <p>Harvard University</p>
-        <div style="margin: 24px 0;">
-          <a href="#"><i class="fab fa-dribbble"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-linkedin"></i></a>
-          <a href="#"><i class="fab fa-facebook"></i></a>
+    <h5> Découvrez une sélection d'artisans de votre région.</h5>
+    <div i class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-slide-to="0" class="active"></li>
+        <li  data-slide-to="1"></li>
+        <li  data-slide-to="2"></li>
+        <li  data-slide-to="3"></li>
+      </ol>
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner ">
+        <div class="item active"*ngIf="users">
+          <div class="col-md-3" *ngFor="let user of users">
+            <div class="card" >
+              <img src="assets/img/catalogue/img_avatar4.png"   alt="John" style="width:100%">
+              <h1>{{user.nom}}</h1>
+              <p class="title">{{user.nom}}</p>
+
+              <div style="margin: 24px 0;">
+                <a href="#"><i class="fab fa-dribbble"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+              </div>
+              <p>
+                <button (click)="toggleTel(user)" *ngIf="iscontactChecked && currentUser ==user " class="w3-button w3-green">Contact
+                <i class="w3-medium" *ngIf="iscontactChecked && currentUser ==user "><b>{{user.tele}}</b></i></button></p>
+            </div>
+          </div>
         </div>
-        <p><button class="w3-button w3-green">Contact</button></p>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="card">
-        <img src="assets/img/catalogue/img_avatar4.png"   alt="John" style="width:100%">
-        <h1>John Doe</h1>
-        <p class="title">CEO & Founder, Example</p>
-        <p>Harvard University</p>
-        <div style="margin: 24px 0;">
-          <a href="#"><i class="fab fa-dribbble"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-linkedin"></i></a>
-          <a href="#"><i class="fab fa-facebook"></i></a>
+        <div class="item"*ngIf="users">
+          <div class="col-md-3"  *ngFor="let user of users">
+            <div class="card">
+              <img src="assets/img/catalogue/img_avatar4.png"   alt="John" style="width:100%">
+              <h1>{{user.nom}}</h1>
+              <p class="title">{{user.nom}}</p>
+              <div style="margin: 24px 0;">
+                <a href="#"><i class="fab fa-dribbble"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+              <p>
+                <button (click)="toggleTel(user)"class="w3-button w3-green">Contact <i class="w3-medium" *ngIf="iscontactChecked && currentUser ==user ">:<b>{{user.tele}}</b></i></button>
+              </p>
+            </div>
+          </div>
         </div>
-        <p><button class="w3-button w3-green">Contact</button></p>
-      </div>
     </div>
   </div>
+  </div>
 </div>
-<!--<div *ngIf="curenteSearchUsers">-->
+  <div class="container w3-center w3-padding-bottom w3-margin-top ">
+  <button [routerLink]="['/catalogue/1/0']" class="w3-button w3-red" >Touvez nos Artisan</button>
+</div>
+  <!--<div *ngIf="curenteSearchUsers">-->
 <!--  <div *ngFor="let c of curenteSearchUsers">{{c.nom}}</div>-->
 <!--</div>-->
 
