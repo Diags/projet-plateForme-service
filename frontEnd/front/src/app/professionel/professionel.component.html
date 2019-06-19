@@ -1,90 +1,156 @@
 <div class="row usersPanel">
   <div class="container " *ngIf="user">
     <div class="col-md-3">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <img class="card" alt="Cinque Terre" height="200" style="width:100%;" src="{{this.catalogueService.host+'/photouser/'
-        +user.id}}"/>
+
+      <div class="w3-card w3-center" >
+        <img  src="{{this.catalogueService.host+'/photouser/'+user.id}}"  alt="John" style="width:100%"  [routerLink]="['/professionel/', user.id]">
+        <h3>{{user.nom}} </h3>
+        <p  class="title"> {{user.prenom}}</p>
+        <p  class="title">  <i>  Numéroi de Siret:    </i>  {{user.numeroSiret}}</p>
+        <p  class="title">  {{user.recommanderBy}}</p>
+        <div style="margin: 24px 0;">
+          <a href="#"><i class="fab fa-dribbble"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+          <a href="#"><i class="fab fa-facebook"></i></a>
         </div>
-        <div class="panel-body">
-          <table>
-            <tr>
-              <td>
-                <strong>  {{user.nom}}  </strong>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                {{user.prenom}}
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <i> Numéroi de Siret: </i>  {{user.numeroSiret}}
-              </td>
-            </tr>
-            <tr>
-              <td>
-                {{user.recommanderBy}}
-              </td>
-            </tr>
-          </table>
-        </div>
-      </div>
-      <div class="panel-footer">
         <div class="w3-row">
-          <div class="w3-col m3 w3-center" (click)="toggleTel()">
-            <h3>Tel</h3>
-            <span class="glyphicon glyphicon-earphone" style="font-size:40px;color:red">
+        <div class="w3-col m3 w3-center "(click)="toggleTel()">
+          <h3>Tel</h3>
+          <span class="glyphicon glyphicon-earphone" style="font-size:40px;color:red">
             <i class="w3-medium" *ngIf="iscontactChecked">:<b>{{user.tele}}</b></i>
           </span>
-          </div>
-          <div class="w3-col s5 w3-center w3-margin-right aw3-margin-bottom" (click)="toggleWatshap()"
-               style="float: right;">
-            <h3>Whatsapp</h3>
-            <span class="fab fa-whatsapp " style="font-size:40px;color:green;">
+        </div>
+        <div class="" (click)="toggleWatshap()"
+             style="float: right;">
+          <h3>Whatsapp</h3>
+          <span class="fab fa-whatsapp " style="font-size:40px;color:green;">
             <i class="w3-medium" *ngIf="iscontactWhatShapChecked">:<b>{{user.tele}}</b></i>
           </span>
-          </div>
         </div>
-        <div class="w3-container">
-          <div class="rating-inline" onclick="document.getElementById('id01').style.display='block'">
-            <h4>Average user rating</h4>
+        </div>
+        <div class="w3-center ">
+        <div class="rating-inline">
+          <h4>Notes utilisateur</h4>
+          <h2 class="bold padding-bottom-7">{{ user.note}}<small>/ 5</small></h2>
+          <app-stars [rating]=" user.note | number: '1.0-0'" (ratingClicked)='onRatingClicked($event)'></app-stars>
+        </div>
+        <div id="id01" class="w3-modal">
+          <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:800px">
 
-            <h2 class="bold padding-bottom-7">{{user.note}}
-              <small>/ 5</small>
-            </h2>
-            <app-stars [rating]=" user.note | number: '1.0-0'" (ratingClicked)='onRatingClicked($event)'></app-stars>
-          </div>
-          <div id="id01" class="w3-modal">
-            <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:800px">
+            <div class="w3-center"><br>
+              <span onclick="document.getElementById('id01').style.display='none'"
+                    class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
+              <img src="assets/img/catalogue/img_avatar4.png" alt="Avatar" style="width:30%" class="w3-circle w3-margin-top">
+            </div>
 
-              <div class="w3-center"><br>
-                <span onclick="document.getElementById('id01').style.display='none'"
-                      class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
-                <img src="assets/img/catalogue/img_avatar4.png" alt="Avatar" style="width:30%" class="w3-circle w3-margin-top">
+            <form class="w3-container">
+              <div class="w3-section">
+                <label><b><h2>Commentaire</h2></b></label>
+                <textarea id="subject" name="subject" placeholder="Votre avis nous interese sur notre professionel.."
+                          class="w3-container w3-block w3-light-grey w3-padding-64 w3-section"></textarea>
               </div>
-
-              <form class="w3-container">
-                <div class="w3-section">
-                  <label><b><h2>Commentaire</h2></b></label>
-                  <textarea id="subject" name="subject" placeholder="Votre avis nous interese sur notre professionel.."
-                            class="w3-container w3-block w3-light-grey w3-padding-64 w3-section"></textarea>
-                </div>
-              </form>
-              <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
-                <button onclick="document.getElementById('id01').style.display='none'" type="button"
-                        class="w3-button w3-red w3-center">Cancel
-                </button>
-                <button onclick="document.getElementById('id01').style.display='none'" type="button"
-                        class="w3-button w3-green w3-center w3-right">send
-                </button>
-              </div>
+            </form>
+            <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
+              <button onclick="document.getElementById('id01').style.display='none'" type="button"
+                      class="w3-button w3-red w3-center">Cancel
+              </button>
+              <button onclick="document.getElementById('id01').style.display='none'" type="button"
+                      class="w3-button w3-green w3-center w3-right">send
+              </button>
             </div>
           </div>
         </div>
-
       </div>
+      </div>
+
+
+
+
+<!--      <div class="panel panel-default">-->
+<!--        <div class="panel-heading">-->
+<!--          <img class="card" alt="Cinque Terre" height="200" style="width:100%;" src="{{this.catalogueService.host+'/photouser/'-->
+<!--        +user.id}}"/>-->
+<!--        </div>-->
+<!--        <div class="panel-body">-->
+<!--          <table>-->
+<!--            <tr>-->
+<!--              <td>-->
+<!--                <strong>  {{user.nom}}  </strong>-->
+<!--              </td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--              <td>-->
+<!--                {{user.prenom}}-->
+<!--              </td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--              <td>-->
+<!--                <i> Numéroi de Siret: </i>  {{user.numeroSiret}}-->
+<!--              </td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--              <td>-->
+<!--                {{user.recommanderBy}}-->
+<!--              </td>-->
+<!--            </tr>-->
+<!--          </table>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="panel-footer">-->
+<!--        <div class="w3-row">-->
+<!--          <div class="w3-col m3 w3-center" (click)="toggleTel()">-->
+<!--            <h3>Tel</h3>-->
+<!--            <span class="glyphicon glyphicon-earphone" style="font-size:40px;color:red">-->
+<!--            <i class="w3-medium" *ngIf="iscontactChecked">:<b>{{user.tele}}</b></i>-->
+<!--          </span>-->
+<!--          </div>-->
+<!--          <div class="w3-col s5 w3-center w3-margin-right aw3-margin-bottom" (click)="toggleWatshap()"-->
+<!--               style="float: right;">-->
+<!--            <h3>Whatsapp</h3>-->
+<!--            <span class="fab fa-whatsapp " style="font-size:40px;color:green;">-->
+<!--            <i class="w3-medium" *ngIf="iscontactWhatShapChecked">:<b>{{user.tele}}</b></i>-->
+<!--          </span>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="container ">-->
+<!--          <div class="rating-inline" onclick="document.getElementById('id01').style.display='block'">-->
+<!--            <h4>Average user rating</h4>-->
+
+<!--            <h2 class="bold padding-bottom-7">{{user.note}}-->
+<!--              <small>/ 5</small>-->
+<!--            </h2>-->
+<!--            <app-stars [rating]=" user.note | number: '1.0-0'" (ratingClicked)='onRatingClicked($event)'></app-stars>-->
+<!--          </div>-->
+<!--          <div id="id01" class="w3-modal">-->
+<!--            <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:800px">-->
+
+<!--              <div class="w3-center"><br>-->
+<!--                <span onclick="document.getElementById('id01').style.display='none'"-->
+<!--                      class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>-->
+<!--                <img src="assets/img/catalogue/img_avatar4.png" alt="Avatar" style="width:30%" class="w3-circle w3-margin-top">-->
+<!--              </div>-->
+
+<!--              <form class="w3-container">-->
+<!--                <div class="w3-section">-->
+<!--                  <label><b><h2>Commentaire</h2></b></label>-->
+<!--                  <textarea id="subject" name="subject" placeholder="Votre avis nous interese sur notre professionel.."-->
+<!--                            class="w3-container w3-block w3-light-grey w3-padding-64 w3-section"></textarea>-->
+<!--                </div>-->
+<!--              </form>-->
+<!--              <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">-->
+<!--                <button onclick="document.getElementById('id01').style.display='none'" type="button"-->
+<!--                        class="w3-button w3-red w3-center">Cancel-->
+<!--                </button>-->
+<!--                <button onclick="document.getElementById('id01').style.display='none'" type="button"-->
+<!--                        class="w3-button w3-green w3-center w3-right">send-->
+<!--                </button>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+
+<!--      </div>-->
 
 
     </div>
