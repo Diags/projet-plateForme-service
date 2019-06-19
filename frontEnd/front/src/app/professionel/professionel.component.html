@@ -29,11 +29,13 @@
           </span>
         </div>
         </div>
-        <div class="w3-center ">
-        <div class="rating-inline">
+        <div class="w3-row "(ratingClicked)='onRatingClicked($event)'>
+        <div class="rating-inline" onclick="document.getElementById('id01').style.display='block'">
           <h4>Notes utilisateur</h4>
           <h2 class="bold padding-bottom-7">{{ user.note}}<small>/ 5</small></h2>
-          <app-stars [rating]=" user.note | number: '1.0-0'" (ratingClicked)='onRatingClicked($event)'></app-stars>
+        </div>
+          <div class="w3-row test" >
+          <app-stars  [rating]=" user.note | number: '1.0-0'" (ratingClicked)='onRatingClicked($event)'></app-stars>
         </div>
         <div id="id01" class="w3-modal">
           <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:800px">
@@ -46,14 +48,15 @@
 
             <form class="w3-container">
               <div class="w3-section">
-                <label><b><h2>Commentaire</h2></b></label>
+                <label><b><h2>Donnez votre avis sur notre professionel<br/>
+                Mr. {{user.nom}}</h2></b></label>
                 <textarea id="subject" name="subject" placeholder="Votre avis nous interese sur notre professionel.."
                           class="w3-container w3-block w3-light-grey w3-padding-64 w3-section"></textarea>
               </div>
             </form>
             <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
               <button onclick="document.getElementById('id01').style.display='none'" type="button"
-                      class="w3-button w3-red w3-center">Cancel
+                      class="w3-button w3-red w3-left">Cancel
               </button>
               <button onclick="document.getElementById('id01').style.display='none'" type="button"
                       class="w3-button w3-green w3-center w3-right">send
