@@ -20,8 +20,6 @@ export class ProfessionsDetailComponent implements OnInit {
   constructor( private catalogueService: CatalogueService, private routerActivated: ActivatedRoute, private router : Router) {
    // this.router.params.subscribe(params => this.artisantDetail = params.id)
   //   console.log(this.router.snapshot.paramMap.get('id'))
-    this.usersFilter = this._listFilter ? this.perFormFilter(this._listFilter) : this.users;
-    console.log(this.usersFilter,"this.usersFilter")
   }
   get listFilter() {
     return this._listFilter;
@@ -29,39 +27,29 @@ export class ProfessionsDetailComponent implements OnInit {
 
   set listFilter(value) {
     this._listFilter = value;
-    this.usersFilter = this._listFilter ? this.perFormFilter(this.listFilter) : this.users;
-    console.log(this.usersFilter,"this.usersFilter")
+    this.usersFilter = this._listFilter ? this.perFormFilter(this.listFilter) : this.users._embedded.users;
 
   }
   ngOnInit() {
     let id = +this.routerActivated.snapshot.paramMap.get('id');
     if(id==0){
       this.usersSearch = this.catalogueService.curenteSearchUsers;
-      console.log("usersss *******> ",this.catalogueService.curenteSearchUsers)
     }else {
       this.catalogueService.getProfessionelUserById(id).subscribe(resp => {
-          console.log(resp);
           this.users = resp;
+          this.usersFilter = this._listFilter ? this.perFormFilter(this.listFilter) : this.users._embedded.users;
         }
         , error => {
           console.log(error);
         })
     }
-    this.usersFilter = this._listFilter ? this.perFormFilter(this.listFilter) : this.users;
-    console.log(this.usersFilter,"this.usersFilter2")
   }
   private perFormFilter(filterby: string) {
-    console.log(filterby, "task");
-    console.log(this.users._embedded.users.map(u=> u.nom).filter(user =>
-      user.toLocaleLowerCase().indexOf(filterby) != -1), "this.users");
     filterby = filterby.toLocaleLowerCase();
-    return this.users._embedded.users.map(u=> u.nom).filter(user =>
-     user.toLocaleLowerCase().indexOf(filterby) != -1);
+    return this.users._embedded.users.filter(user =>
+     user.nom.toLocaleLowerCase().indexOf(filterby) != -1);
   };
-  ngOnChanges(): void {
-    console.log(this.filter +" task");
-    this.usersFilter = this._listFilter ? this.perFormFilter(this.filter) : this.users;
-  }
+
   getDevis(){
     this.router.navigateByUrl('/devis')
   }

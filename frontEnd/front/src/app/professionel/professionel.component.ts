@@ -13,6 +13,7 @@ export class ProfessionelComponent implements OnInit {
   private iscontactChecked = false;
   private iscontactWhatShapChecked = false;
   private noteRating: number;
+  commentaire;
   constructor(private catalogueService: CatalogueService, private routerActivated: ActivatedRoute, private router: Router) {
     // this.router.params.subscribe(params => this.artisantDetail = params.id)
     //   console.log(this.router.snapshot.paramMap.get('id'))
@@ -47,5 +48,9 @@ export class ProfessionelComponent implements OnInit {
       this.user = data;
       console.log(id, "==> id");
     });
+  }
+
+  sendCommtaire(dataForm) {
+console.log("dataForm------>",dataForm);
   }
 }

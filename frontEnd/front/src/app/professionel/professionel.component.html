@@ -46,22 +46,21 @@
               <img src="assets/img/catalogue/img_avatar4.png" alt="Avatar" style="width:30%" class="w3-circle w3-margin-top">
             </div>
 
-            <form class="w3-container">
+            <form #f="ngForm" class="w3-container" (ngSubmit)="sendCommtaire(f.value)">
               <div class="w3-section">
                 <label><b><h2>Donnez votre avis sur notre professionel<br/>
                 Mr. {{user.nom}}</h2></b></label>
-                <textarea id="subject" name="subject" placeholder="Votre avis nous interese sur notre professionel.."
+                <textarea id="subject" name="subject"  [(ngModel)]="commentaire" placeholder="Votre avis nous interese sur notre professionel.."
                           class="w3-container w3-block w3-light-grey w3-padding-64 w3-section"></textarea>
               </div>
-            </form>
-            <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
+              <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
               <button onclick="document.getElementById('id01').style.display='none'" type="button"
                       class="w3-button w3-red w3-left">Cancel
               </button>
-              <button onclick="document.getElementById('id01').style.display='none'" type="button"
-                      class="w3-button w3-green w3-center w3-right">send
+              <button  onclick="document.getElementById('id01').style.display='none'"  type="submit" class="w3-button w3-green w3-center w3-right">send
               </button>
             </div>
+            </form>
           </div>
         </div>
       </div>
@@ -234,6 +233,9 @@
       <img class="demo w3-opacity w3-hover-opacity-off" src="assets/img/catalogue/batima.png"
            style="width:100%;cursor:pointer" onclick="currentDiv(5)">
     </div>
-
   </div>
+</div>
+
+<div class="w3-row w3-center well container" *ngIf="commentaire">
+  {{commentaire}}
 </div>

@@ -1,11 +1,16 @@
-<div class="container usersPanel" *ngIf="professions">
+<div class="container usersPanel" *ngIf="professionsFilter">
     <div class="tomImg">
       <img class="img-responsive" alt="Cinque Terre"  style="width:100%;" src="{{this.catalogueService.host+'/photoprofession/'
         +this.idPublic}}" />
     </div>
+  <div class="container usersPanel" style="width: 93%;">
+    <input class="form-control"  [(ngModel)]="listFilter" type="text" placeholder="Search" aria-label="Search">
+  </div>
     <div class="w3-row">
       <div class="w3-center w3-row-padding">
-       <div class="w3-col s4 "*ngFor="let user of professions._embedded.professions" >
+        <h3>{{professionsFilter.length}} résultats correspondent à votre recherche</h3>
+       <div class="w3-col s4 "*ngFor="let user of professionsFilter" >
+
     <div class="w3-card"  [routerLink]="['/professions-details/', user.id]">
       <img src="{{this.catalogueService.host+'/photoprofession/' +user.id}}"  alt="John" style="width:100%">
       <h3>{{user.name}} </h3>
