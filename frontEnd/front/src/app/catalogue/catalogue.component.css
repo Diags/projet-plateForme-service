@@ -30,8 +30,8 @@ usersPanel
   color: rgba(7, 7, 7, 0.92);
 }
 
-.test3 {
-  top: 10%
+.bg-img {
+  margin-top: 2%
 }
 
 .form-control {
@@ -53,19 +53,6 @@ usersPanel
 /*max-width:50%;*/
 /*margin-top:  10%*/
 /*}*/
-
-.bg-img {
-  /* The image used */
-  background-image: url("/assets/img/catalogue/craftsmen.png");
-
-min-height: 520px;
-
-  /* Center and scale the image nicely */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: relative;
-}
 
 .form-inline .form-group {
   min-width: 20%;display: inline-flex;

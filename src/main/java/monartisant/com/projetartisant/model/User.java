@@ -57,4 +57,10 @@ public class User {
     private String raison;
     private String telephone2;
     private String whatsapp;
+    private String twitter;
+    private String facebook;
+    private String website_url;
+    private String linkedin;
+    private GenreEnum genreEnum;
+
 }

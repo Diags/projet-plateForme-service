@@ -1,7 +1,9 @@
 package monartisant.com.projetartisant;
 
 import monartisant.com.projetartisant.model.*;
-import monartisant.com.projetartisant.repository.*;
+import monartisant.com.projetartisant.repository.CategoryRepository;
+import monartisant.com.projetartisant.repository.ProfessionRepository;
+import monartisant.com.projetartisant.repository.UserRepository;
 import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -9,21 +11,21 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
 @SpringBootApplication
 public class ProjetArtisantApplication implements CommandLineRunner {
-    @Autowired(required=true)
+    @Autowired(required = true)
     private UserRepository userRepository;
-    @Autowired(required=true)
+    @Autowired(required = true)
     private CategoryRepository categoryRepository;
     @Autowired
     private RepositoryRestConfiguration repositoryRestConfiguration;
     @Autowired
     private ProfessionRepository professionRepository;
+
     public static void main(String[] args) {
         SpringApplication.run(ProjetArtisantApplication.class, args);
     }
@@ -42,7 +44,7 @@ public class ProjetArtisantApplication implements CommandLineRunner {
         //  Adresse a = new Adresse(null, 12, "rue", "emeraude", 69006, "lyon");
         Random rd = new Random();
         categoryRepository.save(new Category(null, "BATIMENT", RandomString.make(12), "macon1", null));
-        categoryRepository.save(new Category(null, "FABRICATION", RandomString.make(12), "conducteuTraveau",null));
+        categoryRepository.save(new Category(null, "FABRICATION", RandomString.make(12), "conducteuTraveau", null));
         categoryRepository.save(new Category(null, "ARTISTE-PEINTRE", RandomString.make(12), "peintre1", null));
         categoryRepository.save(new Category(null, "COIFFURE", RandomString.make(12), "coiffeur", null));
         categoryRepository.save(new Category(null, "MEUNUISIER", RandomString.make(12), "menuisier1", null));
@@ -55,16 +57,171 @@ public class ProjetArtisantApplication implements CommandLineRunner {
 
         ArrayList<String> mylist = new ArrayList<String>();
         mylist.add("img_avatar4");
-        ArrayList<String> mylist1 = new ArrayList<String>();
-        mylist1.add("Lyon");
-        mylist1.add("Dijon");
-        mylist1.add("Paris");
-        mylist1.add("Marseil");
-        mylist1.add("Bordeau");
-        mylist1.add("Nante");
-        mylist1.add("Stranbourgue");
-        mylist1.add("Toulouse");
-        ArrayList<String> professions = new ArrayList<String>();
+        ArrayList<String>  villes = new ArrayList<String>();
+        villes.add("Bakel");
+        villes.add("Bargny");
+        villes.add("Bignona");
+        villes.add("Cap-Skirring");
+        villes.add("Dagana");
+        villes.add("Dakar");
+        villes.add("Diourbel");
+        villes.add("Elinkine");
+        villes.add("Fatick");
+        villes.add("Gorée");
+        villes.add("Guédé");
+        villes.add("Guediawaye-Iwol");
+        villes.add("Joal-Fadiouth");
+        villes.add("Kaolack");
+        villes.add("Karabane");
+        villes.add("Kayar");
+        villes.add("Kébémer");
+        villes.add("Kédougou");
+        villes.add("Kolda");
+        villes.add("Louga");
+        villes.add("Matam");
+        villes.add("Mbacké");
+        villes.add("Mbour");
+        villes.add("Mlomp");
+        villes.add("Ngor");
+        villes.add("Nguenienne");
+        villes.add("Nianing");
+        villes.add("Ourossogui");
+        villes.add("Oussouye");
+        villes.add("Pikine");
+        villes.add("Podor");
+        villes.add("Popinguine");
+        villes.add("Richard Toll");
+        villes.add("Rosso");
+        villes.add("Rufisque");
+        villes.add("Saint-Louis");
+        villes.add("Saly-Portudal");
+        villes.add("Sédhiou");
+        villes.add("Somone");
+        villes.add("Tambacounda");
+        villes.add("Thiès");
+        villes.add("Tivaouane");
+        villes.add("Touba");
+        villes.add("Toubab Dialaw");
+        villes.add("Ziguinchor");
+
+
+        ArrayList<String>  nom = new ArrayList<String>();
+        nom.add("Aïdara");
+        nom.add("Bathily");
+        nom.add("Bayo");
+        nom.add("Camara");
+        nom.add("Cissé");
+        nom.add("Cissoko");
+        nom.add("Coulibaly");
+        nom.add("Dabo");
+        nom.add("Demba");
+        nom.add("Doumbia");
+        nom.add("Doumbouya");
+        nom.add("Diabang");
+        nom.add("Diabira");
+        nom.add("Diagana");
+        nom.add("Diakhaby");
+        nom.add("Diakhaté");
+        nom.add("Diakité");
+        nom.add("Dansokho ");
+        nom.add("Diakho");
+        nom.add("Diarra");
+        nom.add("Diawara ");
+        nom.add("Dibané");
+        nom.add("Djimera");
+        nom.add("Dramé");
+        nom.add("Doucouré");
+        nom.add("Fadiga");
+        nom.add("Faty");
+        nom.add("Fofana");
+        nom.add("Gakou");
+        nom.add("Gandega ");
+        nom.add("Gassama");
+        nom.add("Kanté");
+        nom.add("Kanouté");
+        nom.add("Kébé");
+        nom.add("Keïta");
+        nom.add("Koïta");
+        nom.add("Konaté");
+        nom.add("Koroboume");
+        nom.add("Marega");
+        nom.add("Niangane ");
+        nom.add("Sabaly");
+        nom.add("Sadio");
+        nom.add("Sakho ");
+        nom.add("Samassa");
+        nom.add("Sané");
+        nom.add("Sawane");
+        nom.add("Sidibé");
+        nom.add("Sissoko");
+        nom.add("Soukho");
+        nom.add("Soumaré ");
+        nom.add("Tamba");
+        nom.add("Tambadou ");
+        nom.add("Tambedou ");
+        nom.add("Tandia");
+        nom.add("Tandian");
+        nom.add("Tandjigora");
+        nom.add("Timera ");
+        nom.add("Traoré ");
+        nom.add("Wagué");
+        nom.add("Yatéra");
+        nom.add("Touré");
+        ArrayList<String> prenom = new ArrayList<String>();
+        prenom.add("Abdoulaye");
+        prenom.add("Adjoua");
+        prenom.add("Affoué");
+        prenom.add("Ahou");
+        prenom.add("Aïssata");
+        prenom.add("Aissatou");
+        prenom.add("Akissi");
+        prenom.add("Alassane");
+        prenom.add("Demba");
+        prenom.add("Alioune");
+        prenom.add("Amenan");
+        prenom.add("Aminata ");
+        prenom.add("Amoin");
+        prenom.add("Assa ");
+        prenom.add("Assane ");
+        prenom.add("Awa ");
+        prenom.add("Aya ");
+        prenom.add("Baron ");
+        prenom.add("Bintou");
+        prenom.add("Boku");
+        prenom.add("Boubacar ");
+        prenom.add("Djenaba");
+        prenom.add("Fatimata");
+        prenom.add("Fatou");
+        prenom.add("Fatoumata");
+        prenom.add("Kadiatou");
+        prenom.add("Kame ");
+        prenom.add("Kani");
+        prenom.add("Koffi ");
+        prenom.add("Konan");
+        prenom.add("Kouadio");
+        prenom.add("Kouakou");
+        prenom.add("Kouamé");
+        prenom.add("Kouassi");
+        prenom.add("Lassana");
+        prenom.add("Madani");
+        prenom.add("Mamadou");
+        prenom.add("Mbomela");
+        prenom.add("Mbuyi ");
+        prenom.add("Milandu");
+        prenom.add("Sadio");
+        prenom.add("Mobuka-Mpanze ");
+        prenom.add("Mokonzo");
+        prenom.add("Mumboko");
+        prenom.add("Mupondo");
+        prenom.add("N'Guessan");
+        prenom.add("Nana");
+        prenom.add("Ngolomingi");
+        prenom.add("Ngu ");
+        prenom.add("Nzuzi");
+        prenom.add("Oumou ");
+        prenom.add("Ousmane ");
+        prenom.add("Rokia");
+        prenom.add("Yao");
 
 
 
@@ -139,9 +296,6 @@ public class ProjetArtisantApplication implements CommandLineRunner {
         esthetique.add("dentellière");
         esthetique.add("sellier/maroquinier");
 
-
-
-
         //pressing
         ArrayList<String> pressing = new ArrayList<String>();
         pressing.add("Aide manage");
@@ -187,14 +341,14 @@ public class ProjetArtisantApplication implements CommandLineRunner {
                     case "BATIMENT":
                         Collections.shuffle(batiment, new Random());
                         profession.setName(batiment.get(0));
-                      //  Collections.shuffle(mylist, new Random());
+                        //  Collections.shuffle(mylist, new Random());
                         profession.setPhoto("immo");
                         profession.setDescription(RandomString.make(25));
                         break;
                     case "FABRICATION":
                         Collections.shuffle(fabric, new Random());
                         profession.setName(fabric.get(0));
-                     //   Collections.shuffle(mylist, new Random());
+                        //   Collections.shuffle(mylist, new Random());
                         profession.setPhoto("menuisierie");
                         profession.setDescription(RandomString.make(25));
                         break;
@@ -208,14 +362,14 @@ public class ProjetArtisantApplication implements CommandLineRunner {
                     case "ELECTRICIEN":
                         Collections.shuffle(electricien, new Random());
                         profession.setName(electricien.get(0));
-                     //   Collections.shuffle(restau, new Random());
+                        //   Collections.shuffle(restau, new Random());
                         profession.setPhoto("electrician");
                         profession.setDescription(RandomString.make(25));
                         break;
                     case "HAUTE COUTURE":
                         Collections.shuffle(esthetique, new Random(3));
                         profession.setName(esthetique.get(0));
-                      //  Collections.shuffle(mylist, new Random());
+                        //  Collections.shuffle(mylist, new Random());
                         profession.setPhoto("couture");
                         profession.setDescription(RandomString.make(25));
                         break;
@@ -243,7 +397,7 @@ public class ProjetArtisantApplication implements CommandLineRunner {
                     case "MEUNUISIER":
                         Collections.shuffle(menuiseriue, new Random());
                         profession.setName(menuiseriue.get(0));
-                       // Collections.shuffle(mylist, new Random());
+                        // Collections.shuffle(mylist, new Random());
                         profession.setPhoto("urbaniste");
                         profession.setDescription(RandomString.make(25));
                         break;
@@ -318,11 +472,13 @@ public class ProjetArtisantApplication implements CommandLineRunner {
                 adresse.setRue("rue");
                 adresse.setName("emeraude");
                 adresse.setCodePostal(10 + rd.nextInt(20018));
-                Collections.shuffle(mylist1, new Random());
-                adresse.setVille(mylist1.get(0));
-                adresse.setPays("FRANCE");
-                user.setNom(RandomString.make(8));
-                user.setPrenom(RandomString.make(9));
+                Collections.shuffle(villes, new Random());
+                adresse.setVille(villes.get(0));
+                adresse.setPays("SENEGAL");
+                Collections.shuffle(nom, new Random());
+                user.setNom(nom.get(0));
+                Collections.shuffle(prenom, new Random());
+                user.setPrenom(prenom.get(0));
                 user.setAge(1988 + rd.nextInt(20018));
                 user.isBanned();
                 user.setNumeroSiret(100001988 + rd.nextInt(1000020018));

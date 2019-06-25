@@ -1,28 +1,46 @@
 <nav class="navbar navbar-default africa-nav navbar-fixed-top" id="mNavbar">
-    <div class="navbar-header">
+  <div class="navbar-header">
       <span type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </span>
-      <a class="navbar-brand" href="#" [routerLink]="['/acceuil']"><img class="logo" src="assets/img/catalogue/Capture1.png"
-                                                                        width="150"></a>
-    </div>
-    <div class="collapse navbar-collapse " id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li><a class="active" href="#" [routerLink]="['/acceuil']">
-          <span class="glyphicon glyphicon-home "></span> Home
-        </a></li>
-        <li><a href="#" [routerLink]="['/catalogue/1/0']">Trouver un artisan</a></li>
-        <li><a href="#" [routerLink]="['/inscription']">Inscription</a></li>
-        <li><a href="#" [routerLink]="['/devis']">Devis</a></li>
-        <li><a href="#" [routerLink]="['/contact']">Contact</a></li>
-        <li><a href="#" [routerLink]="['/a-propos']">Aide</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right ">
-        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      </ul>
-    </div>
+    <a class="navbar-brand" href="#" [routerLink]="['/acceuil']"><img class="logo" src="assets/img/log2.png"
+    ></a>
+  </div>
+  <div class="collapse navbar-collapse " id="myNavbar">
+    <ul class="nav navbar-nav">
+      <li><a class="active" href="#" [routerLink]="['/acceuil']">
+        <span class="glyphicon glyphicon-home "></span> Home
+      </a></li>
+      <li><a href="#" [routerLink]="['/catalogue/1/0']">Trouver un artisan</a></li>
+      <li><a href="#" [routerLink]="['/inscription']">Inscription</a></li>
+      <li><a href="#" [routerLink]="['/devis']">Devis</a></li>
+      <li><a href="#" [routerLink]="['/contact']">Contact</a></li>
+      <li><a href="#" [routerLink]="['/a-propos']">Aide</a></li>
+    </ul>
+    <ul class="w3-dropdown-hover africa-nav ">
+      <span>Choisir un Pays</span>
+      <li class="w3-dropdown-content w3-bar-block w3-card-4">
+        <a href="#" class="w3-bar-item w3-button " style="display: inline-flex">
+          <img height="80" style="width: 80px;" src="../assets/img/seneFlag.png">
+          <b class="w3-right flag">SENEGAL</b>
+        </a>
+        <a href="#" class="w3-bar-item w3-button">
+          <img height="80" style="width: 80px;" src="../assets/img/mailFlag.png">
+          <b class="w3-right flag">
+          MALI
+          </b>
+        </a>
+        <a href="#" class="w3-bar-item w3-button">
+          <img height="80" style="width: 80px;" src="../assets/img/guineFlag.png"><b
+          class="w3-right flag">GUINE</b></a>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right " style="padding-right: 1%" [routerLink]="['/login']" >
+      <li><a><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+    </ul>
+  </div>
 </nav>
 
 <section class="row">
@@ -149,95 +167,95 @@
   <i class="fab fa-linkedin w3-hover-opacity"></i>
   <div class="container text-center text-md-left">
 
-        <!-- Grid row -->
-        <div class="row w3-medium">
+    <!-- Grid row -->
+    <div class="row w3-medium">
 
-          <!-- Grid column -->
-          <div class="col-md-3 mx-auto">
+      <!-- Grid column -->
+      <div class="col-md-3 mx-auto">
 
-            <!-- Links -->
-            <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Us</h5>
+        <!-- Links -->
+        <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Us</h5>
 
-            <ul class="list-unstyled">
-              <li>
-                <a href="#!">Ours Team</a>
-              </li>
-              <li>
-                <a href="#!">Galeries</a>
-              </li>
-              <li>
-                <a href="#!">Ours Clients</a>
-              </li>
-            </ul>
-
-          </div>
-          <!-- Grid column -->
-
-
-          <!-- Grid column -->
-          <div class="col-md-3 mx-auto">
-
-            <!-- Links -->
-            <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Pros</h5>
-
-            <ul class="list-unstyled">
-              <li>
-                <a href="#!">Connexion</a>
-              </li>
-              <li>
-                <a href="#!">Blog</a>
-              </li>
-
-            </ul>
-
-          </div>
-          <!-- Grid column -->
-
-
-          <!-- Grid column -->
-          <div class="col-md-3 mx-auto">
-
-            <!-- Links -->
-            <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Contacts</h5>
-
-            <ul class="list-unstyled">
-              <li>
-                <a href="#!">Contact us</a>
-              </li>
-              <li>
-                <a href="#!">Siege</a>
-              </li>
-              <li>
-                <a href="#!">Blog</a>
-              </li>
-            </ul>
-
-          </div>
-          <!-- Grid column -->
-
-          <!-- Grid column -->
-          <div class="col-md-3 mx-auto">
-
-            <!-- Links -->
-            <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Follow us</h5>
-
-            <ul class="list-unstyled">
-              <li>
-                <a href="#!">Twitter</a>
-              </li>
-              <li>
-                <a href="#!">FaceBoock</a>
-              </li>
-            </ul>
-
-          </div>
-          <!-- Grid column -->
-
-        </div>
-        <!-- Grid row -->
+        <ul class="list-unstyled">
+          <li>
+            <a href="#!">Ours Team</a>
+          </li>
+          <li>
+            <a href="#!">Galeries</a>
+          </li>
+          <li>
+            <a href="#!">Ours Clients</a>
+          </li>
+        </ul>
 
       </div>
+      <!-- Grid column -->
+
+
+      <!-- Grid column -->
+      <div class="col-md-3 mx-auto">
+
+        <!-- Links -->
+        <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Pros</h5>
+
+        <ul class="list-unstyled">
+          <li>
+            <a href="#!">Connexion</a>
+          </li>
+          <li>
+            <a href="#!">Blog</a>
+          </li>
+
+        </ul>
+
+      </div>
+      <!-- Grid column -->
+
+
+      <!-- Grid column -->
+      <div class="col-md-3 mx-auto">
+
+        <!-- Links -->
+        <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Contacts</h5>
+
+        <ul class="list-unstyled">
+          <li>
+            <a href="#!">Contact us</a>
+          </li>
+          <li>
+            <a href="#!">Siege</a>
+          </li>
+          <li>
+            <a href="#!">Blog</a>
+          </li>
+        </ul>
+
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-3 mx-auto">
+
+        <!-- Links -->
+        <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Follow us</h5>
+
+        <ul class="list-unstyled">
+          <li>
+            <a href="#!">Twitter</a>
+          </li>
+          <li>
+            <a href="#!">FaceBoock</a>
+          </li>
+        </ul>
+
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row -->
+
+  </div>
   <div class="w3-medium footer-copyright text-center ">© 2019 Copyright:
-        <a href="https://diapalema.appspot.com"  target="_blank"> dioumtoukay-sn.appspot.com</a>
-      </div>
+    <a href="https://diapalema.appspot.com" target="_blank"> dioumtoukay-sn.appspot.com</a>
+  </div>
 </footer>

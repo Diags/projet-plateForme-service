@@ -19,7 +19,8 @@ import { AProposComponent } from './a-propos/a-propos.component';
 import { AcceuilComponent } from './acceuil/acceuil.component';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { TagInputModule } from 'ngx-chips';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // this is needed!
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoginComponent } from './login/login.component'; // this is needed!
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
     ProfessionelComponent,
     AProposComponent,
     AcceuilComponent,
-    InscriptionComponent
+    InscriptionComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
