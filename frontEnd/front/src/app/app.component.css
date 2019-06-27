@@ -86,15 +86,18 @@
 .uk-text-center {
   text-align: center!important;
 }
-form {
-  border-radius: 15px 15px 15px 15px;
-  padding: 25px;
-  text-align: center;
-  background-color: rgba(237, 237, 237, 0.5);
-  background-color: hsla(0, 0%, 93%, 0.5);
-  width: 900px;
-}
+/*form {*/
+/*  border-radius: 15px 15px 15px 15px;*/
+/*  padding: 25px;*/
+/*  text-align: center;*/
+/*  background-color: rgba(237, 237, 237, 0.5);*/
+/*  background-color: hsla(0, 0%, 93%, 0.5);*/
+/*  width: 900px;*/
+/*}*/
 
+.w3-dropdown-hover:first-child, .w3-dropdown-click:hover {
+  background-color: #f8f8f8;
+}
 #carousel-img {
   height: 100vh;
   width: 100%;
@@ -184,19 +187,66 @@ form {
   padding: 2%;
 }
 
-footer {
-  background-color: #2a2a2c;
-  color: white;
-  bottom: 0;
-  margin-top: 11%;
-  padding-top: 5%;
+.espacenewsletter button{
+  border-radius:50px;
+  padding:20px 20px;
+  text-align:center;width:100%;
+  background-color:#EF7900;border:none;
+  font-weight:600;margin:10px 0}
+div.pdp-text .input-field label{left:.2rem}div.pdp-text .input-field input{width:80%}
+div.pdp-text .input-field input[type=email]:focus + label{color:#465a65;margin-top:15px}
+.pdp-text hr{padding:0;border-top:1px solid #76909A;margin-top:.7rem;margin-bottom:.3rem}
+@media (max-width:1010px){div.pdp-text .input-field{width:100%!important}}
+div.pdp-text .input-field{width:100%!important;margin:15px 0 0 0}
+div.espacenewsletter::after{
+  content:"En cliquant sur Je m'inscris, vous acceptez de recevoir la newsletter du site.";
+  font-size:10px;
+  font-weight:500;
+  text-align:center}
+.footer-copyright {
+  padding-top: 10px;
+  color: #8095a0;
+}
+div.pdp-text h4 {
+  color: #EF7900;
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: 1px;
 }
 
-a .active {
-  background-color: rgb(104, 104, 236);
-  border-color: rgb(104, 104, 236);
-  color: blue;
+#emailnewsletter {
+  border-radius: 50px;
+  padding: 20px 20px;
+  text-align: center;
+  background-color: transparent;
+  color: #EF7900;
+  border: 2px solid #EF7900;
+  font-weight: 600;
+  margin: 10px 0;
 }
+/*footer {*/
+/*  background-color: #2a2a2c;*/
+/*  color: white;*/
+/*  bottom: 0;*/
+/*  margin-top: 11%;*/
+/*  padding-top: 5%;*/
+/*}*/
+
+.page-footer {
+  margin-top: 20%!important;
+  background-color: #E6E9EB!important;
+  padding-bottom: 20px;
+  padding-top: 50px;
+}
+footer ul li, .infooffrecomprend ul li, .infos-garanties ul li {
+  list-style-type: none;
+}
+/*a .active {*/
+/*  background-color: rgb(104, 104, 236);*/
+/*  border-color: rgb(104, 104, 236);*/
+/*  color: #13070d;*/
+/*}*/
 
 .sidenav {
   overflow-x: hidden;

@@ -18,27 +18,40 @@
       <li><a href="#" [routerLink]="['/devis']">Devis</a></li>
       <li><a href="#" [routerLink]="['/contact']">Contact</a></li>
       <li><a href="#" [routerLink]="['/a-propos']">Aide</a></li>
-    </ul>
-    <ul class="w3-dropdown-hover africa-nav ">
-      <span>Choisir un Pays</span>
-      <li class="w3-dropdown-content w3-bar-block w3-card-4">
-        <a href="#" class="w3-bar-item w3-button " style="display: inline-flex">
-          <img height="80" style="width: 80px;" src="../assets/img/seneFlag.png">
-          <b class="w3-right flag">SENEGAL</b>
-        </a>
-        <a href="#" class="w3-bar-item w3-button">
-          <img height="80" style="width: 80px;" src="../assets/img/mailFlag.png">
-          <b class="w3-right flag">
-          MALI
-          </b>
-        </a>
-        <a href="#" class="w3-bar-item w3-button">
-          <img height="80" style="width: 80px;" src="../assets/img/guineFlag.png"><b
-          class="w3-right flag">GUINE</b></a>
-      </li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right " style="padding-right: 1%" [routerLink]="['/login']" >
-      <li><a><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+
+   </ul>
+    <ul class="nav navbar-nav navbar-right " style="padding-right: 9%;" >
+      <div class="row" style="display: -webkit-box;padding-top: 3%">
+        <div class="col-sm-4">
+        <div class="w3-dropdown-hover">
+          Choisir un Pays
+          <li class="w3-dropdown-content w3-bar-block w3-card-4">
+            <a href="#" class="w3-bar-item w3-button " style="display: inline-flex">
+              <img height="80" style="width: 80px;" src="../assets/img/seneFlag.png">
+              <b class="w3-right flag">SENEGAL</b>
+            </a>
+            <a href="#" class="w3-bar-item w3-button">
+              <img height="80" style="width: 80px;" src="../assets/img/mailFlag.png">
+              <b class="w3-right flag">
+                MALI
+              </b>
+            </a>
+            <a href="#" class="w3-bar-item w3-button">
+              <img height="80" style="width: 80px;" src="../assets/img/guineFlag.png"><b
+              class="w3-right flag">GUINE</b></a>
+          </li>
+        </div>
+      </div>
+
+        <div class="col-sm-4">
+          <li ><a style="color: black" href="#" [routerLink]="['/login']"><i class="fa fa-lock"></i>Espace personnel</a></li>
+        </div>
+
+        <div class="col-sm-5">
+          <li><a  style="color: black" href="#"  [routerLink]="['/loginpro']"><span class="glyphicon glyphicon-log-in"></span> VOUS ÊTES ARTISAN ?</a></li>
+        </div>
+      </div>
+
     </ul>
   </div>
 </nav>
@@ -49,13 +62,17 @@
 
 
 <!--&lt;!&ndash; Footer &ndash;&gt;-->
-<!--<footer class="page-footer font-small row">-->
-
-<!--  &lt;!&ndash; Footer Links &ndash;&gt;-->
+<!--<footer class="w3-container w3-center ">-->
+<!--  <i class="fab fa-facebook-official w3-hover-opacity"></i>-->
+<!--  <i class="fab fa-instagram w3-hover-opacity"></i>-->
+<!--  <i class="fab fa-snapchat w3-hover-opacity"></i>-->
+<!--  <i class="fab fa-pinterest-p w3-hover-opacity"></i>-->
+<!--  <i class="fab fa-twitter w3-hover-opacity"></i>-->
+<!--  <i class="fab fa-linkedin w3-hover-opacity"></i>-->
 <!--  <div class="container text-center text-md-left">-->
 
 <!--    &lt;!&ndash; Grid row &ndash;&gt;-->
-<!--    <div class="row">-->
+<!--    <div class="row w3-medium">-->
 
 <!--      &lt;!&ndash; Grid column &ndash;&gt;-->
 <!--      <div class="col-md-3 mx-auto">-->
@@ -78,7 +95,6 @@
 <!--      </div>-->
 <!--      &lt;!&ndash; Grid column &ndash;&gt;-->
 
-<!--      <hr class="clearfix w-100 d-md-none">-->
 
 <!--      &lt;!&ndash; Grid column &ndash;&gt;-->
 <!--      <div class="col-md-3 mx-auto">-->
@@ -99,7 +115,6 @@
 <!--      </div>-->
 <!--      &lt;!&ndash; Grid column &ndash;&gt;-->
 
-<!--      <hr class="clearfix w-100 d-md-none">-->
 
 <!--      &lt;!&ndash; Grid column &ndash;&gt;-->
 <!--      <div class="col-md-3 mx-auto">-->
@@ -121,8 +136,6 @@
 
 <!--      </div>-->
 <!--      &lt;!&ndash; Grid column &ndash;&gt;-->
-
-<!--      <hr class="clearfix w-100 d-md-none">-->
 
 <!--      &lt;!&ndash; Grid column &ndash;&gt;-->
 <!--      <div class="col-md-3 mx-auto">-->
@@ -146,116 +159,104 @@
 <!--    &lt;!&ndash; Grid row &ndash;&gt;-->
 
 <!--  </div>-->
-<!--  &lt;!&ndash; Footer Links &ndash;&gt;-->
-
-<!--  &lt;!&ndash; Copyright &ndash;&gt;-->
-<!--  <div class="footer-copyright text-center py-3">© 2019 Copyright:-->
-<!--    <a href="https://diapalema.appspot.com"> diapalema.appspot.com</a>-->
+<!--  <div class="w3-medium footer-copyright text-center ">© 2019 Copyright:-->
+<!--    <a href="https://diapalema.appspot.com" target="_blank"> dioumtoukay-sn.appspot.com</a>-->
 <!--  </div>-->
-<!--  &lt;!&ndash; Copyright &ndash;&gt;-->
-
-
 <!--</footer>-->
+<footer class="page-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-3 pdp-text">
+        <div class="row">
+          <div class="col-6 col-md-12">
+        <form>
+          <input type="hidden" name="int_origine" value="newsletter">
+          <h4>Inscrivez-vous à notre newsletter</h4>
 
-<!-- Footer -->
-<footer class="w3-container w3-center ">
-  <i class="fab fa-facebook-official w3-hover-opacity"></i>
-  <i class="fab fa-instagram w3-hover-opacity"></i>
-  <i class="fab fa-snapchat w3-hover-opacity"></i>
-  <i class="fab fa-pinterest-p w3-hover-opacity"></i>
-  <i class="fab fa-twitter w3-hover-opacity"></i>
-  <i class="fab fa-linkedin w3-hover-opacity"></i>
-  <div class="container text-center text-md-left">
+          <div class="espacenewsletter">
+            <input id="emailnewsletter" type="email" name="email" class="form-control" placeholder="Votre e-mail" pattern="([a-zA-Z0-9!#$%&amp;'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&amp;'*+/=?^_`{|}~-]+)*)@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?">
+            <button class="btn btn-info" type="submit" name="optin">Je m'inscris</button>
+          </div>
 
-    <!-- Grid row -->
-    <div class="row w3-medium">
+        </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-3 pdp-text">
 
-      <!-- Grid column -->
-      <div class="col-md-3 mx-auto">
-
-        <!-- Links -->
-        <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Us</h5>
-
-        <ul class="list-unstyled">
-          <li>
-            <a href="#!">Ours Team</a>
-          </li>
-          <li>
-            <a href="#!">Galeries</a>
-          </li>
-          <li>
-            <a href="#!">Ours Clients</a>
-          </li>
-        </ul>
+        <h4>Nos prestations</h4>
+        <div class="row">
+          <div class="col-6 col-md-12">
+            <ul class="pdpliste">
+              <li><a href="#" title="Trouver mon électricien">Electricien</a></li>
+              <li><a href="#" title="Trouver mon plombier">Plombier</a></li>
+              <li><a href="#" title="Trouver mon serrurier">Serrurier</a></li>
+              <li><a href="#" title="Trouver mon chauffagiste">Chauffagiste</a></li>
+              <li><a href="#" title="Trouver mon électricien">Peintre</a></li>
+            </ul>
+          </div>
+          <div class="col-6 col-md-12">
+            <ul class="pdpliste">
+              <li><a href="#" title="Trouver mon électricien">Menuisier</a></li>
+              <li><a href="#" title="Trouver mon électricien">Carreleur</a></li>
+              <li><a href="#" title="Trouver mon architecte">Architecte</a></li>
+              <li><a href="#" title="Trouver mon artisan: tous les prix du bâtiment">Tous les métiers du bâtiment</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr>
+        <h4><a href="#" title="Rechercher son artisan par ville, département ou région">RECHERCHE DIRECTE PAR VILLE</a></h4>
 
       </div>
-      <!-- Grid column -->
+      <div class="col-12 col-md-3 pdp-text">
+        <h4>À propos</h4>
+        <div class="row">
+          <div class="col-6 col-md-12">
+            <ul class="pdpliste">
+              <li><a href="#" title="Découvrir notre équipe">Qui sommes-nous ?</a></li>
+              <li><a href="#" title="Voir notre blog actu">Blog actu</a></li>
+              <li><a href="#" title="">Certifications</a></li>
+            </ul>
+          </div>
+          <div class="col-6 col-md-12">
+            <ul class="pdpliste">
+              <li><a href="#" title="Voir nos partenaires">Nos Partenaires</a></li>
+              <li><a href="#" title="Ils parlent de nous">Presse</a></li>
+              <li><a href="#" rel="nofollow" title="Consulter nos conditions générales de vente et mentiosn légales">CGV et mentions légales</a></li>
+              <li><a href="#" rel="nofollow" title="Voir notre fonctionnement">Comment ça marche?</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-3 pdp-text">
+        <div>
+          <h4>Support et contact</h4>
+          <ul class="pdpliste">
+            <li><a href="#" title="Besoin de conseil avec vos travaux, interrogez nos expert bâtiment!">Forum pour vos questions bâtiment</a></li>
+          </ul>
+          <h4 class="titre4bis">Suivez-nous !</h4>
+          <div class="reseauxsociaux">
+            <a target="_blank" rel="nofollow" href="#" title="Voir la page facebook">
+              <i  width="35" class="fab fa-facebook" style="display: inline;"> FaceBook</i>
+            </a>
 
+            <a target="_blank" href="#" title="Retrouvez-nous sur Pinterest" rel="nofollow">
+              <i  class="fab fa-pinterest" style="display: inline;"> Pinterest</i>
+            </a>
+            <a target="_blank" href="#" title="Youtube" rel="nofollow">
+              <i  class="fab fa-youtube" style="display: inline;">Youtub</i>
+            </a>
 
-      <!-- Grid column -->
-      <div class="col-md-3 mx-auto">
-
-        <!-- Links -->
-        <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Pros</h5>
-
-        <ul class="list-unstyled">
-          <li>
-            <a href="#!">Connexion</a>
-          </li>
-          <li>
-            <a href="#!">Blog</a>
-          </li>
-
-        </ul>
+          </div>
+        </div>
 
       </div>
-      <!-- Grid column -->
-
-
-      <!-- Grid column -->
-      <div class="col-md-3 mx-auto">
-
-        <!-- Links -->
-        <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Contacts</h5>
-
-        <ul class="list-unstyled">
-          <li>
-            <a href="#!">Contact us</a>
-          </li>
-          <li>
-            <a href="#!">Siege</a>
-          </li>
-          <li>
-            <a href="#!">Blog</a>
-          </li>
-        </ul>
-
-      </div>
-      <!-- Grid column -->
-
-      <!-- Grid column -->
-      <div class="col-md-3 mx-auto">
-
-        <!-- Links -->
-        <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Follow us</h5>
-
-        <ul class="list-unstyled">
-          <li>
-            <a href="#!">Twitter</a>
-          </li>
-          <li>
-            <a href="#!">FaceBoock</a>
-          </li>
-        </ul>
-
-      </div>
-      <!-- Grid column -->
 
     </div>
-    <!-- Grid row -->
-
-  </div>
-  <div class="w3-medium footer-copyright text-center ">© 2019 Copyright:
-    <a href="https://diapalema.appspot.com" target="_blank"> dioumtoukay-sn.appspot.com</a>
+    <div class="footer-copyright">
+      <div class="container text-center">
+        © 20019 <span class="hide-on-small-only">dioumtoukay-sn.appspot.com</span>
+      </div>
+    </div><!-- Mentions Légales-->
   </div>
 </footer>

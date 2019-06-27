@@ -9,6 +9,25 @@
   padding: 50px 0;
 /*background-color: #f2f2f2;*/
 }
+.w3-padding-bottom {
+  padding-bottom: 3%;
+  padding-top: 2%;
+}
+.equipe{
+  text-align: center;
+}
+.contacter .col-md-4{
+
+}
+.contacter{
+  text-align: center;
+  background-color: #F0F0F0;
+  padding-top: 5%;
+  padding-bottom: 1%;
+}
+.equipe .col-md-4{
+  padding-bottom: 2%;
+}
 #argument .iconeDiv {
   display: inline-block;
   margin: 0 auto;

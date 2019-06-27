@@ -15,8 +15,12 @@ import {AProposComponent} from "./a-propos/a-propos.component";
 import {AcceuilComponent} from "./acceuil/acceuil.component";
 import {InscriptionComponent} from "./inscription/inscription.component";
 import {LoginComponent} from "./login/login.component";
+import {RegistrationComponent} from "./registration/registration.component";
+import {ProfessionalLoginComponent} from "./professional-login/professional-login.component";
 const routes: Routes = [
   {path:"login",component:LoginComponent},
+  {path:"registration",component:RegistrationComponent},
+  {path:"loginpro",component:ProfessionalLoginComponent},
   {path:"catalogue/:p1/:p2",component:CatalogueComponent},
   {path:"devis",component:DevisFormComponent},
   {path:"a-propos",component:AProposComponent},

@@ -20,7 +20,9 @@ import { AcceuilComponent } from './acceuil/acceuil.component';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { TagInputModule } from 'ngx-chips';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LoginComponent } from './login/login.component'; // this is needed!
+import { LoginComponent } from './login/login.component';
+import { RegistrationComponent } from './registration/registration.component';
+import { ProfessionalLoginComponent } from './professional-login/professional-login.component'; // this is needed!
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { LoginComponent } from './login/login.component'; // this is needed!
     AProposComponent,
     AcceuilComponent,
     InscriptionComponent,
-    LoginComponent
+    LoginComponent,
+    RegistrationComponent,
+    ProfessionalLoginComponent
   ],
   imports: [
     BrowserModule,
