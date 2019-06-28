@@ -1,3 +1,38 @@
+
+.map_image path{
+  transition: fill 0.3s;
+  fill: #cc2b20;
+  fill-opacity: 1;
+  stroke:white;
+  stroke-opacity: 5;
+  stroke-width:2.5;
+}
+.map_image .is-active path {
+  fill: #1abc9c;
+}
+.map_list ul li a{
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.map_list ul li a.is-active{
+  color: blue;
+  text-decoration: underline;
+ font-weight: bold;
+}
+.map_image{
+  width: 50%;
+  float: left;
+  margin-top: -24%;
+}
+.land
+{
+  fill: #CCCCCC;
+  fill-opacity: 1;
+  stroke:white;
+  stroke-opacity: 5;
+  stroke-width:2.5;
+}
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   max-width: 300px;
