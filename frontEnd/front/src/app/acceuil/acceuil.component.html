@@ -267,8 +267,29 @@
     <div class="col-md-12 contacter">
       <h1> Nous Contacter</h1>
       <h1><p>Téléphone: 00-00-00-00 </p></h1>
-      <div class="contacter " >
-        <button class="w3-button  w3 w3-red"> Être rapppelé</button></div>
+      <div class="w3-container">
+
+
+        <button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-black">Être rapppelé</button>
+
+        <div id="id01" class="w3-modal w3-animate-zoom">
+          <div class="w3-modal-content w3-card-4">
+            <header class="w3-container w3-teal">
+        <span onclick="document.getElementById('id01').style.display='none'"
+              class="w3-button w3-large w3-display-topright">&times;</span>
+              <h2>Modal Header</h2>
+            </header>
+            <div class="w3-container">
+              <p>Some text..</p>
+              <p>Some text..</p>
+            </div>
+            <footer class="w3-container w3-teal">
+              <p>Modal Footer</p>
+            </footer>
+          </div>
+        </div>
+      </div>
+
     </div>
       </div>
   </div>
@@ -315,7 +336,7 @@
   <div class="col-6 map_list" id="map_list" >
 
     <ul>
-      <li><a href="#" id="list-DK">Dakar</a></li>
+      <li ngmodel name="DAKAR" #dk (click)="clickTo(dk.value)"><a href="#" id="list-DK">Dakar</a></li>
       <li><a href="#" id="list-DB">Diourbel</a></li>
       <li><a href="#" id="list-FK">Fatick</a></li>
       <li><a href="#" id="list-KE">Kédougou</a></li>

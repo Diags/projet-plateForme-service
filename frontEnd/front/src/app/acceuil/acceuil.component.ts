@@ -113,4 +113,8 @@ export class AcceuilComponent implements OnInit, AfterViewInit {
     }
 
   }
+
+  clickTo(da){
+    console.log("ddddkffopd",da);
+  }
 }
