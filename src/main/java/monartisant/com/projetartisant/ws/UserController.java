@@ -91,8 +91,10 @@ public class UserController {
     public User addProfessional(@RequestBody AddProfessional addProfessional){
         User  user = new User();
         Adresse adresse =new Adresse();
-        adresse.setPays(addProfessional.getPays());
-      addProfessional.getTags().stream().forEach(ville -> adresse.setVille(ville));
+        Pays pays  = new Pays();
+        pays.setName(addProfessional.getPays());
+        adresse.setPays(pays);
+        addProfessional.getTags().stream().forEach(ville -> adresse.setVille(ville));
         Profession profession = new Profession();
         Category category = new Category();
         category.setName(addProfessional.getCategoryName());
@@ -114,4 +116,12 @@ public class UserController {
         user.setWhatsapp(addProfessional.getWhatsapp());
         return user;
     }
+
+    @ApiOperation(value = "search user by params")
+    @PostMapping("mapsearch")
+    public List<User> getUsersByVille(@RequestBody MapData mapData) {
+        return userRepository.findByAdresse_PaysAndAdresse_Ville(mapData.getPaysName(),mapData.getVille());
+
+    }
+
 }

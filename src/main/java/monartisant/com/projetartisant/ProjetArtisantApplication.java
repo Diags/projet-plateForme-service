@@ -467,6 +467,8 @@ public class ProjetArtisantApplication implements CommandLineRunner {
         professionRepository.findAll().forEach(profession -> {
             for (int i = 0; i < 10; i++) {
                 User user = new User();
+                Pays pays = new Pays();
+                pays.setName("SENEGAL");
                 Adresse adresse = new Adresse();
                 adresse.setNumeroRue(1 + rd.nextInt(100));
                 adresse.setRue("rue");
@@ -474,7 +476,7 @@ public class ProjetArtisantApplication implements CommandLineRunner {
                 adresse.setCodePostal(10 + rd.nextInt(20018));
                 Collections.shuffle(villes, new Random());
                 adresse.setVille(villes.get(0));
-                adresse.setPays("SENEGAL");
+                adresse.setPays(pays);
                 Collections.shuffle(nom, new Random());
                 user.setNom(nom.get(0));
                 Collections.shuffle(prenom, new Random());

@@ -8,93 +8,109 @@ import {el} from "@angular/platform-browser/testing/src/browser_util";
   templateUrl: './acceuil.component.html',
   styleUrls: ['./acceuil.component.css']
 })
-export class AcceuilComponent implements OnInit , AfterViewInit {
-   users;
+export class AcceuilComponent implements OnInit, AfterViewInit {
+  users;
   categories;
   currenteCategorie;
   curenteSearchUsers;
-  iscontactChecked= false;
+  iscontactChecked = false;
   currentUser;
   svgTagId;
   @ViewChild('mapSen') mapSen: ElementRef;
-  constructor(private catelogService:CatalogueService, private  routeActive: ActivatedRoute, private route: Router) { }
-  ngOnInit(): void {
-    this.catelogService.curenteSearchUsers=[];
-          this.getcatalogue("/categories");
-          this. getUsers();
+
+  constructor(private catelogService: CatalogueService, private  routeActive: ActivatedRoute, private route: Router) {
   }
 
-  getcatalogue(url){
+  ngOnInit(): void {
+    this.catelogService.curenteSearchUsers = [];
+    this.getcatalogue("/categories");
+    this.getUsers();
+  }
+
+  getcatalogue(url) {
     this.catelogService.getCatalogue(url).subscribe(data => {
       this.categories = data;
-    }, err=> {
+    }, err => {
       console.log(err);
     })
   }
-  getUsers(){
+
+  getUsers() {
     this.catelogService.getAllUsers("/allUsers").subscribe(data => {
       this.users = data;
-      console.log("users ****>",data);
-    },err=> {
+      console.log("users ****>", data);
+    }, err => {
       console.log(err);
     })
   }
-  toggleTel(user){
+
+  toggleTel(user) {
     this.currentUser = user;
     this.iscontactChecked = !this.iscontactChecked;
-    console.log("iscontactChecked",this.iscontactChecked)
+    console.log("iscontactChecked", this.iscontactChecked)
   }
+
   getcatalogueByAdresse(dataForm: any) {
-    console.log("formData ++++==>  ",dataForm);
+    console.log("formData ++++==>  ", dataForm);
     this.catelogService.Search(dataForm).subscribe(data => {
-      this.catelogService.curenteSearchUsers=data;
-      this.route.navigateByUrl("/professions-details/"+0);
+      this.catelogService.curenteSearchUsers = data;
+      this.route.navigateByUrl("/professions-details/" + 0);
     })
   }
-  getUsersBycategories(c){
+
+  getUsersBycategories(c) {
     this.currenteCategorie = c;
-    this.route.navigateByUrl('/catalogue/2/'+c.id);
+    this.route.navigateByUrl('/catalogue/2/' + c.id);
   }
 
   ngAfterViewInit(): void {
     let map = this.mapSen.nativeElement.querySelector("div");
+    console.log("mapppp", map);
     let mapb = this.mapSen.nativeElement.querySelector("#map_s");
-   let paths =map.querySelectorAll('svg a');
-   let  links = this.mapSen.nativeElement.querySelector('#map_list').querySelectorAll('a');
-    let  linkTag = this.mapSen.nativeElement;
+    let paths = map.querySelectorAll('svg a');
+    console.log("this is opaths values ", paths);
+    console.log("list right", map.querySelector('#map_list').querySelectorAll('a'));
+    let links = map.querySelector('#map_list').querySelectorAll('a');
 
-    console.log("map_list*****",links);
-    console.log("mapSen////////",paths);
-        console.log("map##",map);
+    console.log("map_list*****", links);
+    console.log("mapSen////////", paths);
+    console.log("map##", map);
 
     //polyfill du foreach
-    if(NodeList.prototype.forEach === undefined){
+    if (NodeList.prototype.forEach === undefined) {
       NodeList.prototype.forEach = function (callback) {
         [].forEach.call(this.callback)
       }
     }
 
-    paths.forEach(path=>{
-      path.addEventListener("mouseenter",function (e) {
-        debugger;
-        console.log("salut")    ;
-     let  id = this.id;
-        map.querySelectorAll('is-active').forEach(item =>{
-       item.remove('is-active')
-        })
-     map.querySelector('svg '+'#'+id).classList.add('is-active')
-        links.forEach(function(element) {
-          if (element.id.endsWith(id)){
-            console.log("svgTagId id", element.id);
-            console.log("svgTagId id", linkTag.querySelector('#map_list '+'#'+element.id));
-             linkTag.querySelector('#map_list '+'#'+element.id).classList.add('is-active');
-
-          }
-
-        })
+    paths.forEach(path => {
+      path.addEventListener("mouseenter", function (e) {
+        let id = this.id;
+        extracted(id);
       })
+    });
+    links.forEach(link => {
+      link.addEventListener("mouseenter", function () {
+        let id = this.id.replace("list-", "");
+        extracted(id);
 
-    })
+      })
+    });
+    map.addEventListener("mouseover", function (e) {
+      let id;
+      extracted(id);
+
+    });
+
+    function extracted(id) {
+      map.querySelectorAll('.is-active').forEach(e => {
+        e.classList.remove('is-active')
+      });
+      if (id != undefined) {
+        map.querySelector('#map_list ' + '#list-' + id).classList.add('is-active');
+        map.querySelector('svg #' + id).classList.add('is-active');
+      }
+    }
 
   }
 }

@@ -23,5 +23,5 @@ public interface UserRepository extends JpaRepository<User,Long> {
 
     @Query("select u from User u")
   List<User> chercherUsers( Pageable pageable);
-
+    List<User> findByAdresse_PaysAndAdresse_Ville(String ville ,String paysName);
 }
