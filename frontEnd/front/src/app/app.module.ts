@@ -53,7 +53,7 @@ import {AgmCoreModule} from "@agm/core";
     TagInputModule,
     BrowserAnimationsModule,
     AgmCoreModule.forRoot({
-      apiKey:'AIzaSyAMymYQhzJM0rrovcmYBKg1-EshggTfcic'
+      // apiKey:'AIzaSyAMymYQhzJM0rrovcmYBKg1-EshggTfcic'
     })
   ],
   providers: [CatalogueService],
