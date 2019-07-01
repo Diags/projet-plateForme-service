@@ -105,16 +105,20 @@ this.route.navigateByUrl('/catalogue/2/'+c.id);
     function extracted(id) {
       map.querySelectorAll('.is-active').forEach(e => {
         e.classList.remove('is-active')
+
       });
       if (id != undefined) {
         map.querySelector('#map_list ' + '#list-' + id).classList.add('is-active');
         map.querySelector('svg #' + id).classList.add('is-active');
+        map.querySelector('svg #' + id).addEventListener('click', function(event) {
+          console.log("clickckckck function ",this.id);
+        });
       }
     }
 
   }
 
-  clickTo(da){
-    console.log("ddddkffopd",da);
+  onClick($event) {
+    console.log("cocococ",$event.target.innerHTML);
   }
 }
