@@ -6,8 +6,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CatalogueService {
    //public host = "http://5.51.141.181:8989";
-  //public host = "http://localhost:8080";
-  public host = "http://192.168.1.90:8989";
+  public host = "http://localhost:8080";
+  //public host = "http://192.168.1.90:8989";
   constructor(private http: HttpClient) { }
   curenteSearchUsers;
 getCatelogById(id){
@@ -50,5 +50,8 @@ getAllUserbyProfessions(url){
   }
   addProfessional(dataForm){
   return this.http.post(this.host+'/addprofessional',dataForm);
+  }
+  getLocation(){
+  return
   }
 }

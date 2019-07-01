@@ -23,6 +23,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { ProfessionalLoginComponent } from './professional-login/professional-login.component'; // this is needed!
+import {AgmCoreModule} from "@agm/core";
 
 @NgModule({
   declarations: [
@@ -50,7 +51,10 @@ import { ProfessionalLoginComponent } from './professional-login/professional-lo
     ReactiveFormsModule,
     CommonModule,
     TagInputModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AgmCoreModule.forRoot({
+      apiKey:'AIzaSyAMymYQhzJM0rrovcmYBKg1-EshggTfcic'
+    })
   ],
   providers: [CatalogueService],
   bootstrap: [AppComponent]
