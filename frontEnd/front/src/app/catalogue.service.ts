@@ -54,4 +54,7 @@ getAllUserbyProfessions(url){
   getLocation(){
   return
   }
+  getProfessionalByVille(data){
+  return this.http.post(this.host+'/mapsearch',data)
+  }
 }

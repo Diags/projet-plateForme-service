@@ -120,7 +120,7 @@ public class UserController {
     @ApiOperation(value = "search user by params")
     @PostMapping("mapsearch")
     public List<User> getUsersByVille(@RequestBody MapData mapData) {
-        return userRepository.findByAdresse_PaysAndAdresse_Ville(mapData.getPaysName(),mapData.getVille());
+        return userRepository.findByAdresse_Pays_nameAndAdresse_ville("senegal".toUpperCase(),mapData.getVille().toUpperCase());
 
     }
 

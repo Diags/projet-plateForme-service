@@ -23,27 +23,22 @@ export class AppComponent implements OnInit {
   getcatalogue() {
     this.catelogService.getCatalogue("/categories").subscribe(data => {
       this.categories = data;
-      console.log(data);
     }, err => {
       console.log(err);
     })
   }
   getCategoryById(id) {
     this.catelogService.getCatelogById(id).subscribe(data => {
-      console.log("cououuuuu ",this.routeActive.snapshot.params);
     this.router.navigateByUrl('/catalogue-details/'+id);
       this.categories = data;
-      console.log("p2",data);
     }, err=> {
       console.log(err);
     })
   }
 
   getcatalogueByAdresse(dataForm: any) {
-    console.log("formData==>  ",dataForm);
     this.catelogService.Search(dataForm).subscribe(data => {
       let id = data[0];
-      console.log(data);
       this.router.navigateByUrl("/professions");
     })
   }

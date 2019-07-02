@@ -26,7 +26,6 @@ if(val instanceof NavigationEnd){
       let id = this.routeActive.snapshot.params.p2;
       this.catelogService.getCatelogById(id).subscribe(data => {
         this.categories = data;
-        console.log("p2",data);
       }, err=> {
         console.log(err);
       })
@@ -45,7 +44,6 @@ if(val instanceof NavigationEnd){
  getcatalogue(url){
    this.catelogService.getCatalogue(url).subscribe(data => {
      this.categories = data;
-     console.log("catlogue  cateoris",data);
    }, err=> {
      console.log(err);
    })
@@ -55,7 +53,6 @@ if(val instanceof NavigationEnd){
 this.route.navigateByUrl('/catalogue/2/'+c.id);
  }
   getUsersByAdresse(dataForm){
-    console.log("formData ++++==>  ",dataForm);
     this.catelogService.Search(dataForm).subscribe(data => {
       this.catelogService.curenteSearchUsers=data;
       this.route.navigateByUrl("/professions-details/"+0);
@@ -65,16 +62,9 @@ this.route.navigateByUrl('/catalogue/2/'+c.id);
 
   ngAfterViewInit(): void {
     let map = this.mapSen.nativeElement.querySelector("div");
-    console.log("mapppp", map);
-    let mapb = this.mapSen.nativeElement.querySelector("#map_s");
     let paths = map.querySelectorAll('svg a');
-    console.log("this is opaths values ", paths);
-    console.log("list right", map.querySelector('#map_list').querySelectorAll('a'));
     let links = map.querySelector('#map_list').querySelectorAll('a');
 
-    console.log("map_list*****", links);
-    console.log("mapSen////////", paths);
-    console.log("map##", map);
 
     //polyfill du foreach
     if (NodeList.prototype.forEach === undefined) {
@@ -102,6 +92,11 @@ this.route.navigateByUrl('/catalogue/2/'+c.id);
 
     });
 
+    function getUsersByville (event){
+      console.log(event);
+      var data = {paysName:"senegal", ville:event};
+      this.catelogService.getProfessionalByVille(data).subscribe(res =>{   console.log(res);});
+    }
     function extracted(id) {
       map.querySelectorAll('.is-active').forEach(e => {
         e.classList.remove('is-active')
@@ -111,14 +106,27 @@ this.route.navigateByUrl('/catalogue/2/'+c.id);
         map.querySelector('#map_list ' + '#list-' + id).classList.add('is-active');
         map.querySelector('svg #' + id).classList.add('is-active');
         map.querySelector('svg #' + id).addEventListener('click', function(event) {
+          getUsersByville(this.id);
           console.log("clickckckck function ",this.id);
         });
       }
     }
 
-  }
+    }
 
+  getUsersByville (event){
+     console.log(event.id);
+  var data = {paysName:"senegal", ville:event.id};
+  this.catelogService.getProfessionalByVille(data).subscribe(res =>{   console.log(res);});
+}
   onClick($event) {
+     var data = {
+       paysName:"senegal",
+       ville:$event.target.innerHTML
+     };
+    this.catelogService.getProfessionalByVille(data).subscribe(res =>{
+      console.log(res);
+    })
     console.log("cocococ",$event.target.innerHTML);
   }
 }
