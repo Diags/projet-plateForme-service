@@ -4,8 +4,8 @@
 <div class="container usersPanel1">
   <input class="form-control"  [(ngModel)]="listFilter" type="text" placeholder="Search" aria-label="Search">
 </div>
-<div class="w3-center">
-  <h3>{{usersFilter.length}} résultats correspondent à votre recherche:</h3>
+<div class="w3-center" *ngIf="usersFilter">
+  <h3>{{usersFilter.length}} résultats correspondent à votre recherche <span *ngIf="villeName && usersSearch"> dans la ville de <b>{{villeName}}</b> </span>  </h3>
 </div>
 <div class="usersPanel">
   <div class="container" *ngIf="usersFilter">
@@ -15,8 +15,8 @@
             <img  src="{{this.catalogueService.host+'/photouser/'+user.id}}"  alt="John" style="width:100%"  [routerLink]="['/professionel/', user.id]">
             <h3>{{user.nom}} </h3>
             <p  class="title"> {{user.prenom}}</p>
-            <p  class="title">  <i>  Numéroi de Siret:    </i>  {{user.numeroSiret}}</p>
-            <p  class="title">  {{user.recommanderBy}}</p>
+            <p  class="title"  >  <i>  Numéroi de Siret:    </i>  {{user.numeroSiret}}</p>
+            <p  class="title" *ngIf="villeName && usersSearch"> <strong> Ville: {{user.adresse.ville}}</strong> </p>
             <div style="margin: 24px 0;">
               <a href="#"><i class="fab fa-dribbble"></i></a>
               <a href="#"><i class="fab fa-twitter"></i></a>
@@ -43,103 +43,7 @@
         </div>
 
 
-<!--<div *ngFor="let user of users._embedded.users">-->
-<!--    <div class="col-md-3">-->
-<!--      <div class="panel panel-default" >-->
-<!--        <div class="panel-heading" [routerLink]="['/professionel/', user.id]" >-->
-<!--          <img class="card" alt="Cinque Terre" height="195px" style="width:100%" src="{{this.catalogueService.host+'/photouser/'-->
-<!--        +user.id}}" />-->
-<!--        </div>-->
-<!--        <div class="panel-body">-->
-<!--          <table>-->
-<!--            <tr>-->
-<!--              <td>-->
-<!--             <strong>  {{user.nom}}  </strong>-->
-<!--              </td>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--              <td>-->
-<!--                {{user.prenom}}-->
-<!--              </td>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--              <td>-->
-<!--             <i> Numéroi de Siret:    </i>  {{user.numeroSiret}}-->
-<!--              </td>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--              <td>-->
-<!--                {{user.recommanderBy}}-->
-<!--              </td>-->
-<!--            </tr>-->
-<!--          </table>-->
-<!--        </div>-->
-
-<!--      <div class="panel-footer">-->
-<!--          <button class="button" (click)="toggleTel(user)">-->
-<!--            Contact<i *ngIf="iscontactChecked && currentUser===user">:-->
-<!--            {{user.tele}}</i>-->
-<!--          </button>-->
-
-<!--          <div class="rating-inline">-->
-<!--              <h4>Average user rating</h4>-->
-<!--              <h2 class="bold padding-bottom-7">{{this.message == null ?  user.note :this.message }}<small>/ 5</small></h2>-->
-<!--            <app-stars></app-stars>-->
-<!--      </div>-->
-<!--      </div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--</div>-->
   </div>
 
-  <div class="container " *ngIf="usersSearch">
-    <h1>Il y a {{usersSearch.length}} trouvés</h1>
-    <div *ngFor="let user of usersSearch">
-      <div class="col-md-3">
-        <div class="panel panel-default" >
-          <div class="panel-heading" [routerLink]="['/professionel/', user.id]" >
-            <img class="card" alt="Cinque Terre" height="195px" style="width:100%" src="{{this.catalogueService.host+'/photouser/'
-        +user.id}}" />
-          </div>
-          <div class="panel-body">
-            <table>
-              <tr>
-                <td>
-                  <strong>  {{user.nom}}  </strong>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  {{user.prenom}}
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <i> Numéroi de Siret:    </i>  {{user.numeroSiret}}
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  {{user.recommanderBy}}
-                </td>
-              </tr>
-            </table>
-          </div>
 
-          <div class="panel-footer">
-            <button class="button" (click)="toggleTel(user)">
-              Contact<i *ngIf="iscontactChecked && currentUser===user">:
-              {{user.tele}}</i>
-            </button>
-
-            <div class="rating-inline">
-              <h4>Notes utilisateur</h4>
-              <h2 class="bold padding-bottom-7">{{this.message == null ?  user.note :this.message }}<small>/ 5</small></h2>
-              <app-stars></app-stars>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>

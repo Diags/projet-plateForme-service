@@ -92,11 +92,6 @@ this.route.navigateByUrl('/catalogue/2/'+c.id);
 
     });
 
-    function getUsersByville (event){
-      console.log(event);
-      var data = {paysName:"senegal", ville:event};
-      this.catelogService.getProfessionalByVille(data).subscribe(res =>{   console.log(res);});
-    }
     function extracted(id) {
       map.querySelectorAll('.is-active').forEach(e => {
         e.classList.remove('is-active')
@@ -105,28 +100,31 @@ this.route.navigateByUrl('/catalogue/2/'+c.id);
       if (id != undefined) {
         map.querySelector('#map_list ' + '#list-' + id).classList.add('is-active');
         map.querySelector('svg #' + id).classList.add('is-active');
-        map.querySelector('svg #' + id).addEventListener('click', function(event) {
-          getUsersByville(this.id);
-          console.log("clickckckck function ",this.id);
-        });
       }
     }
 
     }
 
   getUsersByville (event){
-     console.log(event.id);
-  var data = {paysName:"senegal", ville:event.id};
-  this.catelogService.getProfessionalByVille(data).subscribe(res =>{   console.log(res);});
+  var data = {paysName:"senegal", ville:event.target.innerHTML};
+    this.catelogService.curenteSearchUsers= [];
+  this.catelogService.getProfessionalByVille(data).subscribe(res =>{
+    this.catelogService.curenteSearchUsers=res;
+    console.log(this.catelogService.curenteSearchUsers,"ùùùùùùùù#######ùùùùùùùùùù");
+    this.route.navigateByUrl("/professions-details/"+0);
+    console.log(res);});
 }
   onClick($event) {
      var data = {
        paysName:"senegal",
-       ville:$event.target.innerHTML
+       ville:$event.target.id
      };
+    this.catelogService.curenteSearchUsers= [];
     this.catelogService.getProfessionalByVille(data).subscribe(res =>{
       console.log(res);
-    })
-    console.log("cocococ",$event.target.innerHTML);
+      this.catelogService.curenteSearchUsers = res;
+      console.log(this.catelogService.curenteSearchUsers,"ùùùùùùùùùù#####ùùùùùùùù");
+      this.route.navigateByUrl("/professions-details/"+0);
+    });
   }
 }

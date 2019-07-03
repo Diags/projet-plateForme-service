@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import { CatalogueService } from '../catalogue.service';
+import {CatalogueService} from '../catalogue.service';
+
 @Component({
   selector: 'app-artisant-detail',
   templateUrl: './professions-detail.component.html',
@@ -8,19 +9,21 @@ import { CatalogueService } from '../catalogue.service';
 })
 export class ProfessionsDetailComponent implements OnInit {
 
-  users ;
-   message: number;
-   currentUser;
+  users;
+  message: number;
+  currentUser;
   usersFilter;
-   private _listFilter;
-  private iscontactChecked= false;
+  private _listFilter;
+  private iscontactChecked = false;
   usersSearch;
- @Input() filter: string;
+  villeName;
+  @Input() filter: string;
 
-  constructor( private catalogueService: CatalogueService, private routerActivated: ActivatedRoute, private router : Router) {
-   // this.router.params.subscribe(params => this.artisantDetail = params.id)
-  //   console.log(this.router.snapshot.paramMap.get('id'))
+  constructor(private catalogueService: CatalogueService, private routerActivated: ActivatedRoute, private router: Router) {
+    // this.router.params.subscribe(params => this.artisantDetail = params.id)
+    //   console.log(this.router.snapshot.paramMap.get('id'))
   }
+
   get listFilter() {
     return this._listFilter;
   }
@@ -28,13 +31,17 @@ export class ProfessionsDetailComponent implements OnInit {
   set listFilter(value) {
     this._listFilter = value;
     this.usersFilter = this._listFilter ? this.perFormFilter(this.listFilter) : this.users._embedded.users;
-
   }
+
   ngOnInit() {
     let id = +this.routerActivated.snapshot.paramMap.get('id');
-    if(id==0){
+    if (id == 0) {
       this.usersSearch = this.catalogueService.curenteSearchUsers;
-    }else {
+      this.usersFilter = this._listFilter ? this.perFormFilter(this.listFilter) : this.usersSearch;
+      console.log(this.usersFilter[0].addresse);
+    this.villeName =   this.catalogueService.curenteSearchUsers[0].adresse.ville;
+
+    } else {
       this.catalogueService.getProfessionelUserById(id).subscribe(resp => {
           this.users = resp;
           this.usersFilter = this._listFilter ? this.perFormFilter(this.listFilter) : this.users._embedded.users;
@@ -46,18 +53,23 @@ export class ProfessionsDetailComponent implements OnInit {
   }
   private perFormFilter(filterby: string) {
     filterby = filterby.toLocaleLowerCase();
-    return this.users._embedded.users.filter(user =>
-     user.nom.toLocaleLowerCase().indexOf(filterby) != -1);
+    if(this.users)
+    { return this.users._embedded.users.filter(user =>
+      user.nom.toLocaleLowerCase().indexOf(filterby) != -1);}
+    else {
+      return this.usersSearch.filter(user =>
+        user.nom.toLocaleLowerCase().indexOf(filterby) != -1);
+    }
   };
 
-  getDevis(){
+  getDevis() {
     this.router.navigateByUrl('/devis')
   }
 
-  toggleTel(user){
+  toggleTel(user) {
     this.currentUser = user;
     console.log(user);
     this.iscontactChecked = !this.iscontactChecked;
-    console.log("coool",this.iscontactChecked)
-}
+    console.log("coool", this.iscontactChecked)
   }
+}

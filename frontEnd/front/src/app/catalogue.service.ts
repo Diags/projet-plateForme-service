@@ -55,6 +55,10 @@ getAllUserbyProfessions(url){
   return
   }
   getProfessionalByVille(data){
-  return this.http.post(this.host+'/mapsearch',data)
+  return this.http.post(this.host+'/searchuserbyville',data)
+  }
+
+  sendForContactMe(value) {
+    return this.http.post(this.host + "/sendemailcontacterme", value)
   }
 }

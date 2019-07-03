@@ -15,7 +15,9 @@ export class AcceuilComponent implements OnInit {
   curenteSearchUsers;
   iscontactChecked = false;
   currentUser;
-
+  messageStatus;
+  mode: number= 0;
+  errorMessage;
   constructor(private catelogService: CatalogueService, private  routeActive: ActivatedRoute, private route: Router) {
   }
 
@@ -60,4 +62,16 @@ export class AcceuilComponent implements OnInit {
     this.currenteCategorie = c;
     this.route.navigateByUrl('/catalogue/2/' + c.id);
   }
+
+  sendForContactMe(value) {
+      this.catelogService.sendForContactMe(value).subscribe(data => {
+        console.log("message status", data);
+        this.mode = 1;
+        this.route.navigateByUrl('/acceuil')
+      }, err => {
+        this.errorMessage = err.error.message;
+        this.mode = 0;
+        console.log("mode ", this.mode);
+      });
+    }
 }

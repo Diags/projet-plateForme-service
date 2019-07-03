@@ -80,6 +80,20 @@ public class UserController {
         } else
             throw new Exception("This message not send");
     }
+    @ApiOperation(value = "send Email of user to professionel")
+    @PostMapping("sendemailcontacterme")
+    public String sendEmailConterMe(@RequestBody SearchParamforContacterMe param) throws Exception {
+        Context context = new Context();
+        context.setVariable("title", "Vous avez une demande de devis");
+        context.setVariable("body", "Mr." + param.getName());
+        context.setVariable("suite", "Email:  " + param.getMail());
+        context.setVariable("description", param.getMessage());
+        EmailStatus emailStatus = emailHtmlSender.send("diaguilysociete@gmail.com", "DEMANDE DE DEVIS", "email/template-1", context);
+        if (emailStatus.getStatus().equalsIgnoreCase("SUCCESS")) {
+            return "true";
+        } else
+            throw new Exception("This message not send");
+    }
 
     @PostMapping("smssender")
     @ApiOperation(value = "send sms of user to professionel")
@@ -118,7 +132,7 @@ public class UserController {
     }
 
     @ApiOperation(value = "search user by params")
-    @PostMapping("mapsearch")
+    @PostMapping("searchuserbyville")
     public List<User> getUsersByVille(@RequestBody MapData mapData) {
         return userRepository.findByAdresse_Pays_nameAndAdresse_ville("senegal".toUpperCase(),mapData.getVille().toUpperCase());
 
