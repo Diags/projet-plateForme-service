@@ -17,10 +17,12 @@ import {InscriptionComponent} from "./inscription/inscription.component";
 import {LoginComponent} from "./login/login.component";
 import {RegistrationComponent} from "./registration/registration.component";
 import {ProfessionalLoginComponent} from "./professional-login/professional-login.component";
+import {MoncompteComponent} from "./moncompte/moncompte.component";
 const routes: Routes = [
   {path:"login",component:LoginComponent},
   {path:"registration",component:RegistrationComponent},
   {path:"loginpro",component:ProfessionalLoginComponent},
+  {path:"moncompte",component:MoncompteComponent},
   {path:"catalogue/:p1/:p2",component:CatalogueComponent},
   {path:"devis",component:DevisFormComponent},
   {path:"a-propos",component:AProposComponent},

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {CatalogueService} from "../catalogue.service";
 
 @Component({
   selector: 'app-login',
@@ -6,10 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  user;
 
-  constructor() { }
+  constructor(private catalogueService:CatalogueService) {
+  }
 
   ngOnInit() {
   }
 
+  login(value) {
+    this.catalogueService.login(value).subscribe(resp =>{
+      this.user = resp;
+      console.log("Login user",resp);
+    });
+    console.log(value);
+  }
 }

@@ -8,6 +8,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 @JsonIdentityInfo(
         generator = ObjectIdGenerators.PropertyGenerator.class,
@@ -62,5 +64,11 @@ public class User {
     private String website_url;
     private String linkedin;
     private GenreEnum genreEnum;
+    @NotBlank
+    @Email
+    @Column(unique = true)
+    private String email;
+    @JsonIgnore
+    private String password;
 
 }

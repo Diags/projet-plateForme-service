@@ -12,4 +12,7 @@ export class ProfessionalLoginComponent implements OnInit {
   ngOnInit() {
   }
 
+  updateMPD(value) {
+
+  }
 }

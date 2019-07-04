@@ -3,6 +3,8 @@ package monartisant.com.projetartisant.ws;
 import io.swagger.annotations.ApiOperation;
 import monartisant.com.projetartisant.model.*;
 import monartisant.com.projetartisant.repository.UserRepository;
+import net.bytebuddy.implementation.bytecode.Throw;
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.PageRequest;
@@ -15,6 +17,7 @@ import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.nio.file.attribute.UserPrincipalNotFoundException;
 import java.util.List;
 
 @CrossOrigin("*")
@@ -83,11 +86,15 @@ public class UserController {
     @ApiOperation(value = "send Email of user to professionel")
     @PostMapping("sendemailcontacterme")
     public String sendEmailConterMe(@RequestBody SearchParamforContacterMe param) throws Exception {
+        return sendMail(param.getName(),param.getMail(),param.getMessage());
+    }
+
+    private String sendMail(String ...arg ) throws Exception {
         Context context = new Context();
         context.setVariable("title", "Vous avez une demande de devis");
-        context.setVariable("body", "Mr." + param.getName());
-        context.setVariable("suite", "Email:  " + param.getMail());
-        context.setVariable("description", param.getMessage());
+        context.setVariable("body", "Mr." + arg[0]);
+        context.setVariable("suite", "Email:  " + arg[1]);
+        context.setVariable("description", arg[2]);
         EmailStatus emailStatus = emailHtmlSender.send("diaguilysociete@gmail.com", "DEMANDE DE DEVIS", "email/template-1", context);
         if (emailStatus.getStatus().equalsIgnoreCase("SUCCESS")) {
             return "true";
@@ -137,5 +144,29 @@ public class UserController {
         return userRepository.findByAdresse_Pays_nameAndAdresse_ville("senegal".toUpperCase(),mapData.getVille().toUpperCase());
 
     }
+    @ApiOperation(value = "login user by params")
+    @PostMapping("loginuser")
+    public User login(@RequestBody LoginParam  loginParam) throws UserPrincipalNotFoundException {
 
+//        User user = userRepository.findByemailAndpassword(loginParam.getEmail(),loginParam.getPassword());
+//        if(user == null){
+//            throw new UserPrincipalNotFoundException("this user dosenot exist {user }" + loginParam.getEmail());
+//        }
+        return  null;
+    }
+    @ApiOperation(value = "login user by params")
+    @PostMapping("loginuser")
+    public User updateMPD(@RequestBody LoginParam  loginParam) throws UserPrincipalNotFoundException {
+
+//        User user = userRepository.findByemail(loginParam.getEmail());
+//        if(user == null){
+//            throw new UserPrincipalNotFoundException("this user dosenot exist {user }" + loginParam.getEmail());
+//        }
+//        try {
+//            sendMail(loginParam.getEmail(),loginParam.getPassword());
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+        return  null;
+    }
 }

@@ -1,8 +1,10 @@
 <div class="container">
 <div class="containerLogin ">
-  <form action="/action_page.php">
+  <form  #f="ngForm"(ngSubmit)="login(f.value)">
     <div class="row">
+      <div class="container">
       <h2 style="text-align:center">Connectez-vous à votre compte</h2>
+      <hr/>
       <div class="vl">
         <span class="vl-innertext">or</span>
       </div>
@@ -24,16 +26,22 @@
           <p>Or sign in manually:</p>
         </div>
 
-        <input type="text" name="username" placeholder="Username" required>
+        <input type="text" name="email" placeholder="Email" required>
         <input type="password" name="password" placeholder="Password" required>
         <input type="submit" value="Login">
       </div>
     </div>
+    <div class="row">
+      <div class="container signClasse">
+        <button class="w3-button  w3-section w3-center "[routerLink]="['/registration']">
+          Sign up
+        </button>
+      </div>
+    </div>
+    </div>
   </form>
 
 </div>
-  <div class=" w3-button  w3-red w3-center">
-  <button class="w3-button"[routerLink]="['/registration']"> Sign up</button>
-</div>
+
 </div>
 

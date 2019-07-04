@@ -1,7 +1,14 @@
-
+hr{
+  position: relative;
+  height: 5px;
+  margin: -1px 0 0;
+  border: 0;
+  background-color: rgb(239, 121, 0);
+}
 .usersPanel {
   margin-top: 5%;
-  padding: 2%;
+  padding: 6%;
+  background-color: #eef2f6;
 }
 .input-container {
   display: -ms-flexbox; /* IE10 */
@@ -28,16 +35,6 @@
   border: 2px solid dodgerblue;
 }
 
-/* Set a style for the submit button */
-.btn {
-  background-color: dodgerblue;
-  color: white;
-  padding: 15px 20px;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  opacity: 0.9;
-}
 
 .btn:hover {
   opacity: 1;
