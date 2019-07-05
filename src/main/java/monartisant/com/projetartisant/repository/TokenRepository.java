@@ -13,11 +13,11 @@ import javax.transaction.Transactional;
 
 @RepositoryRestResource
 public interface TokenRepository extends JpaRepository<Token,Long> {
-    Token findByTransitToken(String token);
+    Token findByTokenTransit(String token);
     Token findByUser(User user);
     @Transactional
     @Modifying(clearAutomatically = true)
-    @Query("UPDATE Token t SET t.transitToken = :transitToken WHERE  t.id = :id")
-    void setTransitToken(@Param("transitToken") String transitToken, @Param("id") Long id);
+    @Query("UPDATE Token t SET t.tokenTransit = :tokenTransit WHERE  t.id = :id")
+    void setTransitToken(@Param("tokenTransit") String tokenTransit, @Param("id") Long id);
 
 }

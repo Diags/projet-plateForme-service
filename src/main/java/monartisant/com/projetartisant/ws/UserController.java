@@ -218,7 +218,7 @@ public class UserController {
                 LOGGER.error(" Token is empty or null in {signUp}:" + token);
                 throw new IllegalArgumentException("Token is required in confirmRegistration {token} = " + token.getJwtToken());
             }
-            Token verificationToken = tokenRepository.findByTransitToken(token.getJwtToken());
+            Token verificationToken = tokenRepository.findByTokenTransit(token.getJwtToken());
             if (verificationToken == null) {
                 LOGGER.error("This token is not available at {signUp}", verificationToken);
                 return null;
@@ -248,12 +248,12 @@ public class UserController {
             return userVerification;
         } catch (InvalidTokenRequestException ex) {
             if (ex.getTokenType().equals("ExpiredJWT")) {
-                Token verificationToken = tokenRepository.findByTransitToken(token.getJwtToken());
+                Token verificationToken = tokenRepository.findByTokenTransit(token.getJwtToken());
                 User userVerification = verificationToken.getUser();
                 String newToken = tokenProvider.generateToken(userVerification);
                 tokenRepository.setTransitToken(newToken, verificationToken.getId());
                 LOGGER.error(" update token = " + newToken);
-                Token newTok = tokenRepository.findByTransitToken(newToken);
+                Token newTok = tokenRepository.findByTokenTransit(newToken);
                 userVerification = newTok.getUser();
                 userRepository.save(userVerification);
                 response.addHeader(SecurityConstants.HEADER_STRING,
