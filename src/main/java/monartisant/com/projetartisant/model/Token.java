@@ -16,6 +16,6 @@ public class Token {
     private Date expiredDate;
     private Date lastCreate;
     private Date lastModify;
-    @OneToOne
+    @OneToOne(cascade= CascadeType.ALL)
     private User user;
 }

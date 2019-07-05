@@ -6,10 +6,12 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import java.util.Collection;
 import java.util.List;
 @JsonIdentityInfo(
         generator = ObjectIdGenerators.PropertyGenerator.class,
@@ -70,5 +72,14 @@ public class User {
     private String email;
     @JsonIgnore
     private String password;
-
+    @ElementCollection(targetClass = RoleEnum.class, fetch = FetchType.EAGER)
+    @Cascade(value = org.hibernate.annotations.CascadeType.REMOVE)
+    @JoinTable(
+            indexes = {@Index(name = "INDEX_USER_ROLE", columnList = "id_user")},
+            name = "roles",
+            joinColumns = @JoinColumn(name = "id_user")
+    )
+    @Column(name = "role", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Collection<RoleEnum> roles;
 }

@@ -1,20 +1,27 @@
 package monartisant.com.projetartisant.ws;
 
 import io.swagger.annotations.ApiOperation;
+import monartisant.com.projetartisant.config.SecurityConstants;
+import monartisant.com.projetartisant.errorHandle.InvalidTokenRequestException;
+import monartisant.com.projetartisant.errorHandle.UserNotFoundException;
 import monartisant.com.projetartisant.model.*;
+import monartisant.com.projetartisant.repository.TokenRepository;
 import monartisant.com.projetartisant.repository.UserRepository;
-import net.bytebuddy.implementation.bytecode.Throw;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
-import org.springframework.stereotype.Component;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 import org.thymeleaf.context.Context;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
+import javax.ws.rs.core.Response;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.attribute.UserPrincipalNotFoundException;
@@ -29,7 +36,13 @@ public class UserController {
     @Autowired
     private EmailHtmlSender emailHtmlSender;
     @Autowired
-    private Service service;
+    private ServiceTwilio service;
+    @Autowired
+    private TokenRepository tokenRepository;
+    @Autowired
+    private JwtTokenProvider tokenProvider;
+
+    private static final Logger LOGGER = LogManager.getLogger(UserController.class);
 
     @ApiOperation(value = "retreive user image from id")
     @GetMapping(path = "photouser/{id}", produces = MediaType.IMAGE_PNG_VALUE)
@@ -37,10 +50,11 @@ public class UserController {
         User user = userRepository.findById(id).get();
         return Files.readAllBytes(Paths.get(this.getClass().getClassLoader().getResource("imageDiaguily/image/" + user.getPhotoName() + ".png").toURI()));
     }
+
     @ApiOperation(value = "retreive all Users ")
     @GetMapping("allUsers")
     public List<User> getAllUsers() throws Exception {
-        return userRepository.chercherUsers(PageRequest.of(0,4));
+        return userRepository.chercherUsers(PageRequest.of(0, 4));
     }
 
     //    @GetMapping("/usersbyville")
@@ -83,13 +97,14 @@ public class UserController {
         } else
             throw new Exception("This message not send");
     }
+
     @ApiOperation(value = "send Email of user to professionel")
     @PostMapping("sendemailcontacterme")
     public String sendEmailConterMe(@RequestBody SearchParamforContacterMe param) throws Exception {
-        return sendMail(param.getName(),param.getMail(),param.getMessage());
+        return sendMail(param.getName(), param.getMail(), param.getMessage());
     }
 
-    private String sendMail(String ...arg ) throws Exception {
+    private String sendMail(String... arg) throws Exception {
         Context context = new Context();
         context.setVariable("title", "Vous avez une demande de devis");
         context.setVariable("body", "Mr." + arg[0]);
@@ -109,10 +124,10 @@ public class UserController {
     }
 
     @PostMapping("addprofessional")
-    public User addProfessional(@RequestBody AddProfessional addProfessional){
-        User  user = new User();
-        Adresse adresse =new Adresse();
-        Pays pays  = new Pays();
+    public User addProfessional(@RequestBody AddProfessional addProfessional) {
+        User user = new User();
+        Adresse adresse = new Adresse();
+        Pays pays = new Pays();
         pays.setName(addProfessional.getPays());
         adresse.setPays(pays);
         addProfessional.getTags().stream().forEach(ville -> adresse.setVille(ville));
@@ -141,22 +156,24 @@ public class UserController {
     @ApiOperation(value = "search user by params")
     @PostMapping("searchuserbyville")
     public List<User> getUsersByVille(@RequestBody MapData mapData) {
-        return userRepository.findByAdresse_Pays_nameAndAdresse_ville("senegal".toUpperCase(),mapData.getVille().toUpperCase());
+        return userRepository.findByAdresse_Pays_nameAndAdresse_ville("senegal".toUpperCase(), mapData.getVille().toUpperCase());
 
     }
+
     @ApiOperation(value = "login user by params")
     @PostMapping("loginuser")
-    public User login(@RequestBody LoginParam  loginParam) throws UserPrincipalNotFoundException {
+    public User login(@RequestBody LoginParam loginParam) throws UserPrincipalNotFoundException {
 
 //        User user = userRepository.findByemailAndpassword(loginParam.getEmail(),loginParam.getPassword());
 //        if(user == null){
 //            throw new UserPrincipalNotFoundException("this user dosenot exist {user }" + loginParam.getEmail());
 //        }
-        return  null;
+        return null;
     }
+
     @ApiOperation(value = "login user by params")
     @PostMapping("loginuser")
-    public User updateMPD(@RequestBody LoginParam  loginParam) throws UserPrincipalNotFoundException {
+    public User updateMPD(@RequestBody LoginParam loginParam) throws UserPrincipalNotFoundException {
 
 //        User user = userRepository.findByemail(loginParam.getEmail());
 //        if(user == null){
@@ -167,6 +184,116 @@ public class UserController {
 //        } catch (Exception e) {
 //            e.printStackTrace();
 //        }
-        return  null;
+        return null;
+    }
+
+    @PostMapping("/signin")
+    public Response signUp(@RequestBody LoginParam form) throws Exception {
+        User user = null;
+        try {
+            if (form == null || !form.getEmail().equals(form.getEmail())) {
+                LOGGER.error(" User is  empty or null in {signin} ", form);
+                throw new UsernameNotFoundException("this user does not  exists  please register with correct user or emails ares not match  {email}" + form.getEmail());
+            }
+            user = userRepository.findByEmail(form.getEmail());
+
+            if (user == null) {
+                LOGGER.error("User is FORBIDDEN or Not existe ", user);
+                return Response.status(Response.Status.FORBIDDEN).entity(user).build();
+
+            }
+        } catch (UserNotFoundException users) {
+            LOGGER.error(" in {signin} user tried to register with forbidden email {users} :" + users);
+            throw new UserNotFoundException("in {signUp} user tried to register with forbidden email {users} :" + users);
+        }
+
+        return Response.status(Response.Status.OK).entity(user).build();
+    }
+
+    @PostMapping("/confirmregister")
+    public User signUp(@RequestBody ConfirmRegister token, @javax.ws.rs.core.Context HttpServletResponse response) throws Exception {
+
+        try {
+            if (Strings.isBlank(token.getJwtToken())) {
+                LOGGER.error(" Token is empty or null in {signUp}:" + token);
+                throw new IllegalArgumentException("Token is required in confirmRegistration {token} = " + token.getJwtToken());
+            }
+            Token verificationToken = tokenRepository.findByTransitToken(token.getJwtToken());
+            if (verificationToken == null) {
+                LOGGER.error("This token is not available at {signUp}", verificationToken);
+                return null;
+            }
+            if (!token.getJwtToken().equals(verificationToken.getTokenTransit())) {
+                LOGGER.error("This token is not available at {signUp}", verificationToken);
+                return null;
+            }
+            Boolean isValidTokenFromUrl = tokenProvider.validateToken(token.getJwtToken());
+            LOGGER.debug("token validation in  {signUp } = " + isValidTokenFromUrl);
+            Boolean isTokenFromBackValid = tokenProvider.validateToken(verificationToken.getTokenTransit());
+            LOGGER.debug("token validation in  {signUp } = " + isTokenFromBackValid);
+            LOGGER.debug("token verification in  {signUp } = " + verificationToken);
+            User userVerification = verificationToken.getUser();
+            if (userVerification == null) {
+                LOGGER.error("this user does not   exists {userVerification } = " + userVerification);
+                return null;
+            }
+            if (userVerification != null && userVerification.isBanned()) {
+                LOGGER.error("this user is banned  {userVerification } = " + userVerification);
+                return null;
+            }
+            userRepository.save(userVerification);
+            LOGGER.debug("User verification in  {confirmregister } = " + userVerification);
+            response.addHeader(SecurityConstants.HEADER_STRING,
+                    SecurityConstants.TOKEN_PREFIX + verificationToken.getTokenTransit());
+            return userVerification;
+        } catch (InvalidTokenRequestException ex) {
+            if (ex.getTokenType().equals("ExpiredJWT")) {
+                Token verificationToken = tokenRepository.findByTransitToken(token.getJwtToken());
+                User userVerification = verificationToken.getUser();
+                String newToken = tokenProvider.generateToken(userVerification);
+                tokenRepository.setTransitToken(newToken, verificationToken.getId());
+                LOGGER.error(" update token = " + newToken);
+                Token newTok = tokenRepository.findByTransitToken(newToken);
+                userVerification = newTok.getUser();
+                userRepository.save(userVerification);
+                response.addHeader(SecurityConstants.HEADER_STRING,
+                        SecurityConstants.TOKEN_PREFIX + newTok.getTokenTransit());
+                return userVerification;
+            } else
+                return null;
+        }
+    }
+
+    @PostMapping("/register")
+    public Response register(@RequestBody Register register) throws Exception {
+        User user = new User();
+        try {
+            if (register == null || !register.getEmail().equals(register.getEmail())) {
+                LOGGER.error(" User is  empty or null in {signin} ", register);
+                throw new UsernameNotFoundException("this user does not  exists  please register with correct user or emails ares not match  {email}" + register.getEmail());
+            }
+            user = userRepository.findByEmail(register.getEmail());
+
+            if (user != null) {
+                LOGGER.error("User already existe ", user);
+                return Response.status(Response.Status.FORBIDDEN).entity(user).build();
+
+            }
+            if (register.getPassword().toUpperCase().equals(register.getConfirmPassword())) {
+                LOGGER.error("Password are not matched", user);
+                return Response.status(Response.Status.FORBIDDEN).entity(user).build();
+            }
+            user.setPassword(register.getPassword());
+            user.setEmail(register.getEmail());
+            user.setPassword(register.getPassword());
+            user.setNom(register.getName());
+            user.setPrenom(register.getLasName());
+
+
+        } catch (UserNotFoundException users) {
+            LOGGER.error(" in {signin} user tried to register with forbidden email {users} :" + users);
+            throw new UserNotFoundException("in {signUp} user tried to register with forbidden email {users} :" + users);
+        }
+        return Response.status(Response.Status.FORBIDDEN).entity(user).build();
     }
 }
