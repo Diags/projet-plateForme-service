@@ -499,7 +499,7 @@ public class ProjetArtisantApplication implements CommandLineRunner {
                 user.setNote(3.5);
                 user.setProfession(profession);
                 user.setTele(1980008025 + rd.nextInt(2000001823));
-                user.setEmail(prenom.get(0)+"@gmail.com");
+                user.setEmail(RandomString.make(3)+i+"@gmail.com");
                 user.setPassword("toto");
                 userRepository.save(user);
             }

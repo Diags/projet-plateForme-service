@@ -30,7 +30,7 @@ import java.util.Collections;
         this.authenticationManager = authenticationManager;
         //By default, UsernamePasswordAuthenticationFilter listens to "/login" path.
         // In our case, we use "/signin". So, we need to override the defaults.
-        this.setRequiresAuthenticationRequestMatcher(new AntPathRequestMatcher("/signin/**", "POST"));
+      //  this.setRequiresAuthenticationRequestMatcher(new AntPathRequestMatcher("/signin/**", "POST"));
     }
 
     @Override
@@ -61,6 +61,8 @@ import java.util.Collections;
                                             Authentication authResult) throws IOException, ServletException {
 
         User springUser = (User) authResult.getPrincipal();
-          jwtTokenProvider.generateToken(springUser);
+        String newToken =  jwtTokenProvider.generateToken(springUser);
+        response.addHeader(SecurityConstants.HEADER_STRING,
+                SecurityConstants.TOKEN_PREFIX + newToken);
    }
 }

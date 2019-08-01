@@ -15,9 +15,11 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.thymeleaf.context.Context;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
@@ -25,6 +27,8 @@ import javax.ws.rs.core.Response;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.attribute.UserPrincipalNotFoundException;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 
 @CrossOrigin("*")
@@ -41,8 +45,11 @@ public class UserController {
     private TokenRepository tokenRepository;
     @Autowired
     private JwtTokenProvider tokenProvider;
-
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
     private static final Logger LOGGER = LogManager.getLogger(UserController.class);
+    @Autowired
+    private TokenService tokenService;
 
     @ApiOperation(value = "retreive user image from id")
     @GetMapping(path = "photouser/{id}", produces = MediaType.IMAGE_PNG_VALUE)
@@ -64,7 +71,7 @@ public class UserController {
     @ApiOperation(value = "update user rating", response = User.class)
     @Transactional
     @PostMapping("updatenote")
-    public User update(@RequestBody SearchParamNote param) throws Exception {
+    public User updateRatting(@RequestBody SearchParamNote param) throws Exception {
         User user = userRepository.findById(param.getId()).get();
         if (user == null) {
             throw new Exception("user not existe");
@@ -100,7 +107,7 @@ public class UserController {
 
     @ApiOperation(value = "send Email of user to professionel")
     @PostMapping("sendemailcontacterme")
-    public String sendEmailConterMe(@RequestBody SearchParamforContacterMe param) throws Exception {
+    public String sendEmailContactMe(@RequestBody SearchParamforContacterMe param) throws Exception {
         return sendMail(param.getName(), param.getMail(), param.getMessage());
     }
 
@@ -160,9 +167,24 @@ public class UserController {
 
     }
 
+    @ApiOperation(value = "update user by params")
+    @PostMapping("updateusermdp")
+    public User updateMPD(@RequestBody LoginParam loginParam) throws UserPrincipalNotFoundException {
+
+        User user = userRepository.findByEmail(loginParam.getEmail());
+        if (user == null) {
+            throw new UserPrincipalNotFoundException("this user dosenot exist {user }" + loginParam.getEmail());
+        }
+        try {
+            sendMail(loginParam.getEmail(), loginParam.getPassword());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
     @ApiOperation(value = "login user by params")
     @PostMapping("loginuser")
-    public User login(@RequestBody LoginParam loginParam) throws UserPrincipalNotFoundException {
+    public User login(@RequestBody LoginParam loginParam)  {
 
 //        User user = userRepository.findByemailAndpassword(loginParam.getEmail(),loginParam.getPassword());
 //        if(user == null){
@@ -170,32 +192,16 @@ public class UserController {
 //        }
         return null;
     }
-
     @ApiOperation(value = "login user by params")
-    @PostMapping("loginuser")
-    public User updateMPD(@RequestBody LoginParam loginParam) throws UserPrincipalNotFoundException {
-
-//        User user = userRepository.findByemail(loginParam.getEmail());
-//        if(user == null){
-//            throw new UserPrincipalNotFoundException("this user dosenot exist {user }" + loginParam.getEmail());
-//        }
-//        try {
-//            sendMail(loginParam.getEmail(),loginParam.getPassword());
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-        return null;
-    }
-
     @PostMapping("/signin")
-    public Response signUp(@RequestBody LoginParam form) throws Exception {
+    public Response signin(@RequestBody LoginParam form) throws Exception {
         User user = null;
         try {
             if (form == null || !form.getEmail().equals(form.getEmail())) {
                 LOGGER.error(" User is  empty or null in {signin} ", form);
                 throw new UsernameNotFoundException("this user does not  exists  please register with correct user or emails ares not match  {email}" + form.getEmail());
             }
-            user = userRepository.findByEmail(form.getEmail());
+            user = userRepository.findByEmailAndPassword(form.getEmail(), form.getPassword());
 
             if (user == null) {
                 LOGGER.error("User is FORBIDDEN or Not existe ", user);
@@ -210,8 +216,9 @@ public class UserController {
         return Response.status(Response.Status.OK).entity(user).build();
     }
 
+    @ApiOperation(value = "confirmRegister user by token")
     @PostMapping("/confirmregister")
-    public User signUp(@RequestBody ConfirmRegister token, @javax.ws.rs.core.Context HttpServletResponse response) throws Exception {
+    public User confirmRegister(@RequestBody ConfirmRegister token, @javax.ws.rs.core.Context HttpServletResponse response) throws Exception {
 
         try {
             if (Strings.isBlank(token.getJwtToken())) {
@@ -247,7 +254,7 @@ public class UserController {
                     SecurityConstants.TOKEN_PREFIX + verificationToken.getTokenTransit());
             return userVerification;
         } catch (InvalidTokenRequestException ex) {
-            if (ex.getTokenType().equals("ExpiredJWT")) {
+            if (ex.getTokenType().toUpperCase().equals("ExpiredJWT".toUpperCase())) {
                 Token verificationToken = tokenRepository.findByTokenTransit(token.getJwtToken());
                 User userVerification = verificationToken.getUser();
                 String newToken = tokenProvider.generateToken(userVerification);
@@ -265,7 +272,7 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public Response register(@RequestBody Register register) throws Exception {
+    public Response register(@RequestBody Register register, @javax.ws.rs.core.Context HttpServletRequest request,@javax.ws.rs.core.Context HttpServletResponse response) throws Exception {
         User user = new User();
         try {
             if (register == null || !register.getEmail().equals(register.getEmail())) {
@@ -279,21 +286,42 @@ public class UserController {
                 return Response.status(Response.Status.FORBIDDEN).entity(user).build();
 
             }
-            if (register.getPassword().toUpperCase().equals(register.getConfirmPassword())) {
-                LOGGER.error("Password are not matched", user);
+            if (register.getPassword().toUpperCase().equals(register.getConfirmPassword().toUpperCase())) {
+                LOGGER.error("Passwords are not matched", user);
                 return Response.status(Response.Status.FORBIDDEN).entity(user).build();
             }
             user.setPassword(register.getPassword());
             user.setEmail(register.getEmail());
-            user.setPassword(register.getPassword());
+            user.setPassword(bCryptPasswordEncoder.encode(register.getPassword()));
             user.setNom(register.getName());
             user.setPrenom(register.getLasName());
+            user.setRoles(new HashSet<>(Collections.singleton(RoleEnum.USER)));
+            userRepository.save(user);
+            String jwtToken = tokenProvider.generateToken(user);
+            response.addHeader(SecurityConstants.HEADER_STRING,
+                    SecurityConstants.TOKEN_PREFIX + jwtToken);
+            tokenService.createUserWithToken(user, jwtToken);
+            LOGGER.debug("User {user}= " + user + " token {jwtToken}= " + jwtToken);
+            Token verificationToken = tokenRepository.findByUser(user);
 
-
+            LOGGER.info("User is signin ", user.getEmail(), "with this token {}", verificationToken.getTokenTransit());
+            sendMailJWT(user.getEmail(), verificationToken.getTokenTransit());
         } catch (UserNotFoundException users) {
             LOGGER.error(" in {signin} user tried to register with forbidden email {users} :" + users);
             throw new UserNotFoundException("in {signUp} user tried to register with forbidden email {users} :" + users);
         }
-        return Response.status(Response.Status.FORBIDDEN).entity(user).build();
+        return Response.status(Response.Status.OK).entity(user).build();
+    }
+
+    private String sendMailJWT(String... arg) throws Exception {
+        Context context = new Context();
+        context.setVariable("title", "Click sur le token pour confirmer votre inscription");
+        context.setVariable("body", "Clicker sur le lien" + arg[0]);
+        context.setVariable("Token", "Email:  " + arg[1]);
+        EmailStatus emailStatus = emailHtmlSender.send("diaguilysociete@gmail.com", "DEMANDE DE DEVIS", "email/template-1", context);
+        if (emailStatus.getStatus().equalsIgnoreCase("SUCCESS")) {
+            return "true";
+        } else
+            throw new Exception("This message not send");
     }
 }

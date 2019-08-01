@@ -24,27 +24,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-
-        http.csrf().disable()
-                // don't create session
-                // make sure we use stateless session; session won't be used to store user's state.
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+//
+//        http.csrf().disable()
+//                // don't create session
+//                // make sure we use stateless session; session won't be used to store user's state.
+//                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+////                .and()
+////                // handle an authorized attempts
+////                .exceptionHandling().authenticationEntryPoint((req, rsp, e) -> rsp.sendError(HttpServletResponse.SC_UNAUTHORIZED))
 //                .and()
-//                // handle an authorized attempts
-//                .exceptionHandling().authenticationEntryPoint((req, rsp, e) -> rsp.sendError(HttpServletResponse.SC_UNAUTHORIZED))
-                .and()
-                .authorizeRequests()
-                .antMatchers( "/login/**","/signin/**", "/register/**","/sendemail/**","/h2/**/**")
-                .permitAll()
-                .antMatchers(HttpMethod.POST, "/sendemail/**","/updatetask/**","/savetasks/**").hasAnyAuthority(String.valueOf(RoleEnum.ADMINISTRATOR), String.valueOf(RoleEnum.USER ))
-                .antMatchers(HttpMethod.GET, "/registrationConfirm/**").hasAnyAuthority(String.valueOf(RoleEnum.ADMINISTRATOR), String.valueOf(RoleEnum.USER ))
-                .antMatchers(HttpMethod.DELETE, "/deletetask/**").hasAnyAuthority(String.valueOf(RoleEnum.ADMINISTRATOR), String.valueOf(RoleEnum.USER ))
-                .antMatchers(HttpMethod.PUT, "/updatetask/**").hasAnyAuthority(String.valueOf(RoleEnum.ADMINISTRATOR), String.valueOf(RoleEnum.USER ))
-                .anyRequest().authenticated()
-                .and()
-                .addFilter(new JWTAuthenticationFilter(authenticationManager()))
-                .addFilterBefore(new JWTAuthorizationFilter(),
-                        UsernamePasswordAuthenticationFilter.class);
+//                .authorizeRequests()
+//                .antMatchers( "/login/**","/signin/**", "/register/**","/sendemail/**","/h2/**/**")
+//                .permitAll()
+//                .antMatchers(HttpMethod.POST, "/sendemail/**","/updatetask/**","/savetasks/**").hasAnyAuthority(String.valueOf(RoleEnum.ADMINISTRATOR), String.valueOf(RoleEnum.USER ))
+//                .antMatchers(HttpMethod.GET, "/registrationConfirm/**").hasAnyAuthority(String.valueOf(RoleEnum.ADMINISTRATOR), String.valueOf(RoleEnum.USER ))
+//                .antMatchers(HttpMethod.DELETE, "/deletetask/**").hasAnyAuthority(String.valueOf(RoleEnum.ADMINISTRATOR), String.valueOf(RoleEnum.USER ))
+//                .antMatchers(HttpMethod.PUT, "/updatetask/**").hasAnyAuthority(String.valueOf(RoleEnum.ADMINISTRATOR), String.valueOf(RoleEnum.USER ))
+//                .anyRequest().authenticated()
+//                .and()
+//                .addFilter(new JWTAuthenticationFilter(authenticationManager()))
+//                .addFilterBefore(new JWTAuthorizationFilter(),
+//                        UsernamePasswordAuthenticationFilter.class);
 
     }
 }
