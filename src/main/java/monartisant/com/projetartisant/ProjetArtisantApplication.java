@@ -492,7 +492,7 @@ public class ProjetArtisantApplication implements CommandLineRunner {
                 user.setAge(1988 + rd.nextInt(20018));
                 user.isBanned();
                 user.setNumeroSiret(100001988 + rd.nextInt(1000020018));
-                //   user.setAdresse(new Adresse(null, 1 + rd.nextInt(100), "rue", "emeraude", 10 + rd.nextInt(20018), "lyon"));
+                // user.setAdresse(new Adresse(null, 1 + rd.nextInt(100), "rue", "emeraude", 10 + rd.nextInt(20018), "lyon"));
                 Collections.shuffle(mylist, new Random());
                 user.setPhotoName("img");
                 user.setAdresse(adresse);
@@ -500,8 +500,10 @@ public class ProjetArtisantApplication implements CommandLineRunner {
                 user.setProfession(profession);
                 user.setTele(1980008025 + rd.nextInt(2000001823));
                 user.setEmail(RandomString.make(3)+i+"@gmail.com");
-                user.setPassword("toto");
+                user.setPassword(bCryptPasswordEncoder().encode("toto"));
+                user.setRoles(Collections.singleton(RoleEnum.USER));
                 userRepository.save(user);
+                System.out.println(user.getEmail());
             }
         });
 

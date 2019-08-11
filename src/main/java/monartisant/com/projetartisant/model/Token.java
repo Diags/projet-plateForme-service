@@ -6,8 +6,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
-@Data @AllArgsConstructor @NoArgsConstructor
 @Entity
+@Data @AllArgsConstructor @NoArgsConstructor
 public class Token {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,6 +16,6 @@ public class Token {
     private Date expiredDate;
     private Date lastCreate;
     private Date lastModify;
-    @OneToOne(cascade= CascadeType.ALL)
+    @OneToOne
     private User user;
 }

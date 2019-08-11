@@ -1,5 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -7,10 +9,12 @@ import {HttpClient} from '@angular/common/http';
 export class CatalogueService {
   //public host = "http://5.51.141.181:8989";
   public host = "http://localhost:8080";
-
+  private jwtToken: string;
   //public host = "http://192.168.1.90:8989";
-  constructor(private http: HttpClient) {
-  }
+  roles: Array<any>;
+  filter: string;
+  userName: string;
+  constructor(private http: HttpClient, private router: Router) {}
 
   curenteSearchUsers;
 
@@ -35,7 +39,7 @@ export class CatalogueService {
   }
 
   getAllUsers(url) {
-    return this.http.get(this.host + '/' + url);
+    return this.http.get(this.host+ url);
   }
 
   updateNote(note, id) {
@@ -78,6 +82,60 @@ export class CatalogueService {
   }
 
   login(value) {
-    return this.http.post(this.host + "/loginuser", value)
+    return this.http.post(this.host + "/signin", value, {observe: 'response'})
+  }
+  saveToken(jwtToken: string) {
+    localStorage.setItem("token", jwtToken);
+    this.jwtToken = jwtToken;
+    console.log("admin ==> " + this.jwtToken);
+    this.parsJWT();
+
+  }
+
+  parsJWT() {
+    let jwtHelper = new JwtHelperService();
+    let decodeToken = jwtHelper.decodeToken(this.jwtToken);
+    this.userName = decodeToken.sub;
+    this.roles = decodeToken.roles;
+
+    console.log("Roless ==>" + this.roles.map(p => p.authority).find(p => {
+      return p == "ADMINISTRATOR"
+    }));
+  }
+
+  isAdmin() {
+    return this.roles.map(p => p.authority).find(p => {
+      return p == "ADMINISTRATOR"
+    });
+  }
+
+  isUser() {
+    return this.roles.map(p => p.authority).find(p => {
+      return p == "USER"
+    });
+  }
+
+  loadToken() {
+    this.jwtToken = localStorage.getItem("token");
+    this.parsJWT();
+  }
+
+  isAuthentificated() {
+    return this.roles;
+  }
+  logout() {
+    localStorage.removeItem("token");
+    this.initParam();
+    this.router.navigateByUrl("/login");
+  }
+
+  initParam() {
+    this.userName = undefined;
+    this.roles = undefined;
+    this.jwtToken = undefined;
+  }
+
+  register(user: any) {
+    return this.http.post(this.host + "/register", user);
   }
 }

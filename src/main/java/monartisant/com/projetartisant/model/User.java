@@ -70,7 +70,7 @@ public class User {
     @Email
     @Column(unique = true)
     private String email;
-    @JsonIgnore
+    @JsonProperty(access =JsonProperty.Access.WRITE_ONLY )
     private String password;
     @ElementCollection(targetClass = RoleEnum.class, fetch = FetchType.EAGER)
     @Cascade(value = org.hibernate.annotations.CascadeType.REMOVE)

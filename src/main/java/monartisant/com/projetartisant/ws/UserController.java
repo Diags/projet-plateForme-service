@@ -14,11 +14,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.thymeleaf.context.Context;
 
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
@@ -44,22 +48,25 @@ public class UserController {
     @Autowired
     private TokenRepository tokenRepository;
     @Autowired
-    private JwtTokenProvider tokenProvider;
+    private JwtTokenProvider jwtTokenProvider;
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
     private static final Logger LOGGER = LogManager.getLogger(UserController.class);
     @Autowired
     private TokenService tokenService;
-
+    @Autowired
+    private EmailSender emailSender;
+    @Autowired
+    public JavaMailSender emailSendehtml;
     @ApiOperation(value = "retreive user image from id")
-    @GetMapping(path = "photouser/{id}", produces = MediaType.IMAGE_PNG_VALUE)
+    @GetMapping(path = "/photouser/{id}", produces = MediaType.IMAGE_PNG_VALUE)
     public byte[] getUserPhoto(@PathVariable("id") Long id) throws Exception {
         User user = userRepository.findById(id).get();
         return Files.readAllBytes(Paths.get(this.getClass().getClassLoader().getResource("imageDiaguily/image/" + user.getPhotoName() + ".png").toURI()));
     }
 
     @ApiOperation(value = "retreive all Users ")
-    @GetMapping("allUsers")
+    @GetMapping("/allUsers")
     public List<User> getAllUsers() throws Exception {
         return userRepository.chercherUsers(PageRequest.of(0, 4));
     }
@@ -70,7 +77,7 @@ public class UserController {
 //    }
     @ApiOperation(value = "update user rating", response = User.class)
     @Transactional
-    @PostMapping("updatenote")
+    @PostMapping("/updatenote")
     public User updateRatting(@RequestBody SearchParamNote param) throws Exception {
         User user = userRepository.findById(param.getId()).get();
         if (user == null) {
@@ -83,7 +90,7 @@ public class UserController {
 
     @Transactional
     @ApiOperation(value = "search user by params")
-    @PostMapping("search")
+    @PostMapping("/search")
     public List<User> search(@RequestBody SearchParam param) {
         return userRepository.getUsers(
                 param.getProfessionName(), param.getVille());
@@ -91,7 +98,7 @@ public class UserController {
     }
 
     @ApiOperation(value = "send Email of user to professionel")
-    @PostMapping("sendemail")
+    @PostMapping("/sendemail")
     public String sendEmail(@RequestBody SearchParamforDevis param) throws Exception {
         Context context = new Context();
         context.setVariable("title", "Vous avez une demande de devis");
@@ -106,7 +113,7 @@ public class UserController {
     }
 
     @ApiOperation(value = "send Email of user to professionel")
-    @PostMapping("sendemailcontacterme")
+    @PostMapping("/sendemailcontacterme")
     public String sendEmailContactMe(@RequestBody SearchParamforContacterMe param) throws Exception {
         return sendMail(param.getName(), param.getMail(), param.getMessage());
     }
@@ -124,13 +131,13 @@ public class UserController {
             throw new Exception("This message not send");
     }
 
-    @PostMapping("smssender")
+    @PostMapping("/smssender")
     @ApiOperation(value = "send sms of user to professionel")
     public void sendSms(@Valid @RequestBody SmsRequest smsRequest) {
         service.smsdSms(smsRequest);
     }
 
-    @PostMapping("addprofessional")
+    @PostMapping("/addprofessional")
     public User addProfessional(@RequestBody AddProfessional addProfessional) {
         User user = new User();
         Adresse adresse = new Adresse();
@@ -161,17 +168,17 @@ public class UserController {
     }
 
     @ApiOperation(value = "search user by params")
-    @PostMapping("searchuserbyville")
+    @PostMapping("/searchuserbyville")
     public List<User> getUsersByVille(@RequestBody MapData mapData) {
         return userRepository.findByAdresse_Pays_nameAndAdresse_ville("senegal".toUpperCase(), mapData.getVille().toUpperCase());
 
     }
 
     @ApiOperation(value = "update user by params")
-    @PostMapping("updateusermdp")
+    @PostMapping("/updateusermdp")
     public User updateMPD(@RequestBody LoginParam loginParam) throws UserPrincipalNotFoundException {
 
-        User user = userRepository.findByEmail(loginParam.getEmail());
+        User user = userRepository.findFirstByEmail(loginParam.getEmail());
         if (user == null) {
             throw new UserPrincipalNotFoundException("this user dosenot exist {user }" + loginParam.getEmail());
         }
@@ -182,9 +189,10 @@ public class UserController {
         }
         return null;
     }
+
     @ApiOperation(value = "login user by params")
-    @PostMapping("loginuser")
-    public User login(@RequestBody LoginParam loginParam)  {
+    @PostMapping("/loginuser")
+    public User login(@RequestBody LoginParam loginParam) {
 
 //        User user = userRepository.findByemailAndpassword(loginParam.getEmail(),loginParam.getPassword());
 //        if(user == null){
@@ -192,30 +200,52 @@ public class UserController {
 //        }
         return null;
     }
+
+    @CrossOrigin("*")
     @ApiOperation(value = "login user by params")
     @PostMapping("/signin")
-    public Response signin(@RequestBody LoginParam form) throws Exception {
+    public User signin(@RequestBody LoginParam form, @javax.ws.rs.core.Context HttpServletResponse httpServletResponse) throws Exception {
         User user = null;
         try {
-            if (form == null || !form.getEmail().equals(form.getEmail())) {
+            if (form == null) {
                 LOGGER.error(" User is  empty or null in {signin} ", form);
                 throw new UsernameNotFoundException("this user does not  exists  please register with correct user or emails ares not match  {email}" + form.getEmail());
             }
-            user = userRepository.findByEmailAndPassword(form.getEmail(), form.getPassword());
+            user = userRepository.findFirstByEmail(form.getEmail());
+
 
             if (user == null) {
                 LOGGER.error("User is FORBIDDEN or Not existe ", user);
-                return Response.status(Response.Status.FORBIDDEN).entity(user).build();
+                throw new UserNotFoundException("user not found");
 
+            }
+            Token verificationToken = tokenRepository.findByUser(user);
+            if (verificationToken == null) {
+                LOGGER.error("This token is not available at {signUp}", verificationToken);
+                return null;
+            }
+
+            Boolean isTokenFromBackValid = jwtTokenProvider.validateToken(verificationToken.getTokenTransit());
+            LOGGER.debug("token validation in  {signUp } = " + isTokenFromBackValid);
+            LOGGER.debug("token verification in  {signUp } = " + verificationToken);
+            User userVerification = verificationToken.getUser();
+            if (userVerification == null) {
+                LOGGER.error("this user does not   exists {userVerification } = " + userVerification);
+                return null;
+            }
+            if (userVerification != null && userVerification.isBanned()) {
+                LOGGER.error("this user is banned  {userVerification } = " + userVerification);
+                return null;
             }
         } catch (UserNotFoundException users) {
             LOGGER.error(" in {signin} user tried to register with forbidden email {users} :" + users);
             throw new UserNotFoundException("in {signUp} user tried to register with forbidden email {users} :" + users);
         }
 
-        return Response.status(Response.Status.OK).entity(user).build();
+        return user;
     }
 
+    @CrossOrigin("*")
     @ApiOperation(value = "confirmRegister user by token")
     @PostMapping("/confirmregister")
     public User confirmRegister(@RequestBody ConfirmRegister token, @javax.ws.rs.core.Context HttpServletResponse response) throws Exception {
@@ -234,9 +264,9 @@ public class UserController {
                 LOGGER.error("This token is not available at {signUp}", verificationToken);
                 return null;
             }
-            Boolean isValidTokenFromUrl = tokenProvider.validateToken(token.getJwtToken());
+            Boolean isValidTokenFromUrl = jwtTokenProvider.validateToken(token.getJwtToken());
             LOGGER.debug("token validation in  {signUp } = " + isValidTokenFromUrl);
-            Boolean isTokenFromBackValid = tokenProvider.validateToken(verificationToken.getTokenTransit());
+            Boolean isTokenFromBackValid = jwtTokenProvider.validateToken(verificationToken.getTokenTransit());
             LOGGER.debug("token validation in  {signUp } = " + isTokenFromBackValid);
             LOGGER.debug("token verification in  {signUp } = " + verificationToken);
             User userVerification = verificationToken.getUser();
@@ -257,7 +287,7 @@ public class UserController {
             if (ex.getTokenType().toUpperCase().equals("ExpiredJWT".toUpperCase())) {
                 Token verificationToken = tokenRepository.findByTokenTransit(token.getJwtToken());
                 User userVerification = verificationToken.getUser();
-                String newToken = tokenProvider.generateToken(userVerification);
+                String newToken = jwtTokenProvider.generateToken(userVerification);
                 tokenRepository.setTransitToken(newToken, verificationToken.getId());
                 LOGGER.error(" update token = " + newToken);
                 Token newTok = tokenRepository.findByTokenTransit(newToken);
@@ -272,45 +302,71 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public Response register(@RequestBody Register register, @javax.ws.rs.core.Context HttpServletRequest request,@javax.ws.rs.core.Context HttpServletResponse response) throws Exception {
-        User user = new User();
+    public User register(@RequestBody Register register, @javax.ws.rs.core.Context HttpServletRequest request, @javax.ws.rs.core.Context HttpServletResponse response) throws Exception {
+
         try {
             if (register == null || !register.getEmail().equals(register.getEmail())) {
                 LOGGER.error(" User is  empty or null in {signin} ", register);
                 throw new UsernameNotFoundException("this user does not  exists  please register with correct user or emails ares not match  {email}" + register.getEmail());
             }
-            user = userRepository.findByEmail(register.getEmail());
+            User user = userRepository.findFirstByEmail(register.getEmail());
 
             if (user != null) {
                 LOGGER.error("User already existe ", user);
-                return Response.status(Response.Status.FORBIDDEN).entity(user).build();
+                return null;
 
             }
-            if (register.getPassword().toUpperCase().equals(register.getConfirmPassword().toUpperCase())) {
+            if (!(register.getPassword().toUpperCase().equals(register.getConfirmPassword().toUpperCase()))) {
                 LOGGER.error("Passwords are not matched", user);
-                return Response.status(Response.Status.FORBIDDEN).entity(user).build();
+                return null;
             }
-            user.setPassword(register.getPassword());
-            user.setEmail(register.getEmail());
-            user.setPassword(bCryptPasswordEncoder.encode(register.getPassword()));
-            user.setNom(register.getName());
-            user.setPrenom(register.getLasName());
-            user.setRoles(new HashSet<>(Collections.singleton(RoleEnum.USER)));
-            userRepository.save(user);
-            String jwtToken = tokenProvider.generateToken(user);
+            User userInsert = new User();
+            userInsert.setNom(register.getName());
+            userInsert.setPrenom(register.getLasName());
+            userInsert.setEmail(register.getEmail());
+            userInsert.setPassword(bCryptPasswordEncoder.encode(register.getPassword()));
+            userInsert.setRoles(new HashSet<>(Collections.singleton(RoleEnum.USER)));
+            userRepository.save(userInsert);
+            String jwtToken = jwtTokenProvider.generateToken(userInsert);
             response.addHeader(SecurityConstants.HEADER_STRING,
                     SecurityConstants.TOKEN_PREFIX + jwtToken);
-            tokenService.createUserWithToken(user, jwtToken);
-            LOGGER.debug("User {user}= " + user + " token {jwtToken}= " + jwtToken);
-            Token verificationToken = tokenRepository.findByUser(user);
+            tokenService.createUserWithToken(userInsert, jwtToken);
+            LOGGER.debug("User {user}= " + userInsert + " token {jwtToken}= " + jwtToken);
+            Token verificationToken = tokenRepository.findByUser(userInsert);
 
-            LOGGER.info("User is signin ", user.getEmail(), "with this token {}", verificationToken.getTokenTransit());
-            sendMailJWT(user.getEmail(), verificationToken.getTokenTransit());
+            LOGGER.info("User is signin ", userInsert.getEmail(), "with this token {}", verificationToken.getTokenTransit());
+
+            MimeMessage message = emailSendehtml.createMimeMessage();
+
+            boolean multipart = true;
+         //   String link = "<a href=\"localhost:8080\/confirmregister\/"+verificationToken.getTokenTransit()+"\">ACTIVAR CUENTA</a>";
+            String content="<html><body><a href=\'localhost:8080\\confirmregister\\"+verificationToken.getTokenTransit()+"\'>click here</a> </body></html>";
+
+            MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
+            helper.setSubject("Test send HTML email");
+
+            helper.setTo(userInsert.getEmail());
+            helper.setText("<h1><a href=www"+verificationToken.getTokenTransit()+">some html</a></h1>",true);
+            message.setHeader("Content-Type", "text/html");
+            message.setText("<h1><a href=\"localhost:8080/confirmregister/"+verificationToken.getTokenTransit()+">click here</a></h1>", "utf-8", "html");
+           // message.setText(content, "utf-8", "html");
+
+
+            emailSendehtml.send(message);
+            SimpleMailMessage registrationEmail = new SimpleMailMessage();
+            registrationEmail.setTo(userInsert.getEmail());
+            registrationEmail.setFrom("noreply@domain.com");
+            registrationEmail.setSubject("Registration Confirmation");
+
+            registrationEmail.setText("<h1>some html</h1>");
+
+            emailSender.sendEmail(registrationEmail);
+            return userInsert;
+            //    sendMailJWT(userInsert.getEmail(), verificationToken.getTokenTransit());
         } catch (UserNotFoundException users) {
             LOGGER.error(" in {signin} user tried to register with forbidden email {users} :" + users);
             throw new UserNotFoundException("in {signUp} user tried to register with forbidden email {users} :" + users);
         }
-        return Response.status(Response.Status.OK).entity(user).build();
     }
 
     private String sendMailJWT(String... arg) throws Exception {

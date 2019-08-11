@@ -21,7 +21,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 import javax.ws.rs.core.MediaType;
 
-import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
+//import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
@@ -43,7 +43,7 @@ public class TestIntegrationControllers {
     public void setUp() throws Exception {
         this.mockMvc = MockMvcBuilders
                 .webAppContextSetup(context)
-                .apply(springSecurity())
+             ///   .apply(springSecurity())
                 .build();
 
     }

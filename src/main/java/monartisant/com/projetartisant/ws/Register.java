@@ -10,8 +10,8 @@ import lombok.NoArgsConstructor;
 public class Register {
     private String  name;
     private String  lasName;
+    private String email;
     private String  password ;
     private String confirmPassword;
-    private String email;
 
 }

@@ -3,8 +3,10 @@ package monartisant.com.projetartisant.ws;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 import javax.mail.internet.MimeMessage;
@@ -41,4 +43,11 @@ public class EmailSender {
             return new EmailStatus(to, subject, text).error(e.getMessage());
         }
     }
+
+
+    @Async
+    public void sendEmail(SimpleMailMessage email) {
+        javaMailSender.send(email);
+    }
+
 }

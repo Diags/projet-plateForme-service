@@ -1,5 +1,6 @@
 package monartisant.com.projetartisant.ws;
 
+import monartisant.com.projetartisant.config.SecurityConstants;
 import monartisant.com.projetartisant.model.Token;
 import monartisant.com.projetartisant.model.User;
 import monartisant.com.projetartisant.repository.TokenRepository;

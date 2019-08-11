@@ -2,7 +2,6 @@ package monartisant.com.projetartisant.config;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
-import monartisant.com.projetartisant.repository.TokenRepository;
 import monartisant.com.projetartisant.ws.JwtTokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -41,24 +40,28 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
                 //  Get the token
                 String jwtToken = request.getHeader(SecurityConstants.HEADER_STRING);
                 // validate the header and check the prefix
-                if (jwtTokenProvider.validateToken(jwtToken) || jwtToken == null ) {
+                if (jwtToken == null || !jwtToken.startsWith(SecurityConstants.TOKEN_PREFIX)) {
+                    filterChain.doFilter(request, response); // If not valid, go to the next filter.
+                    return;
+                }
 
-                    Claims claims = Jwts.parser()
-                            .setSigningKey(SecurityConstants.SECRET)
-                            .parseClaimsJws(jwtToken.replace(SecurityConstants.TOKEN_PREFIX, ""))
-                            .getBody();
-                    String username = claims.getSubject();
-                    ArrayList<Map<String, String>> roles = (ArrayList<Map<String, String>>)
-                            claims.get("roles");
-                    Collection<GrantedAuthority> authorities = new ArrayList<>();
-                    roles.forEach(r -> {
-                        authorities.add(new SimpleGrantedAuthority(r.get("authority")));
-                    });
-                    UsernamePasswordAuthenticationToken authenticationToken =
-                            new UsernamePasswordAuthenticationToken(username, null, authorities);
-                    // Now, user is authenticated
-                    SecurityContextHolder.getContext().setAuthentication(authenticationToken);
-                }} catch (Exception e) {
+                Claims claims = Jwts.parser()
+                        .setSigningKey(SecurityConstants.SECRET)
+                        .parseClaimsJws(jwtToken.replace(SecurityConstants.TOKEN_PREFIX, ""))
+                        .getBody();
+                String username = claims.getSubject();
+                ArrayList<Map<String, String>> roles = (ArrayList<Map<String, String>>)
+                        claims.get("roles");
+
+                Collection<GrantedAuthority> authorities = new ArrayList<>();
+                roles.forEach(r -> {
+                    authorities.add(new SimpleGrantedAuthority(r.get("authority")));
+                });
+                UsernamePasswordAuthenticationToken authenticationToken =
+                        new UsernamePasswordAuthenticationToken(username, null, authorities);
+                // Now, user is authenticated
+                SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+            } catch (Exception e) {
                 // In case of failure. Make sure it's clear; so guarantee user won't be authenticated
                 SecurityContextHolder.clearContext();
             }
