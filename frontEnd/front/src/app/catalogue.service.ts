@@ -138,4 +138,8 @@ export class CatalogueService {
   register(user: any) {
     return this.http.post(this.host + "/register", user);
   }
+
+  confirmRegister(token) {
+    return this.http.get(this.host+"/confirmregister/"+token);
+  }
 }

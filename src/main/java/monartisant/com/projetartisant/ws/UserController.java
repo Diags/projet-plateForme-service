@@ -27,6 +27,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -245,26 +246,25 @@ public class UserController {
         return user;
     }
 
-    @CrossOrigin("*")
     @ApiOperation(value = "confirmRegister user by token")
-    @PostMapping("/confirmregister")
-    public User confirmRegister(@RequestBody ConfirmRegister token, @javax.ws.rs.core.Context HttpServletResponse response) throws Exception {
+    @GetMapping("/confirmregister/{token}")
+    public User confirmRegister(@PathVariable("token") String token, @javax.ws.rs.core.Context HttpServletResponse response) throws Exception {
 
         try {
-            if (Strings.isBlank(token.getJwtToken())) {
+            if (Strings.isBlank(token)) {
                 LOGGER.error(" Token is empty or null in {signUp}:" + token);
-                throw new IllegalArgumentException("Token is required in confirmRegistration {token} = " + token.getJwtToken());
+                throw new IllegalArgumentException("Token is required in confirmRegistration {token} = " + token);
             }
-            Token verificationToken = tokenRepository.findByTokenTransit(token.getJwtToken());
+            Token verificationToken = tokenRepository.findByTokenTransit(token);
             if (verificationToken == null) {
                 LOGGER.error("This token is not available at {signUp}", verificationToken);
-                return null;
+                throw new Exception("This token is not available");
             }
-            if (!token.getJwtToken().equals(verificationToken.getTokenTransit())) {
+            if (!token.toUpperCase().equals(verificationToken.getTokenTransit().toUpperCase())) {
                 LOGGER.error("This token is not available at {signUp}", verificationToken);
-                return null;
-            }
-            Boolean isValidTokenFromUrl = jwtTokenProvider.validateToken(token.getJwtToken());
+                throw new Exception("This token is not available");
+                }
+            Boolean isValidTokenFromUrl = jwtTokenProvider.validateToken(token);
             LOGGER.debug("token validation in  {signUp } = " + isValidTokenFromUrl);
             Boolean isTokenFromBackValid = jwtTokenProvider.validateToken(verificationToken.getTokenTransit());
             LOGGER.debug("token validation in  {signUp } = " + isTokenFromBackValid);
@@ -272,12 +272,14 @@ public class UserController {
             User userVerification = verificationToken.getUser();
             if (userVerification == null) {
                 LOGGER.error("this user does not   exists {userVerification } = " + userVerification);
-                return null;
+                throw new Exception("this user does not   exists");
+
             }
             if (userVerification != null && userVerification.isBanned()) {
                 LOGGER.error("this user is banned  {userVerification } = " + userVerification);
-                return null;
+                throw new Exception("this user is banned");
             }
+            userVerification.setBanned(false);
             userRepository.save(userVerification);
             LOGGER.debug("User verification in  {confirmregister } = " + userVerification);
             response.addHeader(SecurityConstants.HEADER_STRING,
@@ -285,7 +287,7 @@ public class UserController {
             return userVerification;
         } catch (InvalidTokenRequestException ex) {
             if (ex.getTokenType().toUpperCase().equals("ExpiredJWT".toUpperCase())) {
-                Token verificationToken = tokenRepository.findByTokenTransit(token.getJwtToken());
+                Token verificationToken = tokenRepository.findByTokenTransit(token);
                 User userVerification = verificationToken.getUser();
                 String newToken = jwtTokenProvider.generateToken(userVerification);
                 tokenRepository.setTransitToken(newToken, verificationToken.getId());
@@ -313,12 +315,11 @@ public class UserController {
 
             if (user != null) {
                 LOGGER.error("User already existe ", user);
-                return null;
-
+                throw new Exception("User already existe");
             }
             if (!(register.getPassword().toUpperCase().equals(register.getConfirmPassword().toUpperCase()))) {
                 LOGGER.error("Passwords are not matched", user);
-                return null;
+                throw new Exception("Passwords are not matched");
             }
             User userInsert = new User();
             userInsert.setNom(register.getName());
@@ -326,6 +327,7 @@ public class UserController {
             userInsert.setEmail(register.getEmail());
             userInsert.setPassword(bCryptPasswordEncoder.encode(register.getPassword()));
             userInsert.setRoles(new HashSet<>(Collections.singleton(RoleEnum.USER)));
+            userInsert.setBanned(true);
             userRepository.save(userInsert);
             String jwtToken = jwtTokenProvider.generateToken(userInsert);
             response.addHeader(SecurityConstants.HEADER_STRING,
@@ -333,36 +335,9 @@ public class UserController {
             tokenService.createUserWithToken(userInsert, jwtToken);
             LOGGER.debug("User {user}= " + userInsert + " token {jwtToken}= " + jwtToken);
             Token verificationToken = tokenRepository.findByUser(userInsert);
-
             LOGGER.info("User is signin ", userInsert.getEmail(), "with this token {}", verificationToken.getTokenTransit());
-
-            MimeMessage message = emailSendehtml.createMimeMessage();
-
-            boolean multipart = true;
-         //   String link = "<a href=\"localhost:8080\/confirmregister\/"+verificationToken.getTokenTransit()+"\">ACTIVAR CUENTA</a>";
-            String content="<html><body><a href=\'localhost:8080\\confirmregister\\"+verificationToken.getTokenTransit()+"\'>click here</a> </body></html>";
-
-            MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
-            helper.setSubject("Test send HTML email");
-
-            helper.setTo(userInsert.getEmail());
-            helper.setText("<h1><a href=www"+verificationToken.getTokenTransit()+">some html</a></h1>",true);
-            message.setHeader("Content-Type", "text/html");
-            message.setText("<h1><a href=\"localhost:8080/confirmregister/"+verificationToken.getTokenTransit()+">click here</a></h1>", "utf-8", "html");
-           // message.setText(content, "utf-8", "html");
-
-
-            emailSendehtml.send(message);
-            SimpleMailMessage registrationEmail = new SimpleMailMessage();
-            registrationEmail.setTo(userInsert.getEmail());
-            registrationEmail.setFrom("noreply@domain.com");
-            registrationEmail.setSubject("Registration Confirmation");
-
-            registrationEmail.setText("<h1>some html</h1>");
-
-            emailSender.sendEmail(registrationEmail);
+            emailSender.sendHtml("diaguilysociete@gmail.com", verificationToken.getTokenTransit());
             return userInsert;
-            //    sendMailJWT(userInsert.getEmail(), verificationToken.getTokenTransit());
         } catch (UserNotFoundException users) {
             LOGGER.error(" in {signin} user tried to register with forbidden email {users} :" + users);
             throw new UserNotFoundException("in {signUp} user tried to register with forbidden email {users} :" + users);

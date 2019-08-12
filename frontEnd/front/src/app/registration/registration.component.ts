@@ -8,8 +8,9 @@ import {CatalogueService} from "../catalogue.service";
 })
 export class RegistrationComponent implements OnInit {
    user;
-   mode: number= 1;
+   mode: number= 0;
    errorMessage;
+  message: string;
 
   constructor(private catalogService:CatalogueService) { }
 
@@ -23,6 +24,7 @@ console.log(user,"registration user");
           console.log("registration"+data);
           this.user = data;
           this.mode = 1;
+          this.message = " STATUS: SEND";
         },
         err => {
           this.errorMessage = err.error.message;

@@ -25,6 +25,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { ProfessionalLoginComponent } from './professional-login/professional-login.component'; // this is needed!
 import {AgmCoreModule} from "@agm/core";
 import { MoncompteComponent } from './moncompte/moncompte.component';
+import { ConfimationRegistrationComponent } from './confimation-registration/confimation-registration.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { MoncompteComponent } from './moncompte/moncompte.component';
     LoginComponent,
     RegistrationComponent,
     ProfessionalLoginComponent,
-    MoncompteComponent
+    MoncompteComponent,
+    ConfimationRegistrationComponent
   ],
   imports: [
     BrowserModule,

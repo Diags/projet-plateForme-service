@@ -19,28 +19,36 @@ public class EmailSender {
     @Autowired
     private JavaMailSender javaMailSender;
 
-    public EmailStatus sendPlainText(String to, String subject, String text) {
-        return sendM(to, subject, text, false);
+    public EmailStatus sendPlainText(String to, String token) {
+        return sendM(to, token);
     }
 
-    public EmailStatus sendHtml(String to, String subject, String htmlBody) {
-        return sendM(to, subject, htmlBody, true);
+    public EmailStatus sendHtml(String to, String token) {
+        return sendM(to, token);
     }
 
-    private EmailStatus sendM(String to, String subject, String text, Boolean isHtml) {
+    private EmailStatus sendM(String to, String token) {
         try {
-            MimeMessage mail = javaMailSender.createMimeMessage();
-            MimeMessageHelper helper = new MimeMessageHelper(mail, true);
+            MimeMessage mails = javaMailSender.createMimeMessage();
+
+            MimeMessageHelper helper = new MimeMessageHelper(mails, true);
+
+            String url = "http://localhost:4200";
+            String body = "<strong>Activation Process</strong> <br/> <br/>" + "<a href = "
+                    + url + "/confirmregister/"+ token + "> Click on link to finalize your activation </a>";
+            helper.setFrom("noreplay@gmail.com");
             helper.setTo(to);
-            helper.setSubject(subject);
-            helper.setText(text, isHtml);
-            javaMailSender.send(mail);
-            LOGGER.info("Send email '{}' to: {}", subject, to);
+            helper.setSubject("Activation Process");
+            helper.setText(body, true);
+
+
+            javaMailSender.send(mails);
+            LOGGER.info("Send email '{}' to: {}", to);
             LOGGER.info("SEND STAUS {} =  ","MESSAGE SENDS");
-            return new EmailStatus(to, subject, text).success();
+            return new EmailStatus(to, "toto", "ok").success();
         } catch (Exception e) {
             LOGGER.error(String.format("Problem with sending email to: {}, error message: {}", to, e.getMessage()));
-            return new EmailStatus(to, subject, text).error(e.getMessage());
+            return new EmailStatus(to, "toto", "ok").error(e.getMessage());
         }
     }
 
