@@ -16,6 +16,9 @@ public class Token {
     private Date expiredDate;
     private Date lastCreate;
     private Date lastModify;
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER, cascade = {
+            CascadeType.MERGE,
+            CascadeType.REFRESH
+    })
     private User user;
 }

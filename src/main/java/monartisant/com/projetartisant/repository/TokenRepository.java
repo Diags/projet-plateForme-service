@@ -7,10 +7,11 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
-
+@CrossOrigin("*")
 @RepositoryRestResource
 public interface TokenRepository extends JpaRepository<Token,Long> {
     Token findByTokenTransit(String token);

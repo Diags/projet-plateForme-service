@@ -3,6 +3,10 @@
   margin-top: 5%;
   padding: 2%;
 }
+.alert-danger {
+  background-color: #f2f2f2;
+  max-width: 50%;
+}
 .usersPanel .container{
   background-color: #f2f2f2;
   padding: 2%;

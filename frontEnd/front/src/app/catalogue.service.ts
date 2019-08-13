@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import { JwtHelperService } from '@auth0/angular-jwt';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {JwtHelperService} from '@auth0/angular-jwt';
 import {Router} from "@angular/router";
 
 @Injectable({
@@ -14,7 +14,9 @@ export class CatalogueService {
   roles: Array<any>;
   filter: string;
   userName: string;
-  constructor(private http: HttpClient, private router: Router) {}
+
+  constructor(private http: HttpClient, private router: Router) {
+  }
 
   curenteSearchUsers;
 
@@ -39,7 +41,7 @@ export class CatalogueService {
   }
 
   getAllUsers(url) {
-    return this.http.get(this.host+ url);
+    return this.http.get(this.host + url);
   }
 
   updateNote(note, id) {
@@ -82,8 +84,9 @@ export class CatalogueService {
   }
 
   login(value) {
-    return this.http.post(this.host + "/signin", value, {observe: 'response'})
+    return this.http.post(this.host + "/signin", value, {observe: 'response', headers:{'Content-Type': 'application/json'}})
   }
+
   saveToken(jwtToken: string) {
     localStorage.setItem("token", jwtToken);
     this.jwtToken = jwtToken;
@@ -97,20 +100,16 @@ export class CatalogueService {
     let decodeToken = jwtHelper.decodeToken(this.jwtToken);
     this.userName = decodeToken.sub;
     this.roles = decodeToken.roles;
-
-    console.log("Roless ==>" + this.roles.map(p => p.authority).find(p => {
-      return p == "ADMINISTRATOR"
-    }));
   }
 
   isAdmin() {
-    return this.roles.map(p => p.authority).find(p => {
+    return this.roles.find(p => {
       return p == "ADMINISTRATOR"
     });
   }
 
   isUser() {
-    return this.roles.map(p => p.authority).find(p => {
+    return this.roles.find(p => {
       return p == "USER"
     });
   }
@@ -121,8 +120,9 @@ export class CatalogueService {
   }
 
   isAuthentificated() {
-    return this.roles;
+    return this.roles && this.jwtToken;
   }
+
   logout() {
     localStorage.removeItem("token");
     this.initParam();
@@ -140,6 +140,9 @@ export class CatalogueService {
   }
 
   confirmRegister(token) {
-    return this.http.get(this.host+"/confirmregister/"+token);
+    let header = new HttpHeaders({'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token});
+    return this.http.post(this.host + "/confirmregister/", JSON.stringify({
+      "jwtToken": token
+    }), {headers: header});
   }
 }

@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="containerLogin" *ngIf="mode == 1">
+  <p class="w3-center " >
+    <strong><h3>YOUR CONFIMATION IS OK THANK TO SIGNIN !!!!!</h3></strong>
+  </p>
+    <div class="w3-center">
+      <button [routerLink]="['/login']" class="w3-button w3-black w3-"> GO TO  SIGNIN</button>
+    </div>
+  </div>
+
+  <div class="containerLogin" *ngIf="mode==0 && errorMessage">
+    <p class="w3-center " >
+      <strong><h3>YOUR CONFIMATION IS NOT OK THANK TO REGISTRATION !!!!!</h3></strong>
+    </p>
+    <div class="w3-center">
+      <button [routerLink]="['/registration']" class="w3-button w3-black w3-"> GO TO  REGISTRATION</button>
+    </div>
+  </div>
+</div>
+
+

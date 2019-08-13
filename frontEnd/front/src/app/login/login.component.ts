@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {CatalogueService} from "../catalogue.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -9,7 +10,7 @@ import {CatalogueService} from "../catalogue.service";
 export class LoginComponent implements OnInit {
   user;
   mode: number = 1;
-  constructor(private catalogueService:CatalogueService) {
+  constructor(private catalogueService:CatalogueService, private router: Router) {
   }
 
   ngOnInit() {
@@ -22,6 +23,7 @@ export class LoginComponent implements OnInit {
       this.user = resp;
       console.log("token login ",jwtToken);
       this.catalogueService.saveToken(jwtToken);
+      this.router.navigateByUrl("/moncompte");
       console.log("Login user",resp);
       this.mode = 1;
     }, error => {

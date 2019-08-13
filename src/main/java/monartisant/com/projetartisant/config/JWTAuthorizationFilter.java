@@ -30,43 +30,5 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
         response.addHeader("Access-Control-Expose-Headers", "Access-Control-Allow-Origin, Access-Control-Allow-Credentials, Authorization");
         if (request.getMethod().equals("OPTIONS")) {
             response.setStatus(HttpServletResponse.SC_OK);
-        } else {
-            try {
-                // If there is no token provided and hence the user won't be authenticated.
-                // It's Ok. Maybe the user accessing a public path or asking for a token.
-                // All secured paths that needs a token are already defined and secured in config class.
-                // And If user tried to access without access token, then he won't be authenticated and an exception will be thrown.
-
-                //  Get the token
-                String jwtToken = request.getHeader(SecurityConstants.HEADER_STRING);
-                // validate the header and check the prefix
-                if (jwtToken == null || !jwtToken.startsWith(SecurityConstants.TOKEN_PREFIX)) {
-                    filterChain.doFilter(request, response); // If not valid, go to the next filter.
-                    return;
-                }
-
-                Claims claims = Jwts.parser()
-                        .setSigningKey(SecurityConstants.SECRET)
-                        .parseClaimsJws(jwtToken.replace(SecurityConstants.TOKEN_PREFIX, ""))
-                        .getBody();
-                String username = claims.getSubject();
-                ArrayList<Map<String, String>> roles = (ArrayList<Map<String, String>>)
-                        claims.get("roles");
-
-                Collection<GrantedAuthority> authorities = new ArrayList<>();
-                roles.forEach(r -> {
-                    authorities.add(new SimpleGrantedAuthority(r.get("authority")));
-                });
-                UsernamePasswordAuthenticationToken authenticationToken =
-                        new UsernamePasswordAuthenticationToken(username, null, authorities);
-                // Now, user is authenticated
-                SecurityContextHolder.getContext().setAuthentication(authenticationToken);
-            } catch (Exception e) {
-                // In case of failure. Make sure it's clear; so guarantee user won't be authenticated
-                SecurityContextHolder.clearContext();
-            }
-            // go to the next filter in the filter chain
-            filterChain.doFilter(request, response);
-        }
-    }
+        }}
 }

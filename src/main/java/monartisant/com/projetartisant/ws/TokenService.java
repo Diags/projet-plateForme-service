@@ -25,6 +25,6 @@ public class TokenService {
     public void  createUserWithToken(User user , String token ){
         Token myToken = new Token(null, token,  new DateTime().plusDays(tokenValidityDuration).toDate(),new DateTime().toDate() , new DateTime().toDate() ,user);
         tokenRepository.save(myToken);
-        LOGGER.debug("in TokenService token is create with {} ", myToken);
+        LOGGER.debug("in TokenService token is create with {} ", myToken ,tokenRepository.findByTokenTransit(token).getUser());
     }
 }

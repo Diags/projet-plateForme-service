@@ -19,15 +19,15 @@ public class EmailSender {
     @Autowired
     private JavaMailSender javaMailSender;
 
-    public EmailStatus sendPlainText(String to, String token) {
-        return sendM(to, token);
+    public EmailStatus sendPlainText(String to, String token, String mdp) {
+        return sendM(to, token,  mdp);
     }
 
-    public EmailStatus sendHtml(String to, String token) {
-        return sendM(to, token);
+    public EmailStatus sendHtml(String to, String token, String mdp) {
+        return sendM(to, token, mdp );
     }
 
-    private EmailStatus sendM(String to, String token) {
+    private EmailStatus sendM(String to, String token, String mdp) {
         try {
             MimeMessage mails = javaMailSender.createMimeMessage();
 
@@ -35,7 +35,8 @@ public class EmailSender {
 
             String url = "http://localhost:4200";
             String body = "<strong>Activation Process</strong> <br/> <br/>" + "<a href = "
-                    + url + "/confirmregister/"+ token + "> Click on link to finalize your activation </a>";
+                    + url + "/confirmregister/"+ token + "> Click on link to finalize your activation </a><br/>" +
+                    "<h4>Password: "+ mdp+"</h4>";
             helper.setFrom("noreplay@gmail.com");
             helper.setTo(to);
             helper.setSubject("Activation Process");

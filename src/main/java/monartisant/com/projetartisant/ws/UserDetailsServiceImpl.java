@@ -23,7 +23,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String userEmail) {
-        User user = userRepository.findFirstByEmail(userEmail);
+        User user = userRepository.findByEmail(userEmail);
         if (user == null) throw new UsernameNotFoundException(userEmail);
 
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();

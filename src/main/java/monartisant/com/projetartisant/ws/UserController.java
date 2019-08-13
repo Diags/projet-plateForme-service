@@ -13,21 +13,19 @@ import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.mail.SimpleMailMessage;
+import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.thymeleaf.context.Context;
 
-import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -59,6 +57,7 @@ public class UserController {
     private EmailSender emailSender;
     @Autowired
     public JavaMailSender emailSendehtml;
+
     @ApiOperation(value = "retreive user image from id")
     @GetMapping(path = "/photouser/{id}", produces = MediaType.IMAGE_PNG_VALUE)
     public byte[] getUserPhoto(@PathVariable("id") Long id) throws Exception {
@@ -205,18 +204,21 @@ public class UserController {
     @CrossOrigin("*")
     @ApiOperation(value = "login user by params")
     @PostMapping("/signin")
-    public User signin(@RequestBody LoginParam form, @javax.ws.rs.core.Context HttpServletResponse httpServletResponse) throws Exception {
+    public ResponseEntity<User> signin(@RequestBody LoginParam form, @javax.ws.rs.core.Context HttpServletResponse httpServletResponse, @javax.ws.rs.core.Context HttpServletRequest request) throws Exception {
         User user = null;
         try {
             if (form == null) {
                 LOGGER.error(" User is  empty or null in {signin} ", form);
                 throw new UsernameNotFoundException("this user does not  exists  please register with correct user or emails ares not match  {email}" + form.getEmail());
             }
-            user = userRepository.findFirstByEmail(form.getEmail());
+            user = userRepository.findByEmail(form.getEmail());
 
-
+            if (user.isBanned()) {
+                LOGGER.error("this user is banned  {userVerification } = " + user.getEmail());
+                throw new Exception("this user is banned");
+            }
             if (user == null) {
-                LOGGER.error("User is FORBIDDEN or Not existe ", user);
+                LOGGER.error("User is not existe ", user.getEmail());
                 throw new UserNotFoundException("user not found");
 
             }
@@ -238,33 +240,44 @@ public class UserController {
                 LOGGER.error("this user is banned  {userVerification } = " + userVerification);
                 return null;
             }
+            httpServletResponse.addHeader(SecurityConstants.HEADER_STRING,
+                    SecurityConstants.TOKEN_PREFIX + verificationToken.getTokenTransit());
+
+            httpServletResponse.addHeader("Access-Control-Allow-Headers", "Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers,Authorization");
+            httpServletResponse.addHeader("Access-control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE");
+            httpServletResponse.addHeader("Access-Control-Expose-Headers", "Access-Control-Allow-Origin, Access-Control-Allow-Credentials, Authorization");
+            if (request.getMethod().equals("OPTIONS")) {
+                httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+            }
+
         } catch (UserNotFoundException users) {
             LOGGER.error(" in {signin} user tried to register with forbidden email {users} :" + users);
             throw new UserNotFoundException("in {signUp} user tried to register with forbidden email {users} :" + users);
         }
 
-        return user;
+        return  ResponseEntity.status(HttpStatus.OK).body( user);
     }
 
+    @CrossOrigin("*")
     @ApiOperation(value = "confirmRegister user by token")
-    @GetMapping("/confirmregister/{token}")
-    public User confirmRegister(@PathVariable("token") String token, @javax.ws.rs.core.Context HttpServletResponse response) throws Exception {
+    @PostMapping("/confirmregister")
+    public User confirmRegister(@RequestBody ConfirmRegister token, @javax.ws.rs.core.Context HttpServletResponse response) throws Exception {
 
         try {
-            if (Strings.isBlank(token)) {
+            if (Strings.isBlank(token.getJwtToken())) {
                 LOGGER.error(" Token is empty or null in {signUp}:" + token);
                 throw new IllegalArgumentException("Token is required in confirmRegistration {token} = " + token);
             }
-            Token verificationToken = tokenRepository.findByTokenTransit(token);
+            Token verificationToken = tokenRepository.findByTokenTransit(token.getJwtToken());
             if (verificationToken == null) {
                 LOGGER.error("This token is not available at {signUp}", verificationToken);
                 throw new Exception("This token is not available");
             }
-            if (!token.toUpperCase().equals(verificationToken.getTokenTransit().toUpperCase())) {
+            if (!token.getJwtToken().toUpperCase().equals(verificationToken.getTokenTransit().toUpperCase())) {
                 LOGGER.error("This token is not available at {signUp}", verificationToken);
                 throw new Exception("This token is not available");
-                }
-            Boolean isValidTokenFromUrl = jwtTokenProvider.validateToken(token);
+            }
+            Boolean isValidTokenFromUrl = jwtTokenProvider.validateToken(token.getJwtToken());
             LOGGER.debug("token validation in  {signUp } = " + isValidTokenFromUrl);
             Boolean isTokenFromBackValid = jwtTokenProvider.validateToken(verificationToken.getTokenTransit());
             LOGGER.debug("token validation in  {signUp } = " + isTokenFromBackValid);
@@ -275,10 +288,6 @@ public class UserController {
                 throw new Exception("this user does not   exists");
 
             }
-            if (userVerification != null && userVerification.isBanned()) {
-                LOGGER.error("this user is banned  {userVerification } = " + userVerification);
-                throw new Exception("this user is banned");
-            }
             userVerification.setBanned(false);
             userRepository.save(userVerification);
             LOGGER.debug("User verification in  {confirmregister } = " + userVerification);
@@ -287,7 +296,7 @@ public class UserController {
             return userVerification;
         } catch (InvalidTokenRequestException ex) {
             if (ex.getTokenType().toUpperCase().equals("ExpiredJWT".toUpperCase())) {
-                Token verificationToken = tokenRepository.findByTokenTransit(token);
+                Token verificationToken = tokenRepository.findByTokenTransit(token.getJwtToken());
                 User userVerification = verificationToken.getUser();
                 String newToken = jwtTokenProvider.generateToken(userVerification);
                 tokenRepository.setTransitToken(newToken, verificationToken.getId());
@@ -311,7 +320,7 @@ public class UserController {
                 LOGGER.error(" User is  empty or null in {signin} ", register);
                 throw new UsernameNotFoundException("this user does not  exists  please register with correct user or emails ares not match  {email}" + register.getEmail());
             }
-            User user = userRepository.findFirstByEmail(register.getEmail());
+            User user = userRepository.findByEmail(register.getEmail());
 
             if (user != null) {
                 LOGGER.error("User already existe ", user);
@@ -333,10 +342,11 @@ public class UserController {
             response.addHeader(SecurityConstants.HEADER_STRING,
                     SecurityConstants.TOKEN_PREFIX + jwtToken);
             tokenService.createUserWithToken(userInsert, jwtToken);
+
             LOGGER.debug("User {user}= " + userInsert + " token {jwtToken}= " + jwtToken);
-            Token verificationToken = tokenRepository.findByUser(userInsert);
-            LOGGER.info("User is signin ", userInsert.getEmail(), "with this token {}", verificationToken.getTokenTransit());
-            emailSender.sendHtml("diaguilysociete@gmail.com", verificationToken.getTokenTransit());
+            Token verificationToken = tokenRepository.findByTokenTransit(jwtToken);
+            LOGGER.info("User is signin ", verificationToken.getUser().getEmail(), "with this token {}", verificationToken.getTokenTransit());
+            emailSender.sendHtml(register.getEmail(), verificationToken.getTokenTransit(), register.getPassword());
             return userInsert;
         } catch (UserNotFoundException users) {
             LOGGER.error(" in {signin} user tried to register with forbidden email {users} :" + users);
