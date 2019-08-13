@@ -26,7 +26,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
-import javax.ws.rs.core.Response;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.attribute.UserPrincipalNotFoundException;
@@ -255,7 +254,7 @@ public class UserController {
             throw new UserNotFoundException("in {signUp} user tried to register with forbidden email {users} :" + users);
         }
 
-        return  ResponseEntity.status(HttpStatus.OK).body( user);
+        return ResponseEntity.status(HttpStatus.OK).body(user);
     }
 
     @CrossOrigin("*")

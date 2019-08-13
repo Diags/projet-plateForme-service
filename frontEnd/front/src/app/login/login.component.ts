@@ -10,6 +10,7 @@ import {Router} from "@angular/router";
 export class LoginComponent implements OnInit {
   user;
   mode: number = 1;
+  errorMessage;
   constructor(private catalogueService:CatalogueService, private router: Router) {
   }
 
@@ -28,6 +29,7 @@ export class LoginComponent implements OnInit {
       this.mode = 1;
     }, error => {
       this.mode = 0;
+      this.errorMessage = error.error.message;
     });
   }
 }

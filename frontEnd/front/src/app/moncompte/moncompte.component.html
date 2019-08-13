@@ -31,7 +31,7 @@
       </div>
     </div>
     <hr/>
-    <div>
+    <div *ngIf="isAdmin()">
       <div class="w3-row w3-section">
         <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-pencil"></i></div>
         <div class="w3-rest">
@@ -102,7 +102,6 @@
             data-target="#myModalEdit">Modifier votre mot de passe
     </button>
   </form>
-  <hr/>
 </div>
 <div id="myModalEdit" class="modal fade" role="dialog">
   <div class="modal-dialog" role="document">

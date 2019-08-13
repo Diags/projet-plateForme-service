@@ -120,7 +120,8 @@ export class CatalogueService {
   }
 
   isAuthentificated() {
-    return this.roles && this.jwtToken;
+    console.log(  this.roles && this.jwtToken,"test auth");
+    return this.roles ;
   }
 
   logout() {

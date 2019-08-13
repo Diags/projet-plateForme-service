@@ -4,8 +4,9 @@
   padding: 2%;
 }
 .alert-danger {
-  background-color: #f2f2f2;
-  max-width: 50%;
+  background-color: #efb0b0;;
+  color: white;
+  font-size: x-large;
 }
 .usersPanel .container{
   background-color: #f2f2f2;

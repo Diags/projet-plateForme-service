@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {CatalogueService} from "../catalogue.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-moncompte',
@@ -7,12 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MoncompteComponent implements OnInit {
 
-  constructor() { }
+  constructor(private catalogueService:CatalogueService, private router: Router) { }
 
   ngOnInit() {
   }
 
   updateMPD(value) {
 
+  }
+
+  isAdmin() {
+    return this.catalogueService.isAdmin();
   }
 }

@@ -3,10 +3,12 @@
   padding: 2%;
   background-color: #eef2f6;
 }
-hr{
+
+hr {
   position: relative;
   height: 2px;
   margin: -1px 0 0;
   border: 0;
   background-color: rgb(204, 7, 11);
 }
+

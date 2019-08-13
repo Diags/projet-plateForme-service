@@ -19,12 +19,14 @@ import {RegistrationComponent} from "./registration/registration.component";
 import {ProfessionalLoginComponent} from "./professional-login/professional-login.component";
 import {MoncompteComponent} from "./moncompte/moncompte.component";
 import {ConfimationRegistrationComponent} from "./confimation-registration/confimation-registration.component";
+import {ReservationComponent} from "./reservation/reservation.component";
 const routes: Routes = [
   {path:"login",component:LoginComponent},
   {path:"registration",component:RegistrationComponent},
   {path:"confirmregister/:id",component:ConfimationRegistrationComponent},
   {path:"loginpro",component:ProfessionalLoginComponent},
   {path:"moncompte",component:MoncompteComponent},
+  {path:"reservation",component:ReservationComponent},
   {path:"catalogue/:p1/:p2",component:CatalogueComponent},
   {path:"devis",component:DevisFormComponent},
   {path:"a-propos",component:AProposComponent},

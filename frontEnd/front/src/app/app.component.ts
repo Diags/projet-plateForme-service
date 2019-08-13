@@ -1,6 +1,7 @@
 import {Component, EventEmitter, OnChanges, OnInit, Output} from '@angular/core';
 import { CatalogueService } from './catalogue.service';
 import {ActivatedRoute, Route, Router} from "@angular/router";
+import {log} from "util";
 
 @Component({
   selector: 'app-root',
@@ -41,5 +42,18 @@ export class AppComponent implements OnInit {
       let id = data[0];
       this.router.navigateByUrl("/professions");
     })
+  }
+
+  isAuthentifed(){
+    console;log(this.catelogService.isAuthentificated());
+    return this.catelogService.isAuthentificated();
+  }
+
+  logout() {
+    this.catelogService.logout();
+  }
+
+  reservation() {
+    this.router.navigateByUrl("/reservation");
   }
 }

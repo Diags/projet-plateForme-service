@@ -1,5 +1,10 @@
 <div class="container">
 <div class="containerLogin ">
+  <div class="alert alert-danger" *ngIf="mode==0 && errorMessage">
+    <p class="w3-center " >
+      <strong>{{errorMessage}}</strong>
+    </p>
+  </div>
   <form  #f="ngForm"(ngSubmit)="login(f.value)">
     <div class="row">
       <div class="container">

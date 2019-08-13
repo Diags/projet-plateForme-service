@@ -26,6 +26,7 @@ import { ProfessionalLoginComponent } from './professional-login/professional-lo
 import {AgmCoreModule} from "@agm/core";
 import { MoncompteComponent } from './moncompte/moncompte.component';
 import { ConfimationRegistrationComponent } from './confimation-registration/confimation-registration.component';
+import { ReservationComponent } from './reservation/reservation.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { ConfimationRegistrationComponent } from './confimation-registration/con
     RegistrationComponent,
     ProfessionalLoginComponent,
     MoncompteComponent,
-    ConfimationRegistrationComponent
+    ConfimationRegistrationComponent,
+    ReservationComponent
   ],
   imports: [
     BrowserModule,
