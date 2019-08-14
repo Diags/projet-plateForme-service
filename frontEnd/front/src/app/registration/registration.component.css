@@ -1,4 +1,11 @@
-
+hr{
+  position: relative;
+  height: 2.5px;
+  margin: -1px 0 0;
+  border: 0;
+  background-color:  #ef7900;
+  margin-bottom: 2%;
+}
 .usersPanel {
   margin-top: 5%;
   padding: 2%;
@@ -45,8 +52,10 @@
   padding: 15px 20px;
   border: none;
   cursor: pointer;
-  width: 100%;
+  width: 50%;
   opacity: 0.9;
+  margin-right: 15%;
+  margin-left: 20%;
 }
 
 .btn:hover {

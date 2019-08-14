@@ -2,12 +2,13 @@
   <div class="container " *ngIf="user">
     <div class="col-md-3">
 
-      <div class="w3-card w3-center" >
-        <img  src="{{this.catalogueService.host+'/photouser/'+user.id}}"  alt="John" style="width:100%"  [routerLink]="['/professionel/', user.id]">
+      <div class="w3-card w3-center">
+        <img src="{{this.catalogueService.host+'/photouser/'+user.id}}" alt="John" style="width:100%"
+             [routerLink]="['/professionel/', user.id]">
         <h3>{{user.nom}} </h3>
-        <p  class="title"> {{user.prenom}}</p>
-        <p  class="title">  <i>  Numéroi de Siret:    </i>  {{user.numeroSiret}}</p>
-        <p  class="title">  {{user.recommanderBy}}</p>
+        <p class="title"> {{user.prenom}}</p>
+        <p class="title"><i> Numéroi de Siret: </i>  {{user.numeroSiret}}</p>
+        <p class="title">  {{user.recommanderBy}}</p>
         <div style="margin: 24px 0;">
           <a href="#"><i class="fab fa-dribbble"></i></a>
           <a href="#"><i class="fab fa-twitter"></i></a>
@@ -15,144 +16,78 @@
           <a href="#"><i class="fab fa-facebook"></i></a>
         </div>
         <div class="w3-row">
-        <div class="w3-col m3 w3-center "(click)="toggleTel()">
-          <h3>Tel</h3>
-          <span class="glyphicon glyphicon-earphone" style="font-size:40px;color:red">
+          <div class="w3-col m3 w3-center " (click)="toggleTel()">
+            <h3>Tel</h3>
+            <span class="glyphicon glyphicon-earphone" style="font-size:40px;color:red">
             <i class="w3-medium" *ngIf="iscontactChecked">:<b>{{user.tele}}</b></i>
           </span>
-        </div>
-        <div class="" (click)="toggleWatshap()"
-             style="float: right;">
-          <h3>Whatsapp</h3>
-          <span class="fab fa-whatsapp " style="font-size:40px;color:green;">
+          </div>
+          <div class="" (click)="toggleWatshap()"
+               style="float: right;">
+            <h3>Whatsapp</h3>
+            <span class="fab fa-whatsapp " style="font-size:40px;color:green;">
             <i class="w3-medium" *ngIf="iscontactWhatShapChecked">:<b>{{user.tele}}</b></i>
           </span>
+          </div>
         </div>
-        </div>
-        <div class="w3-row "(ratingClicked)='onRatingClicked($event)'>
-        <div class="rating-inline" onclick="document.getElementById('id01').style.display='block'">
-          <h4>Notes utilisateur</h4>
-          <h2 class="bold padding-bottom-7">{{ user.note}}<small>/ 5</small></h2>
-        </div>
-          <div class="w3-row test" >
-          <app-stars  [rating]=" user.note | number: '1.0-0'" (ratingClicked)='onRatingClicked($event)'></app-stars>
-        </div>
-        <div id="id01" class="w3-modal">
-          <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:800px">
+        <div class="w3-row " >
+          <div class="rating-inline" >
+            <h4>Notes utilisateur</h4>
+            <h2 class="bold padding-bottom-7">{{ user.note}}
+              <small>/ 5</small>
+            </h2>
+          </div>
+          <div class="w3-row test" data-toggle="modal" data-target="#myModalEdit">
+            <app-stars [rating]=" user.note | number: '1.0-0'" (ratingClicked)='onRatingClicked($event)'></app-stars>
+          </div>
 
-            <div class="w3-center"><br>
-              <span onclick="document.getElementById('id01').style.display='none'"
-                    class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
-              <img src="assets/img/catalogue/img_avatar4.png" alt="Avatar" style="width:30%" class="w3-circle w3-margin-top">
-            </div>
 
-            <form #f="ngForm" class="w3-container" (ngSubmit)="sendCommtaire(f.value)">
-              <div class="w3-section">
-                <label><b><h2>Donnez votre avis sur notre professionel<br/>
-                Mr. {{user.nom}}</h2></b></label>
-                <textarea id="subject" name="subject"  [(ngModel)]="commentaire" placeholder="Votre avis nous interese sur notre professionel.."
-                          class="w3-container w3-block w3-light-grey w3-padding-64 w3-section"></textarea>
+          <div id="myModalEdit" class="modal fade" role="dialog" *ngIf="this.catalogueService.isAuthentificated()">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                    aria-hidden="true">×</span></button>
+                  <h4 class="modal-title col-lg-5" id="modal-title">
+                    <img src="assets/img/catalogue/img_avatar4.png" class="img-circle " alt="John" style="width:95%">
+                  </h4>
+                  <h5 class="col-lg-4"><h3> Mr. {{user.nom}} </h3><br/>
+                    <h5>tele :{{user.tele}}</h5><br/>
+                  </h5>
+                </div>
+                <div class="modal-body">
+                  <div id="serverResponse"></div>
+                  <input type="hidden" name="objectId" id="objectId" value="1341464">
+                  <div id="contact-seller-form">
+                    <div class="row">
+
+                      <form #f="ngForm" class="w3-container" (ngSubmit)="sendCommtaire(f.value)">
+                        <div class="w3-section">
+                          <label><b><h2>Donnez votre avis sur notre professionel<br/>
+                         </h2></b></label>
+                          <textarea  name="commentaire" ngModel
+                                    placeholder="Votre avis nous interese sur notre professionel.."
+                                    class="w3-container w3-block w3-light-grey w3-padding-64 w3-section"></textarea>
+                        </div>
+                        <div class="w3-container w3-border-top w3-padding-16 ">
+
+                          <button type="button" class="w3-button w3-red w3-left" data-dismiss="modal">
+                            Annuler
+                          </button>
+                          <button type="submit" form="contact-seller" [disabled]="!f.form.valid"
+                                  id="contact-seller-send" value="Envoyer"
+                                  class="w3-button w3-green w3-center w3-right">Envoyer
+                          </button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
-              <button onclick="document.getElementById('id01').style.display='none'" type="button"
-                      class="w3-button w3-red w3-left">Cancel
-              </button>
-              <button  onclick="document.getElementById('id01').style.display='none'"  type="submit" class="w3-button w3-green w3-center w3-right">send
-              </button>
             </div>
-            </form>
           </div>
         </div>
       </div>
-      </div>
-
-
-
-
-<!--      <div class="panel panel-default">-->
-<!--        <div class="panel-heading">-->
-<!--          <img class="card" alt="Cinque Terre" height="200" style="width:100%;" src="{{this.catalogueService.host+'/photouser/'-->
-<!--        +user.id}}"/>-->
-<!--        </div>-->
-<!--        <div class="panel-body">-->
-<!--          <table>-->
-<!--            <tr>-->
-<!--              <td>-->
-<!--                <strong>  {{user.nom}}  </strong>-->
-<!--              </td>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--              <td>-->
-<!--                {{user.prenom}}-->
-<!--              </td>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--              <td>-->
-<!--                <i> Numéroi de Siret: </i>  {{user.numeroSiret}}-->
-<!--              </td>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--              <td>-->
-<!--                {{user.recommanderBy}}-->
-<!--              </td>-->
-<!--            </tr>-->
-<!--          </table>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--      <div class="panel-footer">-->
-<!--        <div class="w3-row">-->
-<!--          <div class="w3-col m3 w3-center" (click)="toggleTel()">-->
-<!--            <h3>Tel</h3>-->
-<!--            <span class="glyphicon glyphicon-earphone" style="font-size:40px;color:red">-->
-<!--            <i class="w3-medium" *ngIf="iscontactChecked">:<b>{{user.tele}}</b></i>-->
-<!--          </span>-->
-<!--          </div>-->
-<!--          <div class="w3-col s5 w3-center w3-margin-right aw3-margin-bottom" (click)="toggleWatshap()"-->
-<!--               style="float: right;">-->
-<!--            <h3>Whatsapp</h3>-->
-<!--            <span class="fab fa-whatsapp " style="font-size:40px;color:green;">-->
-<!--            <i class="w3-medium" *ngIf="iscontactWhatShapChecked">:<b>{{user.tele}}</b></i>-->
-<!--          </span>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <div class="container ">-->
-<!--          <div class="rating-inline" onclick="document.getElementById('id01').style.display='block'">-->
-<!--            <h4>Average user rating</h4>-->
-
-<!--            <h2 class="bold padding-bottom-7">{{user.note}}-->
-<!--              <small>/ 5</small>-->
-<!--            </h2>-->
-<!--            <app-stars [rating]=" user.note | number: '1.0-0'" (ratingClicked)='onRatingClicked($event)'></app-stars>-->
-<!--          </div>-->
-<!--          <div id="id01" class="w3-modal">-->
-<!--            <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:800px">-->
-
-<!--              <div class="w3-center"><br>-->
-<!--                <span onclick="document.getElementById('id01').style.display='none'"-->
-<!--                      class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>-->
-<!--                <img src="assets/img/catalogue/img_avatar4.png" alt="Avatar" style="width:30%" class="w3-circle w3-margin-top">-->
-<!--              </div>-->
-
-<!--              <form class="w3-container">-->
-<!--                <div class="w3-section">-->
-<!--                  <label><b><h2>Commentaire</h2></b></label>-->
-<!--                  <textarea id="subject" name="subject" placeholder="Votre avis nous interese sur notre professionel.."-->
-<!--                            class="w3-container w3-block w3-light-grey w3-padding-64 w3-section"></textarea>-->
-<!--                </div>-->
-<!--              </form>-->
-<!--              <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">-->
-<!--                <button onclick="document.getElementById('id01').style.display='none'" type="button"-->
-<!--                        class="w3-button w3-red w3-center">Cancel-->
-<!--                </button>-->
-<!--                <button onclick="document.getElementById('id01').style.display='none'" type="button"-->
-<!--                        class="w3-button w3-green w3-center w3-right">send-->
-<!--                </button>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-
-<!--      </div>-->
 
 
     </div>
@@ -236,6 +171,3 @@
   </div>
 </div>
 
-<div class="w3-row w3-center well container" *ngIf="commentaire">
-  {{commentaire}}
-</div>
