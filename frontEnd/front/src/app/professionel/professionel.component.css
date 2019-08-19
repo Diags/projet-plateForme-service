@@ -9,7 +9,9 @@
     min-height:50%;
     margin-bottom: 6%;
   }
-
+.onInput{
+  line-height: 2em;
+}
 a {
   text-decoration: none;
   display: inline-block;

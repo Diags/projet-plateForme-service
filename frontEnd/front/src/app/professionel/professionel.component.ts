@@ -2,6 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {CatalogueService} from "../catalogue.service";
+import {error} from "util";
 
 @Component({
   selector: 'app-professionel',
@@ -13,6 +14,9 @@ export class ProfessionelComponent implements OnInit {
   private iscontactChecked = false;
   private iscontactWhatShapChecked = false;
   private noteRating: number;
+  currentComment;
+  sendUser;
+  iscomment=false;
   constructor(private catalogueService: CatalogueService, private routerActivated: ActivatedRoute, private router: Router) {
     // this.router.params.subscribe(params => this.artisantDetail = params.id)
     //   console.log(this.router.snapshot.paramMap.get('id'))
@@ -21,11 +25,11 @@ export class ProfessionelComponent implements OnInit {
   ngOnInit() {
     let id = +this.routerActivated.snapshot.paramMap.get('id');
     this.catalogueService.getProfById(id).subscribe(resp => {
-      console.log("montesssgg",resp)
       this.user = resp;
     }, error => {
       console.log(error);
     });
+    this.currentComment= undefined;
   }
 
   getDevis(){
@@ -33,28 +37,41 @@ export class ProfessionelComponent implements OnInit {
   }
   toggleTel(){
     this.iscontactChecked = !this.iscontactChecked;
-    console.log("iscontactChecked",this.iscontactChecked)
   }
   toggleWatshap(){
     this.iscontactWhatShapChecked = !this.iscontactWhatShapChecked;
-    console.log("iscontactWhatShapChecked",this.iscontactWhatShapChecked)
   }
   onRatingClicked(note:number):void{
- if(this.catalogueService.isAuthentificated()){
+ if(this.catalogueService.isAuthentificated() ){
    this.noteRating = note;
-   console.log(this.noteRating, "==> noteRating");
-   let id = +this.routerActivated.snapshot.paramMap.get('id');
-   this.catalogueService.updateNote(note,  id).subscribe(data =>{
-     this.user = data;
-     console.log(id, "==> id");
-   });
  }else {
    alert("Authentifiez-vous avant d'envoyer un avis")
  }
 
   }
 
-  sendCommtaire(dataForm) {
-console.log("dataForm------>",dataForm);
+  sendCommtaire(dataForm, id) {
+    dataForm.id = id;
+    dataForm.userName = this.catalogueService.userName;
+    console.log(dataForm,"tessrerere");
+    this.catalogueService.sendCommentaire(dataForm).subscribe(resp =>{
+      this.user = resp;
+      this.iscomment = true;
+      let id = +this.routerActivated.snapshot.paramMap.get('id');
+      this.catalogueService.updateNote(  this.noteRating ,  id).subscribe(data =>{
+        this.user = data;
+      },error1 => {
+        console.log(error1);
+      });
+      console.log(this.currentComment,"commmentaireeeeeee>>>>>>");
+    }, error =>{
+      this.iscomment = false;
+      console.log(error);
+      console.log(this.currentComment,"errororororo>>>>>>");
+
+    });
+  }
+  getListComments(){
+    return Object.entries(this.user.commentaires);
   }
 }

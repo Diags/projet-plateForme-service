@@ -53,7 +53,7 @@
       </div>
         <div class="col-sm-5"  *ngIf="isAuthentifed()" style="margin-right: 59px;">
           <div class="w3-dropdown-hover">
-            <i class="fa fa-user"></i>   Mon Compte
+           <span [routerLink] = "['/moncompte']"><i class="fa fa-user"></i>   Mon Compte</span>
             <li class="moncompte w3-dropdown-content w3-bar-block w3-card-4">
               <a  class="w3-bar-item w3-button"  style="color: black;" (click)="reservation()">Mes rendez-vous </a>
           </li>

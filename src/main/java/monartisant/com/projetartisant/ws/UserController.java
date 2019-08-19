@@ -29,6 +29,7 @@ import javax.validation.Valid;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.attribute.UserPrincipalNotFoundException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -189,17 +190,22 @@ public class UserController {
         return null;
     }
 
+    @Transactional
     @ApiOperation(value = "login user by params")
     @PostMapping("/loginuser")
-    public User login(@RequestBody LoginParam loginParam) {
-
-//        User user = userRepository.findByemailAndpassword(loginParam.getEmail(),loginParam.getPassword());
-//        if(user == null){
-//            throw new UserPrincipalNotFoundException("this user dosenot exist {user }" + loginParam.getEmail());
-//        }
-        return null;
+    public User getCommentaire(@RequestBody SendCommentParam sendCommentParam) throws Exception {
+        User user = userRepository.findById(sendCommentParam.getId()).get();
+        if (!(user.getEmail().toUpperCase().equals(sendCommentParam.getUserName().toUpperCase()))) {
+            List<String> comments = new ArrayList<>();
+            comments.add(sendCommentParam.getCommentaire());
+            user.getCommentaires().computeIfAbsent(sendCommentParam.getUserName(), x -> new ArrayList<>()).add(sendCommentParam.getCommentaire());
+            userRepository.save(user);
+            return user;
+        }
+        throw new Exception("This user can't send him self comment" + user);
     }
 
+    @Transactional
     @CrossOrigin("*")
     @ApiOperation(value = "login user by params")
     @PostMapping("/signin")
@@ -257,7 +263,7 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(user);
     }
 
-    @CrossOrigin("*")
+    @Transactional
     @ApiOperation(value = "confirmRegister user by token")
     @PostMapping("/confirmregister")
     public User confirmRegister(@RequestBody ConfirmRegister token, @javax.ws.rs.core.Context HttpServletResponse response) throws Exception {

@@ -90,7 +90,6 @@ export class CatalogueService {
   saveToken(jwtToken: string) {
     localStorage.setItem("token", jwtToken);
     this.jwtToken = jwtToken;
-    console.log("admin ==> " + this.jwtToken);
     this.parsJWT();
 
   }
@@ -120,7 +119,6 @@ export class CatalogueService {
   }
 
   isAuthentificated() {
-    console.log(  this.roles && this.jwtToken,"test auth");
     return this.roles ;
   }
 
@@ -145,5 +143,9 @@ export class CatalogueService {
     return this.http.post(this.host + "/confirmregister/", JSON.stringify({
       "jwtToken": token
     }), {headers: header});
+  }
+
+  sendCommentaire(commentaire) {
+    return this.http.post(this.host+"/loginuser",commentaire)
   }
 }

@@ -11,8 +11,8 @@ import org.hibernate.annotations.Cascade;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
+
 @JsonIdentityInfo(
         generator = ObjectIdGenerators.PropertyGenerator.class,
         property = "id")
@@ -82,4 +82,8 @@ public class User {
     @Column(name = "role", nullable = false)
     @Enumerated(EnumType.STRING)
     private Collection<RoleEnum> roles;
+    @ElementCollection(targetClass = HashMap.class)
+    private Map<String, List<String>> commentaires = new HashMap<>();
+    @OneToOne(cascade= CascadeType.ALL)
+    private Agenda agenda;
 }

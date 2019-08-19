@@ -5,6 +5,7 @@ import monartisant.com.projetartisant.repository.CategoryRepository;
 import monartisant.com.projetartisant.repository.ProfessionRepository;
 import monartisant.com.projetartisant.repository.UserRepository;
 import net.bytebuddy.utility.RandomString;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -13,9 +14,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Random;
+import java.util.*;
 
 @SpringBootApplication
 public class ProjetArtisantApplication implements CommandLineRunner {
@@ -476,6 +475,9 @@ public class ProjetArtisantApplication implements CommandLineRunner {
             for (int i = 0; i < 10; i++) {
                 User user = new User();
                 Pays pays = new Pays();
+                List<Date> aa= new ArrayList<>();
+                aa.add( new Date());
+                Agenda agenda = new Agenda();
                 pays.setName("SENEGAL");
                 Adresse adresse = new Adresse();
                 adresse.setNumeroRue(1 + rd.nextInt(100));
@@ -502,6 +504,12 @@ public class ProjetArtisantApplication implements CommandLineRunner {
                 user.setEmail(RandomString.make(3)+i+"@gmail.com");
                 user.setPassword(bCryptPasswordEncoder().encode("toto"));
                 user.setRoles(Collections.singleton(RoleEnum.USER));
+                Map<String, List<String>>  coments = new HashMap<>();
+                coments.put(RandomString.make(4), Collections.singletonList("Un artisan parfait je le recommande."));
+                user.setCommentaires(coments);
+                agenda.setCurrentDate(new Date());
+                agenda.setSlots(aa);
+               // user.setAgenda(agenda);
                 userRepository.save(user);
                 System.out.println(user.getEmail());
             }

@@ -18,10 +18,8 @@ export class RegistrationComponent implements OnInit {
   }
 
   onRegister(user) {
-console.log(user,"registration user");
     this.catalogService.register(user)
       .subscribe(data => {
-          console.log("registration"+data);
           this.user = data;
           this.mode = 1;
           this.message = " STATUS: SEND";

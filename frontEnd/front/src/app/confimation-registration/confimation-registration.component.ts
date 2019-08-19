@@ -16,13 +16,11 @@ export class ConfimationRegistrationComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.routeActive.snapshot.params.id);
     let id = this.routeActive.snapshot.params.id;
     this.confirmRegister(id);
   }
 
   confirmRegister(token) {
-    console.log("jwtToken : ", token);
     this.catelogService.confirmRegister(token).subscribe(resp => {
       this.user = resp;
       this.mode = 1;

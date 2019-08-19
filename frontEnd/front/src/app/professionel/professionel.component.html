@@ -30,8 +30,8 @@
           </span>
           </div>
         </div>
-        <div class="w3-row " >
-          <div class="rating-inline" >
+        <div class="w3-row ">
+          <div class="rating-inline">
             <h4>Notes utilisateur</h4>
             <h2 class="bold padding-bottom-7">{{ user.note}}
               <small>/ 5</small>
@@ -61,22 +61,21 @@
                   <div id="contact-seller-form">
                     <div class="row">
 
-                      <form #f="ngForm" class="w3-container" (ngSubmit)="sendCommtaire(f.value)">
+                      <form #f="ngForm" class="w3-container">
                         <div class="w3-section">
-                          <label><b><h2>Donnez votre avis sur notre professionel<br/>
-                         </h2></b></label>
-                          <textarea  name="commentaire" ngModel
-                                    placeholder="Votre avis nous interese sur notre professionel.."
-                                    class="w3-container w3-block w3-light-grey w3-padding-64 w3-section"></textarea>
+                          <label><b><h2>Donnez votre avis sur notre professionel. <br/>
+                            Tous les commentaires sont verifiés par notre équipe<br/>
+                          </h2></b></label>
+                          <input type="text" ngModel name="commentaire"
+                                 placeholder="Votre avis nous interese sur notre professionel.."
+                                 class="w3-container w3-block w3-light-grey w3-padding-64 w3-section onInput"/>
                         </div>
                         <div class="w3-container w3-border-top w3-padding-16 ">
-
+                          <button type="submit" form="contact-seller" class="w3-button w3-green w3-center w3-right"
+                                  data-dismiss="modal" (click)="sendCommtaire(f.value, user.id)">Envoyer
+                          </button>
                           <button type="button" class="w3-button w3-red w3-left" data-dismiss="modal">
                             Annuler
-                          </button>
-                          <button type="submit" form="contact-seller" [disabled]="!f.form.valid"
-                                  id="contact-seller-send" value="Envoyer"
-                                  class="w3-button w3-green w3-center w3-right">Envoyer
                           </button>
                         </div>
                       </form>
@@ -169,5 +168,17 @@
            style="width:100%;cursor:pointer" onclick="currentDiv(5)">
     </div>
   </div>
+<div *ngIf="user">
+  <div class="w3-panel w3-sand w3-leftbar"  *ngFor="let us of getListComments()">
+    <div class="w3-panel w3-sand w3-leftbar">
+      <p><i class="fa fa-quote-right w3-xxlarge w3-opacity"></i>
+        <span class="w3-serif w3-xlarge">
+          {{us[0]}} <br/>
+          {{us[1]}}
+          <br/>
+   </span>
+      </p>
+    </div>
+  </div>
 </div>
-
+</div>

@@ -22,10 +22,8 @@ export class LoginComponent implements OnInit {
     this.catalogueService.login(value).subscribe(resp =>{
       let jwtToken = resp.headers.get('Authorization');
       this.user = resp;
-      console.log("token login ",jwtToken);
       this.catalogueService.saveToken(jwtToken);
       this.router.navigateByUrl("/moncompte");
-      console.log("Login user",resp);
       this.mode = 1;
     }, error => {
       this.mode = 0;

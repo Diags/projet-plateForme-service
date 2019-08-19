@@ -110,9 +110,8 @@ this.route.navigateByUrl('/catalogue/2/'+c.id);
     this.catelogService.curenteSearchUsers= [];
   this.catelogService.getProfessionalByVille(data).subscribe(res =>{
     this.catelogService.curenteSearchUsers=res;
-    console.log(this.catelogService.curenteSearchUsers,"ùùùùùùùù#######ùùùùùùùùùù");
     this.route.navigateByUrl("/professions-details/"+0);
-    console.log(res);});
+    ;});
 }
   onClick($event) {
      var data = {
@@ -121,9 +120,7 @@ this.route.navigateByUrl('/catalogue/2/'+c.id);
      };
     this.catelogService.curenteSearchUsers= [];
     this.catelogService.getProfessionalByVille(data).subscribe(res =>{
-      console.log(res);
       this.catelogService.curenteSearchUsers = res;
-      console.log(this.catelogService.curenteSearchUsers,"ùùùùùùùùùù#####ùùùùùùùù");
       this.route.navigateByUrl("/professions-details/"+0);
     });
   }
