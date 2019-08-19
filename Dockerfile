@@ -11,10 +11,10 @@ VOLUME /tmp
 EXPOSE 8080
 
 # The application's jar file
-ARG JAR_FILE=target/artisan-service-platForm.jar
+ARG JAR_FILE=target/artisan-service-platform.jar
 
 # Add the application's jar to the container
-ADD ${JAR_FILE} artisan-service-platForm.jar
+ADD ${JAR_FILE} artisan-service-platform.jar
 
 # Run the jar file
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/artisan-service-platForm.jar"]
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/artisan-service-platform.jar"]
