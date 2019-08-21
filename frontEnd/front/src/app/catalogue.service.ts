@@ -148,4 +148,8 @@ export class CatalogueService {
   sendCommentaire(commentaire) {
     return this.http.post(this.host+"/loginuser",commentaire)
   }
+
+  getCommentaires(userId) {
+    return this.http.get(this.host+"/users/"+userId+"/userCommentaires");
+  }
 }

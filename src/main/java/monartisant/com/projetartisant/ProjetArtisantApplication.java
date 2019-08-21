@@ -477,7 +477,12 @@ public class ProjetArtisantApplication implements CommandLineRunner {
                 Pays pays = new Pays();
                 List<Date> aa= new ArrayList<>();
                 aa.add( new Date());
-                Agenda agenda = new Agenda();
+                UserAgenda agenda = new UserAgenda();
+                UserCommentaire userCommentaire = new UserCommentaire();
+                userCommentaire.setCreateBy("diags");
+                userCommentaire.setCommentaire(Collections.singleton("Un artisan parfait je le recommande."));
+                agenda.setCurrentDate(new Date());
+                agenda.setSlots(Collections.singletonList(new DateTime().minus(10).toDate()));
                 pays.setName("SENEGAL");
                 Adresse adresse = new Adresse();
                 adresse.setNumeroRue(1 + rd.nextInt(100));
@@ -506,10 +511,8 @@ public class ProjetArtisantApplication implements CommandLineRunner {
                 user.setRoles(Collections.singleton(RoleEnum.USER));
                 Map<String, List<String>>  coments = new HashMap<>();
                 coments.put(RandomString.make(4), Collections.singletonList("Un artisan parfait je le recommande."));
-                user.setCommentaires(coments);
-                agenda.setCurrentDate(new Date());
-                agenda.setSlots(aa);
-               // user.setAgenda(agenda);
+               // user.setCommentaires(coments);
+                user.setUserCommentaires(Collections.singleton(userCommentaire));
                 userRepository.save(user);
                 System.out.println(user.getEmail());
             }

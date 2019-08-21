@@ -45,7 +45,7 @@
         <input ngModel class="input-field" type="password" placeholder="confirm Password" name="confirmPassword" required>
       </div>
 
-      <button type="submit" class="btn w3-center" [disabled]="!f.valid">Register</button>
+      <button type="submit" class="btn w3-center" [disabled]="!f.valid"><i [ngClass]="{'fab-li fab fa-spinner fa-spin': f.valid ? true:false}" style="background-color: red"></i> Register</button>
     </form>
   </div>
 

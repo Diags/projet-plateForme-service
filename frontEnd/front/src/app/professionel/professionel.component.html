@@ -168,17 +168,17 @@
            style="width:100%;cursor:pointer" onclick="currentDiv(5)">
     </div>
   </div>
-<div *ngIf="user">
-  <div class="w3-panel w3-sand w3-leftbar"  *ngFor="let us of getListComments()">
-    <div class="w3-panel w3-sand w3-leftbar">
-      <p><i class="fa fa-quote-right w3-xxlarge w3-opacity"></i>
-        <span class="w3-serif w3-xlarge">
-          {{us[0]}} <br/>
-          {{us[1]}}
+  <div *ngIf="userCommentaires">
+    <div class="w3-panel w3-sand w3-leftbar" *ngFor="let us of userCommentaires._embedded.userCommentaires">
+      <div class="w3-panel w3-sand w3-leftbar">
+        <p><i class="fa fa-quote-right w3-xxlarge w3-opacity"></i>
+          <span class="w3-serif w3-xlarge">
+          {{us.createBy}} <br/>
+   <span *ngFor="let comment of us.commentaire"> {{comment}}</span>
           <br/>
    </span>
-      </p>
+        </p>
+      </div>
     </div>
   </div>
-</div>
 </div>

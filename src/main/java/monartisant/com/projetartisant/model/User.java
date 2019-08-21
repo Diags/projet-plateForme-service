@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -20,6 +22,7 @@ import java.util.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Proxy(lazy = false)
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -82,8 +85,9 @@ public class User {
     @Column(name = "role", nullable = false)
     @Enumerated(EnumType.STRING)
     private Collection<RoleEnum> roles;
-    @ElementCollection(targetClass = HashMap.class)
-    private Map<String, List<String>> commentaires = new HashMap<>();
-    @OneToOne(cascade= CascadeType.ALL)
-    private Agenda agenda;
+//    @ElementCollection(targetClass = HashMap.class)
+//    private Map<String, List<String>> commentaires = new HashMap<>();
+    @OneToMany(cascade = CascadeType.ALL)
+    @JsonBackReference
+    private Collection<UserCommentaire> userCommentaires = new ArrayList<>();
 }

@@ -1,8 +1,7 @@
 ///<reference path="../catalogue.service.ts"/>
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {CatalogueService} from "../catalogue.service";
-import {error} from "util";
 
 @Component({
   selector: 'app-professionel',
@@ -15,8 +14,10 @@ export class ProfessionelComponent implements OnInit {
   private iscontactWhatShapChecked = false;
   private noteRating: number;
   currentComment;
+  userCommentaires;
   sendUser;
-  iscomment=false;
+  iscomment = false;
+
   constructor(private catalogueService: CatalogueService, private routerActivated: ActivatedRoute, private router: Router) {
     // this.router.params.subscribe(params => this.artisantDetail = params.id)
     //   console.log(this.router.snapshot.paramMap.get('id'))
@@ -26,52 +27,60 @@ export class ProfessionelComponent implements OnInit {
     let id = +this.routerActivated.snapshot.paramMap.get('id');
     this.catalogueService.getProfById(id).subscribe(resp => {
       this.user = resp;
+      this.getListComments(this.user.id);
+      console.log(resp, "digs test");
     }, error => {
       console.log(error);
     });
-    this.currentComment= undefined;
+    this.currentComment = undefined;
   }
 
-  getDevis(){
+  getDevis() {
     this.router.navigateByUrl('/devis')
   }
-  toggleTel(){
+
+  toggleTel() {
     this.iscontactChecked = !this.iscontactChecked;
   }
-  toggleWatshap(){
+
+  toggleWatshap() {
     this.iscontactWhatShapChecked = !this.iscontactWhatShapChecked;
   }
-  onRatingClicked(note:number):void{
- if(this.catalogueService.isAuthentificated() ){
-   this.noteRating = note;
- }else {
-   alert("Authentifiez-vous avant d'envoyer un avis")
- }
+
+  onRatingClicked(note: number): void {
+    if (this.catalogueService.isAuthentificated()) {
+      this.noteRating = note;
+    } else {
+      alert("Authentifiez-vous avant d'envoyer un avis")
+    }
 
   }
 
   sendCommtaire(dataForm, id) {
     dataForm.id = id;
     dataForm.userName = this.catalogueService.userName;
-    console.log(dataForm,"tessrerere");
-    this.catalogueService.sendCommentaire(dataForm).subscribe(resp =>{
+    console.log(dataForm, "tessrerere");
+    this.catalogueService.sendCommentaire(dataForm).subscribe(resp => {
       this.user = resp;
       this.iscomment = true;
       let id = +this.routerActivated.snapshot.paramMap.get('id');
-      this.catalogueService.updateNote(  this.noteRating ,  id).subscribe(data =>{
+      this.catalogueService.updateNote(this.noteRating, id).subscribe(data => {
         this.user = data;
-      },error1 => {
+      }, error1 => {
         console.log(error1);
       });
-      console.log(this.currentComment,"commmentaireeeeeee>>>>>>");
-    }, error =>{
+    }, error => {
       this.iscomment = false;
       console.log(error);
-      console.log(this.currentComment,"errororororo>>>>>>");
-
     });
   }
-  getListComments(){
-    return Object.entries(this.user.commentaires);
+
+  getListComments(userId) {
+    this.catalogueService.getCommentaires(userId).subscribe(resp => {
+    this.userCommentaires = resp;
+    }, error => {
+      console.log(error);
+    });
+    this.ngOnInit();
   }
 }

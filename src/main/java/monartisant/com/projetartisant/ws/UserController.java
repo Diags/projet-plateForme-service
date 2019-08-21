@@ -198,7 +198,10 @@ public class UserController {
         if (!(user.getEmail().toUpperCase().equals(sendCommentParam.getUserName().toUpperCase()))) {
             List<String> comments = new ArrayList<>();
             comments.add(sendCommentParam.getCommentaire());
-            user.getCommentaires().computeIfAbsent(sendCommentParam.getUserName(), x -> new ArrayList<>()).add(sendCommentParam.getCommentaire());
+            UserCommentaire userCommentaire = new UserCommentaire();
+            userCommentaire.setCreateBy(sendCommentParam.getUserName());
+            userCommentaire.setCommentaire(Collections.singleton(sendCommentParam.getCommentaire()));
+            user.getUserCommentaires().add(userCommentaire);
             userRepository.save(user);
             return user;
         }
@@ -218,15 +221,16 @@ public class UserController {
             }
             user = userRepository.findByEmail(form.getEmail());
 
+            if (user == null) {
+                LOGGER.error("User is not existe ", user);
+                throw new Exception("user not found");
+
+            }
             if (user.isBanned()) {
                 LOGGER.error("this user is banned  {userVerification } = " + user.getEmail());
                 throw new Exception("this user is banned");
             }
-            if (user == null) {
-                LOGGER.error("User is not existe ", user.getEmail());
-                throw new UserNotFoundException("user not found");
 
-            }
             Token verificationToken = tokenRepository.findByUser(user);
             if (verificationToken == null) {
                 LOGGER.error("This token is not available at {signUp}", verificationToken);
