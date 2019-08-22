@@ -1,23 +1,26 @@
 package monartisant.com.projetartisant.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Data @AllArgsConstructor @NoArgsConstructor
 public class UserAgenda {
-    @javax.persistence.Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long Id;
-    private Date currentDate;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private Date currenteDate;
     @ElementCollection
-    @CollectionTable(name = "userAgenda_slots", joinColumns = @JoinColumn(name = "userAgendaId"))
-    @Column(name = "slots")
-    private List<Date> slots = new ArrayList<>();
+    @CollectionTable
+    private Collection<Date> slots = new ArrayList<>();
+    @OneToOne(mappedBy = "useragenda")
+    private User user;
 }

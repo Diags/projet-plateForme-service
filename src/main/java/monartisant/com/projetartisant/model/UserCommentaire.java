@@ -24,6 +24,5 @@ public class UserCommentaire {
     @CollectionTable
     private Collection<String> commentaire = new ArrayList<>();
     @ManyToOne(cascade = CascadeType.ALL)
-    @JsonManagedReference
     private User user ;
 }
