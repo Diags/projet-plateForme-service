@@ -2,7 +2,8 @@ import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/
 import {ActivatedRoute, Router} from "@angular/router";
 import {CatalogueService} from "../catalogue.service";
 import {el} from "@angular/platform-browser/testing/src/browser_util";
-
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+declare var grecaptcha: any;
 @Component({
   selector: 'app-acceuil',
   templateUrl: './acceuil.component.html',
@@ -18,13 +19,29 @@ export class AcceuilComponent implements OnInit {
   messageStatus;
   mode: number= 0;
   errorMessage;
-  constructor(private catelogService: CatalogueService, private  routeActive: ActivatedRoute, private route: Router) {
+  captchaError: boolean = false;
+  registerForm: FormGroup;
+  constructor(private catelogService: CatalogueService, private  routeActive: ActivatedRoute, private route: Router,private formBuilder: FormBuilder) {
   }
 
   ngOnInit(): void {
     this.catelogService.curenteSearchUsers = [];
     this.getcatalogue("/categories");
     this.getUsers();
+    const response = grecaptcha.getResponse();
+    if (response.length === 0) {
+      this.captchaError = true;
+      return;
+    }
+    this.registerForm = this.formBuilder.group({
+      txtNom: ['', Validators.required],
+
+      txtEmail: ['', [Validators.required, Validators.email]],
+      txtPhone: ['', [Validators.required, Validators.minLength(8)]],
+      txtMessage: ['', Validators.required],
+    }, {
+
+    });
   }
 
   getcatalogue(url) {
@@ -67,11 +84,17 @@ export class AcceuilComponent implements OnInit {
       this.catelogService.sendForContactMe(value).subscribe(data => {
         console.log("message status", data);
         this.mode = 1;
-        this.route.navigateByUrl('/acceuil')
+        this.route.navigateByUrl('/acceuil');
+        grecaptcha.reset();
+        this.ngOnInit();
       }, err => {
         this.errorMessage = err.error.message;
         this.mode = 0;
         console.log("mode ", this.mode);
       });
     }
+
+// convenience getter for easy access to form fields
+get f() { return this.registerForm.controls; }
+
 }

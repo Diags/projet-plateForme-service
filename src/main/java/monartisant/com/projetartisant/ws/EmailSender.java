@@ -9,6 +9,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
+import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
 @Component
@@ -20,11 +21,26 @@ public class EmailSender {
     private JavaMailSender javaMailSender;
 
     public EmailStatus sendPlainText(String to, String token, String mdp) {
-        return sendM(to, token,  mdp);
+        return sendM(to, token, mdp);
     }
 
-    public EmailStatus sendHtml(String to, String token, String mdp) {
-        return sendM(to, token, mdp );
+    public EmailStatus sendHtml(String to, String subject, String text) throws MessagingException {
+        try {
+            MimeMessage mail = javaMailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(mail, true);
+            helper.setTo(to);
+            helper.setSubject(subject);
+            helper.setText(text, true);
+            javaMailSender.send(mail);
+            LOGGER.info("Send email '{}' to: {}", subject, to);
+            LOGGER.info("SEND STAUS {} =  ", "MESSAGE SENDS");
+            return new EmailStatus(to, subject, text).success();
+        } catch (
+                Exception e) {
+            LOGGER.error(String.format("Problem with sending email to: {}, error message: {}", to, e.getMessage()));
+            return new EmailStatus(to, subject, text).error(e.getMessage());
+        }
+
     }
 
     private EmailStatus sendM(String to, String token, String mdp) {
@@ -35,8 +51,8 @@ public class EmailSender {
 
             String url = "http://localhost:4200";
             String body = "<strong>Activation Process</strong> <br/> <br/>" + "<a href = "
-                    + url + "/confirmregister/"+ token + "> Click on link to finalize your activation </a><br/>" +
-                    "<h4>Password: "+ mdp+"</h4>";
+                    + url + "/confirmregister/" + token + "> Click on link to finalize your activation </a><br/>" +
+                    "<h4>Password: " + mdp + "</h4>";
             helper.setFrom("noreplay@gmail.com");
             helper.setTo(to);
             helper.setSubject("Activation Process");
@@ -45,7 +61,7 @@ public class EmailSender {
 
             javaMailSender.send(mails);
             LOGGER.info("Send email '{}' to: {}", to);
-            LOGGER.info("SEND STAUS {} =  ","MESSAGE SENDS");
+            LOGGER.info("SEND STAUS {} =  ", "MESSAGE SENDS");
             return new EmailStatus(to, "toto", "ok").success();
         } catch (Exception e) {
             LOGGER.error(String.format("Problem with sending email to: {}, error message: {}", to, e.getMessage()));

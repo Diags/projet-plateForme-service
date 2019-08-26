@@ -355,7 +355,7 @@ public class UserController {
             LOGGER.debug("User {user}= " + userInsert + " token {jwtToken}= " + jwtToken);
             Token verificationToken = tokenRepository.findByTokenTransit(jwtToken);
             LOGGER.info("User is signin ", verificationToken.getUser().getEmail(), "with this token {}", verificationToken.getTokenTransit());
-            emailSender.sendHtml(register.getEmail(), verificationToken.getTokenTransit(), register.getPassword());
+            emailSender.sendPlainText(register.getEmail(), verificationToken.getTokenTransit(), register.getPassword());
             return userInsert;
         } catch (UserNotFoundException users) {
             LOGGER.error(" in {signin} user tried to register with forbidden email {users} :" + users);
