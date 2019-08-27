@@ -4,6 +4,9 @@ iframe{
   padding: 0;
   width: 100%;
 }
+input.valid.touched{
+  border: 2px red  ;
+}
 .equipeContact{
   margin-bottom: 2%;
 }

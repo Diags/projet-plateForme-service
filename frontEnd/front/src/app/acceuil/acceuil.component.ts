@@ -33,15 +33,6 @@ export class AcceuilComponent implements OnInit {
       this.captchaError = true;
       return;
     }
-    this.registerForm = this.formBuilder.group({
-      txtNom: ['', Validators.required],
-
-      txtEmail: ['', [Validators.required, Validators.email]],
-      txtPhone: ['', [Validators.required, Validators.minLength(8)]],
-      txtMessage: ['', Validators.required],
-    }, {
-
-    });
   }
 
   getcatalogue(url) {
@@ -84,17 +75,13 @@ export class AcceuilComponent implements OnInit {
       this.catelogService.sendForContactMe(value).subscribe(data => {
         console.log("message status", data);
         this.mode = 1;
-        this.route.navigateByUrl('/acceuil');
         grecaptcha.reset();
-        this.ngOnInit();
+        this.route.navigateByUrl('/acceuil');
       }, err => {
         this.errorMessage = err.error.message;
         this.mode = 0;
         console.log("mode ", this.mode);
       });
     }
-
-// convenience getter for easy access to form fields
-get f() { return this.registerForm.controls; }
 
 }

@@ -24,28 +24,31 @@
     <form style="max-width:700px;margin:auto" #f="ngForm" (ngSubmit)="onRegister(f.value)"   *ngIf="mode==0">
       <div class="input-container">
         <i class="fa fa-user icon"></i>
-        <input ngModel class="input-field" type="text" placeholder="Name" name="name" required>
+        <input ngModel class="input-field" type="text" placeholder="Nom" name="name" required #name="ngModel">
       </div>
+      <span class="help-block alert-danger" *ngIf="!name.valid && name.touched">Renseignez votre nom si vous souhaitez être contacté par</span>
+
       <div class="input-container">
         <i class="fa fa-user icon"></i>
-        <input ngModel class="input-field" type="text" placeholder="Last Name" name="lasName" required>
+        <input ngModel class="input-field" type="text" placeholder="Prenom" name="lasName" required #lasName="ngModel">
       </div>
+      <span class="help-block alert-danger" *ngIf="!lasName.valid && lasName.touched">Renseignez votre prenom si vous souhaitez être contacté par</span>
       <div class="input-container">
         <i class="fa fa-envelope icon"></i>
-        <input ngModel class="input-field" type="text" placeholder="Email" name="email" required>
+        <input ngModel class="input-field" type="text" placeholder="Email" name="email" required #email="ngModel">
       </div>
-
+      <span class="help-block alert-danger" *ngIf="!email.valid && email.touched">Renseignez votre email si vous souhaitez être contacté par</span>
       <div class="input-container">
         <i class="fa fa-key icon"></i>
-        <input ngModel class="input-field" type="password" placeholder="Password" name="password" required>
+        <input ngModel class="input-field" type="password" placeholder="Mot de passe" name="password" required #password="ngModel">
       </div>
-
+      <span class="help-block alert-danger" *ngIf="!password.valid && password.touched">Renseignez votre password si vous souhaitez être contacté par</span>
       <div class="input-container">
         <i class="fa fa-key icon"></i>
-        <input ngModel class="input-field" type="password" placeholder="confirm Password" name="confirmPassword" required>
+        <input ngModel class="input-field" type="password" placeholder="Confirmer le mot de passe" name="confirmPassword" required #confirmPassword="ngModel">
       </div>
-
-      <button type="submit" class="btn w3-center" [disabled]="!f.valid"><i [ngClass]="{'fab-li fab fa-spinner fa-spin': f.valid ? true:false}" style="background-color: red"></i> Register</button>
+      <span class="help-block alert-danger" *ngIf="!confirmPassword.valid && confirmPassword.touched">Renseignez votre confirmer si vous souhaitez être contacté par</span>
+      <button type="submit" class="btn w3-center" [disabled]="!f.form.valid"><i [ngClass]="{'fab-li fab fa-spinner fa-spin': f.form.valid ? true:false}" style="background-color: red"></i> Register</button>
     </form>
   </div>
 

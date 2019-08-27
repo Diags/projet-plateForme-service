@@ -14,7 +14,9 @@ input[type=text], input[type=password], input[type=tel] {
   border: none;
   background: #f1f1f1;
 }
-
+input.valid.touched{
+  border: 2px red  ;
+}
 .seletDown select {
   width: 100%;
   padding: 15px;

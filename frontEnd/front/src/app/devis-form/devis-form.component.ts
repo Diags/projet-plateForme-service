@@ -17,7 +17,7 @@ export class DevisFormComponent implements OnInit {
   ngOnInit() {
   }
 
-  sendEmailForDevis(dataForm: any) {
+  sendEmailForDevis(dataForm) {
     this.loading = true;
     console.log("formData==>  ", dataForm);
     this.catelogService.sendEmail(dataForm).subscribe(data => {

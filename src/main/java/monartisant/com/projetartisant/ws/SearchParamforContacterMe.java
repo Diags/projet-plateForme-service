@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @NoArgsConstructor
 public class SearchParamforContacterMe {
     private String name;
-    private String mail;
-    private String tell;
+    private String email;
+    private String tel;
     private String message;
 }

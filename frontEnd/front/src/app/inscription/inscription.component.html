@@ -17,7 +17,7 @@
           des vérifications.
         </div>
       </div>
-      <form #f="ngForm" *ngIf="categories && mode ===1" >
+      <form #f="ngForm" *ngIf="categories && mode ===1" (ngSubmit)="addProfessional(f.value)" >
         <div class="metier-africa-add-artisan-form-container">
           <div class="metier-africa-add-artisan-form-2-full">
             <div class="metier-africa-add-artisan-form-2-content">
@@ -33,9 +33,10 @@
                   </div>
                 </div>
                 <div class="metier-africa-add-artisan-form-input-content">
-                  <input ngModel name="entreprise"  data-vv-as="nom de l’entreprise " placeholder="Entrez du texte" class="uk-input metier-africa-add-artisan-form-input"
-                         data-vv-id="1" aria-required="true" aria-invalid="false">
+                  <input type="text" ngModel name="entreprise"  data-vv-as="nom de l’entreprise " placeholder="Entrez du texte" class="uk-input metier-africa-add-artisan-form-input" data-vv-id="1" aria-required="true" aria-invalid="false"  #entreprise="ngModel">
                 </div>
+                <span class="help-block alert-danger" *ngIf="!entreprise.valid && entreprise.touched">Renseignez votre raison </span>
+
                 <div class="metier-africa-form-show-error-msg-txt" style="display: none;"></div>
               </div>
               <div class="metier-africa-add-artisan-form-label-and-input">
@@ -62,7 +63,10 @@
                 <div class="metier-africa-add-artisan-form-input-content">
                   <input ngModel  name="raison" data-vv-as="raison sociale "placeholder="ETS, SARL, SA..."
                          class="uk-input metier-africa-add-artisan-form-input"   data-vv-id="3" aria-required="true"
-                         aria-invalid="false"></div>
+                         aria-invalid="false" #raison="ngModel">
+                  <span class="help-block alert-danger" *ngIf="!raison.valid && raison.touched">Renseignez votre raison </span>
+
+                </div>
                 <div class="metier-africa-form-show-error-msg-txt" style="display: none;"></div>
               </div>
               <div class="metier-africa-add-artisan-form-label-and-input">
@@ -73,7 +77,10 @@
                 </div>
                 <div class="metier-africa-add-artisan-form-input-content">
                   <input ngModel name="ifu" data-vv-as="iFU/RCM " placeholder="Entrez du texte" class="uk-input metier-africa-add-artisan-form-input"
-                         data-vv-id="4" aria-required="true" aria-invalid="false"></div>
+                         data-vv-id="4" aria-required="true" aria-invalid="false" #ifu="ngModel" >
+                  <span class="help-block alert-danger" *ngIf="!ifu.valid && ifu.touched">Renseignez votre ifu </span>
+
+                </div>
                 <div class="metier-africa-form-show-error-msg-txt" style="display: none;"></div>
               </div>
               <div class="metier-africa-add-artisan-form-label-and-input">
@@ -85,7 +92,8 @@
                 <div class="uk-inline metier-africa-add-artisan-form-input-content">
                  <input ngModel name="jour" data-vv-as="jours d'ouvertures " placeholder="Choisissez un ou plusieurs jours"
                   class="uk-input metier-africa-add-artisan-form-input" data-vv-id="5" aria-required="true"
-                  aria-invalid="false">
+                  aria-invalid="false" #jour="ngModel">
+                  <span class="help-block alert-danger" *ngIf="!jour.valid && jour.touched">Renseignez vos jours </span>
                 </div>
               </div>
               <div class="metier-africa-add-artisan-form-label-and-input">
@@ -110,7 +118,8 @@
                   </div>
                 </div>
                 <div class="metier-africa-add-artisan-form-input-content">
-                  <input ngModel type="number"  name="cout" data-vv-as="coût horaire " placeholder="Précisez votre coût de travail" class="uk-input metier-africa-add-artisan-form-input" data-vv-id="7" aria-required="true" aria-invalid="false">
+                  <input ngModel type="number"  name="cout" data-vv-as="coût horaire " placeholder="Précisez votre coût de travail" class="uk-input metier-africa-add-artisan-form-input" data-vv-id="7" aria-required="true" aria-invalid="false"  #cout="ngModel">
+                  <span class="help-block alert-danger" *ngIf="!cout.valid && cout.touched">Renseignez votre cout </span>
                 </div>
                 <div class="metier-africa-form-show-error-msg-txt" style="display: none;"></div>
               </div>
@@ -137,7 +146,9 @@
                 <div class="metier-africa-add-artisan-form-input-content">
                   <input type="number" ngModel name="experience" data-vv-as="nombre d'années d'expérience" placeholder="Entrez du texte"
                          class="uk-input metier-africa-add-artisan-form-input" data-vv-id="9" aria-required="true"
-                         aria-invalid="false"></div>
+                         aria-invalid="false" #experience="ngModel">
+                  <span class="help-block alert-danger" *ngIf="!experience.valid && experience.touched">Renseignez votre experience </span>
+                </div>
                 <div class="metier-africa-form-show-error-msg-txt" style="display: none;"></div>
               </div>
             </div>
@@ -158,7 +169,10 @@
                 </div>
                 <div class="metier-africa-add-artisan-form-input-content">
                   <input type="number" ngModel name="telephone" data-vv-as="numéro de téléphone 1" placeholder="Entrez du texte" class="uk-input metier-africa-add-artisan-form-input"
-                         data-vv-id="10" aria-required="true" aria-invalid="false"></div>
+                         data-vv-id="10" aria-required="true" aria-invalid="false"  #telephone="ngModel">
+                  <span class="help-block alert-danger" *ngIf="!telephone.valid && telephone.touched">Renseignez votre experience </span>
+
+                </div>
                 <div class="metier-africa-form-show-error-msg-txt" style="display: none;"></div>
               </div>
               <div class="metier-africa-add-artisan-form-label-and-input">
@@ -224,7 +238,7 @@
               <button class="uk-button metier-africa-add-artisan-full-body-avis-footer-button-remove">
                 Annuler
               </button>
-              <button class="uk-button metier-africa-add-artisan-full-body-avis-footer-button-apply" (click) = "addProfessional(f.value)">
+              <button class="uk-button metier-africa-add-artisan-full-body-avis-footer-button-apply" type="submit" [disabled]="f.form.invalid">
                 Soumettre
               </button>
             </div>

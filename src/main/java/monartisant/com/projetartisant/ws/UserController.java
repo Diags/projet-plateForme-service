@@ -115,7 +115,7 @@ public class UserController {
     @ApiOperation(value = "send Email of user to professionel")
     @PostMapping("/sendemailcontacterme")
     public String sendEmailContactMe(@RequestBody SearchParamforContacterMe param) throws Exception {
-        return sendMail(param.getName(), param.getMail(), param.getMessage());
+        return sendMail(param.getName(), param.getEmail(), param.getMessage());
     }
 
     private String sendMail(String... arg) throws Exception {

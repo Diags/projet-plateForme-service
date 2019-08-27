@@ -31,9 +31,11 @@
           <p>Or sign in manually:</p>
         </div>
 
-        <input ngModel type="text" name="email" placeholder="Email" required>
-        <input ngModel type="password" name="password" placeholder="Password" required>
-        <button class="w3-button  w3-section w3-center" type="submit">Login</button>
+        <input ngModel type="text" name="email" placeholder="Email" required #email="ngModel">
+        <span class="help-block alert-danger" *ngIf="!email.valid && email.touched">Renseignez votre email si vous souhaitez être contacté par</span>
+        <input ngModel type="password" name="password" placeholder="Password" required #password="ngModel">
+        <span class="help-block alert-danger" *ngIf="!password.valid && password.touched">Renseignez votre password si vous souhaitez être contacté par</span>
+        <button class="w3-button  w3-section w3-center" type="submit" [disabled]="f.form.invalid">Login</button>
       </div>
     </div>
     <div class="row">
@@ -45,8 +47,6 @@
     </div>
     </div>
   </form>
-
 </div>
-
 </div>
 
