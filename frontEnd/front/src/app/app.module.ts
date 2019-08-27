@@ -27,6 +27,8 @@ import {AgmCoreModule} from "@agm/core";
 import { MoncompteComponent } from './moncompte/moncompte.component';
 import { ConfimationRegistrationComponent } from './confimation-registration/confimation-registration.component';
 import { ReservationComponent } from './reservation/reservation.component';
+import { CalendarComponent } from './calendar/calendar.component';
+import {FullCalendarModule} from "@fullcalendar/angular";
 
 @NgModule({
   declarations: [
@@ -47,7 +49,8 @@ import { ReservationComponent } from './reservation/reservation.component';
     ProfessionalLoginComponent,
     MoncompteComponent,
     ConfimationRegistrationComponent,
-    ReservationComponent
+    ReservationComponent,
+    CalendarComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +63,8 @@ import { ReservationComponent } from './reservation/reservation.component';
     BrowserAnimationsModule,
     AgmCoreModule.forRoot({
       // apiKey:'AIzaSyAMymYQhzJM0rrovcmYBKg1-EshggTfcic'
-    })
+    }),
+    FullCalendarModule
   ],
   providers: [CatalogueService],
   bootstrap: [AppComponent]

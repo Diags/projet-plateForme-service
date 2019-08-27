@@ -20,6 +20,7 @@ import {ProfessionalLoginComponent} from "./professional-login/professional-logi
 import {MoncompteComponent} from "./moncompte/moncompte.component";
 import {ConfimationRegistrationComponent} from "./confimation-registration/confimation-registration.component";
 import {ReservationComponent} from "./reservation/reservation.component";
+import {CalendarComponent} from "./calendar/calendar.component";
 const routes: Routes = [
   {path:"login",component:LoginComponent},
   {path:"registration",component:RegistrationComponent},
@@ -27,6 +28,7 @@ const routes: Routes = [
   {path:"loginpro",component:ProfessionalLoginComponent},
   {path:"moncompte",component:MoncompteComponent},
   {path:"reservation",component:ReservationComponent},
+  {path:"calendar",component:CalendarComponent},
   {path:"catalogue/:p1/:p2",component:CatalogueComponent},
   {path:"devis",component:DevisFormComponent},
   {path:"a-propos",component:AProposComponent},
