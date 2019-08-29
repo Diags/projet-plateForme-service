@@ -6,9 +6,7 @@
   margin: 0 auto;
   max-width: 900px;
 }
-.usersPanel {
+.container {
   margin-top: 5%;
-  padding: 2%;
-  display: inline-block;
 
 }

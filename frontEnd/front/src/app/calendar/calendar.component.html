@@ -1,5 +1,7 @@
+<div class="container">
 
-<div class='app usersPanel'>
+
+<div class='app'>
 
   <div class='app-top'>
     <button (click)='toggleVisible()'>toggle visible</button>
@@ -11,7 +13,7 @@
   <div class='app-calendar' *ngIf="calendarVisible">
     <full-calendar
       #calendar
-      defaultView="dayGridMonth"
+      defaultView="listWeek"
       [header]="{
         left: 'prev,next today',
         center: 'title',
@@ -21,7 +23,10 @@
       [weekends]="calendarWeekends"
       [events]="calendarEvents"
       (dateClick)="handleDateClick($event)"
+      [droppable]="true"
+      [editable]="true"
     ></full-calendar>
   </div>
 
+</div>
 </div>

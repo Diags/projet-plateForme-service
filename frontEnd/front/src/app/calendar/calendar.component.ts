@@ -3,6 +3,8 @@ import { EventInput } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGrigPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
+import listPlugin from '@fullcalendar/list';
+
 import {FullCalendarComponent} from "@fullcalendar/angular"; // for dateClick
 @Component({
   selector: 'app-calendar',
@@ -19,7 +21,7 @@ export class CalendarComponent implements OnInit {
   @ViewChild('calendar') calendarComponent: FullCalendarComponent; // the #calendar in the template
 
   calendarVisible = true;
-  calendarPlugins = [dayGridPlugin, timeGrigPlugin, interactionPlugin];
+  calendarPlugins = [dayGridPlugin, timeGrigPlugin, interactionPlugin, listPlugin];
   calendarWeekends = true;
   calendarEvents: EventInput[] = [
     { title: 'Event Now', start: new Date() }
