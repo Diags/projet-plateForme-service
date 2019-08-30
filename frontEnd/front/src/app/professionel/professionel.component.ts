@@ -17,7 +17,7 @@ export class ProfessionelComponent implements OnInit {
   userCommentaires;
   sendUser;
   iscomment = false;
-
+showAgenda:boolean = false;
   constructor(private catalogueService: CatalogueService, private routerActivated: ActivatedRoute, private router: Router) {
     // this.router.params.subscribe(params => this.artisantDetail = params.id)
     //   console.log(this.router.snapshot.paramMap.get('id'))
@@ -81,6 +81,8 @@ export class ProfessionelComponent implements OnInit {
     }, error => {
       console.log(error);
     });
-    this.ngOnInit();
+  }
+  isShow(){
+     this.showAgenda = !this.showAgenda;
   }
 }

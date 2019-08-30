@@ -7,39 +7,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0  maximum-scale=1.0, user-scalable=no">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-  <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
-  <link href='fullcalendar/core/main.css' rel='stylesheet' />
-  <link href='fullcalendar/timegrid/main.css' rel='stylesheet' />
-
-  <script src='fullcalendar/core/main.js'></script>
-  <script src='fullcalendar/timegrid/main.js'></script>
-  <script src='fullcalendar/resource-common/main.js'></script>
-  <script src='fullcalendar/resource-timegrid/main.js'></script>
-
+  <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css'
+        integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+  <link rel="stylesheet" type="text/css" href="https://www.jqwidgets.com/public/jqwidgets/styles/jqx.base.css">
+  <link rel="stylesheet" type="text/css" href="https://www.jqwidgets.com/public/jqwidgets/styles/jqx.material.css">
 </head>
 <body>
-  <app-root></app-root>
-  <script>
-    function currentDiv(n) {
-      showDivs(slideIndex = n);
-    }
+<app-root></app-root>
+<script>
+  function currentDiv(n) {
+    showDivs(slideIndex = n);
+  }
 
-    function showDivs(n) {
-      var i;
-      var x = document.getElementsByClassName("mySlides");
-      var dots = document.getElementsByClassName("demo");
-      if (n > x.length) {slideIndex = 1}
-      if (n < 1) {slideIndex = x.length}
-      for (i = 0; i < x.length; i++) {
-        x[i].style.display = "none";
-      }
-      for (i = 0; i < dots.length; i++) {
-        dots[i].className = dots[i].className.replace(" w3-opacity-off", "");
-      }
-      x[slideIndex-1].style.display = "block";
-      dots[slideIndex-1].className += " w3-opacity-off";
+  function showDivs(n) {
+    var i;
+    var x = document.getElementsByClassName("mySlides");
+    var dots = document.getElementsByClassName("demo");
+    if (n > x.length) {
+      slideIndex = 1
     }
-  </script>
-  <script src='https://www.google.com/recaptcha/api.js'></script>
+    if (n < 1) {
+      slideIndex = x.length
+    }
+    for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none";
+    }
+    for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" w3-opacity-off", "");
+    }
+    x[slideIndex - 1].style.display = "block";
+    dots[slideIndex - 1].className += " w3-opacity-off";
+  }
+</script>
+<script src='https://www.google.com/recaptcha/api.js'></script>
 </body>
 </html>

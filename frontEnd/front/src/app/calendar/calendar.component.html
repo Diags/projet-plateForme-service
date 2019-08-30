@@ -1,32 +1,12 @@
-<div class="container">
+<jqxScheduler #scheduler
+              [width]="getWidth()" [height]="600"
+              [date]="date"
+              [source]="dataAdapter"
+              [dayNameFormat]="'abbr'"
+              [showLegend]="true"
+              [view]="'agendaView'"
+              [resources]="resources"
+              [views]="views"
+              [appointmentDataFields]="appointmentDataFields">
+</jqxScheduler>
 
-
-<div class='app'>
-
-  <div class='app-top'>
-    <button (click)='toggleVisible()'>toggle visible</button>
-    <button (click)='toggleWeekends()'>toggle weekends</button>
-    <button (click)='gotoPast()'>go to a date in the past</button>
-    (also, click a date/time to add an event)
-  </div>
-
-  <div class='app-calendar' *ngIf="calendarVisible">
-    <full-calendar
-      #calendar
-      defaultView="listWeek"
-      [header]="{
-        left: 'prev,next today',
-        center: 'title',
-        right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
-      }"
-      [plugins]="calendarPlugins"
-      [weekends]="calendarWeekends"
-      [events]="calendarEvents"
-      (dateClick)="handleDateClick($event)"
-      [droppable]="true"
-      [editable]="true"
-    ></full-calendar>
-  </div>
-
-</div>
-</div>

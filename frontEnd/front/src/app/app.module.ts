@@ -29,7 +29,7 @@ import { ConfimationRegistrationComponent } from './confimation-registration/con
 import { ReservationComponent } from './reservation/reservation.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import {FullCalendarModule} from "@fullcalendar/angular";
-
+import { jqxSchedulerModule } from 'jqwidgets-ng/jqxscheduler';
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,7 +64,8 @@ import {FullCalendarModule} from "@fullcalendar/angular";
     AgmCoreModule.forRoot({
       // apiKey:'AIzaSyAMymYQhzJM0rrovcmYBKg1-EshggTfcic'
     }),
-    FullCalendarModule
+    FullCalendarModule,
+    jqxSchedulerModule
   ],
   providers: [CatalogueService],
   bootstrap: [AppComponent]
