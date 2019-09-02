@@ -152,4 +152,7 @@ export class CatalogueService {
   getCommentaires(userId) {
     return this.http.get(this.host+"/users/"+userId+"/userCommentaires");
   }
+
+  getEvents(values) {
+    return this.http.post(this.host+"/",values)  }
 }

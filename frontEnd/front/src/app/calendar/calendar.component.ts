@@ -1,15 +1,29 @@
-import { Component, ViewChild, AfterViewInit,OnInit } from '@angular/core';
-import { jqxSchedulerComponent } from 'jqwidgets-ng/jqxscheduler';
+import {AfterViewInit, Component, EventEmitter, SimpleChanges, ViewChild} from '@angular/core';
+import {jqxSchedulerComponent} from 'jqwidgets-ng/jqxscheduler';
+import {CatalogueService} from "../catalogue.service";
+
 @Component({
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.css']
 })
 export class CalendarComponent implements AfterViewInit {
+  events;
+  appointments;
+  appointmentChanges:EventEmitter<{}> = new EventEmitter<{}>();
+  public constructor(private catelogService: CatalogueService) {
+
+  }
+
   @ViewChild('scheduler') myScheduler: jqxSchedulerComponent;
 
   ngAfterViewInit() {
     this.myScheduler.ensureAppointmentVisible('id1');
+    //console.log(  this.myScheduler.getSelection(),"selected");
+    console.log(  this.myScheduler.getDataAppointments(),"getAppointgetDataAppointmentsments");
+    console.log(  this.myScheduler.setAppointmentProperty( 'id4', 'readOnly', true),"settinggg");
+    console.log(  this.myScheduler.changedAppointments(),"hello these are changed");
+
   }
 
   getWidth(): any {
@@ -20,7 +34,30 @@ export class CalendarComponent implements AfterViewInit {
     return 800;
   }
 
+  getAllEventsInbBD() {
+    let appointment1 = {};
+    for (let c of Object.entries(this.myScheduler.changedAppointments())) {
+      // @ts-ignore
+      let changedAppointment =  c[0].appointment.originalData;
+     appointment1 = {
+        id: changedAppointment.id,
+        description: changedAppointment.description,
+        location: '',
+        subject: changedAppointment.subject,
+        calendar: changedAppointment.calendar,
+        start: changedAppointment.start,
+        end: changedAppointment.end
+      }
+      console.log(c, "chhhhhhhhh");
+    }
+    this.catelogService.getEvents(appointment1).subscribe(resp => {
+      this.events = resp;
+      this.appointments.push(JSON.parse(this.events));
+    })
+  }
+
   generateAppointments() {
+
     let appointments = new Array();
     let appointment1 = {
       id: 'id1',
@@ -28,7 +65,7 @@ export class CalendarComponent implements AfterViewInit {
       location: '',
       subject: 'Quarterly Project Review Meeting',
       calendar: 'Room 1',
-      start: new Date(2018, 10, 23, 9, 0, 0),
+      start: new Date(2018, 10, 23, 8, 0, 0),
       end: new Date(2018, 10, 23, 16, 0, 0)
     }
     let appointment2 = {
