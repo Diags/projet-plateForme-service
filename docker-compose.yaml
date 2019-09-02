@@ -1,0 +1,36 @@
+version: '3.7'
+
+services:
+  springapi:
+#    build:
+#      context: ./
+#      dockerfile: Dockerfile
+    image: openjdk:10-jre-slim
+    container_name: artisan-service-platform
+    ports:
+      - 8080:8080
+    volumes:
+      - ./target/artisan-service-platform.jar:/artisan-service-platform.jar
+    command: ["java", "-jar", "artisan-service-platform.jar"]
+    networks:
+      - frontendNetwork
+
+  angular:
+#    build:
+#      context: ./
+#      dockerfile: ./frontEnd/front/Dockerfile
+    image: nginx:alpine
+    restart: always
+    container_name: angular
+    ports:
+      - 4200:80
+    depends_on:
+      - springapi
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./frontEnd/front/angularapp:/usr/share/nginx/html
+    networks:
+      - frontendNetwork
+
+networks:
+  frontendNetwork:
