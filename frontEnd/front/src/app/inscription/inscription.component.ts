@@ -30,7 +30,6 @@ export class InscriptionComponent implements OnInit {
   getcatalogue() {
     this.catelogService.getCatalogue("/categories").subscribe(data => {
       this.categories = data;
-      console.log("inscriptionTest ", data);
     }, err => {
       console.log(err);
     })
@@ -38,7 +37,6 @@ export class InscriptionComponent implements OnInit {
 
   getPays(url) {
     this.catelogService.getPays(url).subscribe(resp => {
-      console.log("les items ville --->", resp);
       this.pays = resp;
     }, error => {
       console.log(error);
@@ -46,7 +44,6 @@ export class InscriptionComponent implements OnInit {
   }
   getVilles(url) {
     this.catelogService.getVilles(url).subscribe(resp => {
-      console.log("les items ville --->", resp);
       this.villes = resp;
     }, error => {
       console.log(error);
@@ -59,13 +56,10 @@ export class InscriptionComponent implements OnInit {
         return   value.value;});
     }
 
-    console.log("les forms data --->", formData);
     this.catelogService.addProfessional(formData).subscribe(resp => {
       this.addUsers = resp;
-      console.log("addUsers ", this.addUsers);
       this.mode = 1;
     },error1 => {
-      console.log(error1);
       this.mode = 0;
       this.message = error1.error.message;
     });

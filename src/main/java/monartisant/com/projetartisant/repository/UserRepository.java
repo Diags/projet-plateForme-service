@@ -1,5 +1,6 @@
 package monartisant.com.projetartisant.repository;
 
+import monartisant.com.projetartisant.model.Event;
 import monartisant.com.projetartisant.model.User;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -29,4 +30,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     User findFirstByEmail(String userEmail);
     User findByEmail(String userEmail);
     User findByEmailAndPassword(String email, String password);
+    @Query("select u.events from User u  where  u.id=:id")
+    List<Event> findEventsById(@Param("id") Long id);
 }

@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, EventEmitter, SimpleChanges, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
 import {jqxSchedulerComponent} from 'jqwidgets-ng/jqxscheduler';
 import {CatalogueService} from "../catalogue.service";
 
@@ -10,7 +10,9 @@ import {CatalogueService} from "../catalogue.service";
 export class CalendarComponent implements AfterViewInit {
   events;
   appointments;
-  appointmentChanges:EventEmitter<{}> = new EventEmitter<{}>();
+  @Output() appointmentChanges: EventEmitter<String> = new EventEmitter<String>();
+  @Input() userId;
+
   public constructor(private catelogService: CatalogueService) {
 
   }
@@ -18,11 +20,21 @@ export class CalendarComponent implements AfterViewInit {
   @ViewChild('scheduler') myScheduler: jqxSchedulerComponent;
 
   ngAfterViewInit() {
-    this.myScheduler.ensureAppointmentVisible('id1');
-    //console.log(  this.myScheduler.getSelection(),"selected");
-    console.log(  this.myScheduler.getDataAppointments(),"getAppointgetDataAppointmentsments");
-    console.log(  this.myScheduler.setAppointmentProperty( 'id4', 'readOnly', true),"settinggg");
-    console.log(  this.myScheduler.changedAppointments(),"hello these are changed");
+    this.generateAppointments(this.userId);
+        // //console.log(  this.myScheduler.getSelection(),"selected");
+    console.log(this.myScheduler.changedAppointments(), "getAppointgetDataAppointmentsments");
+    // console.log(  this.myScheduler.onAppointmentChange,"getAppointgetDataAppointmentsments");
+
+  }
+
+  checkconnection() {
+    if (this.catelogService.isAuthentificated()) {
+      return true;
+    } else {
+      this.myScheduler.setAppointmentProperty(this.events, 'readOnly', false);
+
+      return false;
+    }
 
   }
 
@@ -35,94 +47,29 @@ export class CalendarComponent implements AfterViewInit {
   }
 
   getAllEventsInbBD() {
-    let appointment1 = {};
-    for (let c of Object.entries(this.myScheduler.changedAppointments())) {
-      // @ts-ignore
-      let changedAppointment =  c[0].appointment.originalData;
-     appointment1 = {
-        id: changedAppointment.id,
-        description: changedAppointment.description,
-        location: '',
-        subject: changedAppointment.subject,
-        calendar: changedAppointment.calendar,
-        start: changedAppointment.start,
-        end: changedAppointment.end
-      }
-      console.log(c, "chhhhhhhhh");
-    }
-    this.catelogService.getEvents(appointment1).subscribe(resp => {
-      this.events = resp;
-      this.appointments.push(JSON.parse(this.events));
-    })
+
   }
 
-  generateAppointments() {
+  generateAppointments(userId) {
+    this.catelogService.getEvents(userId).subscribe(resp => {
+      this.events = resp;
+      console.log(resp, "evenenenents");
+      for (let i = 0; i < this.events.length; i++) {
+        this.myScheduler.addAppointment(this.events[i]);
+        console.log(this.events[i], "evenenenents");
+        this.myScheduler.editDialog(this.checkconnection())
+        this.myScheduler.setAppointmentProperty(this.events[i].id, 'draggable', false);
+        this.myScheduler.setAppointmentProperty(this.events[i].id, 'readOnly', false);
+        this.myScheduler.setAppointmentProperty(this.events[i].id, 'resizable', false);
 
-    let appointments = new Array();
-    let appointment1 = {
-      id: 'id1',
-      description: 'George brings projector for presentations.',
-      location: '',
-      subject: 'Quarterly Project Review Meeting',
-      calendar: 'Room 1',
-      start: new Date(2018, 10, 23, 8, 0, 0),
-      end: new Date(2018, 10, 23, 16, 0, 0)
-    }
-    let appointment2 = {
-      id: 'id2',
-      description: '',
-      location: '',
-      subject: 'IT Group Mtg.',
-      calendar: 'Room 2',
-      start: new Date(2018, 10, 24, 10, 0, 0),
-      end: new Date(2018, 10, 24, 15, 0, 0)
-    }
-    let appointment3 = {
-      id: 'id3',
-      description: '',
-      location: '',
-      subject: 'Course Social Media',
-      calendar: 'Room 3',
-      start: new Date(2018, 10, 21, 11, 0, 0),
-      end: new Date(2018, 10, 21, 13, 0, 0)
-    }
-    let appointment4 = {
-      id: 'id4',
-      description: '',
-      location: '',
-      subject: 'New Projects Planning',
-      calendar: 'Room 2',
-      start: new Date(2018, 10, 23, 16, 0, 0),
-      end: new Date(2018, 10, 23, 18, 0, 0)
-    }
-    let appointment5 = {
-      id: 'id5',
-      description: '',
-      location: '',
-      subject: 'Interview with James',
-      calendar: 'Room 1',
-      start: new Date(2018, 10, 25, 15, 0, 0),
-      end: new Date(2018, 10, 25, 17, 0, 0)
-    }
-    let appointment6 = {
-      id: 'id6',
-      description: '',
-      location: '',
-      subject: 'Interview with Nancy',
-      calendar: 'Room 4',
-      start: new Date(2018, 10, 26, 14, 0, 0),
-      end: new Date(2018, 10, 26, 16, 0, 0)
-    }
-    appointments.push(appointment1);
-    appointments.push(appointment2);
-    appointments.push(appointment3);
-    appointments.push(appointment4);
-    appointments.push(appointment5);
-    appointments.push(appointment6);
-    return appointments;
+
+      }
+    }, error => {
+      console.log(error, "errrroorr")
+    });
   };
 
-  date: any = new jqx.date(2018, 11, 23);
+  date: any = new jqx.date();
   source: any =
     {
       dataType: 'array',
@@ -136,7 +83,7 @@ export class CalendarComponent implements AfterViewInit {
         {name: 'end', type: 'date'}
       ],
       id: 'id',
-      localData: this.generateAppointments()
+      localData: this.events
     };
   dataAdapter: any = new jqx.dataAdapter(this.source);
   resources: any =

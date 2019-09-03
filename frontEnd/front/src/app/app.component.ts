@@ -45,7 +45,6 @@ export class AppComponent implements OnInit {
   }
 
   isAuthentifed(){
-    console;log(this.catelogService.isAuthentificated());
     return this.catelogService.isAuthentificated();
   }
 

@@ -1,5 +1,7 @@
+<div *ngIf="user">
+
 <div class="row usersPanel">
-  <div class="profContainer " *ngIf="user">
+  <div class="profContainer " >
     <div class="col-md-3">
 
       <div class="w3-card w3-center">
@@ -118,7 +120,10 @@
     </div>
     <div class="col-md-2">
       <button type="button" [ngClass]="{'butShow': showAgenda? true:false}"  class="btn btn-lg btn-primary button" (click)="isShow()"> Prendre rendez-vous</button>
-     <div *ngIf="showAgenda" style="padding-top: 5%"><app-calendar>Loading...</app-calendar> </div> </div>
+     <div *ngIf="showAgenda" style="padding-top: 5%">
+       <app-calendar [userId]="user.id"></app-calendar>
+     </div>
+    </div>
     <div class="col-md-2">
       <button type="button" class="btn btn-lg btn-primary button" (click)="getDevis()"> Demande de devis</button>
     </div>
@@ -175,4 +180,6 @@
       </div>
     </div>
   </div>
+</div>
+
 </div>

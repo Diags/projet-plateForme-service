@@ -84,7 +84,10 @@ export class CatalogueService {
   }
 
   login(value) {
-    return this.http.post(this.host + "/signin", value, {observe: 'response', headers:{'Content-Type': 'application/json'}})
+    return this.http.post(this.host + "/signin", value, {
+      observe: 'response',
+      headers: {'Content-Type': 'application/json'}
+    })
   }
 
   saveToken(jwtToken: string) {
@@ -103,13 +106,13 @@ export class CatalogueService {
 
   isAdmin() {
     return this.roles.find(p => {
-      return p == "ADMINISTRATOR"
+      return this.isAuthentificated() &&  p == "ADMINISTRATOR"
     });
   }
 
   isUser() {
     return this.roles.find(p => {
-      return p == "USER"
+      return this.isAuthentificated() &&  p == "USER"
     });
   }
 
@@ -119,7 +122,7 @@ export class CatalogueService {
   }
 
   isAuthentificated() {
-    return this.roles ;
+    return this.roles;
   }
 
   logout() {
@@ -146,13 +149,20 @@ export class CatalogueService {
   }
 
   sendCommentaire(commentaire) {
-    return this.http.post(this.host+"/loginuser",commentaire)
+    return this.http.post(this.host + "/loginuser", commentaire)
   }
 
   getCommentaires(userId) {
-    return this.http.get(this.host+"/users/"+userId+"/userCommentaires");
+    return this.http.get(this.host + "/users/" + userId + "/userCommentaires");
   }
 
-  getEvents(values) {
-    return this.http.post(this.host+"/",values)  }
+  updateEvents(values) {
+    return this.http.post(this.host + "/", values)
+  }
+
+  getEvents(userId) {
+    console.log("user ", userId);
+    return this.http.get(this.host +"/events/"+userId);
+  }
+
 }

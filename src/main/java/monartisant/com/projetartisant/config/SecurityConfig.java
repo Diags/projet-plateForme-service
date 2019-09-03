@@ -39,7 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers( "/login/**","/signin/**","/photouser/**","/categories/**","/users/**","/professions/**","/addprofessional/**",
                         "/search/**","/updatenote/**","/allUsers/**","/sendemail/**","/sendemailcontacterme/**","/searchuserbyville/**","/updateusermdp/**"
-                ,"/loginuser/**","/confirmregister/**","/register/**","/photoprofession/**","/photocategory/**","/categorybyid/**")
+                ,"/loginuser/**","/confirmregister/**","/register/**","/photoprofession/**","/photocategory/**","/categorybyid/**","/events/**")
                 .permitAll()
 //                .antMatchers(HttpMethod.GET, "/allUsers/**","professions/**","users/**","photouser/**","categories/**","photoprofession/**","photocategory/**","categorybyid/**","villes/**").permitAll()
 //                .antMatchers(HttpMethod.POST, "/allUsers/**","/professions/**","/users/**","/photouser/**","categories/**","/photoprofession/**","/photocategory/**","/categorybyid/**","/villes/**").permitAll()

@@ -38,7 +38,6 @@ export class ProfessionsDetailComponent implements OnInit {
     if (id == 0) {
       this.usersSearch = this.catalogueService.curenteSearchUsers;
       this.usersFilter = this._listFilter ? this.perFormFilter(this.listFilter) : this.usersSearch;
-      console.log(this.usersFilter[0].addresse);
     this.villeName =   this.catalogueService.curenteSearchUsers[0].adresse.ville;
 
     } else {
@@ -68,8 +67,6 @@ export class ProfessionsDetailComponent implements OnInit {
 
   toggleTel(user) {
     this.currentUser = user;
-    console.log(user);
     this.iscontactChecked = !this.iscontactChecked;
-    console.log("coool", this.iscontactChecked)
   }
 }

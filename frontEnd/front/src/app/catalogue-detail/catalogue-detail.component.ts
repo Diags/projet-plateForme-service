@@ -32,8 +32,6 @@ export class CatalogueDetailComponent implements OnInit {
       this.professions = resp;
       this.idPublic =this.professions._embedded.professions[0].id;
       this.professionsFilter = this._listFilter ? this.perFormFilter(this.listFilter) : this.professions._embedded.professions;
-      console.log("cat professions",this.professions);
-      console.log("this is a ",this.idPublic)
     }, error =>{
       console.log(error);
     });
@@ -47,6 +45,5 @@ export class CatalogueDetailComponent implements OnInit {
   onRatingClicked(message:number
   ):void{
 this.message = message;
-console.log(this.message, "tessssssss");
   }
   }

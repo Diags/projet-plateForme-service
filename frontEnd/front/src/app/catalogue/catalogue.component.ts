@@ -27,7 +27,7 @@ if(val instanceof NavigationEnd){
       this.catelogService.getCatelogById(id).subscribe(data => {
         this.categories = data;
       }, err=> {
-        console.log(err);
+        //console.log(err);
       })
 
   }
@@ -45,7 +45,7 @@ if(val instanceof NavigationEnd){
    this.catelogService.getCatalogue(url).subscribe(data => {
      this.categories = data;
    }, err=> {
-     console.log(err);
+     //console.log(err);
    })
  }
  getUsersBycategories(c){

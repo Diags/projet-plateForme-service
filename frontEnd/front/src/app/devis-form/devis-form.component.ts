@@ -19,16 +19,12 @@ export class DevisFormComponent implements OnInit {
 
   sendEmailForDevis(dataForm) {
     this.loading = true;
-    console.log("formData==>  ", dataForm);
     this.catelogService.sendEmail(dataForm).subscribe(data => {
       this.messageStatus = data;
-      console.log("message status", data);
       this.mode = 1;
-      console.log("mode ", this.mode);
     }, err => {
       this.errorMessage = err.error.message;
       this.mode = 0;
-      console.log("mode ", this.mode);
     });
   }
 

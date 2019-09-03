@@ -18,7 +18,6 @@ export class LoginComponent implements OnInit {
   }
 
   login(value) {
-    console.log("Login user",value);
     this.catalogueService.login(value).subscribe(resp =>{
       let jwtToken = resp.headers.get('Authorization');
       this.user = resp;

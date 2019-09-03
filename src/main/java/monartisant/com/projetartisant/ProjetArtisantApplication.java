@@ -15,6 +15,8 @@ import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @SpringBootApplication
 public class ProjetArtisantApplication implements CommandLineRunner {
@@ -64,7 +66,7 @@ public class ProjetArtisantApplication implements CommandLineRunner {
 
         ArrayList<String> mylist = new ArrayList<String>();
         mylist.add("img_avatar4");
-        ArrayList<String>  villes = new ArrayList<String>();
+        ArrayList<String> villes = new ArrayList<String>();
         villes.add("Bakel");
         villes.add("Bargny");
         villes.add("Bignona");
@@ -112,7 +114,7 @@ public class ProjetArtisantApplication implements CommandLineRunner {
         villes.add("Ziguinchor");
 
 
-        ArrayList<String>  nom = new ArrayList<String>();
+        ArrayList<String> nom = new ArrayList<String>();
         nom.add("Aïdara");
         nom.add("Bathily");
         nom.add("Bayo");
@@ -229,7 +231,6 @@ public class ProjetArtisantApplication implements CommandLineRunner {
         prenom.add("Ousmane ");
         prenom.add("Rokia");
         prenom.add("Yao");
-
 
 
         //--Architecte - BTP - Urbanisme
@@ -475,8 +476,21 @@ public class ProjetArtisantApplication implements CommandLineRunner {
             for (int i = 0; i < 10; i++) {
                 User user = new User();
                 Pays pays = new Pays();
-                List<Date> aa= new ArrayList<>();
-                aa.add( new Date());
+                Event event = new Event();
+                List<Event> listEvents = Stream.of(
+                        new Event(null, "Diaguily brings projector for presentations.", "SENEGAL", "Quarterly Project Review Meeting", "Room 1", new DateTime(2019, 9, 3, 8, 0, 0).toDate(), new DateTime(2019, 9, 3, 10, 0, 0).toDate()),
+                        new Event(null, "Diaguily brings projector for presentations.", "SENEGAL", "URGENCE", "Room 2", new DateTime(2019, 9, 11, 8, 0, 0).toDate(), new DateTime(2019, 9, 12, 8, 0, 0).toDate()),
+                        new Event(null, "Diaguily brings projector for presentations.", "SENEGAL", "COULAGE", "Room 3", new DateTime(2019, 9, 5, 10, 0, 0).toDate(), new DateTime(2019, 9, 11, 8, 0, 0).toDate()),
+                        new Event(null, "Diaguily brings projector for presentations.", "SENEGAL", "PEINTRE", "Room 4", new DateTime(2019, 9, 10, 8, 0, 0).toDate(), new DateTime(2019, 9, 11, 8, 0, 0).toDate())
+
+                ).collect(Collectors.toList());
+                event.setDescription("Diaguily brings projector for presentations.");
+                event.setLocation("SENEGAL");
+                event.setSubject("Quarterly Project Review Meeting");
+                event.setCalendar("Room 5");
+                event.setStartDate(new DateTime(2019, 9, 10, 8, 0, 0).toDate());
+                event.setEndDate(new DateTime(2019, 9, 11, 10, 0, 0).toDate());
+                listEvents.add(event);
                 UserAgenda agenda = new UserAgenda();
                 UserCommentaire userCommentaire = new UserCommentaire();
                 userCommentaire.setCreateBy("diags");
@@ -506,13 +520,14 @@ public class ProjetArtisantApplication implements CommandLineRunner {
                 user.setNote(3.5);
                 user.setProfession(profession);
                 user.setTele(1980008025 + rd.nextInt(2000001823));
-                user.setEmail(RandomString.make(3)+i+"@gmail.com");
+                user.setEmail(RandomString.make(3) + i + "@gmail.com");
                 user.setPassword(bCryptPasswordEncoder().encode("toto"));
                 user.setRoles(Collections.singleton(RoleEnum.USER));
-                Map<String, List<String>>  coments = new HashMap<>();
+                Map<String, List<String>> coments = new HashMap<>();
                 coments.put(RandomString.make(4), Collections.singletonList("Un artisan parfait je le recommande."));
                 user.setUserCommentaires(Collections.singleton(userCommentaire));
                 user.setUseragenda(agenda);
+                user.setEvents(Collections.singletonList(event));
                 userRepository.save(user);
                 System.out.println(user.getEmail());
             }

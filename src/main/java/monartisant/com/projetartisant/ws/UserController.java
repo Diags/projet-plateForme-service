@@ -5,6 +5,7 @@ import monartisant.com.projetartisant.config.SecurityConstants;
 import monartisant.com.projetartisant.errorHandle.InvalidTokenRequestException;
 import monartisant.com.projetartisant.errorHandle.UserNotFoundException;
 import monartisant.com.projetartisant.model.*;
+import monartisant.com.projetartisant.repository.EventRepository;
 import monartisant.com.projetartisant.repository.TokenRepository;
 import monartisant.com.projetartisant.repository.UserRepository;
 import org.apache.logging.log4j.LogManager;
@@ -57,6 +58,8 @@ public class UserController {
     private EmailSender emailSender;
     @Autowired
     public JavaMailSender emailSendehtml;
+    @Autowired
+    private EventRepository eventRepository;
 
     @ApiOperation(value = "retreive user image from id")
     @GetMapping(path = "/photouser/{id}", produces = MediaType.IMAGE_PNG_VALUE)
@@ -374,4 +377,9 @@ public class UserController {
         } else
             throw new Exception("This message not send");
     }
+    @GetMapping("/events/{id}")
+    public List<Event> getAllEvents(@PathVariable("id") Long id) {
+        return userRepository.findEventsById(id);
+    }
+
 }

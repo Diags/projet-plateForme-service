@@ -93,7 +93,7 @@ public class User {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonBackReference
     private UserAgenda useragenda ;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JsonBackReference
-    private Collection<Event>  events;
+    private Collection<Event>  events  = new ArrayList<>();
 }

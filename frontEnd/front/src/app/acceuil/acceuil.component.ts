@@ -46,7 +46,6 @@ export class AcceuilComponent implements OnInit {
   getUsers() {
     this.catelogService.getAllUsers("/allUsers").subscribe(data => {
       this.users = data;
-      console.log("users ****>", data);
     }, err => {
       console.log(err);
     })
@@ -55,11 +54,9 @@ export class AcceuilComponent implements OnInit {
   toggleTel(user) {
     this.currentUser = user;
     this.iscontactChecked = !this.iscontactChecked;
-    console.log("iscontactChecked", this.iscontactChecked)
   }
 
   getcatalogueByAdresse(dataForm: any) {
-    console.log("formData ++++==>  ", dataForm);
     this.catelogService.Search(dataForm).subscribe(data => {
       this.catelogService.curenteSearchUsers = data;
       this.route.navigateByUrl("/professions-details/" + 0);
@@ -73,14 +70,12 @@ export class AcceuilComponent implements OnInit {
 
   sendForContactMe(value) {
       this.catelogService.sendForContactMe(value).subscribe(data => {
-        console.log("message status", data);
         this.mode = 1;
         grecaptcha.reset();
         this.route.navigateByUrl('/acceuil');
       }, err => {
         this.errorMessage = err.error.message;
         this.mode = 0;
-        console.log("mode ", this.mode);
       });
     }
 
