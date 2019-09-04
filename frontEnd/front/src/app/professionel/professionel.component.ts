@@ -33,6 +33,7 @@ showAgenda:boolean = false;
       console.log(error);
     });
     this.currentComment = undefined;
+    this.catalogueService.loadToken();
   }
 
   getDevis() {
@@ -83,6 +84,10 @@ showAgenda:boolean = false;
     });
   }
   isShow(){
-     this.showAgenda = !this.showAgenda;
+ if(this.catalogueService.isAuthentificated()){
+   this.showAgenda = !this.showAgenda;
+ }
+else
+  alert("Veuiller vous connectez vous pour prendre un rendez-vous")
   }
 }

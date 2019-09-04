@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, Input, ViewChild} from '@angular/core';
 import {jqxSchedulerComponent} from 'jqwidgets-ng/jqxscheduler';
 import {CatalogueService} from "../catalogue.service";
 
@@ -9,8 +9,6 @@ import {CatalogueService} from "../catalogue.service";
 })
 export class CalendarComponent implements AfterViewInit {
   events;
-  appointments;
-  @Output() appointmentChanges: EventEmitter<String> = new EventEmitter<String>();
   @Input() userId;
 
   public constructor(private catelogService: CatalogueService) {
@@ -21,22 +19,8 @@ export class CalendarComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this.generateAppointments(this.userId);
-        // //console.log(  this.myScheduler.getSelection(),"selected");
-    console.log(this.myScheduler.changedAppointments(), "getAppointgetDataAppointmentsments");
-    // console.log(  this.myScheduler.onAppointmentChange,"getAppointgetDataAppointmentsments");
-
   }
 
-  checkconnection() {
-    if (this.catelogService.isAuthentificated()) {
-      return true;
-    } else {
-      this.myScheduler.setAppointmentProperty(this.events, 'readOnly', false);
-
-      return false;
-    }
-
-  }
 
   getWidth(): any {
     if (document.body.offsetWidth < 800) {
@@ -56,12 +40,11 @@ export class CalendarComponent implements AfterViewInit {
       console.log(resp, "evenenenents");
       for (let i = 0; i < this.events.length; i++) {
         this.myScheduler.addAppointment(this.events[i]);
-        console.log(this.events[i], "evenenenents");
-        this.myScheduler.editDialog(this.checkconnection())
-        this.myScheduler.setAppointmentProperty(this.events[i].id, 'draggable', false);
-        this.myScheduler.setAppointmentProperty(this.events[i].id, 'readOnly', false);
-        this.myScheduler.setAppointmentProperty(this.events[i].id, 'resizable', false);
-
+        // this.myScheduler.editDialog(this.checkconnection())
+        // this.myScheduler.setAppointmentProperty(this.events[i].id, 'draggable', true);
+        // this.myScheduler.setAppointmentProperty(this.events[i].id, 'readOnly', true);
+        // this.myScheduler.setAppointmentProperty(this.events[i].id, 'resizable', false);
+        // this.myScheduler.setAppointmentProperty(this.events[i].id, 'disabled', true);
 
       }
     }, error => {
@@ -70,6 +53,76 @@ export class CalendarComponent implements AfterViewInit {
   };
 
   date: any = new jqx.date();
+
+  ready = (): void => {
+    this.myScheduler.scrollTop(700);
+  }
+
+  mySchedulerOnAppointmentDelete(event: any): void {
+    let appointment = event.args.appointment;
+    console.log(appointment, "appointment Delete ***");
+
+  };
+storeAppointemnInBd(eventId, userId){
+  this.catelogService.storeUserEvents(eventId,userId ).subscribe(resp => {
+    this.events = resp;
+  })
+
+}
+  mySchedulerOnAppointmentAdd(event: any): void {
+    let appointment = event.args.appointment;
+    if (event.args.appointment.subject.length > 0) {
+      this.myScheduler.setAppointmentProperty(event.args.appointment.id, 'readOnly', true);
+      this.myScheduler.setAppointmentProperty(event.args.appointment.id, 'resizable', false);
+      this.myScheduler.setAppointmentProperty(event.args.appointment.id, 'draggable', false);
+      this.myScheduler.setAppointmentProperty(event.args.appointment.id, 'disabled', true);
+      console.log(appointment, "appointment tetstete ***");
+
+      this.storeAppointemnInBd(event.args.appointment.id,this.userId);
+    } else {
+      alert("No subject in appointment");
+      this.myScheduler.setAppointmentProperty(event.args.appointment.id, 'readOnly', false);
+
+    }
+
+
+    console.log(appointment, "appointment Add ***");
+  };
+
+  mySchedulerOnAppointmentDoubleClick(event: any): void {
+    //
+    // let appointment = event.args.appointment;
+    // console.log(appointment, "appointment DoubleClick  ***");
+  };
+
+  mySchedulerOnAppointmentChange(event: any): void {
+
+    let appointment = event.args.appointment;
+    console.log(appointment, "appointment Change ***");
+  };
+
+
+  mySchedulerOnCellDoubleClick(event: any): void {
+    // // if (this.catelogService.isAuthentificated()) {
+    // //   let appointment = event.args.appointment;
+    // //   console.log(appointment, "appointment DoubleClick ***");
+    // // } else {
+    // //   this.myScheduler.setAppointmentProperty(event.args.appointment.id, 'readOnly', true);
+    // //   this.myScheduler.setAppointmentProperty(event.args.appointment.id, 'resizable', false);
+    // //   this.myScheduler.setAppointmentProperty(event.args.appointment.id, 'draggable', false);
+    // // }
+    //
+    //
+    // let cell = event.args.cell;
+    // console.log(cell, "celle clicked ***");
+  };
+
+  mySchedulerOnDialogCreate(event: any): void {
+
+  }
+  mySchedulerOnEditDialogClose(event: any): void {
+
+  }
   source: any =
     {
       dataType: 'array',

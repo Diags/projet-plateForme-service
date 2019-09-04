@@ -382,4 +382,9 @@ public class UserController {
         return userRepository.findEventsById(id);
     }
 
+    @PostMapping("/events")
+    public List<Event> getEvents(@RequestBody SearchEvents searchEvents) {
+        return userRepository.findEventsById(searchEvents.getUserId());
+    }
+
 }

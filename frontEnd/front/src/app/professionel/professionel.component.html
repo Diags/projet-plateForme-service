@@ -118,8 +118,8 @@
       ligula eget dolor.
       semper
     </div>
-    <div class="col-md-2">
-      <button type="button" [ngClass]="{'butShow': showAgenda? true:false}"  class="btn btn-lg btn-primary button" (click)="isShow()"> Prendre rendez-vous</button>
+    <div class="col-md-2" >
+      <button type="button" [ngClass]="{'butShow': showAgenda? true:false}"  class="btn btn-lg button" (click)="isShow()"> Prendre rendez-vous</button>
      <div *ngIf="showAgenda" style="padding-top: 5%">
        <app-calendar [userId]="user.id"></app-calendar>
      </div>

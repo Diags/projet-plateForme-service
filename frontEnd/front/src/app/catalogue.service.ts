@@ -165,4 +165,10 @@ export class CatalogueService {
     return this.http.get(this.host +"/events/"+userId);
   }
 
+  storeUserEvents(eventId, userId) {
+    return this.http.post(this.host +"/events/",JSON.stringify({
+      "eventId": eventId,
+      "userId": userId
+    }) );
+  }
 }

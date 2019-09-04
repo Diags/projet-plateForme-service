@@ -2697,14 +2697,14 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
   width: 100%
 }
 
-.fade {
-  opacity: 0;
-  -webkit-transition: opacity .15s linear;
-  transition: opacity .15s linear
-}
+/*.fade {*/
+/*  opacity: 0;*/
+/*  -webkit-transition: opacity .15s linear;*/
+/*  transition: opacity .15s linear*/
+/*}*/
 
 .fade.in {
-  opacity: 1
+  opacity: 5%;
 }
 
 .collapse {
@@ -5918,10 +5918,7 @@ button.close {
   filter: alpha(opacity=0)
 }
 
-.modal-backdrop.in {
-  opacity: .5;
-  filter: alpha(opacity=50)
-}
+
 
 .modal-header {
   min-height: 16.428571429px;

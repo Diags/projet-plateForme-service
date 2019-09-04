@@ -32,4 +32,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
     User findByEmailAndPassword(String email, String password);
     @Query("select u.events from User u  where  u.id=:id")
     List<Event> findEventsById(@Param("id") Long id);
+
 }

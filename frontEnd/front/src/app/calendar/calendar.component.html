@@ -1,4 +1,4 @@
-<jqxScheduler #scheduler
+<jqxScheduler [theme]="'material'"  #scheduler
               [width]="getWidth()" [height]="600"
               [date]="date"
               [source]="dataAdapter"
@@ -7,6 +7,13 @@
               [view]="'agendaView'"
               [resources]="resources"
               [views]="views"
+              (onAppointmentDelete)="mySchedulerOnAppointmentDelete($event)"
+              (onAppointmentAdd)="mySchedulerOnAppointmentAdd($event)"
+              (onAppointmentDoubleClick)="mySchedulerOnAppointmentDoubleClick($event)"
+              (onAppointmentChange)="mySchedulerOnAppointmentChange($event)"
+              (onCellDoubleClick)="mySchedulerOnCellDoubleClick($event)"
+              (onEditDialogCreate)="mySchedulerOnDialogCreate($event)"
+              (onEditDialogClose)="mySchedulerOnEditDialogClose($event)"
               [appointmentDataFields]="appointmentDataFields">
 </jqxScheduler>
 

@@ -12,6 +12,7 @@ export class MoncompteComponent implements OnInit {
   constructor(private catalogueService:CatalogueService, private router: Router) { }
 
   ngOnInit() {
+    this.catalogueService.loadToken();
   }
 
   updateMPD(value) {
