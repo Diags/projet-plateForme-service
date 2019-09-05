@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Input, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, Input, OnInit, ViewChild} from '@angular/core';
 import {jqxSchedulerComponent} from 'jqwidgets-ng/jqxscheduler';
 import {CatalogueService} from "../catalogue.service";
 
@@ -7,9 +7,10 @@ import {CatalogueService} from "../catalogue.service";
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.css']
 })
-export class CalendarComponent implements AfterViewInit {
+export class CalendarComponent implements AfterViewInit, OnInit {
   events;
   @Input() userId;
+  flag:boolean = true;
 
   public constructor(private catelogService: CatalogueService) {
 
@@ -19,8 +20,13 @@ export class CalendarComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this.generateAppointments(this.userId);
+   // this.myScheduler.beginAppointmentsUpdate();
+    console.log(this.source);
+   // this.flag = true;
   }
 
+  ngOnInit(): void {
+  }
 
   getWidth(): any {
     if (document.body.offsetWidth < 800) {
@@ -35,10 +41,14 @@ export class CalendarComponent implements AfterViewInit {
   }
 
   generateAppointments(userId) {
-    this.catelogService.getEvents(userId).subscribe(resp => {
+    this.catelogService.getEventsbyId(userId).subscribe(resp => {
+      this.flag = false;
       this.events = resp;
       console.log(resp, "evenenenents");
+      this.source.localdata = this.events;
+      this.source.localData = this.events;
       for (let i = 0; i < this.events.length; i++) {
+
         this.myScheduler.addAppointment(this.events[i]);
         // this.myScheduler.editDialog(this.checkconnection())
         // this.myScheduler.setAppointmentProperty(this.events[i].id, 'draggable', true);
@@ -47,6 +57,7 @@ export class CalendarComponent implements AfterViewInit {
         // this.myScheduler.setAppointmentProperty(this.events[i].id, 'disabled', true);
 
       }
+
     }, error => {
       console.log(error, "errrroorr")
     });
@@ -63,12 +74,24 @@ export class CalendarComponent implements AfterViewInit {
     console.log(appointment, "appointment Delete ***");
 
   };
-storeAppointemnInBd(eventId, userId){
-  this.catelogService.storeUserEvents(eventId,userId ).subscribe(resp => {
-    this.events = resp;
-  })
 
-}
+  storeAppointemnInBd(event, userId) {
+    let appoitement = {
+      id: parseInt(event.id),
+      description: event.originalData.description,
+      location: event.originalData.location,
+      subject: event.originalData.subject,
+      calendar: event.originalData.calendar,
+      startDate: new Date(event.originalData.start),
+      endDate: new Date(event.originalData.end)
+    };
+
+    this.catelogService.storeUserEventsbyId(appoitement, userId).subscribe(resp => {
+      this.events = resp;
+    })
+
+  }
+
   mySchedulerOnAppointmentAdd(event: any): void {
     let appointment = event.args.appointment;
     if (event.args.appointment.subject.length > 0) {
@@ -76,17 +99,18 @@ storeAppointemnInBd(eventId, userId){
       this.myScheduler.setAppointmentProperty(event.args.appointment.id, 'resizable', false);
       this.myScheduler.setAppointmentProperty(event.args.appointment.id, 'draggable', false);
       this.myScheduler.setAppointmentProperty(event.args.appointment.id, 'disabled', true);
-      console.log(appointment, "appointment tetstete ***");
+      // this.storeAppointemnInBd(event.args.appointment, this.userId);
 
-      this.storeAppointemnInBd(event.args.appointment.id,this.userId);
     } else {
       alert("No subject in appointment");
       this.myScheduler.setAppointmentProperty(event.args.appointment.id, 'readOnly', false);
-
+    }
+    if (this.flag) {
+      this.storeAppointemnInBd(event.args.appointment, this.userId);
+      console.log(event.args, "appointment tititit fin addd ***");
     }
 
 
-    console.log(appointment, "appointment Add ***");
   };
 
   mySchedulerOnAppointmentDoubleClick(event: any): void {
@@ -125,7 +149,7 @@ storeAppointemnInBd(eventId, userId){
   }
   source: any =
     {
-      dataType: 'array',
+      dataType: 'json',
       dataFields: [
         {name: 'id', type: 'string'},
         {name: 'description', type: 'string'},
@@ -136,7 +160,7 @@ storeAppointemnInBd(eventId, userId){
         {name: 'end', type: 'date'}
       ],
       id: 'id',
-      localData: this.events
+      localdata: null
     };
   dataAdapter: any = new jqx.dataAdapter(this.source);
   resources: any =

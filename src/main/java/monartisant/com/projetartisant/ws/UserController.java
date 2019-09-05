@@ -30,10 +30,7 @@ import javax.validation.Valid;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.attribute.UserPrincipalNotFoundException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 @CrossOrigin("*")
 @RestController
@@ -377,14 +374,28 @@ public class UserController {
         } else
             throw new Exception("This message not send");
     }
+
     @GetMapping("/events/{id}")
-    public List<Event> getAllEvents(@PathVariable("id") Long id) {
-        return userRepository.findEventsById(id);
+    public List<Event> getEventsById(@PathVariable("id") Long UserId) {
+        return userRepository.findEventsById(UserId);
     }
 
+    /**
+     * this function is used for handle user events
+     * @param searchEvents
+     * @return event list
+     */
     @PostMapping("/events")
+    @Transactional
     public List<Event> getEvents(@RequestBody SearchEvents searchEvents) {
-        return userRepository.findEventsById(searchEvents.getUserId());
+        Objects.requireNonNull(searchEvents, "this user event is null or empty");
+        User user = userRepository.findById(Long.valueOf(searchEvents.getUserId())).get();
+        if (user.getEvents().stream().noneMatch(event -> event.getId() == Long.valueOf(searchEvents.getEvent().getId()))) {
+            user.getEvents().add(searchEvents.getEvent());
+            userRepository.save(user);
+        }
+        return userRepository.findEventsById(Long.valueOf(searchEvents.getUserId()));
+
     }
 
 }

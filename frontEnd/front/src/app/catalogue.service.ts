@@ -160,15 +160,17 @@ export class CatalogueService {
     return this.http.post(this.host + "/", values)
   }
 
-  getEvents(userId) {
+  getEventsbyId(userId) {
     console.log("user ", userId);
     return this.http.get(this.host +"/events/"+userId);
   }
 
-  storeUserEvents(eventId, userId) {
-    return this.http.post(this.host +"/events/",JSON.stringify({
-      "eventId": eventId,
+  storeUserEventsbyId(event, userId) {
+    let header = new HttpHeaders({'Content-Type': 'application/json'});
+    console.log("event ", event);
+    return this.http.post(this.host +"/events",JSON.stringify({
+      "event": event,
       "userId": userId
-    }) );
+    }),{headers: header} );
   }
 }

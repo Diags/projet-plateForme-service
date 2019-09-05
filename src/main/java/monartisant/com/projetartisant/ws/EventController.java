@@ -17,10 +17,8 @@ public class EventController {
     @Autowired
     private EventRepository eventRepository;
 
-@PostMapping("/events")
+@PostMapping("/allevents")
     public List<Event> updateEvents(@RequestBody Event event) {
         return eventRepository.findAll();
     }
-
-
 }

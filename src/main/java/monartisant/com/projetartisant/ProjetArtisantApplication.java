@@ -42,14 +42,8 @@ public class ProjetArtisantApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-//        Context context = new Context();
-//        context.setVariable("title", "Vous avez une demande de devis:");
-//        context.setVariable("body", "Mr. Dupont voudrait un devis sur le coffrage de son appartement.");
-//        context.setVariable("description", "Description:");
-//
-//        EmailStatus emailStatus = emailHtmlSender.send("diaguilysociete@gmail.com", "DEMANDE DE DEVIS", "email/template-1", context);
 
-        repositoryRestConfiguration.exposeIdsFor(User.class, Category.class, Adresse.class, Profession.class, Token.class);
+        repositoryRestConfiguration.exposeIdsFor(User.class, Category.class, Adresse.class, Profession.class, Token.class,Event.class);
         //  Adresse a = new Adresse(null, 12, "rue", "emeraude", 69006, "lyon");
         Random rd = new Random();
         categoryRepository.save(new Category(null, "BATIMENT", RandomString.make(12), "macon1", null));
@@ -529,7 +523,7 @@ public class ProjetArtisantApplication implements CommandLineRunner {
                 user.setUseragenda(agenda);
                 user.setEvents(Collections.singletonList(event));
                 userRepository.save(user);
-                System.out.println(user.getEmail());
+               // System.out.println(user.getEmail());
             }
         });
 
